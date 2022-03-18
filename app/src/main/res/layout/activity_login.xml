@@ -43,6 +43,26 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"/>
 
+        <EditText
+            android:hint="password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            style="@style/AuthEditText"/>
+
+        <LinearLayout
+            android:background="#999999"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"/>
+        
+        <Button
+            android:text="로그인하기"
+            android:background="@drawable/background_radius_yellow"
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
     </LinearLayout>
 
 </LinearLayout>
