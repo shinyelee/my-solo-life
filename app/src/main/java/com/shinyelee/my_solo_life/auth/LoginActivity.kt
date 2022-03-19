@@ -35,8 +35,7 @@ class LoginActivity : AppCompatActivity() {
                         // 로그인 성공
                         Toast.makeText(this, "로그인에 성공했습니다", Toast.LENGTH_LONG).show()
                         val intent = Intent(this, MainActivity::class.java)
-                        intent.flags =
-                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
                         startActivity(intent)
                     } else {
                         // 로그인 실패
