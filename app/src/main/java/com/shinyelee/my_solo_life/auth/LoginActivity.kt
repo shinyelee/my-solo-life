@@ -34,6 +34,7 @@ class LoginActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         // 로그인 성공
                         Toast.makeText(this, "로그인에 성공했습니다", Toast.LENGTH_LONG).show()
+                        // 로그인 페이지 닫고 메인 페이지로 이동
                         val intent = Intent(this, MainActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
                         startActivity(intent)
