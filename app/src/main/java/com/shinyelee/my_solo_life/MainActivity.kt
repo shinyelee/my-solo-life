@@ -23,17 +23,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        findViewById<Button>(R.id.logoutBtn).setOnClickListener {
-
-            // 로그아웃
-            auth.signOut()
-            Toast.makeText(this, "로그아웃 되었습니다", Toast.LENGTH_LONG).show()
-            // 인트로 액티비티로 이동
-            val intent = Intent(this, IntroActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
-            startActivity(intent)
-
-        }
+//        findViewById<Button>(R.id.logoutBtn).setOnClickListener {
+//
+//            // 로그아웃
+//            auth.signOut()
+//            Toast.makeText(this, "로그아웃 되었습니다", Toast.LENGTH_LONG).show()
+//            // 인트로 액티비티로 이동
+//            val intent = Intent(this, IntroActivity::class.java)
+//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
+//            startActivity(intent)
+//
+//        }
 
     }
 }
