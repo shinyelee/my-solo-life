@@ -38,9 +38,18 @@ class HomeFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         binding.tip.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_tipFragment)
-            Toast.makeText(context, "클릭됨", Toast.LENGTH_LONG).show()
+        }
+        binding.talk.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_talkFragment)
+        }
+        binding.bookmark.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_bookmarkFragment)
+        }
+        binding.store.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_storeFragment)
         }
         return binding.root
+
     }
 
 }
