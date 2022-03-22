@@ -40,25 +40,21 @@ class HomeFragment : Fragment() {
 
         // binding
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-        // tip으로 이동
+        // home -> tip
         binding.tipT.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_tipFragment)
-            Toast.makeText(context, "팁 클릭됨", Toast.LENGTH_LONG).show()
         }
-        // talk로 이동
+        // home -> talk
         binding.talkT.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_talkFragment)
-            Toast.makeText(context, "토크 클릭됨", Toast.LENGTH_LONG).show()
         }
-        // bookmark로 이동
+        // home -> bookmark
         binding.bookmarkT.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_bookmarkFragment)
-            Toast.makeText(context, "북마크 클릭됨", Toast.LENGTH_LONG).show()
         }
-        // store로 이동
+        // home -> store
         binding.storeT.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_storeFragment)
-            Toast.makeText(context, "스토어 클릭됨", Toast.LENGTH_LONG).show()
         }
         return binding.root
     }
