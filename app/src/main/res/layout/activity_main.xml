@@ -41,6 +41,15 @@
 
     </LinearLayout>
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/main_nav" />
+
 <!--        <Button-->
 <!--            android:id="@+id/logoutBtn"-->
 <!--            android:background="@drawable/background_radius_yellow"-->
