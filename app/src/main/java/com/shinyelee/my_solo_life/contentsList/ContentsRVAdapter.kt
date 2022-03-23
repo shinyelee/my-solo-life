@@ -3,6 +3,7 @@ package com.shinyelee.my_solo_life.contentsList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.shinyelee.my_solo_life.R
 
@@ -30,7 +31,8 @@ class ContentsRVAdapter(val items : ArrayList<ContentsModel>) : RecyclerView.Ada
     // item에 데이터 넣어줌
     inner class Viewholder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         fun bindItems(item : ContentsModel) {
-
+            val contentsTitle = itemView.findViewById<TextView>(R.id.textArea)
+            contentsTitle.text = item.title
         }
     }
 
