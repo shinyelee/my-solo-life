@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.shinyelee.my_solo_life.R
 
-class ContentsRVAdapter(val items : ArrayList<String>) : RecyclerView.Adapter<ContentsRVAdapter.Viewholder>() {
+class ContentsRVAdapter(val items : ArrayList<ContentsModel>) : RecyclerView.Adapter<ContentsRVAdapter.Viewholder>() {
 
     // item 하나 가져옴
     override fun onCreateViewHolder(
@@ -29,7 +29,7 @@ class ContentsRVAdapter(val items : ArrayList<String>) : RecyclerView.Adapter<Co
 
     // item에 데이터 넣어줌
     inner class Viewholder(itemView : View) : RecyclerView.ViewHolder(itemView) {
-        fun bindItems(item : String) {
+        fun bindItems(item : ContentsModel) {
 
         }
     }

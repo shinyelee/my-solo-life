@@ -16,10 +16,10 @@ class ContentsListActivity : AppCompatActivity() {
 
         val rv : RecyclerView = findViewById(R.id.rv)
 
-        val items = ArrayList<String>()
-        items.add("A")
-        items.add("B")
-        items.add("C")
+        val items = ArrayList<ContentsModel>()
+        items.add(ContentsModel("imageurl1", "title1"))
+        items.add(ContentsModel("imageurl2", "title2"))
+        items.add(ContentsModel("imageurl3", "title3"))
 
         val rvAdapter = ContentsRVAdapter(items)
         rv.adapter = rvAdapter

@@ -7,11 +7,13 @@
     android:orientation="vertical">
 
     <ImageView
+        android:id="@+id/imageArea"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:src="@drawable/main_icon_oneroom"/>
 
     <TextView
+        android:id="@+id/textArea"
         android:text="텍스트 영역"
         android:textSize="15sp"
         android:textStyle="bold"
@@ -20,6 +22,7 @@
         android:gravity="center"/>
 
     <ImageView
+        android:id="@+id/bookmarkArea"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginTop="10dp"
