@@ -1,5 +1,6 @@
 package com.shinyelee.my_solo_life.contentsList
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -40,9 +41,12 @@ class ContentsListActivity : AppCompatActivity() {
 
         rv.layoutManager = GridLayoutManager(this, 2)
 
+        // item click
         rvAdapter.itemClick = object : ContentsRVAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
                 Toast.makeText(baseContext, items[position].title, Toast.LENGTH_LONG).show()
+                val intent = Intent(this@ContentsListActivity, ContentsShowActivity::class.java)
+                startActivity(intent)
             }
 
         }
