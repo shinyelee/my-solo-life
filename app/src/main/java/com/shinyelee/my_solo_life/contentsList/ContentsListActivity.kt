@@ -46,6 +46,7 @@ class ContentsListActivity : AppCompatActivity() {
             override fun onClick(view: View, position: Int) {
                 Toast.makeText(baseContext, items[position].title, Toast.LENGTH_LONG).show()
                 val intent = Intent(this@ContentsListActivity, ContentsShowActivity::class.java)
+                intent.putExtra("url", items[position].webUrl)
                 startActivity(intent)
             }
 
