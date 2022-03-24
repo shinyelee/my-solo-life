@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -18,12 +19,15 @@ import com.shinyelee.my_solo_life.R
 
 class ContentsListActivity : AppCompatActivity() {
 
+    lateinit var myRef : DatabaseReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contents_list)
 
         val items = ArrayList<ContentsModel>()
+
         val rvAdapter = ContentsRVAdapter(baseContext, items)
 
         val database = Firebase.database
@@ -31,49 +35,30 @@ class ContentsListActivity : AppCompatActivity() {
         val cate = intent.getStringExtra("cate")
 
         if(cate == "cate1") {
-
-            val myRef = database.getReference("contents")
-
-            val postListener = object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    for(dataModel in dataSnapshot.children) {
-                        Log.d("ContentsListActivity", dataModel.toString())
-                        val item = dataModel.getValue(ContentsModel::class.java)
-                        items.add(item!!)
-                    }
-                    rvAdapter.notifyDataSetChanged()
-                    Log.d("ContentsListActivity", items.toString())
-                }
-
-                override fun onCancelled(databaseError: DatabaseError) {
-                    // Getting Post failed, log a message
-                    Log.w("ContentsListActivity", "loadPost:onCancelled", databaseError.toException())
-                }
-            }
-            myRef.addValueEventListener(postListener)
-
+            myRef = database.getReference("contents")
         } else if(cate == "cate2") {
-
-            val myRef = database.getReference("contents2")
-
-            val postListener = object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    for(dataModel in dataSnapshot.children) {
-                        Log.d("ContentsListActivity", dataModel.toString())
-                        val item = dataModel.getValue(ContentsModel::class.java)
-                        items.add(item!!)
-                    }
-                    rvAdapter.notifyDataSetChanged()
-                    Log.d("ContentsListActivity", items.toString())
-                }
-
-                override fun onCancelled(databaseError: DatabaseError) {
-                    // Getting Post failed, log a message
-                    Log.w("ContentsListActivity", "loadPost:onCancelled", databaseError.toException())
-                }
-            }
-            myRef.addValueEventListener(postListener)
+            myRef = database.getReference("contents2")
         }
+
+        val postListener = object : ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for(dataModel in dataSnapshot.children) {
+                    Log.d("ContentsListActivity", dataModel.toString())
+                    val item = dataModel.getValue(ContentsModel::class.java)
+                    items.add(item!!)
+                }
+                rvAdapter.notifyDataSetChanged()
+                Log.d("ContentsListActivity", items.toString())
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w("ContentsListActivity", "loadPost:onCancelled", databaseError.toException())
+            }
+
+        }
+        myRef.addValueEventListener(postListener)
 
         val rv : RecyclerView = findViewById(R.id.rv)
 
