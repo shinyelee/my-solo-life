@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import com.shinyelee.my_solo_life.R
 
 class ContentsListActivity : AppCompatActivity() {
@@ -16,6 +18,11 @@ class ContentsListActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contents_list)
+
+        // Write a message to the database
+        val database = Firebase.database
+        val myRef = database.getReference("contents")
+        myRef.setValue("Hello, World!")
 
         val rv : RecyclerView = findViewById(R.id.rv)
 
