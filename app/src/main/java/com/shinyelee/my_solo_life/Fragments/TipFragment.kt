@@ -32,6 +32,13 @@ class TipFragment : Fragment() {
         // tip -> cate1
         binding.cate1.setOnClickListener {
             val intent = Intent(context, ContentsListActivity::class.java)
+            intent.putExtra("cate", "cate1")
+            startActivity(intent)
+        }
+        // tip -> cate2
+        binding.cate2.setOnClickListener {
+            val intent = Intent(context, ContentsListActivity::class.java)
+            intent.putExtra("cate", "cate2")
             startActivity(intent)
         }
 
