@@ -12,17 +12,28 @@ import com.shinyelee.my_solo_life.R
 
 class ContentsRVAdapter(val context : Context, val items : ArrayList<ContentsModel>) : RecyclerView.Adapter<ContentsRVAdapter.Viewholder>() {
 
+    // item click
+    interface ItemClick {
+        fun onClick(view : View, position: Int)
+    }
+    var itemClick : ItemClick? = null
+
     // item 하나 가져옴
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ContentsRVAdapter.Viewholder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContentsRVAdapter.Viewholder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.contents_rv_item, parent, false)
         return Viewholder(v)
     }
 
     // item 내용
     override fun onBindViewHolder(holder: ContentsRVAdapter.Viewholder, position: Int) {
+
+        // item click
+        if(itemClick != null) {
+            holder.itemView.setOnClickListener { v ->
+                itemClick?.onClick(v, position)
+            }
+        }
+
         holder.bindItems(items[position])
     }
 
