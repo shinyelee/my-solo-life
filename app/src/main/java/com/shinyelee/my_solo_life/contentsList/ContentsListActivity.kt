@@ -40,11 +40,13 @@ class ContentsListActivity : AppCompatActivity() {
             myRef = database.getReference("contents2")
         }
 
+        // Firebase에서 컨텐츠 받아오는 부분
         val postListener = object : ValueEventListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for(dataModel in dataSnapshot.children) {
                     Log.d("ContentsListActivity", dataModel.toString())
+                    Log.d("ContentsListActivity", dataModel.key.toString())
                     val item = dataModel.getValue(ContentsModel::class.java)
                     items.add(item!!)
                 }
