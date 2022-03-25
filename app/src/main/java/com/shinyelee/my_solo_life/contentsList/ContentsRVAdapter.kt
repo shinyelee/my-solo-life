@@ -6,17 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.shinyelee.my_solo_life.R
 
 class ContentsRVAdapter(val context : Context, val items : ArrayList<ContentsModel>) : RecyclerView.Adapter<ContentsRVAdapter.Viewholder>() {
-
-    // item click
-    interface ItemClick {
-        fun onClick(view : View, position: Int)
-    }
-    var itemClick : ItemClick? = null
 
     // item 하나 가져옴
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContentsRVAdapter.Viewholder {
@@ -26,14 +21,6 @@ class ContentsRVAdapter(val context : Context, val items : ArrayList<ContentsMod
 
     // item 내용
     override fun onBindViewHolder(holder: ContentsRVAdapter.Viewholder, position: Int) {
-
-        // item click
-        if(itemClick != null) {
-            holder.itemView.setOnClickListener { v ->
-                itemClick?.onClick(v, position)
-            }
-        }
-
         holder.bindItems(items[position])
     }
 
@@ -44,7 +31,13 @@ class ContentsRVAdapter(val context : Context, val items : ArrayList<ContentsMod
 
     // item에 데이터 넣어줌
     inner class Viewholder(itemView : View) : RecyclerView.ViewHolder(itemView) {
+
         fun bindItems(item : ContentsModel) {
+
+            itemView.setOnClickListener {
+                Toast.makeText(context, item.title, Toast.LENGTH_LONG).show()
+            }
+
             val contentsTitle = itemView.findViewById<TextView>(R.id.textArea)
 
             // glide
@@ -58,6 +51,7 @@ class ContentsRVAdapter(val context : Context, val items : ArrayList<ContentsMod
                 .into(imageViewArea)
 
         }
+
     }
 
 }

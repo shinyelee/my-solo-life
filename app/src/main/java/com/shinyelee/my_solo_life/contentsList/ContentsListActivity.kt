@@ -66,16 +66,6 @@ class ContentsListActivity : AppCompatActivity() {
 
         rv.layoutManager = GridLayoutManager(this, 2)
 
-        // item click
-        rvAdapter.itemClick = object : ContentsRVAdapter.ItemClick {
-            override fun onClick(view: View, position: Int) {
-                Toast.makeText(baseContext, items[position].title, Toast.LENGTH_LONG).show()
-                val intent = Intent(this@ContentsListActivity, ContentsShowActivity::class.java)
-                intent.putExtra("url", items[position].webUrl)
-                startActivity(intent)
-            }
-        }
-
 //        val myRef2 = database.getReference("contents2")
 //
 //        myRef2.push().setValue(
