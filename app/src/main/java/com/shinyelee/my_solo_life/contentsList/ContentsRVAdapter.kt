@@ -1,6 +1,7 @@
 package com.shinyelee.my_solo_life.contentsList
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,6 +37,9 @@ class ContentsRVAdapter(val context : Context, val items : ArrayList<ContentsMod
 
             itemView.setOnClickListener {
                 Toast.makeText(context, item.title, Toast.LENGTH_LONG).show()
+                val intent = Intent(context, ContentsShowActivity::class.java)
+                intent.putExtra("url", item.webUrl)
+                itemView.context.startActivity(intent)
             }
 
             val contentsTitle = itemView.findViewById<TextView>(R.id.textArea)
