@@ -12,7 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.shinyelee.my_solo_life.R
 
-class ContentsRVAdapter(val context : Context, val items : ArrayList<ContentsModel>) : RecyclerView.Adapter<ContentsRVAdapter.Viewholder>() {
+class ContentsRVAdapter(val context : Context, val items : ArrayList<ContentsModel>, val keyList : ArrayList<String>)
+    : RecyclerView.Adapter<ContentsRVAdapter.Viewholder>() {
 
     // item 하나 가져옴
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContentsRVAdapter.Viewholder {
@@ -48,7 +49,7 @@ class ContentsRVAdapter(val context : Context, val items : ArrayList<ContentsMod
             val bookmarkArea = itemView.findViewById<ImageView>(R.id.bookmarkArea)
 
             bookmarkArea.setOnClickListener {
-                Toast.makeText(context, "북마크 클릭됨", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, keyList.toString(), Toast.LENGTH_LONG).show()
             }
 
             contentsTitle.text = item.title
