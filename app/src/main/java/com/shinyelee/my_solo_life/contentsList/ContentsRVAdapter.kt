@@ -23,7 +23,7 @@ class ContentsRVAdapter(val context : Context, val items : ArrayList<ContentsMod
 
     // item 내용
     override fun onBindViewHolder(holder: ContentsRVAdapter.Viewholder, position: Int) {
-        holder.bindItems(items[position])
+        holder.bindItems(items[position], keyList[position])
     }
 
     // 전체 item 개수
@@ -34,7 +34,7 @@ class ContentsRVAdapter(val context : Context, val items : ArrayList<ContentsMod
     // item에 데이터 넣어줌
     inner class Viewholder(itemView : View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bindItems(item : ContentsModel) {
+        fun bindItems(item : ContentsModel, key : String) {
 
             itemView.setOnClickListener {
                 Toast.makeText(context, item.title, Toast.LENGTH_LONG).show()
@@ -49,7 +49,7 @@ class ContentsRVAdapter(val context : Context, val items : ArrayList<ContentsMod
             val bookmarkArea = itemView.findViewById<ImageView>(R.id.bookmarkArea)
 
             bookmarkArea.setOnClickListener {
-                Toast.makeText(context, keyList.toString(), Toast.LENGTH_LONG).show()
+                Toast.makeText(context, key, Toast.LENGTH_LONG).show()
             }
 
             contentsTitle.text = item.title
