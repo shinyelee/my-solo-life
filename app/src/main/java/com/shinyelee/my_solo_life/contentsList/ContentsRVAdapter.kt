@@ -43,9 +43,13 @@ class ContentsRVAdapter(val context : Context, val items : ArrayList<ContentsMod
             }
 
             val contentsTitle = itemView.findViewById<TextView>(R.id.textArea)
-
             // glide
             val imageViewArea = itemView.findViewById<ImageView>(R.id.imageArea)
+            val bookmarkArea = itemView.findViewById<ImageView>(R.id.bookmarkArea)
+
+            bookmarkArea.setOnClickListener {
+                Toast.makeText(context, "북마크 클릭됨", Toast.LENGTH_LONG).show()
+            }
 
             contentsTitle.text = item.title
 
