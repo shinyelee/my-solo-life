@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.shinyelee.my_solo_life.R
 import com.shinyelee.my_solo_life.utils.FBAuth
+import com.shinyelee.my_solo_life.utils.FBRef
 
 class ContentsRVAdapter(val context : Context, val items : ArrayList<ContentsModel>, val keyList : ArrayList<String>)
     : RecyclerView.Adapter<ContentsRVAdapter.Viewholder>() {
@@ -53,6 +54,7 @@ class ContentsRVAdapter(val context : Context, val items : ArrayList<ContentsMod
             bookmarkArea.setOnClickListener {
                 Log.d("ContentsRVAdapter", FBAuth.getUid())
                 Toast.makeText(context, key, Toast.LENGTH_LONG).show()
+                FBRef.bookmarkRef.child(FBAuth.getUid()).child(key).setValue("Test")
             }
 
             contentsTitle.text = item.title
