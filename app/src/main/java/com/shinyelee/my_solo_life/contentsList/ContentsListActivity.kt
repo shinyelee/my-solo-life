@@ -16,11 +16,14 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.shinyelee.my_solo_life.R
+import com.shinyelee.my_solo_life.utils.FBAuth
 import com.shinyelee.my_solo_life.utils.FBRef
 
 class ContentsListActivity : AppCompatActivity() {
 
     lateinit var myRef : DatabaseReference
+
+    val bookmarkIdList = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -80,10 +83,9 @@ class ContentsListActivity : AppCompatActivity() {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for(dataModel in dataSnapshot.children) {
-                    Log.d("getBookmarkData", dataModel.key.toString())
-                    Log.d("getBookmarkData", dataModel.toString())
+                    bookmarkIdList.add(dataModel.key.toString())
                 }
-
+                Log.d("ContentsListActivity", bookmarkIdList.toString())
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -92,7 +94,7 @@ class ContentsListActivity : AppCompatActivity() {
             }
 
         }
-        FBRef.bookmarkRef.addValueEventListener(postListener)
+        FBRef.bookmarkRef.child(FBAuth.getUid()).addValueEventListener(postListener)
     }
 
 }
