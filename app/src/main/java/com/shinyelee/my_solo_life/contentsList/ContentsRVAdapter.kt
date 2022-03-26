@@ -81,7 +81,6 @@ class ContentsRVAdapter(val context : Context,
                         .setValue(BookmarkModel(true))
                 }
 
-
             }
 
             contentsTitle.text = item.title
