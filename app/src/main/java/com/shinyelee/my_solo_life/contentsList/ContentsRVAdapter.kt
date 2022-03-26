@@ -65,10 +65,22 @@ class ContentsRVAdapter(val context : Context,
             bookmarkArea.setOnClickListener {
                 Log.d("ContentsRVAdapter", FBAuth.getUid())
                 Toast.makeText(context, key, Toast.LENGTH_LONG).show()
-                FBRef.bookmarkRef
-                    .child(FBAuth.getUid())
-                    .child(key)
-                    .setValue(BookmarkModel(true))
+
+                if(bookmarkIdList.contains(key)) {
+                    // 북마크 (O)
+                    FBRef.bookmarkRef
+                        .child(FBAuth.getUid())
+                        .child(key)
+                        .removeValue()
+                } else {
+                    // 북마크 (X)
+                    FBRef.bookmarkRef
+                        .child(FBAuth.getUid())
+                        .child(key)
+                        .setValue(BookmarkModel(true))
+                }
+
+
             }
 
             contentsTitle.text = item.title
