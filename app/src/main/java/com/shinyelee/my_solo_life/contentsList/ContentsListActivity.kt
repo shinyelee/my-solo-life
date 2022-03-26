@@ -25,6 +25,8 @@ class ContentsListActivity : AppCompatActivity() {
 
     val bookmarkIdList = mutableListOf<String>()
 
+    lateinit var rvAdapter : ContentsRVAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -33,7 +35,7 @@ class ContentsListActivity : AppCompatActivity() {
         val items = ArrayList<ContentsModel>()
         val itemKeyList = ArrayList<String>()
 
-        val rvAdapter = ContentsRVAdapter(baseContext, items, itemKeyList)
+        rvAdapter = ContentsRVAdapter(baseContext, items, itemKeyList, bookmarkIdList)
 
         val database = Firebase.database
 
@@ -86,6 +88,7 @@ class ContentsListActivity : AppCompatActivity() {
                     bookmarkIdList.add(dataModel.key.toString())
                 }
                 Log.d("ContentsListActivity", bookmarkIdList.toString())
+                rvAdapter.notifyDataSetChanged()
             }
 
             override fun onCancelled(databaseError: DatabaseError) {

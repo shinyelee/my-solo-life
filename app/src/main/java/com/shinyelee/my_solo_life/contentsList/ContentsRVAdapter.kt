@@ -15,12 +15,17 @@ import com.shinyelee.my_solo_life.R
 import com.shinyelee.my_solo_life.utils.FBAuth
 import com.shinyelee.my_solo_life.utils.FBRef
 
-class ContentsRVAdapter(val context : Context, val items : ArrayList<ContentsModel>, val keyList : ArrayList<String>)
+class ContentsRVAdapter(val context : Context,
+                        val items : ArrayList<ContentsModel>,
+                        val keyList : ArrayList<String>,
+                        val bookmarkIdList : MutableList<String>)
     : RecyclerView.Adapter<ContentsRVAdapter.Viewholder>() {
 
     // item 하나 가져옴
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContentsRVAdapter.Viewholder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.contents_rv_item, parent, false)
+        Log.d("ContentsRVAdapter", keyList.toString())
+        Log.d("ContentsRVAdapter", bookmarkIdList.toString())
         return Viewholder(v)
     }
 
