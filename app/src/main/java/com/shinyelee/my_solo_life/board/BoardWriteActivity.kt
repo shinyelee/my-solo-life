@@ -27,13 +27,15 @@ class BoardWriteActivity : AppCompatActivity() {
 
             val title = binding.titleArea.text.toString()
             val contents = binding.contentsArea.text.toString()
+            val uid = FBAuth.getUid()
+            val time = FBAuth.getTime()
 
             Log.d(TAG, title)
             Log.d(TAG, contents)
 
             FBRef.boardRef
                 .push()
-                .setValue(BoardModel(title,contents,"uid","time"))
+                .setValue(BoardModel(title, contents, uid, time))
 
         }
     }
