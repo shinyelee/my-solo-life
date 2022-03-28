@@ -1,5 +1,6 @@
 package com.shinyelee.my_solo_life.Fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.shinyelee.my_solo_life.R
+import com.shinyelee.my_solo_life.board.BoardWriteActivity
 import com.shinyelee.my_solo_life.databinding.FragmentTalkBinding
 
 class TalkFragment : Fragment() {
@@ -26,6 +28,13 @@ class TalkFragment : Fragment() {
 
         // binding
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_talk, container, false)
+
+        // talk -> write
+        binding.writeBtn.setOnClickListener {
+            val intent = Intent(context, BoardWriteActivity::class.java)
+            startActivity(intent)
+        }
+
         // talk -> home
         binding.homeT.setOnClickListener {
             it.findNavController().navigate(R.id.action_talkFragment_to_homeFragment)
