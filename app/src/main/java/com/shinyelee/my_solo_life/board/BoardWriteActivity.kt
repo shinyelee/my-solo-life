@@ -4,6 +4,7 @@ import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.shinyelee.my_solo_life.R
 import com.shinyelee.my_solo_life.contentsList.BookmarkModel
@@ -36,6 +37,9 @@ class BoardWriteActivity : AppCompatActivity() {
             FBRef.boardRef
                 .push()
                 .setValue(BoardModel(title, contents, uid, time))
+
+            Toast.makeText(this, "게시글 등록 완료!", Toast.LENGTH_LONG).show()
+            finish()
 
         }
     }
