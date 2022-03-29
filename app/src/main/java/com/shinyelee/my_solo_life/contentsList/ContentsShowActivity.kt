@@ -15,7 +15,6 @@ class ContentsShowActivity : AppCompatActivity() {
 
         // ContentsShowActivity -> url 값 받아옴
         val getUrl = intent.getStringExtra("url")
-//        Toast.makeText(this, getUrl, Toast.LENGTH_LONG).show()
         val webView : WebView = findViewById(R.id.webView)
         webView.loadUrl(getUrl.toString())
 
