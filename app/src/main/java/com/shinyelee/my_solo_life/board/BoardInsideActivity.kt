@@ -27,9 +27,9 @@ class BoardInsideActivity : AppCompatActivity() {
         binding.textArea.text = contents
         binding.timeArea.text = time
 
-        Log.d(TAG, title)
-        Log.d(TAG, contents)
-        Log.d(TAG, time)
+//        Log.d(TAG, title)
+//        Log.d(TAG, contents)
+//        Log.d(TAG, time)
 
     }
 
