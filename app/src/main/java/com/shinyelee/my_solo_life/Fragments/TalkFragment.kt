@@ -13,6 +13,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.shinyelee.my_solo_life.R
+import com.shinyelee.my_solo_life.board.BoardInsideActivity
 import com.shinyelee.my_solo_life.board.BoardListLVAdapter
 import com.shinyelee.my_solo_life.board.BoardModel
 import com.shinyelee.my_solo_life.board.BoardWriteActivity
@@ -44,11 +45,19 @@ class TalkFragment : Fragment() {
         // binding
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_talk, container, false)
 
-//        val boardList = mutableListOf<BoardModel>()
-//        boardList.add(BoardModel("a", "b", "c", "d"))
-
         boardRVAdapter = BoardListLVAdapter(boardDataList)
         binding.boardListView.adapter = boardRVAdapter
+
+        binding.boardListView.setOnItemClickListener { parent, view, position, id ->
+            val intent = Intent(context, BoardInsideActivity::class.java)
+            startActivity(intent)
+        }
+
+        // 첫 번째 방법 //
+        // listView에 있는 데이터 title, contents, time 다 다른 액티비티로 전달해서 만드는 방법
+
+        // 두 번째 방법 //
+        // Firebase 자체 데이터 id(uid 아님)를 기반으로 다시 데이터를 받아오는 방법
 
         // talk -> write
         binding.writeBtn.setOnClickListener {
@@ -84,6 +93,9 @@ class TalkFragment : Fragment() {
         val postListener = object : ValueEventListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                boardDataList.clear()
+
                 for(dataModel in dataSnapshot.children) {
                     Log.d(TAG, dataModel.toString())
 
