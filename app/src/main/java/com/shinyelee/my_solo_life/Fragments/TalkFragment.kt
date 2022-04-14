@@ -49,8 +49,15 @@ class TalkFragment : Fragment() {
         binding.boardListView.adapter = boardRVAdapter
 
         binding.boardListView.setOnItemClickListener { parent, view, position, id ->
+
             val intent = Intent(context, BoardInsideActivity::class.java)
+
+            intent.putExtra("title", boardDataList[position].title)
+            intent.putExtra("contents", boardDataList[position].contents)
+            intent.putExtra("time", boardDataList[position].time)
+
             startActivity(intent)
+
         }
 
         // 첫 번째 방법 //
