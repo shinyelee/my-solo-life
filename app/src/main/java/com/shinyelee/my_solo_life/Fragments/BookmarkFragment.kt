@@ -83,7 +83,9 @@ class BookmarkFragment : Fragment() {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 for(dataModel in dataSnapshot.children) {
+                    Log.d(TAG, dataModel.toString())
                     val item = dataModel.getValue(ContentsModel::class.java)
+
                     // 3. 전체 컨텐츠 중 사용자가 북마크한 정보만 보여줌
                     if(bookmarkIdList.contains(dataModel.key.toString())) {
                         items.add(item!!)

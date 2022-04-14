@@ -6,15 +6,17 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/titleArea"
         android:text="title"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"/>
+        android:layout_margin="20dp"/>
 
     <TextView
+        android:id="@+id/contentsArea"
         android:text="contents"
         android:textSize="15sp"
         android:textColor="@color/black"
@@ -24,6 +26,7 @@
         android:layout_marginRight="20dp"/>
 
     <TextView
+        android:id="@+id/timeArea"
         android:text="time"
         android:textSize="10sp"
         android:textColor="#999999"
