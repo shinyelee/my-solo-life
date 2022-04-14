@@ -28,7 +28,12 @@ class BoardListLVAdapter(val boardList : MutableList<BoardModel>) : BaseAdapter(
         }
 
         val title = view?.findViewById<TextView>(R.id.titleArea)
+        val contents = view?.findViewById<TextView>(R.id.contentsArea)
+        val time = view?.findViewById<TextView>(R.id.timeArea)
+
         title!!.text = boardList[position].title
+        contents!!.text = boardList[position].contents
+        time!!.text = boardList[position].time
 
         return view!!
     }
