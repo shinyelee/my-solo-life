@@ -41,13 +41,18 @@ class BoardWriteActivity : AppCompatActivity() {
             Log.d(TAG, title)
             Log.d(TAG, contents)
 
+            // 파이어베이스 스토리지에 이미지 저장하기
+            // 게시글을 클릭했을 때 key 값을 바탕으로 게시글의 정보를 받아옴
+            // 이미지 파일명을 게시글 key 값과 동일하게 만들어주면 찾기 쉬움
+            val key = FBRef.boardRef.push().key.toString()
+
             FBRef.boardRef
-                .push()
+                .child(key)
                 .setValue(BoardModel(title, contents, uid, time))
 
             Toast.makeText(this, "게시글 등록 완료!", Toast.LENGTH_LONG).show()
 
-            imageUpload()
+            imageUpload(key)
 
             finish()
 
@@ -60,12 +65,12 @@ class BoardWriteActivity : AppCompatActivity() {
 
     }
 
-    private fun imageUpload() {
+    private fun imageUpload(key : String) {
         // Get the data from an ImageView as bytes
 
         val storage = Firebase.storage
         val storageRef = storage.reference
-        val kittyRef = storageRef.child("kitty.jpg")
+        val imageRef = storageRef.child(key + ".png")
 
         val imageView = binding.imageArea
         imageView.isDrawingCacheEnabled = true
@@ -77,7 +82,7 @@ class BoardWriteActivity : AppCompatActivity() {
 
         val data = baos.toByteArray()
 
-        var uploadTask = kittyRef.putBytes(data)
+        var uploadTask = imageRef.putBytes(data)
         uploadTask.addOnFailureListener {
             // Handle unsuccessful uploads
         }.addOnSuccessListener { taskSnapshot ->
