@@ -39,7 +39,7 @@ class BoardInsideActivity : AppCompatActivity() {
 
         // 두 번째 방법
         val key = intent.getStringExtra("key")
-        Toast.makeText(this, key, Toast.LENGTH_LONG).show()
+//        Toast.makeText(this, key, Toast.LENGTH_LONG).show()
         getBoardData(key.toString())
 
     }
@@ -51,7 +51,11 @@ class BoardInsideActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
                 val dataModel = dataSnapshot.getValue(BoardModel::class.java)
-                Log.d(TAG, dataModel!!.title)
+//                Log.d(TAG, dataModel!!.title)
+
+                binding.titleArea.text = dataModel!!.title
+                binding.textArea.text = dataModel!!.contents
+                binding.timeArea.text = dataModel!!.time
 
             }
 

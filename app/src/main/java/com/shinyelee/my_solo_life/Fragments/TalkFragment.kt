@@ -114,6 +114,7 @@ class TalkFragment : Fragment() {
                     boardDataList.add(item!!)
                     boardKeyList.add(dataModel.key.toString())
                 }
+                boardKeyList.reverse()
                 boardDataList.reverse()
                 boardRVAdapter.notifyDataSetChanged()
                 Log.d(TAG, boardDataList.toString())
