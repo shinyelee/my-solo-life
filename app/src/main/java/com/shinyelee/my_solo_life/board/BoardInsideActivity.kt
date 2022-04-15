@@ -5,8 +5,12 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.shinyelee.my_solo_life.R
 import com.shinyelee.my_solo_life.databinding.ActivityBoardInsideBinding
+import com.shinyelee.my_solo_life.utils.FBRef
 
 class BoardInsideActivity : AppCompatActivity() {
 
@@ -36,6 +40,28 @@ class BoardInsideActivity : AppCompatActivity() {
         // 두 번째 방법
         val key = intent.getStringExtra("key")
         Toast.makeText(this, key, Toast.LENGTH_LONG).show()
+        getBoardData(key.toString())
+
+    }
+
+    private fun getBoardData(key : String) {
+
+        val postListener = object : ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                val dataModel = dataSnapshot.getValue(BoardModel::class.java)
+                Log.d(TAG, dataModel!!.title)
+
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+            }
+
+        }
+        FBRef.boardRef.child(key).addValueEventListener(postListener)
 
     }
 
