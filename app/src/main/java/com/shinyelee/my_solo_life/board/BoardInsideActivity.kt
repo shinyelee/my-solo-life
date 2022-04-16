@@ -25,6 +25,8 @@ class BoardInsideActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityBoardInsideBinding
 
+    private lateinit var key : String
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -35,9 +37,9 @@ class BoardInsideActivity : AppCompatActivity() {
             showDialog()
         }
 
-        val key = intent.getStringExtra("key")
-        getBoardData(key.toString())
-        getImageData(key.toString())
+        val key = intent.getStringExtra("key").toString()
+        getBoardData(key)
+        getImageData(key)
 
     }
 
@@ -56,7 +58,9 @@ class BoardInsideActivity : AppCompatActivity() {
         }
 
         alertDialog.findViewById<Button>(R.id.removeBtn)?.setOnClickListener {
-            Toast.makeText(this, "삭제", Toast.LENGTH_LONG).show()
+            FBRef.boardRef.child(key).removeValue()
+            Toast.makeText(this, "삭제완료", Toast.LENGTH_LONG).show()
+//            finish()
         }
 
     }
