@@ -52,6 +52,10 @@
             android:padding="10dp"
             android:background="@drawable/background_radius"/>
 
+        <ImageView
+            android:id="@+id/getImageArea"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"/>
     </LinearLayout>
 
 </layout>
