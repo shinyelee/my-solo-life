@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -49,13 +50,17 @@ class BoardInsideActivity : AppCompatActivity() {
         val storageReference = Firebase.storage.reference.child(key + ".png")
 
         // ImageView in your Activity
-        val imageView = binding.getImageArea
+        val imageViewFromFB = binding.getImageArea
 
-        // Download directly from StorageReference using Glide
-        // (See MyAppGlideModule for Loader registration)
-        Glide.with(this /* context */)
-            .load(storageReference)
-            .into(imageView)
+        storageReference.downloadUrl.addOnCompleteListener(OnCompleteListener { task ->
+            if(task.isSuccessful) {
+                Glide.with(this)
+                    .load(task.result)
+                    .into(imageViewFromFB)
+            } else {
+
+            }
+        })
 
     }
 
