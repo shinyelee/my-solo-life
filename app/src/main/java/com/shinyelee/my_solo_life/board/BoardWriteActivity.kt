@@ -25,6 +25,8 @@ class BoardWriteActivity : AppCompatActivity() {
 
     private val TAG = BoardWriteActivity::class.java.simpleName
 
+    private var isImageUpload = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -52,7 +54,9 @@ class BoardWriteActivity : AppCompatActivity() {
 
             Toast.makeText(this, "게시글 등록 완료!", Toast.LENGTH_LONG).show()
 
-            imageUpload(key)
+            if(isImageUpload == true) {
+                imageUpload(key)
+            }
 
             finish()
 
@@ -61,6 +65,7 @@ class BoardWriteActivity : AppCompatActivity() {
         binding.imageArea.setOnClickListener {
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
             startActivityForResult(gallery, 100)
+            isImageUpload = true
         }
 
     }
