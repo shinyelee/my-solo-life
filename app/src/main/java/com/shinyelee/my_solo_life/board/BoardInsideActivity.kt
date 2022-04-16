@@ -18,6 +18,7 @@ import com.google.firebase.storage.ktx.storage
 import com.shinyelee.my_solo_life.R
 import com.shinyelee.my_solo_life.databinding.ActivityBoardInsideBinding
 import com.shinyelee.my_solo_life.utils.FBRef
+import java.lang.Exception
 
 class BoardInsideActivity : AppCompatActivity() {
 
@@ -54,13 +55,13 @@ class BoardInsideActivity : AppCompatActivity() {
         val alertDialog = mBuilder.show()
 
         alertDialog.findViewById<Button>(R.id.editBtn)?.setOnClickListener {
-            Toast.makeText(this, "수정", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "글이 수정되었습니다", Toast.LENGTH_LONG).show()
         }
 
         alertDialog.findViewById<Button>(R.id.removeBtn)?.setOnClickListener {
             FBRef.boardRef.child(key).removeValue()
-            Toast.makeText(this, "삭제완료", Toast.LENGTH_LONG).show()
-//            finish()
+            Toast.makeText(this, "글이 삭제되었습니다", Toast.LENGTH_LONG).show()
+            finish()
         }
 
     }
@@ -91,12 +92,20 @@ class BoardInsideActivity : AppCompatActivity() {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-                val dataModel = dataSnapshot.getValue(BoardModel::class.java)
+                try {
+
+                    val dataModel = dataSnapshot.getValue(BoardModel::class.java)
 //                Log.d(TAG, dataModel!!.title)
 
-                binding.titleArea.text = dataModel!!.title
-                binding.textArea.text = dataModel!!.contents
-                binding.timeArea.text = dataModel!!.time
+                    binding.titleArea.text = dataModel!!.title
+                    binding.textArea.text = dataModel!!.contents
+                    binding.timeArea.text = dataModel!!.time
+
+                } catch (e : Exception) {
+
+                    Log.d(TAG, "글이 삭제되었습니다")
+
+                }
 
             }
 
