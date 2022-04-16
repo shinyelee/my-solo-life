@@ -3,7 +3,9 @@ package com.shinyelee.my_solo_life.board
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.OnCompleteListener
@@ -28,19 +30,25 @@ class BoardInsideActivity : AppCompatActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_board_inside)
 
-        // 첫 번째 방법
-//        val title = intent.getStringExtra("title").toString()
-//        val contents = intent.getStringExtra("contents").toString()
-//        val time = intent.getStringExtra("time").toString()
-//
-//        binding.titleArea.text = title
-//        binding.textArea.text = contents
-//        binding.timeArea.text = time
+        binding.boardSettingIcon.setOnClickListener {
+            showDialog()
+        }
 
-        // 두 번째 방법
         val key = intent.getStringExtra("key")
         getBoardData(key.toString())
         getImageData(key.toString())
+
+    }
+
+    private fun showDialog() {
+
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog, null)
+
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(mDialogView)
+            .setTitle("게시글 수정/삭제")
+
+        mBuilder.show()
 
     }
 
