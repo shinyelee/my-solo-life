@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
@@ -48,7 +49,15 @@ class BoardInsideActivity : AppCompatActivity() {
             .setView(mDialogView)
             .setTitle("게시글 수정/삭제")
 
-        mBuilder.show()
+        val alertDialog = mBuilder.show()
+
+        alertDialog.findViewById<Button>(R.id.editBtn)?.setOnClickListener {
+            Toast.makeText(this, "수정", Toast.LENGTH_LONG).show()
+        }
+
+        alertDialog.findViewById<Button>(R.id.removeBtn)?.setOnClickListener {
+            Toast.makeText(this, "삭제", Toast.LENGTH_LONG).show()
+        }
 
     }
 
