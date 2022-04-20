@@ -38,7 +38,7 @@ class BoardInsideActivity : AppCompatActivity() {
             showDialog()
         }
 
-        val key = intent.getStringExtra("key").toString()
+        key = intent.getStringExtra("key").toString()
         getBoardData(key)
         getImageData(key)
 
