@@ -56,7 +56,7 @@ class BoardInsideActivity : AppCompatActivity() {
         val alertDialog = mBuilder.show()
 
         alertDialog.findViewById<Button>(R.id.editBtn)?.setOnClickListener {
-            Toast.makeText(this, "수정 페이지로 넘어갑니다", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "수정 페이지로 이동", Toast.LENGTH_LONG).show()
             val intent = Intent(this, BoardEditActivity::class.java)
             intent.putExtra("key", key)
             startActivity(intent)
@@ -99,7 +99,6 @@ class BoardInsideActivity : AppCompatActivity() {
                 try {
 
                     val dataModel = dataSnapshot.getValue(BoardModel::class.java)
-//                Log.d(TAG, dataModel!!.title)
 
                     binding.titleArea.text = dataModel!!.title
                     binding.textArea.text = dataModel!!.contents

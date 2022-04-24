@@ -22,16 +22,44 @@ class BoardEditActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityBoardEditBinding
 
-    private val TAG = BoardEditActivity::class.java
+    private val TAG = BoardEditActivity::class.java.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_board_edit)
+//        setContentView(R.layout.activity_board_edit)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_board_inside)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_board_edit)
 
         key = intent.getStringExtra("key").toString()
+        getBoardData(key)
+
+    }
+
+    private fun getBoardData(key : String) {
+
+        val postListener = object : ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                val dataModel = dataSnapshot.getValue(BoardModel::class.java)
+
+//                Log.d(TAG, dataModel.toString())
+//                Log.d(TAG, dataModel!!.title)
+//                Log.d(TAG, dataModel!!.time)
+
+                binding.titleArea.setText(dataModel?.title)
+                binding.contentsArea.setText(dataModel?.contents)
+
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+            }
+
+        }
+        FBRef.boardRef.child(key).addValueEventListener(postListener)
 
     }
 
