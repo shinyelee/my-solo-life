@@ -33,6 +33,27 @@ class BoardEditActivity : AppCompatActivity() {
 
         key = intent.getStringExtra("key").toString()
         getBoardData(key)
+        getImageData(key)
+
+    }
+
+    private fun getImageData(key : String) {
+
+        // Reference to an image file in Cloud Storage
+        val storageReference = Firebase.storage.reference.child(key + ".png")
+
+        // ImageView in your Activity
+        val imageViewFromFB = binding.imageArea
+
+        storageReference.downloadUrl.addOnCompleteListener(OnCompleteListener { task ->
+            if(task.isSuccessful) {
+                Glide.with(this)
+                    .load(task.result)
+                    .into(imageViewFromFB)
+            } else {
+
+            }
+        })
 
     }
 
