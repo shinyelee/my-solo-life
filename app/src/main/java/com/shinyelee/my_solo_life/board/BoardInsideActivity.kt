@@ -56,7 +56,7 @@ class BoardInsideActivity : AppCompatActivity() {
         val alertDialog = mBuilder.show()
 
         alertDialog.findViewById<Button>(R.id.editBtn)?.setOnClickListener {
-            Toast.makeText(this, "수정 페이지로 이동", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "수정 페이지로 이동합니다", Toast.LENGTH_LONG).show()
             val intent = Intent(this, BoardEditActivity::class.java)
             intent.putExtra("key", key)
             startActivity(intent)
