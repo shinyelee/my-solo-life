@@ -75,8 +75,8 @@
                     android:src="@drawable/plusbtn"/>
 
                 <Button
-                    android:id="@+id/writeBtn"
-                    android:text="입력"
+                    android:id="@+id/editBtn"
+                    android:text="수정"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="50dp"

@@ -3,6 +3,7 @@ package com.shinyelee.my_solo_life.board
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.OnCompleteListener
@@ -13,6 +14,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.shinyelee.my_solo_life.R
 import com.shinyelee.my_solo_life.databinding.ActivityBoardEditBinding
+import com.shinyelee.my_solo_life.utils.FBAuth
 import com.shinyelee.my_solo_life.utils.FBRef
 import java.lang.Exception
 
@@ -23,6 +25,8 @@ class BoardEditActivity : AppCompatActivity() {
     private lateinit var binding : ActivityBoardEditBinding
 
     private val TAG = BoardEditActivity::class.java.simpleName
+
+    private lateinit var writerUid : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -35,6 +39,26 @@ class BoardEditActivity : AppCompatActivity() {
         getBoardData(key)
         getImageData(key)
 
+        binding.editBtn.setOnClickListener {
+            editBoardData(key)
+        }
+
+    }
+
+    private fun editBoardData(key : String) {
+
+        FBRef.boardRef
+            .child(key)
+            .setValue(
+                BoardModel(binding.titleArea.text.toString(),
+                    binding.contentsArea.text.toString(),
+                    writerUid,
+                    FBAuth.getTime())
+            )
+
+        Toast.makeText(this, "글이 수정되었습니다", Toast.LENGTH_LONG).show()
+
+        finish()
     }
 
     private fun getImageData(key : String) {
@@ -71,6 +95,7 @@ class BoardEditActivity : AppCompatActivity() {
 
                 binding.titleArea.setText(dataModel?.title)
                 binding.contentsArea.setText(dataModel?.contents)
+                writerUid = dataModel!!.uid
 
             }
 
