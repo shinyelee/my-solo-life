@@ -3,7 +3,7 @@
     package="com.shinyelee.my_solo_life">
     <!-- glide -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,10 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mysololife">
-
+        <activity
+            android:name=".board.BoardEditActivity"
+            android:exported="true" />
         <!-- ClipboardService error -->
-<!--        <uses-library android:name="org.apache.http.legacy" android:required="false"/>-->
-
+        <!-- <uses-library android:name="org.apache.http.legacy" android:required="false"/> -->
         <activity
             android:name=".board.BoardInsideActivity"
             android:exported="true" />
