@@ -27,9 +27,9 @@ class BoardListLVAdapter(val boardList : MutableList<BoardModel>) : BaseAdapter(
 
         var view = convertView
 
-        if(view == null) {
+//        if(view == null) {
             view = LayoutInflater.from(parent?.context).inflate(R.layout.board_list_item, parent, false)
-        }
+//        }
 
         val itemLinearLayoutView = view?.findViewById<LinearLayout>(R.id.itemView)
         val title = view?.findViewById<TextView>(R.id.titleArea)
@@ -37,7 +37,7 @@ class BoardListLVAdapter(val boardList : MutableList<BoardModel>) : BaseAdapter(
         val time = view?.findViewById<TextView>(R.id.timeArea)
 
         if(boardList[position].uid.equals(FBAuth.getUid())) {
-            itemLinearLayoutView?.setBackgroundColor(Color.parseColor("#b8b8b8"))
+            itemLinearLayoutView?.setBackgroundColor(Color.parseColor("#fff2cc"))
         }
 
         title!!.text = boardList[position].title
