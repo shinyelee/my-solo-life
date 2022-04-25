@@ -31,6 +31,7 @@ class SettingActivity : AppCompatActivity() {
             Toast.makeText(this, "로그아웃 되었습니다", Toast.LENGTH_LONG).show()
 
             val intent = Intent(this, IntroActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
         }
 
