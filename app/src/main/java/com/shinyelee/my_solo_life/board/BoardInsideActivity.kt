@@ -81,13 +81,15 @@ class BoardInsideActivity : AppCompatActivity() {
         val imageViewFromFB = binding.getImageArea
 
         storageReference.downloadUrl.addOnCompleteListener(OnCompleteListener { task ->
+
             if(task.isSuccessful) {
                 Glide.with(this)
                     .load(task.result)
                     .into(imageViewFromFB)
             } else {
-
+                binding.getImageArea.isVisible = false
             }
+
         })
 
     }

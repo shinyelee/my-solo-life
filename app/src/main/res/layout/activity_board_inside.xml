@@ -1,83 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".board.BoardInsideActivity"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="60dp">
+            android:layout_height="match_parent"
+            tools:context=".board.BoardInsideActivity"
+            android:orientation="vertical">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="60dp">
 
-                <TextView
-                    android:id="@+id/titleArea"
-                    android:text="title"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginRight="50dp"
-                    android:layout_marginLeft="50dp"
-                    android:gravity="center"/>
+                    android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/boardSettingIcon"
-                    android:visibility="invisible"
-                    android:src="@drawable/main_menu"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="15dp"/>
+                    <TextView
+                        android:id="@+id/titleArea"
+                        android:text="title"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="50dp"
+                        android:layout_marginLeft="50dp"
+                        android:gravity="center"/>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <ImageView
+                        android:id="@+id/boardSettingIcon"
+                        android:visibility="invisible"
+                        android:src="@drawable/main_menu"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginTop="15dp"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/black">
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/timeArea"
+                android:text="time"
+                android:gravity="right"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"/>
+
+            <TextView
+                android:id="@+id/textArea"
+                android:text="내용 영역"
+                android:textColor="@color/black"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="20dp"
+                android:padding="10dp"
+                android:background="@drawable/background_radius"/>
+
+            <ImageView
+                android:id="@+id/getImageArea"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"/>
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="600dp"
+                android:background="#fff2cc"/>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/black">
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/timeArea"
-            android:text="time"
-            android:gravity="right"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"/>
-
-        <TextView
-            android:id="@+id/textArea"
-            android:text="내용 영역"
-            android:textColor="@color/black"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_margin="20dp"
-            android:padding="10dp"
-            android:background="@drawable/background_radius"/>
-
-        <ImageView
-            android:id="@+id/getImageArea"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"/>
-
-    </LinearLayout>
+    </ScrollView>
 
 </layout>
