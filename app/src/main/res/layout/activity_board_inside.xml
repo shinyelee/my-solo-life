@@ -33,6 +33,7 @@
 
                 <ImageView
                     android:id="@+id/boardSettingIcon"
+                    android:visibility="invisible"
                     android:src="@drawable/main_menu"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
