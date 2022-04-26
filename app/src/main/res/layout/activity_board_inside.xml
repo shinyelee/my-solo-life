@@ -87,9 +87,10 @@
                     android:layout_marginLeft="20dp"/>
 
                 <ListView
+                    android:id="@+id/commentLV"
                     android:layout_width="match_parent"
                     android:layout_height="600dp"
-                    android:background="#fff2cc"/>
+                    android:background="@color/white"/>
 
             </LinearLayout>
 
