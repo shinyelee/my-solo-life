@@ -102,6 +102,7 @@
             android:background="@color/white">
 
             <EditText
+                android:id="@+id/commentArea"
                 android:hint="댓글을 입력해주세요"
                 android:layout_width="320dp"
                 android:layout_height="match_parent"
@@ -109,6 +110,7 @@
                 android:background="@android:color/transparent"/>
 
             <ImageView
+                android:id="@+id/commentBtn"
                 android:src="@drawable/writebtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

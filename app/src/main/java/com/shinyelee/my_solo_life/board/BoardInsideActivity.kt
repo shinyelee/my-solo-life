@@ -18,6 +18,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.shinyelee.my_solo_life.R
+import com.shinyelee.my_solo_life.comment.CommentModel
 import com.shinyelee.my_solo_life.databinding.ActivityBoardInsideBinding
 import com.shinyelee.my_solo_life.utils.FBAuth
 import com.shinyelee.my_solo_life.utils.FBRef
@@ -44,6 +45,24 @@ class BoardInsideActivity : AppCompatActivity() {
         key = intent.getStringExtra("key").toString()
         getBoardData(key)
         getImageData(key)
+
+        binding.commentBtn.setOnClickListener {
+            insertComment(key)
+        }
+
+    }
+
+    fun insertComment(key : String) {
+
+        FBRef.commentRef
+            .child(key)
+            .push()
+            .setValue(
+                CommentModel(binding.commentArea.text.toString())
+            )
+
+        Toast.makeText(this, "댓글이 입력되었습니다", Toast.LENGTH_SHORT).show()
+        binding.commentArea.setText("")
 
     }
 
