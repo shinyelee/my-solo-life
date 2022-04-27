@@ -15,18 +15,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <!-- Icons -->
+            <!-- Category -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="70dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="60dp"
                 android:orientation="vertical">
 
-                <!-- 1st line -->
+                <!-- 1st line icon -->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="150dp">
+                    android:layout_height="125dp">
 
                     <ImageView
                         android:id="@+id/cate1"
@@ -50,10 +50,39 @@
 
                 </LinearLayout>
 
-                <!-- 2nd line -->
+                <!-- 1st line text -->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="150dp">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView
+                        android:text="전체 카테고리"
+                       android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:text="전체 카테고리"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:text="전체 카테고리"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_weight="1"/>
+
+                </LinearLayout>
+
+                <!-- 2nd line icon -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="125dp">
 
                     <ImageView
                         android:layout_width="120dp"
@@ -75,10 +104,39 @@
 
                 </LinearLayout>
 
-                <!-- 3rd line -->
+                <!-- 2nd line text -->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="150dp">
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView
+                        android:text="전체 카테고리"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:text="전체 카테고리"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:text="전체 카테고리"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_weight="1"/>
+
+                </LinearLayout>
+
+                <!-- 3rd line icon -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="125dp">
 
                     <ImageView
                         android:layout_width="120dp"
@@ -96,6 +154,36 @@
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:layout_weight="1"/>
+
+                </LinearLayout>
+
+                <!-- 3rd line text -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp">
+
+                    <TextView
+                        android:text="전체 카테고리"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:text="전체 카테고리"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_weight="1"/>
+
+                    <TextView
+                        android:text="전체 카테고리"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:visibility="invisible"/>
 
                 </LinearLayout>
 
