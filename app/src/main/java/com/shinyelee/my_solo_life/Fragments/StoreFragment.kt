@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.shinyelee.my_solo_life.R
@@ -24,26 +25,12 @@ class StoreFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        // binding
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_store, container, false)
-        // store -> home
-        binding.homeT.setOnClickListener {
-            it.findNavController().navigate(R.id.action_storeFragment_to_homeFragment)
-        }
-        // store -> tip
-        binding.tipT.setOnClickListener {
-            it.findNavController().navigate(R.id.action_storeFragment_to_tipFragment)
-        }
-        // store -> talk
-        binding.talkT.setOnClickListener {
-            it.findNavController().navigate(R.id.action_storeFragment_to_talkFragment)
-        }
-        // store -> bookmark
-        binding.bookmarkT.setOnClickListener {
-            it.findNavController().navigate(R.id.action_storeFragment_to_bookmarkFragment)
-        }
-        return binding.root
+        val view = inflater.inflate(R.layout.fragment_store, container, false)
 
+        val webView : WebView = view.findViewById(R.id.storeWebView)
+        webView.loadUrl("https://www.inflearn.com/")
+
+        return view
     }
 
 }

@@ -57,21 +57,21 @@
                     android:layout_marginBottom="30dp">
 
                     <TextView
-                        android:text="전체 카테고리"
+                        android:text="전체"
                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_weight="1"/>
 
                     <TextView
-                        android:text="전체 카테고리"
+                        android:text="요리"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_weight="1"/>
 
                     <TextView
-                        android:text="전체 카테고리"
+                        android:text="경제"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -111,21 +111,21 @@
                     android:layout_marginBottom="30dp">
 
                     <TextView
-                        android:text="전체 카테고리"
+                        android:text="게임"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_weight="1"/>
 
                     <TextView
-                        android:text="전체 카테고리"
+                        android:text="운동"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_weight="1"/>
 
                     <TextView
-                        android:text="전체 카테고리"
+                        android:text="방꾸"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -164,21 +164,21 @@
                     android:layout_marginBottom="30dp">
 
                     <TextView
-                        android:text="전체 카테고리"
+                        android:text="카페"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_weight="1"/>
 
                     <TextView
-                        android:text="전체 카테고리"
+                        android:text="동네"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:layout_weight="1"/>
 
                     <TextView
-                        android:text="전체 카테고리"
+                        android:text="빈 칸"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"

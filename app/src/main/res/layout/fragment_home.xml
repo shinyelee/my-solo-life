@@ -1,100 +1,299 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".Fragments.HomeFragment">
+        android:layout_height="match_parent">
 
-        <!-- TODO: Update blank fragment layout -->
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="3dp"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-                android:background="@color/white">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@color/mainColor" />
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="60dp"
+                    android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    <!-- Tip -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/background_frame_yellow"
+                        android:orientation="vertical"
+                        android:layout_gravity="center">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                        <!-- Tip icon -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
+                            android:layout_margin="10dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                            <ImageView
+                                android:id="@+id/cate1"
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
+                                android:layout_marginHorizontal="5dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/main_icon_all"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                            <ImageView
+                                android:id="@+id/cate2"
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
+                                android:layout_marginHorizontal="5dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/main_icon_cook"/>
+
+                            <ImageView
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
+                                android:layout_marginHorizontal="5dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/main_icon_economy"/>
+
+                            <ImageView
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
+                                android:layout_marginHorizontal="5dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/main_icon_else"/>
+
+                        </LinearLayout>
+
+                        <!-- Tip text -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="전체"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_weight="1"/>
+
+                            <TextView
+                                android:text="요리"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_weight="1"/>
+
+                            <TextView
+                                android:text="경제"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_weight="1"/>
+
+                            <TextView
+                                android:text="게임"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_weight="1"/>
+
+                        </LinearLayout>
+
+                        <!-- Tip icon2 -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
+                            android:layout_margin="10dp">
+
+                            <ImageView
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
+                                android:layout_marginHorizontal="5dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/main_icon_hobby"/>
+
+                            <ImageView
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
+                                android:layout_marginHorizontal="5dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/main_icon_interior"/>
+
+                            <ImageView
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
+                                android:layout_marginHorizontal="5dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/main_icon_life"/>
+
+                            <ImageView
+                                android:layout_width="80dp"
+                                android:layout_height="80dp"
+                                android:layout_marginHorizontal="5dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/main_icon_oneroom"/>
+
+                        </LinearLayout>
+
+                        <!-- Tip text2 -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp">
+
+                            <TextView
+                                android:text="운동"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_weight="1"/>
+
+                            <TextView
+                                android:text="방꾸"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_weight="1"/>
+
+                            <TextView
+                                android:text="카페"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_weight="1"/>
+
+                            <TextView
+                                android:text="동네"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_weight="1"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- board -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:padding="15dp"
+                        android:background="@drawable/background_frame_yellow"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:text="board1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"/>
+
+                        <TextView
+                            android:text="board1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"/>
+
+                        <TextView
+                            android:text="board1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+            android:background="@color/white">
 
             <LinearLayout
-                android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent">
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/mainColor" />
 
-                <ImageView
-                    android:id="@+id/homeT"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/bottom_home" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
-                <ImageView
-                    android:id="@+id/tipT"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/bottom_tip" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
-                <ImageView
-                    android:id="@+id/talkT"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/bottom_talk" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
-                <ImageView
-                    android:id="@+id/bookmarkT"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/bottom_bookmark" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
 
-                <ImageView
-                    android:id="@+id/storeT"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:src="@drawable/bottom_store" />
+        </LinearLayout>
 
-            </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/homeT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/bottom_home" />
 
-    </FrameLayout>
+            <ImageView
+                android:id="@+id/tipT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/bottom_tip" />
+
+            <ImageView
+                android:id="@+id/talkT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/bottom_talk" />
+
+            <ImageView
+                android:id="@+id/bookmarkT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/bottom_bookmark" />
+
+            <ImageView
+                android:id="@+id/storeT"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/bottom_store" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
