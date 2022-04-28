@@ -9,13 +9,29 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.shinyelee.my_solo_life.R
+import com.shinyelee.my_solo_life.contentsList.BookmarkRVAdapter
+import com.shinyelee.my_solo_life.contentsList.ContentsModel
 import com.shinyelee.my_solo_life.databinding.FragmentHomeBinding
+import com.shinyelee.my_solo_life.utils.FBRef
 
 class HomeFragment : Fragment() {
 
     // binding
     private lateinit var binding : FragmentHomeBinding
+
+    private val TAG = HomeFragment::class.java.simpleName
+
+    val bookmarkIdList = mutableListOf<String>()
+    val items = ArrayList<ContentsModel>()
+    val itemKeyList = ArrayList<String>()
+
+    lateinit var rvAdapter: BookmarkRVAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,8 +62,39 @@ class HomeFragment : Fragment() {
         binding.storeT.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_storeFragment)
         }
+
+        rvAdapter = BookmarkRVAdapter(requireContext(), items, itemKeyList, bookmarkIdList)
+
+        val rv : RecyclerView = binding.mainRV
+        rv.adapter = rvAdapter
+        rv.layoutManager = GridLayoutManager(requireContext(), 2)
+
+        getCateData()
+
         return binding.root
     }
 
+    private fun getCateData() {
+
+        val postListener = object : ValueEventListener {
+
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for(dataModel in dataSnapshot.children) {
+                    val item = dataModel.getValue(ContentsModel::class.java)
+                    items.add(item!!)
+                    itemKeyList.add(dataModel.key.toString())
+                }
+                rvAdapter.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w("ContentsListActivity", "loadPost:onCancelled", databaseError.toException())
+            }
+
+        }
+        FBRef.cate1.addValueEventListener(postListener)
+        FBRef.cate2.addValueEventListener(postListener)
+    }
 
 }

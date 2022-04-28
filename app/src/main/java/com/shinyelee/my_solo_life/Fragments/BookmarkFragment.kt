@@ -79,6 +79,7 @@ class BookmarkFragment : Fragment() {
 
     // 1. 전체 카테고리의 컨텐츠 데이터를 다 가져옴
     private fun getCateData() {
+
         val postListener = object : ValueEventListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -103,10 +104,12 @@ class BookmarkFragment : Fragment() {
         }
         FBRef.cate1.addValueEventListener(postListener)
         FBRef.cate2.addValueEventListener(postListener)
+
     }
 
     // 2. 사용자가 북마크한 정보를 다 가져옴
     private fun getBookmarkData() {
+
         val postListener = object : ValueEventListener {
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -123,6 +126,7 @@ class BookmarkFragment : Fragment() {
 
         }
         FBRef.bookmarkRef.child(FBAuth.getUid()).addValueEventListener(postListener)
+
     }
 
 }
