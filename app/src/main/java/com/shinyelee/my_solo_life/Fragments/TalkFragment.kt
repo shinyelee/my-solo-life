@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -17,15 +16,14 @@ import com.shinyelee.my_solo_life.board.BoardInsideActivity
 import com.shinyelee.my_solo_life.board.BoardListLVAdapter
 import com.shinyelee.my_solo_life.board.BoardModel
 import com.shinyelee.my_solo_life.board.BoardWriteActivity
-import com.shinyelee.my_solo_life.contentsList.BookmarkRVAdapter
-import com.shinyelee.my_solo_life.contentsList.ContentsModel
 import com.shinyelee.my_solo_life.databinding.FragmentTalkBinding
 import com.shinyelee.my_solo_life.utils.FBRef
 
 class TalkFragment : Fragment() {
 
-    // binding
-    private lateinit var binding : FragmentTalkBinding
+    // viewBinding
+    private var vBinding : FragmentTalkBinding? = null
+    private val binding get() = vBinding!!
 
     private val boardDataList = mutableListOf<BoardModel>()
     private val boardKeyList = mutableListOf<String>()
@@ -42,8 +40,8 @@ class TalkFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        // binding
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_talk, container, false)
+        // viewBinding
+        vBinding = FragmentTalkBinding.inflate(inflater, container, false)
 
         boardRVAdapter = BoardListLVAdapter(boardDataList)
         binding.boardListView.adapter = boardRVAdapter

@@ -1,6 +1,5 @@
 package com.shinyelee.my_solo_life.board
 
-import android.content.ContentValues.TAG
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
@@ -9,11 +8,8 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import com.shinyelee.my_solo_life.R
-import com.shinyelee.my_solo_life.contentsList.BookmarkModel
 import com.shinyelee.my_solo_life.databinding.ActivityBoardWriteBinding
 import com.shinyelee.my_solo_life.utils.FBAuth
 import com.shinyelee.my_solo_life.utils.FBRef
@@ -21,7 +17,9 @@ import java.io.ByteArrayOutputStream
 
 class BoardWriteActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityBoardWriteBinding
+    // viewBinding
+    private var vBinding : ActivityBoardWriteBinding? = null
+    private val binding get() = vBinding!!
 
     private val TAG = BoardWriteActivity::class.java.simpleName
 
@@ -31,7 +29,9 @@ class BoardWriteActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_board_write)
+        // viewBinding
+        vBinding = ActivityBoardWriteBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         binding.writeBtn.setOnClickListener {
 

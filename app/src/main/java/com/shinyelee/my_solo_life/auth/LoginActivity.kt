@@ -4,20 +4,20 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.shinyelee.my_solo_life.MainActivity
-import com.shinyelee.my_solo_life.R
-import com.shinyelee.my_solo_life.databinding.ActivityJoinBinding
 import com.shinyelee.my_solo_life.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
 
     // firebase
     private lateinit var auth: FirebaseAuth
-    private lateinit var binding: ActivityLoginBinding
+
+    // viewBinding
+    private var vBinding : ActivityLoginBinding? = null
+    private val binding get() = vBinding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -25,7 +25,11 @@ class LoginActivity : AppCompatActivity() {
 
         // firebase
         auth = Firebase.auth
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
+
+        // viewBinding
+        vBinding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         binding.loginBtn.setOnClickListener {
             val email = binding.emailArea.text.toString()
             val password = binding.passwordArea.text.toString()
@@ -46,4 +50,10 @@ class LoginActivity : AppCompatActivity() {
         }
 
     }
+
+    override fun onDestroy() {
+        vBinding = null
+        super.onDestroy()
+    }
+
 }

@@ -16,10 +16,15 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.shinyelee.my_solo_life.R
+import com.shinyelee.my_solo_life.databinding.ActivityContentsListBinding
 import com.shinyelee.my_solo_life.utils.FBAuth
 import com.shinyelee.my_solo_life.utils.FBRef
 
 class ContentsListActivity : AppCompatActivity() {
+
+    // viewBinding
+    private var vBinding : ActivityContentsListBinding? = null
+    private val binding get() = vBinding!!
 
     lateinit var myRef : DatabaseReference
 
@@ -30,7 +35,10 @@ class ContentsListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_contents_list)
+
+        // viewBinding
+        vBinding = ActivityContentsListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val items = ArrayList<ContentsModel>()
         val itemKeyList = ArrayList<String>()
@@ -70,11 +78,9 @@ class ContentsListActivity : AppCompatActivity() {
         }
         myRef.addValueEventListener(postListener)
 
-        val rv : RecyclerView = findViewById(R.id.rv)
+        binding.rv.adapter = rvAdapter
 
-        rv.adapter = rvAdapter
-
-        rv.layoutManager = GridLayoutManager(this, 2)
+        binding.rv.layoutManager = GridLayoutManager(this, 2)
 
         getBookmarkData()
 

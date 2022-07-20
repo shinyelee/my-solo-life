@@ -3,13 +3,10 @@ package com.shinyelee.my_solo_life
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.shinyelee.my_solo_life.auth.IntroActivity
+import com.shinyelee.my_solo_life.databinding.ActivityMainBinding
 import com.shinyelee.my_solo_life.setting.SettingActivity
 
 class MainActivity : AppCompatActivity() {
@@ -17,20 +14,25 @@ class MainActivity : AppCompatActivity() {
     // firebase
     private lateinit var auth: FirebaseAuth
 
+    // viewBinding
+    private var vBinding : ActivityMainBinding? = null
+    private val binding get() = vBinding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         // firebase
         auth = Firebase.auth
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        vBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        findViewById<ImageView>(R.id.settingBtn).setOnClickListener {
+        binding.settingBtn.setOnClickListener {
             val intent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
         }
 
-//        findViewById<Button>(R.id.logoutBtn).setOnClickListener {
+//        binding.logoutBtn.setOnClickListener {
 //
 //            // 로그아웃
 //            auth.signOut()
@@ -43,4 +45,10 @@ class MainActivity : AppCompatActivity() {
 //        }
 
     }
+
+    override fun onDestroy() {
+        vBinding = null
+        super.onDestroy()
+    }
+
 }

@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,15 +15,15 @@ import com.google.firebase.database.ValueEventListener
 import com.shinyelee.my_solo_life.R
 import com.shinyelee.my_solo_life.contentsList.BookmarkRVAdapter
 import com.shinyelee.my_solo_life.contentsList.ContentsModel
-import com.shinyelee.my_solo_life.contentsList.ContentsRVAdapter
 import com.shinyelee.my_solo_life.databinding.FragmentBookmarkBinding
 import com.shinyelee.my_solo_life.utils.FBAuth
 import com.shinyelee.my_solo_life.utils.FBRef
 
 class BookmarkFragment : Fragment() {
 
-    // binding
-    private lateinit var binding : FragmentBookmarkBinding
+    // viewBinding
+    private var vBinding : FragmentBookmarkBinding? = null
+    private val binding get() = vBinding!!
 
     private val TAG = BookmarkFragment::class.java.simpleName
 
@@ -42,8 +41,8 @@ class BookmarkFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        // binding
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_bookmark, container, false)
+        // viewBinding
+        vBinding = FragmentBookmarkBinding.inflate(inflater, container, false)
 
         // 1. 전체 카테고리의 컨텐츠 데이터를 다 가져옴
 //        getCateData()

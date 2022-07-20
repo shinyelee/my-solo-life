@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.shinyelee.my_solo_life.R
 import com.shinyelee.my_solo_life.contentsList.ContentsListActivity
@@ -14,8 +13,9 @@ import com.shinyelee.my_solo_life.databinding.FragmentTipBinding
 
 class TipFragment : Fragment() {
 
-    // binding
-    private lateinit var binding : FragmentTipBinding
+    // viewBinding
+    private var vBinding : FragmentTipBinding? = null
+    private val binding get() = vBinding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +26,8 @@ class TipFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        // binding
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_tip, container, false)
+        // viewBinding
+        vBinding = FragmentTipBinding.inflate(inflater, container, false)
 
         // tip -> cate1
         binding.cate1.setOnClickListener {

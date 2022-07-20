@@ -6,8 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,8 +20,9 @@ import com.shinyelee.my_solo_life.utils.FBRef
 
 class HomeFragment : Fragment() {
 
-    // binding
-    private lateinit var binding : FragmentHomeBinding
+    // viewBinding
+    private var vBinding : FragmentHomeBinding? = null
+    private val binding get() = vBinding!!
 
     private val TAG = HomeFragment::class.java.simpleName
 
@@ -44,8 +43,9 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        // binding
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        // viewBinding
+        vBinding = FragmentHomeBinding.inflate(inflater, container, false)
+
         // home -> tip
         binding.tipT.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_tipFragment)

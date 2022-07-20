@@ -6,15 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
-import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
 import com.shinyelee.my_solo_life.R
 import com.shinyelee.my_solo_life.databinding.FragmentStoreBinding
 
 class StoreFragment : Fragment() {
 
-    // binding
-    private lateinit var binding : FragmentStoreBinding
+    // viewBinding
+    private var vBinding : FragmentStoreBinding? = null
+    private val binding get() = vBinding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,12 +24,11 @@ class StoreFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val view = inflater.inflate(R.layout.fragment_store, container, false)
+        // viewBinding
+        vBinding = FragmentStoreBinding.inflate(inflater, container, false)
+        binding.storeWebView.loadUrl("https://www.inflearn.com/")
+        return binding.root
 
-        val webView : WebView = view.findViewById(R.id.storeWebView)
-        webView.loadUrl("https://www.inflearn.com/")
-
-        return view
     }
 
 }

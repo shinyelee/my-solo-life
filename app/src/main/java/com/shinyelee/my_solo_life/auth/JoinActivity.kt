@@ -4,19 +4,20 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.shinyelee.my_solo_life.MainActivity
-import com.shinyelee.my_solo_life.R
 import com.shinyelee.my_solo_life.databinding.ActivityJoinBinding
 
 class JoinActivity : AppCompatActivity() {
 
     // firebase
     private lateinit var auth: FirebaseAuth
-    private lateinit var binding: ActivityJoinBinding
+
+    // viewBinding
+    private var vBinding : ActivityJoinBinding? = null
+    private val binding get() = vBinding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -24,7 +25,11 @@ class JoinActivity : AppCompatActivity() {
 
         // firebase
         auth = Firebase.auth
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_join)
+
+        // viewBinding
+        vBinding = ActivityJoinBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         binding.joinBtn.setOnClickListener {
             var isGoToJoin = true
             val email = binding.emailArea.text.toString()

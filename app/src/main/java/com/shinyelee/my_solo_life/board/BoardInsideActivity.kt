@@ -9,7 +9,6 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
-import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.database.DataSnapshot
@@ -29,7 +28,9 @@ class BoardInsideActivity : AppCompatActivity() {
 
     private val TAG = BoardInsideActivity::class.java.simpleName
 
-    private lateinit var binding : ActivityBoardInsideBinding
+    // viewBinding
+    private var vBinding : ActivityBoardInsideBinding? = null
+    private val binding get() = vBinding!!
 
     private lateinit var key : String
 
@@ -41,7 +42,9 @@ class BoardInsideActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_board_inside)
+        // viewBinding
+        vBinding = ActivityBoardInsideBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         binding.boardSettingIcon.setOnClickListener {
             showDialog()

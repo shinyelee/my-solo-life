@@ -2,21 +2,25 @@ package com.shinyelee.my_solo_life.contentsList
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.webkit.WebView
-import android.widget.Toast
-import com.shinyelee.my_solo_life.R
+import com.shinyelee.my_solo_life.databinding.ActivityContentsShowBinding
 
 class ContentsShowActivity : AppCompatActivity() {
+
+    // viewBinding
+    private var vBinding : ActivityContentsShowBinding? = null
+    private val binding get() = vBinding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_contents_show)
+
+        // viewBinding
+        vBinding = ActivityContentsShowBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         // ContentsShowActivity -> url 값 받아옴
         val getUrl = intent.getStringExtra("url")
-        val webView : WebView = findViewById(R.id.webView)
-        webView.loadUrl(getUrl.toString())
+        binding.webView.loadUrl(getUrl.toString())
 
     }
 }

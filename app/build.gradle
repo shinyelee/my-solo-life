@@ -30,8 +30,8 @@ android {
         jvmTarget = '1.8'
     }
 
-    dataBinding {
-        enabled true
+    viewBinding {
+        enabled = true
     }
 }
 
@@ -57,14 +57,8 @@ dependencies {
     // firebase
     implementation platform('com.google.firebase:firebase-bom:29.2.1')
     implementation 'com.google.firebase:firebase-auth-ktx'
-
-    // firebase realtime
     implementation 'com.google.firebase:firebase-database-ktx'
-
-    // firebase storage
     implementation 'com.google.firebase:firebase-storage-ktx'
-
-    // firebase image download
     implementation 'com.firebaseui:firebase-ui-storage:7.2.0'
 
     // glide
