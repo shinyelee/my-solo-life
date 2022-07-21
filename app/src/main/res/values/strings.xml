@@ -7,9 +7,9 @@
     <string name="join">회원가입</string>
     <string name="guest">비회원</string>
 
-    <string name="email">이메일 주소를 입력하세요</string>
-    <string name="pw">비밀번호를 입력하세요</string>
-    <string name="pw2">비밀번호를 한 번 더 입력하세요</string>
-    <string name="nick">별명을 입력하세요</string>
+    <string name="email">이메일</string>
+    <string name="pw">비밀번호</string>
+    <string name="pw2">비밀번호 확인</string>
+    <string name="nick">별명</string>
 
 </resources>
