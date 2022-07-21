@@ -3,6 +3,7 @@ package com.shinyelee.my_solo_life.auth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Patterns
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -31,51 +32,113 @@ class JoinActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.joinBtn.setOnClickListener {
-            var isGoToJoin = true
-            val email = binding.emailArea.text.toString()
-            val password1 = binding.passwordArea1.text.toString()
-            val password2 = binding.passwordArea2.text.toString()
+
+            // 가입조건 확인
+            var emailCheck = true
+            var pwCheck = true
+            var pw2Check = true
+            var nickCheck = true
+            var allCheck = emailCheck and pwCheck and pw2Check and nickCheck
+
+            val emailTxt = binding.email.text.toString()
+            val pwTxt = binding.pw.text.toString()
+            val pw2Txt = binding.pw2.text.toString()
+            val nickTxt = binding.nick.text.toString()
+
             // 값이 비어있는지 확인
-            if (email.isEmpty()) {
-                Toast.makeText(this, "이메일란을 입력해주세요", Toast.LENGTH_LONG).show()
-                isGoToJoin = false
+            if (emailTxt.isEmpty() || pwTxt.isEmpty() || pw2Txt.isEmpty() || nickTxt.isEmpty()) {
+                allCheck = false
+                Toast.makeText(this, "입력란을 모두 작성하세요", Toast.LENGTH_SHORT).show()
             }
-            if (password1.isEmpty()) {
-                Toast.makeText(this, "비밀번호란을 입력해주세요", Toast.LENGTH_LONG).show()
-                isGoToJoin = false
+
+            // 이메일주소 정규식
+            val emailPattern = Patterns.EMAIL_ADDRESS
+
+            // 이메일주소 검사
+            if(emailTxt.isEmpty()) {
+                emailCheck = false
+                binding.emailArea.error = "이메일주소를 입력하세요"
+            } else if(!emailPattern.matcher(emailTxt).matches()) {
+                emailCheck = false
+                binding.emailArea.error = "이메일 형식이 잘못되었습니다"
+            } else {
+                emailCheck = true
+                binding.emailArea.error = null
             }
-            if (password2.isEmpty()) {
-                Toast.makeText(this, "비밀번호 확인란을 입력해주세요", Toast.LENGTH_LONG).show()
-                isGoToJoin = false
+
+            // 비밀번호 검사
+            if(pwTxt.isEmpty()) {
+                pwCheck = false
+                binding.pwArea.error = "비밀번호를 입력하세요"
+            } else if (pwTxt.length<6) {
+                pwCheck = false
+                binding.pwArea.error = "최소 6자 이상 입력하세요"
+            } else if (pwTxt.length>20) {
+                pwCheck = false
+                binding.pwArea.error = "20자 이하로 입력하세요"
+            } else {
+                pwCheck = true
+                binding.pwArea.error = null
             }
-            // 비밀번호 일치 여부 확인
-            if (!password1.equals(password2)) {
-                Toast.makeText(this, "비밀번호가 일치하지 않습니다", Toast.LENGTH_LONG).show()
-                isGoToJoin = false
+
+            // 비밀번호 확인 검사
+            if(pw2Txt.isEmpty()) {
+                pw2Check = false
+                binding.pw2Area.error = "비밀번호를 한 번 더 입력하세요"
+            } else if(pwTxt != pw2Txt) {
+                pw2Check = false
+                binding.pw2Area.error = "비밀번호가 일치하지 않습니다"
+            } else {
+                pw2Check = true
+                binding.pw2Area.error = null
             }
-            if (password1.length < 6) {
-                Toast.makeText(this, "비밀번호를 6자리 이상으로 설정해주세요", Toast.LENGTH_LONG).show()
-                isGoToJoin = false
+
+            // 별명 검사
+            if(nickTxt.isEmpty()) {
+                nickCheck = false
+                binding.nickArea.error = "별명을 입력하세요"
+            } else if(nickTxt.length>10) {
+                nickCheck = false
+                binding.nickArea.error = "10자 이하로 입력하세요"
+            } else {
+                nickCheck = true
+                binding.nickArea.error = null
             }
-            // 회원가입 실행
-            if (isGoToJoin) {
-                auth.createUserWithEmailAndPassword(email, password1)
+
+            // 가입 조건 모두 만족하면
+            if (allCheck) {
+
+                // 회원가입 실행
+                auth.createUserWithEmailAndPassword(emailTxt, pwTxt)
                     .addOnCompleteListener(this) { task ->
+
+                        // 가입 성공
                         if (task.isSuccessful) {
-                            // 가입 성공
+
                             Toast.makeText(this, "회원가입이 완료되었습니다", Toast.LENGTH_LONG).show()
-                            // 가입 페이지 닫고 메인 페이지로 이동
+                            // 스택에 쌓인 액티비티 종료하고 메인 액티비티로 이동
                             val intent = Intent(this, MainActivity::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
                             startActivity(intent)
+
+                        // 가입 실패
                         } else {
-                            // 가입 실패
+
                             Toast.makeText(this, "회원가입에 실패했습니다", Toast.LENGTH_LONG).show()
+
                         }
+
                     }
+
             }
+
         }
 
+    }
+
+    override fun onDestroy() {
+        vBinding = null
+        super.onDestroy()
     }
 
 }
