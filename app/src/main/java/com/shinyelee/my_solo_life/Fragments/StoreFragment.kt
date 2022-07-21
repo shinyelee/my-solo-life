@@ -5,8 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebView
-import com.shinyelee.my_solo_life.R
 import com.shinyelee.my_solo_life.databinding.FragmentStoreBinding
 
 class StoreFragment : Fragment() {
@@ -22,7 +20,7 @@ class StoreFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         // viewBinding
         vBinding = FragmentStoreBinding.inflate(inflater, container, false)
