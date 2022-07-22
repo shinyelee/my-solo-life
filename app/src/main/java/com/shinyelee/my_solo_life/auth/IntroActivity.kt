@@ -12,6 +12,8 @@ import com.shinyelee.my_solo_life.databinding.ActivityIntroBinding
 
 class IntroActivity : AppCompatActivity() {
 
+    private val TAG = "IntroActivity"
+
     // firebase
     private lateinit var auth: FirebaseAuth
 

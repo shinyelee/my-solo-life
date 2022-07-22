@@ -31,8 +31,10 @@ class SplashActivity : AppCompatActivity() {
         vBinding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val uid = auth.currentUser?.uid
+
             // 로그아웃 상태일 때
-            if(auth.currentUser?.uid == null) {
+            if(uid == null) {
 
                 // Handler() is deprecated
                 // 생성자로 Looper.getMainLooper() 넣어주면 됨

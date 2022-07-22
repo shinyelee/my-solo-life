@@ -13,6 +13,8 @@ import com.shinyelee.my_solo_life.databinding.ActivityJoinBinding
 
 class JoinActivity : AppCompatActivity() {
 
+    private val TAG = "JoinActivity"
+
     // firebase
     private lateinit var auth: FirebaseAuth
 
@@ -129,6 +131,10 @@ class JoinActivity : AppCompatActivity() {
                         }
 
                     }
+
+            } else {
+
+                Toast.makeText(this, "회원가입에 실패했습니다", Toast.LENGTH_LONG).show()
 
             }
 
