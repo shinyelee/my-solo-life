@@ -7,9 +7,11 @@ import android.util.Patterns
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.shinyelee.my_solo_life.MainActivity
 import com.shinyelee.my_solo_life.databinding.ActivityJoinBinding
+import com.shinyelee.my_solo_life.utils.FBRef
 
 class JoinActivity : AppCompatActivity() {
 
@@ -40,17 +42,15 @@ class JoinActivity : AppCompatActivity() {
             var emailCheck = true
             var pwCheck = true
             var pw2Check = true
-            var nickCheck = true
-            var allCheck = emailCheck and pwCheck and pw2Check and nickCheck
+            var allCheck = emailCheck and pwCheck and pw2Check
 
             // 이메일주소, 비밀번호, 비밀번호 확인, 별명
             val emailTxt = binding.email.text.toString()
             val pwTxt = binding.pw.text.toString()
             val pw2Txt = binding.pw2.text.toString()
-            val nickTxt = binding.nick.text.toString()
 
-            // 값이 비어있는지 확인
-            if (emailTxt.isEmpty() || pwTxt.isEmpty() || pw2Txt.isEmpty() || nickTxt.isEmpty()) {
+            // 빈 칸 검사
+            if (emailTxt.isEmpty() || pwTxt.isEmpty() || pw2Txt.isEmpty()) {
                 allCheck = false
                 Toast.makeText(this, "입력란을 모두 작성하세요", Toast.LENGTH_SHORT).show()
             }
@@ -95,18 +95,6 @@ class JoinActivity : AppCompatActivity() {
             } else {
                 pw2Check = true
                 binding.pw2Area.error = null
-            }
-
-            // 별명 검사
-            if(nickTxt.isEmpty()) {
-                nickCheck = false
-                binding.nickArea.error = "별명을 입력하세요"
-            } else if(nickTxt.length>10) {
-                nickCheck = false
-                binding.nickArea.error = "10자 이하로 입력하세요"
-            } else {
-                nickCheck = true
-                binding.nickArea.error = null
             }
 
             // 가입 조건 모두 만족하면

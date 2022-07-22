@@ -45,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
             val emailTxt = binding.email.text.toString()
             val pwTxt = binding.pw.text.toString()
 
-            // 값이 비어있는지 확인
+            // 빈 칸 검사
             if (emailTxt.isEmpty() || pwTxt.isEmpty()) {
                 allCheck = false
                 Toast.makeText(this, "입력란을 모두 작성하세요", Toast.LENGTH_SHORT).show()
@@ -84,6 +84,7 @@ class LoginActivity : AppCompatActivity() {
             // 로그인 조건 모두 만족하면
             if(allCheck) {
 
+                // 로그인 실행
                 auth.signInWithEmailAndPassword(emailTxt, pwTxt)
                     .addOnCompleteListener(this) { task ->
 
