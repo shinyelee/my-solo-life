@@ -33,15 +33,17 @@ class JoinActivity : AppCompatActivity() {
         vBinding = ActivityJoinBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // 회원가입 버튼 클릭하면
         binding.joinBtn.setOnClickListener {
 
-            // 가입조건 확인
+            // 가입 조건 확인
             var emailCheck = true
             var pwCheck = true
             var pw2Check = true
             var nickCheck = true
             var allCheck = emailCheck and pwCheck and pw2Check and nickCheck
 
+            // 이메일주소, 비밀번호, 비밀번호 확인, 별명
             val emailTxt = binding.email.text.toString()
             val pwTxt = binding.pw.text.toString()
             val pw2Txt = binding.pw2.text.toString()
@@ -117,7 +119,6 @@ class JoinActivity : AppCompatActivity() {
                         // 가입 성공
                         if (task.isSuccessful) {
 
-                            Toast.makeText(this, "회원가입이 완료되었습니다", Toast.LENGTH_LONG).show()
                             // 스택에 쌓인 액티비티 종료하고 메인 액티비티로 이동
                             val intent = Intent(this, MainActivity::class.java)
                             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
