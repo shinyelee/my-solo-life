@@ -46,23 +46,6 @@ class HomeFragment : Fragment() {
         // viewBinding
         vBinding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        // home -> tip
-        binding.tipT.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_tipFragment)
-        }
-        // home -> talk
-        binding.talkT.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_talkFragment)
-        }
-        // home -> bookmark
-        binding.bookmarkT.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_bookmarkFragment)
-        }
-        // home -> store
-        binding.storeT.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_storeFragment)
-        }
-
         rvAdapter = BookmarkRVAdapter(requireContext(), items, itemKeyList, bookmarkIdList)
 
         val rv : RecyclerView = binding.mainRV

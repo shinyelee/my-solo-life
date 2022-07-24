@@ -3,7 +3,11 @@ package com.shinyelee.my_solo_life
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -19,6 +23,8 @@ class MainActivity : AppCompatActivity() {
     private var vBinding : ActivityMainBinding? = null
     private val binding get() = vBinding!!
 
+    var viewList = ArrayList<View>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         // firebase
@@ -29,6 +35,37 @@ class MainActivity : AppCompatActivity() {
         // viewBinding
         vBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        viewList.add(layoutInflater.inflate(R.layout.fragment_home, null))
+        viewList.add(layoutInflater.inflate(R.layout.fragment_tip, null))
+        viewList.add(layoutInflater.inflate(R.layout.fragment_talk, null))
+        viewList.add(layoutInflater.inflate(R.layout.fragment_bookmark, null))
+        viewList.add(layoutInflater.inflate(R.layout.fragment_store, null))
+
+        binding.viewPager.adapter = pagerAdapter()
+
+        binding.viewPager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener(){
+            override fun onPageSelected(position: Int) {
+                when(position) {
+                    0 -> binding.bottomNavigationView.selectedItemId = R.id.home
+                    1 -> binding.bottomNavigationView.selectedItemId = R.id.tip
+                    2 -> binding.bottomNavigationView.selectedItemId = R.id.talk
+                    3 -> binding.bottomNavigationView.selectedItemId = R.id.bookmark
+                    4 -> binding.bottomNavigationView.selectedItemId = R.id.store
+                }
+            }
+        })
+
+        binding.bottomNavigationView.setOnNavigationItemSelectedListener {
+            when(it.itemId) {
+                R.id.home -> binding.viewPager.setCurrentItem(0)
+                R.id.tip -> binding.viewPager.setCurrentItem(1)
+                R.id.talk -> binding.viewPager.setCurrentItem(2)
+                R.id.bookmark -> binding.viewPager.setCurrentItem(3)
+                R.id.store -> binding.viewPager.setCurrentItem(4)
+            }
+            return@setOnNavigationItemSelectedListener true
+        }
 
         // 로그아웃 버튼 클릭하면
         binding.logoutBtn.setOnClickListener {
@@ -44,6 +81,23 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+    }
+
+    inner class pagerAdapter : PagerAdapter() {
+
+        override fun getCount() = viewList.size
+
+        override fun isViewFromObject(view: View, `object`: Any) = view == `object`
+
+        override fun instantiateItem(container: ViewGroup, position: Int): Any {
+            var curView = viewList[position]
+            binding.viewPager.addView(curView)
+            return curView
+        }
+
+        override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
+            binding.viewPager.removeView(`object` as View)
+        }
     }
 
     override fun onDestroy() {
