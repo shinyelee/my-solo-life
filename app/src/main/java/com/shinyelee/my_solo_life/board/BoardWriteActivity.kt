@@ -54,7 +54,7 @@ class BoardWriteActivity : AppCompatActivity() {
 
             Toast.makeText(this, "게시글 등록 완료!", Toast.LENGTH_LONG).show()
 
-            if(isImageUpload == true) {
+            if(isImageUpload) {
                 imageUpload(key)
             }
 
