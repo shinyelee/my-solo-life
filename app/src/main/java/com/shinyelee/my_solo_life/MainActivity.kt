@@ -13,6 +13,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.shinyelee.my_solo_life.auth.IntroActivity
 import com.shinyelee.my_solo_life.databinding.ActivityMainBinding
+import com.shinyelee.my_solo_life.fragments.HomeFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private var vBinding : ActivityMainBinding? = null
     private val binding get() = vBinding!!
 
+    // fragments(view) list
     var viewList = ArrayList<View>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,14 +38,15 @@ class MainActivity : AppCompatActivity() {
         vBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // fragments(view) list
         viewList.add(layoutInflater.inflate(R.layout.fragment_home, null))
         viewList.add(layoutInflater.inflate(R.layout.fragment_tip, null))
         viewList.add(layoutInflater.inflate(R.layout.fragment_talk, null))
         viewList.add(layoutInflater.inflate(R.layout.fragment_bookmark, null))
         viewList.add(layoutInflater.inflate(R.layout.fragment_store, null))
 
+        // viewPager
         binding.viewPager.adapter = pagerAdapter()
-
         binding.viewPager.addOnPageChangeListener(object : ViewPager.SimpleOnPageChangeListener(){
             override fun onPageSelected(position: Int) {
                 when(position) {
@@ -56,13 +59,14 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        // viewPager
         binding.bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId) {
-                R.id.home -> binding.viewPager.setCurrentItem(0)
-                R.id.tip -> binding.viewPager.setCurrentItem(1)
-                R.id.talk -> binding.viewPager.setCurrentItem(2)
-                R.id.bookmark -> binding.viewPager.setCurrentItem(3)
-                R.id.store -> binding.viewPager.setCurrentItem(4)
+                R.id.home -> binding.viewPager.currentItem = 0
+                R.id.tip -> binding.viewPager.currentItem = 1
+                R.id.talk -> binding.viewPager.currentItem = 2
+                R.id.bookmark -> binding.viewPager.currentItem = 3
+                R.id.store -> binding.viewPager.currentItem = 4
             }
             return@setOnNavigationItemSelectedListener true
         }
@@ -90,9 +94,9 @@ class MainActivity : AppCompatActivity() {
         override fun isViewFromObject(view: View, `object`: Any) = view == `object`
 
         override fun instantiateItem(container: ViewGroup, position: Int): Any {
-            var curView = viewList[position]
-            binding.viewPager.addView(curView)
-            return curView
+            var currentView = viewList[position]
+            binding.viewPager.addView(currentView)
+            return currentView
         }
 
         override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
