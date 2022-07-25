@@ -10,7 +10,7 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:background="@color/mainColor"
+            android:background="@color/lemon"
             android:layout_width="match_parent"
             android:layout_height="150dp">
 
