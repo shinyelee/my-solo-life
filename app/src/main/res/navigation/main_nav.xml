@@ -84,7 +84,7 @@
     // store -> 다른 fragment
     <fragment
         android:id="@+id/storeFragment"
-        android:name="com.shinyelee.my_solo_life.fragments.StoreFragment"
+        android:name="com.shinyelee.my_solo_life.Fragments.StoreFragment"
         android:label="fragment_store"
         tools:layout="@layout/fragment_store" >
         <action

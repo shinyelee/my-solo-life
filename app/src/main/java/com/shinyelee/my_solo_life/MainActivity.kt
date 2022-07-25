@@ -9,7 +9,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.shinyelee.my_solo_life.auth.IntroActivity
 import com.shinyelee.my_solo_life.databinding.ActivityMainBinding
-import com.shinyelee.my_solo_life.fragments.HomeFragment
 
 class MainActivity : AppCompatActivity() {
 
