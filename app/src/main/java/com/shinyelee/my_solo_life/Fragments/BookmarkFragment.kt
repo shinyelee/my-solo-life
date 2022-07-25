@@ -56,6 +56,23 @@ class BookmarkFragment : Fragment() {
         rv.adapter = rvAdapter
         rv.layoutManager = GridLayoutManager(requireContext(), 2)
 
+        // bookmark - home
+        binding.homeT.setOnClickListener {
+            it.findNavController().navigate(R.id.action_bookmarkFragment_to_homeFragment)
+        }
+        // bookmark -> tip
+        binding.tipT.setOnClickListener {
+            it.findNavController().navigate(R.id.action_bookmarkFragment_to_tipFragment)
+        }
+        // bookmark -> talk
+        binding.talkT.setOnClickListener {
+            it.findNavController().navigate(R.id.action_bookmarkFragment_to_talkFragment)
+        }
+        // bookmark -> store
+        binding.storeT.setOnClickListener {
+            it.findNavController().navigate(R.id.action_bookmarkFragment_to_storeFragment)
+        }
+
         return binding.root
 
     }

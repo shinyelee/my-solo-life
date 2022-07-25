@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
     app:startDestination="@id/homeFragment">
 
-    // home -> 다른 fragment
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.shinyelee.my_solo_life.fragments.HomeFragment"
@@ -24,7 +24,7 @@
             android:id="@+id/action_homeFragment_to_storeFragment"
             app:destination="@id/storeFragment" />
     </fragment>
-    // tip -> 다른 fragment
+
     <fragment
         android:id="@+id/tipFragment"
         android:name="com.shinyelee.my_solo_life.Fragments.TipFragment"
@@ -43,7 +43,7 @@
             android:id="@+id/action_tipFragment_to_storeFragment"
             app:destination="@id/storeFragment" />
     </fragment>
-    // talk -> 다른 fragment
+
     <fragment
         android:id="@+id/talkFragment"
         android:name="com.shinyelee.my_solo_life.Fragments.TalkFragment"
@@ -62,7 +62,7 @@
             android:id="@+id/action_talkFragment_to_storeFragment"
             app:destination="@id/storeFragment" />
     </fragment>
-    // bookmark -> 다른 fragment
+
     <fragment
         android:id="@+id/bookmarkFragment"
         android:name="com.shinyelee.my_solo_life.Fragments.BookmarkFragment"
@@ -81,7 +81,7 @@
             android:id="@+id/action_bookmarkFragment_to_storeFragment"
             app:destination="@id/storeFragment" />
     </fragment>
-    // store -> 다른 fragment
+
     <fragment
         android:id="@+id/storeFragment"
         android:name="com.shinyelee.my_solo_life.Fragments.StoreFragment"
@@ -100,4 +100,5 @@
             android:id="@+id/action_storeFragment_to_bookmarkFragment"
             app:destination="@id/bookmarkFragment" />
     </fragment>
+
 </navigation>
