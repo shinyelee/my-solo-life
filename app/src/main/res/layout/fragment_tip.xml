@@ -202,7 +202,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/mainColor" />
+                    android:background="@color/blue" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -240,7 +240,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:src="@drawable/bottom_tip" />
+                    android:src="@drawable/bottom_tip"
+                    android:background="@color/lemon" />
 
                 <ImageView
                     android:id="@+id/talkT"

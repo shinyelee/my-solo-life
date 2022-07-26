@@ -1,69 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_blur"
+    tools:context=".auth.IntroActivity">
+
+    <!-- 제목 -->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/splash"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 설명 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/intro"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.563" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".auth.IntroActivity">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9">
 
-        <RelativeLayout
+        <!-- 로그인 버튼 -->
+        <Button
+            android:id="@+id/loginBtn"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="55dp"
+            android:layout_marginVertical="5dp"
+            android:background="@drawable/btn_blue"
+            android:text="@string/login"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="550dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/loginbg" />
+        <!-- 회원가입 버튼 -->
+        <Button
+            android:id="@+id/joinBtn"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginVertical="5dp"
+            android:background="@drawable/btn_blue"
+            android:text="@string/join"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
-            <ImageView
-                android:src="@drawable/upperbg"
-                android:layout_alignParentBottom="true"
-                android:scaleType="fitXY"
-                android:layout_width="match_parent"
-                android:layout_height="360dp"/>
+        <!-- 비회원 버튼 -->
+        <Button
+            android:id="@+id/guestBtn"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginVertical="5dp"
+            android:background="@drawable/btn_blue"
+            android:text="@string/guest"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_alignParentBottom="true"
-                android:layout_margin="10dp"
-                android:layout_height="wrap_content">
+    </LinearLayout>
 
-                <Button
-                    android:id="@+id/loginBtn"
-                    android:text="@string/login"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:background="@drawable/background_radius"
-                    android:layout_margin="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"/>
-
-                <Button
-                    android:id="@+id/joinBtn"
-                    android:text="@string/join"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:background="@drawable/background_radius"
-                    android:layout_margin="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"/>
-
-                <Button
-                    android:id="@+id/guestBtn"
-                    android:text="@string/guest"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:background="@drawable/background_radius"
-                    android:layout_margin="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"/>
-
-            </LinearLayout>
-
-        </RelativeLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
