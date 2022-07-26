@@ -73,7 +73,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_margin="20dp"
-                    android:background="@drawable/background_radius"
+                    android:background="@color/gray"
                     android:padding="10dp"
                     android:text="내용 영역"
                     android:textColor="@color/black" />

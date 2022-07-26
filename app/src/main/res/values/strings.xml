@@ -12,4 +12,7 @@
     <string name="pw2">비밀번호 확인</string>
     <string name="nick">별명</string>
 
+    <string name="splash">신예리의 개발계발</string>
+    <string name="intro">이용하시려면 로그인이 필요합니다.</string>
+
 </resources>
