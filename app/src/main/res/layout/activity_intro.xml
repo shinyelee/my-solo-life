@@ -9,6 +9,7 @@
     android:background="@drawable/bg_blur"
     tools:context=".auth.IntroActivity">
 
+    <!-- title -->
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -22,6 +23,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- subtitle -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,12 +42,12 @@
         android:orientation="vertical"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.9">
 
+        <!-- login btn -->
         <Button
             android:id="@+id/loginBtn"
             android:layout_width="match_parent"
@@ -56,6 +58,7 @@
             android:textColor="@color/white"
             android:textSize="18sp" />
 
+        <!-- join btn -->
         <Button
             android:id="@+id/joinBtn"
             android:layout_width="match_parent"
@@ -66,6 +69,7 @@
             android:textColor="@color/white"
             android:textSize="18sp" />
 
+        <!-- guest btn -->
         <Button
             android:id="@+id/guestBtn"
             android:layout_width="match_parent"
