@@ -46,18 +46,13 @@ class JoinActivity : AppCompatActivity() {
             var emailCheck = true
             var pwCheck = true
             var pw2Check = true
-            var allCheck = emailCheck and pwCheck and pw2Check
+            var pwDoubleCheck = true
+            var allCheck = emailCheck and pwCheck and pw2Check and pwDoubleCheck
 
             // 이메일, 비밀번호, 비밀번호 확인
             val emailTxt = binding.email.text.toString()
             val pwTxt = binding.pw.text.toString()
             val pw2Txt = binding.pw2.text.toString()
-
-            // 빈 칸 검사
-            if (emailTxt.isEmpty() || pwTxt.isEmpty() || pw2Txt.isEmpty()) {
-                allCheck = false
-                Toast.makeText(this, "입력란을 모두 작성하세요", Toast.LENGTH_SHORT).show()
-            }
 
             // 이메일 정규식
             val emailPattern = Patterns.EMAIL_ADDRESS
@@ -66,12 +61,12 @@ class JoinActivity : AppCompatActivity() {
             if(emailTxt.isEmpty()) {
                 emailCheck = false
                 binding.emailArea.error = "이메일주소를 입력하세요"
-            } else if(!emailPattern.matcher(emailTxt).matches()) {
-                emailCheck = false
-                binding.emailArea.error = "이메일 형식이 잘못되었습니다"
-            } else {
+            } else if(emailPattern.matcher(emailTxt).matches()) {
                 emailCheck = true
                 binding.emailArea.error = null
+            } else {
+                emailCheck = false
+                binding.emailArea.error = "이메일 형식이 잘못되었습니다"
             }
 
             // 비밀번호 검사
@@ -93,12 +88,18 @@ class JoinActivity : AppCompatActivity() {
             if(pw2Txt.isEmpty()) {
                 pw2Check = false
                 binding.pw2Area.error = "비밀번호를 한 번 더 입력하세요"
-            } else if(pwTxt != pw2Txt) {
-                pw2Check = false
-                binding.pw2Area.error = "비밀번호가 일치하지 않습니다"
             } else {
                 pw2Check = true
                 binding.pw2Area.error = null
+            }
+
+            // 비밀번호 일치 검사
+            if(pw2Txt == pwTxt) {
+                pwDoubleCheck = true
+                binding.pw2Area.error = null
+            } else {
+                pwDoubleCheck = true
+                binding.pw2Area.error = "비밀번호가 일치하지 않습니다"
             }
 
             // 회원가입 조건을 모두 만족하면
@@ -118,18 +119,20 @@ class JoinActivity : AppCompatActivity() {
                             finishAffinity()
                             startActivity(intent)
 
-                        // 실패하면
+                        // 조건 만족해도
                         } else {
 
-                            // 메시지 띄움
+                            // 가입 불가능한 경우가 있음
                             Toast.makeText(this, "회원가입에 실패했습니다", Toast.LENGTH_LONG).show()
 
                         }
 
                     }
 
+            // 조건을 만족하지 못하면
             } else {
 
+                // 가입 불가
                 Toast.makeText(this, "회원가입에 실패했습니다", Toast.LENGTH_LONG).show()
 
             }

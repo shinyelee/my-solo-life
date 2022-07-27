@@ -51,12 +51,6 @@ class LoginActivity : AppCompatActivity() {
             val emailTxt = binding.email.text.toString()
             val pwTxt = binding.pw.text.toString()
 
-            // 빈 칸 검사
-            if (emailTxt.isEmpty() || pwTxt.isEmpty()) {
-                allCheck = false
-                Toast.makeText(this, "입력란을 모두 작성하세요", Toast.LENGTH_SHORT).show()
-            }
-
             // 이메일 정규식
             val emailPattern = Patterns.EMAIL_ADDRESS
 
@@ -64,18 +58,18 @@ class LoginActivity : AppCompatActivity() {
             if(emailTxt.isEmpty()) {
                 emailCheck = false
                 binding.emailArea.error = "이메일주소를 입력하세요"
-            } else if(!emailPattern.matcher(emailTxt).matches()) {
-                emailCheck = false
-                binding.emailArea.error = "이메일 형식이 잘못되었습니다"
-            } else {
+            } else if(emailPattern.matcher(emailTxt).matches()) {
                 emailCheck = true
                 binding.emailArea.error = null
+            } else {
+                emailCheck = false
+                binding.emailArea.error = "이메일 형식이 잘못되었습니다"
             }
 
             // 비밀번호 검사
             if(pwTxt.isEmpty()) {
                 pwCheck = false
-                binding.pwArea.error = "비밀번호를 입력해 주세요"
+                binding.pwArea.error = "비밀번호를 입력하세요"
             } else if (pwTxt.length<6) {
                 pwCheck = false
                 binding.pwArea.error = "최소 6자 이상 입력하세요"
@@ -108,15 +102,17 @@ class LoginActivity : AppCompatActivity() {
                         } else {
 
                             // 메시지 띄움
-                            Toast.makeText(this, "로그인에 실패했습니다", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this, "이메일과 비밀번호를 다시 확인하세요", Toast.LENGTH_LONG).show()
 
                         }
 
                     }
 
+            // 조건 불만족하면
             } else {
 
-                Toast.makeText(this, "회원가입에 실패했습니다", Toast.LENGTH_LONG).show()
+                // 메시지 띄움
+                Toast.makeText(this, "이메일과 비밀번호를 다시 확인하세요", Toast.LENGTH_LONG).show()
 
             }
 
