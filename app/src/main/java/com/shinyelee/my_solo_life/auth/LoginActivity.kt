@@ -94,7 +94,7 @@ class LoginActivity : AppCompatActivity() {
                             // 메인 액티비티로 이동
                             val intent = Intent(this, MainActivity::class.java)
 
-                            // 기존 스택을 비움 -> 뒤로가기 했을 때 로그인 화면으로 되돌아가는 것 방지
+                            // 기존 스택을 비움 -> 뒤로가기 했을 때 이전 화면으로 되돌아가는 것 방지
                             finishAffinity()
                             startActivity(intent)
 

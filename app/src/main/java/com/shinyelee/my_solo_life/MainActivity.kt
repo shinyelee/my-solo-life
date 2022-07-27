@@ -37,18 +37,25 @@ class MainActivity : AppCompatActivity() {
             auth.signOut()
             Toast.makeText(this, "로그아웃 되었습니다", Toast.LENGTH_SHORT).show()
 
-            // 스택에 쌓인 액티비티 종료하고 인트로 액티비티로 이동
+            // 인트로 액티비티로 이동
             val intent = Intent(this, IntroActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+            // 기존 스택을 비움 -> 뒤로가기 했을 때 이전 화면으로 되돌아가는 것 방지
+            finishAffinity()
             startActivity(intent)
 
         }
 
     }
 
+    // 액티비티 파괴시
     override fun onDestroy() {
+
+        // 바인딩 클래스 인스턴스 참조를 정리
+        // -> 메모리 효율이 좋아짐
         vBinding = null
         super.onDestroy()
+
     }
 
 }

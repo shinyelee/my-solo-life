@@ -51,6 +51,7 @@ class SplashActivity : AppCompatActivity() {
 
                     // 인트로 액티비티로 이동
                     val intent = Intent(this, IntroActivity::class.java)
+
                     // 애니메이션 무시 and 스택 쌓임 방지
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION and Intent.FLAG_ACTIVITY_NO_HISTORY)
                     startActivity(intent)
@@ -65,6 +66,7 @@ class SplashActivity : AppCompatActivity() {
 
                     // 메인 액티비티로 이동
                     val intent = Intent(this, MainActivity::class.java)
+
                     // 애니메이션 무시 and 스택 쌓임 방지
                     intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION and Intent.FLAG_ACTIVITY_NO_HISTORY)
                     startActivity(intent)
