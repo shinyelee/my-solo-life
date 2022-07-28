@@ -34,15 +34,16 @@ class MainActivity : AppCompatActivity() {
         binding.logoutBtn.setOnClickListener {
 
             // 로그아웃 실행
-            auth.signOut()
+            Firebase.auth.signOut()
             Toast.makeText(this, "로그아웃 되었습니다", Toast.LENGTH_SHORT).show()
 
             // 인트로 액티비티로 이동
             val intent = Intent(this, IntroActivity::class.java)
 
             // 기존 스택을 비움 -> 뒤로가기 했을 때 이전 화면으로 되돌아가는 것 방지
-            finishAffinity()
-            startActivity(intent)
+//            finishAffinity()
+            // 백스택 제거하고 새 액티비티 시작
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
 
         }
 
