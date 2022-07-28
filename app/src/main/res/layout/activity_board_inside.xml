@@ -2,6 +2,8 @@
 
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -10,9 +12,6 @@
             android:layout_height="match_parent">
 
             <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -40,14 +39,15 @@
 
                         <ImageView
                             android:id="@+id/boardSettingIcon"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginRight="20dp"
-                            android:src="@drawable/logout"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginHorizontal="15dp"
+                            android:src="@drawable/btn_setting"
                             android:visibility="invisible"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:tint="@color/blue" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -89,33 +89,36 @@
                     android:id="@+id/commentLV"
                     android:layout_width="match_parent"
                     android:layout_height="600dp"
-                    android:background="@color/white" />
+                    android:background="@color/white" >
+
+                </ListView>
 
             </LinearLayout>
 
         </ScrollView>
 
-        <LinearLayout
-            android:layout_width="match_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/navy"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/commentArea"
+            android:hint="댓글을 입력해주세요"
+            android:layout_width="330dp"
+            android:layout_height="match_parent"
+            android:padding="15dp"
+            android:background="@color/white" />
+
+        <ImageView
+            android:id="@+id/commentBtn"
+            android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_alignParentBottom="true"
-            android:background="@color/white">
+            android:src="@drawable/btn_write"
+            app:tint="@color/white" />
 
-            <EditText
-                android:id="@+id/commentArea"
-                android:hint="댓글을 입력해주세요"
-                android:layout_width="320dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:background="@android:color/transparent"/>
-
-            <ImageView
-                android:id="@+id/commentBtn"
-                android:src="@drawable/writebtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"/>
-
-        </LinearLayout>
+    </LinearLayout>
 
     </RelativeLayout>
