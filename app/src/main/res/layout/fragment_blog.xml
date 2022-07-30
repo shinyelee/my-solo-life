@@ -7,18 +7,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.BlogFragment">
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <!-- Category -->
+    <!-- 전체 카테고리 -->
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:layout_editor_absoluteY="10dp">
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <!-- 1st line icon -->
+        <!-- 블로그 아이콘 1 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="125dp">
@@ -45,7 +43,7 @@
 
         </LinearLayout>
 
-        <!-- 1st line text -->
+        <!-- 블로그 텍스트 1 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,7 +72,7 @@
 
         </LinearLayout>
 
-        <!-- 2nd line icon -->
+        <!-- 블로그 아이콘 2 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="125dp">
@@ -99,7 +97,7 @@
 
         </LinearLayout>
 
-        <!-- 2nd line text -->
+        <!-- 블로그 텍스트 2 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -128,7 +126,7 @@
 
         </LinearLayout>
 
-        <!-- 3rd line icon -->
+        <!-- 블로그 아이콘 3 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="125dp">
@@ -152,7 +150,7 @@
 
         </LinearLayout>
 
-        <!-- 3rd line text -->
+        <!-- 블로그 텍스트 3 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -186,6 +184,7 @@
 
     <!-- 내비게이션바 뚜껑 -->
     <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:background="@color/white"

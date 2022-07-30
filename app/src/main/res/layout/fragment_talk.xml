@@ -5,21 +5,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".Fragments.TalkFragment">
 
     <ListView
         android:id="@+id/boardListView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginBottom="64dp"/>
 
     <ImageView
         android:id="@+id/writeBtn"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginStart="331dp"
+        android:layout_margin="20dp"
         android:src="@drawable/writebtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/boardListView"
         app:layout_constraintTop_toTopOf="parent" />
 
     <!-- 내비게이션바 뚜껑 -->

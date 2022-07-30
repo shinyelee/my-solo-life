@@ -7,20 +7,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- 스크롤뷰 -->
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="-335dp">
+        android:layout_height="match_parent">
 
+        <!-- 세로방향 정렬 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="15dp">
 
-            <!-- blog -->
+            <!-- 블로그 -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
                 android:background="@drawable/background_frame_yellow"
                 android:orientation="vertical">
 
-                <!-- blog icon -->
+                <!-- 블로그 아이콘 1 -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
@@ -67,7 +67,7 @@
 
                 </LinearLayout>
 
-                <!-- blog text -->
+                <!-- 블로그 텍스트 1 -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
 
                 </LinearLayout>
 
-                <!-- blog icon2 -->
+                <!-- 블로그 아이콘 2 -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
@@ -140,7 +140,7 @@
 
                 </LinearLayout>
 
-                <!-- blog text2 -->
+                <!-- 블로그 텍스트 2 -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -179,7 +179,7 @@
 
             </LinearLayout>
 
-            <!-- board -->
+            <!-- 게시판 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -208,6 +208,7 @@
 
             </LinearLayout>
 
+            <!-- 북마크 -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/mainRV"
                 android:layout_width="match_parent"
