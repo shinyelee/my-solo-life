@@ -77,17 +77,17 @@ class TalkFragment : Fragment() {
         binding.homeT.setOnClickListener {
             it.findNavController().navigate(R.id.action_talkFragment_to_homeFragment)
         }
-        // talk -> tip
-        binding.tipT.setOnClickListener {
-            it.findNavController().navigate(R.id.action_talkFragment_to_tipFragment)
+        // talk -> blog
+        binding.blogT.setOnClickListener {
+            it.findNavController().navigate(R.id.action_talkFragment_to_blogFragment)
         }
         // talk -> bookmark
         binding.bookmarkT.setOnClickListener {
             it.findNavController().navigate(R.id.action_talkFragment_to_bookmarkFragment)
         }
-        // talk -> store
-        binding.storeT.setOnClickListener {
-            it.findNavController().navigate(R.id.action_talkFragment_to_storeFragment)
+        // talk -> github
+        binding.githubT.setOnClickListener {
+            it.findNavController().navigate(R.id.action_talkFragment_to_githubFragment)
         }
 
         getFBBoardData()

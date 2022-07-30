@@ -5,12 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.shinyelee.my_solo_life.databinding.FragmentStoreBinding
+import com.shinyelee.my_solo_life.databinding.FragmentGithubBinding
 
-class StoreFragment : Fragment() {
+class GithubFragment : Fragment() {
 
     // viewBinding
-    private var vBinding : FragmentStoreBinding? = null
+    private var vBinding : FragmentGithubBinding? = null
     private val binding get() = vBinding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,8 +23,8 @@ class StoreFragment : Fragment() {
     ): View {
 
         // viewBinding
-        vBinding = FragmentStoreBinding.inflate(inflater, container, false)
-        binding.storeWebView.loadUrl("https://www.inflearn.com/")
+        vBinding = FragmentGithubBinding.inflate(inflater, container, false)
+        binding.githubWebView.loadUrl("https://github.com/shinyelee")
         return binding.root
 
     }

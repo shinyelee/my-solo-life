@@ -1,106 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-    <!-- TODO: Update blank fragment layout -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-        <ListView
-            android:id="@+id/boardListView"
+    <ListView
+        android:id="@+id/boardListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:id="@+id/writeBtn"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="331dp"
+        android:src="@drawable/writebtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/boardListView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 내비게이션바 뚜껑 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="70dp"/>
-
-        <ImageView
-            android:id="@+id/writeBtn"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="70dp"
-            android:src="@drawable/writebtn"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            android:layout_weight="1" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:background="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout2">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@color/blue" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-        </LinearLayout>
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/blue" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <!-- 내비게이션바 -->
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- 홈 탭 -->
+        <LinearLayout
+            android:id="@+id/homeT"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/homeT"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/bottom_home" />
+                android:src="@drawable/home" />
 
-            <ImageView
-                android:id="@+id/tipT"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/bottom_tip" />
-
-            <ImageView
-                android:id="@+id/talkT"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/bottom_talk"
-                android:background="@color/lemon" />
-
-            <ImageView
-                android:id="@+id/bookmarkT"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/bottom_bookmark" />
-
-            <ImageView
-                android:id="@+id/storeT"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:src="@drawable/bottom_store" />
+                android:gravity="center"
+                android:text="@string/home" />
 
         </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- 블로그 탭 -->
+        <LinearLayout
+            android:id="@+id/blogT"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/blog" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/blog" />
+
+        </LinearLayout>
+
+        <!-- 게시판 탭 -->
+        <LinearLayout
+            android:id="@+id/talkT"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/talk" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/talk" />
+
+        </LinearLayout>
+
+        <!-- 북마크 탭 -->
+        <LinearLayout
+            android:id="@+id/bookmarkT"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/bookmark" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/bookmark" />
+
+        </LinearLayout>
+
+        <!-- 깃허브 탭 -->
+        <LinearLayout
+            android:id="@+id/githubT"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/github" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/github" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

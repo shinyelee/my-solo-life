@@ -34,7 +34,6 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -46,9 +45,9 @@ class HomeFragment : Fragment() {
         // viewBinding
         vBinding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        // home -> tip
-        binding.tipT.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_tipFragment)
+        // home -> blog
+        binding.blogT.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_blogFragment)
         }
         // home -> talk
         binding.talkT.setOnClickListener {
@@ -58,9 +57,9 @@ class HomeFragment : Fragment() {
         binding.bookmarkT.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_bookmarkFragment)
         }
-        // home -> store
-        binding.storeT.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_storeFragment)
+        // home -> github
+        binding.githubT.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_githubFragment)
         }
 
         rvAdapter = BookmarkRVAdapter(requireContext(), items, itemKeyList, bookmarkIdList)

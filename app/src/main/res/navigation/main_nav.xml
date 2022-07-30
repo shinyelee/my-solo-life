@@ -12,8 +12,8 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_tipFragment"
-            app:destination="@id/tipFragment" />
+            android:id="@+id/action_homeFragment_to_blogFragment"
+            app:destination="@id/blogFragment" />
         <action
             android:id="@+id/action_homeFragment_to_talkFragment"
             app:destination="@id/talkFragment" />
@@ -21,27 +21,27 @@
             android:id="@+id/action_homeFragment_to_bookmarkFragment"
             app:destination="@id/bookmarkFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_storeFragment"
-            app:destination="@id/storeFragment" />
+            android:id="@+id/action_homeFragment_to_githubFragment"
+            app:destination="@id/githubFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/tipFragment"
-        android:name="com.shinyelee.my_solo_life.Fragments.TipFragment"
-        android:label="fragment_tip"
-        tools:layout="@layout/fragment_tip" >
+        android:id="@+id/blogFragment"
+        android:name="com.shinyelee.my_solo_life.Fragments.BlogFragment"
+        android:label="fragment_blog"
+        tools:layout="@layout/fragment_blog" >
         <action
-            android:id="@+id/action_tipFragment_to_homeFragment"
+            android:id="@+id/action_blogFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
         <action
-            android:id="@+id/action_tipFragment_to_talkFragment"
+            android:id="@+id/action_blogFragment_to_talkFragment"
             app:destination="@id/talkFragment" />
         <action
-            android:id="@+id/action_tipFragment_to_bookmarkFragment"
+            android:id="@+id/action_blogFragment_to_bookmarkFragment"
             app:destination="@id/bookmarkFragment" />
         <action
-            android:id="@+id/action_tipFragment_to_storeFragment"
-            app:destination="@id/storeFragment" />
+            android:id="@+id/action_blogFragment_to_githubFragment"
+            app:destination="@id/githubFragment" />
     </fragment>
 
     <fragment
@@ -53,14 +53,14 @@
             android:id="@+id/action_talkFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
         <action
-            android:id="@+id/action_talkFragment_to_tipFragment"
-            app:destination="@id/tipFragment" />
+            android:id="@+id/action_talkFragment_to_blogFragment"
+            app:destination="@id/blogFragment" />
         <action
             android:id="@+id/action_talkFragment_to_bookmarkFragment"
             app:destination="@id/bookmarkFragment" />
         <action
-            android:id="@+id/action_talkFragment_to_storeFragment"
-            app:destination="@id/storeFragment" />
+            android:id="@+id/action_talkFragment_to_githubFragment"
+            app:destination="@id/githubFragment" />
     </fragment>
 
     <fragment
@@ -72,32 +72,32 @@
             android:id="@+id/action_bookmarkFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
         <action
-            android:id="@+id/action_bookmarkFragment_to_tipFragment"
-            app:destination="@id/tipFragment" />
+            android:id="@+id/action_bookmarkFragment_to_blogFragment"
+            app:destination="@id/blogFragment" />
         <action
             android:id="@+id/action_bookmarkFragment_to_talkFragment"
             app:destination="@id/talkFragment" />
         <action
-            android:id="@+id/action_bookmarkFragment_to_storeFragment"
-            app:destination="@id/storeFragment" />
+            android:id="@+id/action_bookmarkFragment_to_githubFragment"
+            app:destination="@id/githubFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/storeFragment"
-        android:name="com.shinyelee.my_solo_life.Fragments.StoreFragment"
-        android:label="fragment_store"
-        tools:layout="@layout/fragment_store" >
+        android:id="@+id/githubFragment"
+        android:name="com.shinyelee.my_solo_life.Fragments.GithubFragment"
+        android:label="fragment_github"
+        tools:layout="@layout/fragment_github" >
         <action
-            android:id="@+id/action_storeFragment_to_homeFragment"
+            android:id="@+id/action_githubFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
         <action
-            android:id="@+id/action_storeFragment_to_tipFragment"
-            app:destination="@id/tipFragment" />
+            android:id="@+id/action_githubFragment_to_blogFragment"
+            app:destination="@id/blogFragment" />
         <action
-            android:id="@+id/action_storeFragment_to_talkFragment"
+            android:id="@+id/action_githubFragment_to_talkFragment"
             app:destination="@id/talkFragment" />
         <action
-            android:id="@+id/action_storeFragment_to_bookmarkFragment"
+            android:id="@+id/action_githubFragment_to_bookmarkFragment"
             app:destination="@id/bookmarkFragment" />
     </fragment>
 

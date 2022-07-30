@@ -9,12 +9,12 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.shinyelee.my_solo_life.R
 import com.shinyelee.my_solo_life.contentsList.ContentsListActivity
-import com.shinyelee.my_solo_life.databinding.FragmentTipBinding
+import com.shinyelee.my_solo_life.databinding.FragmentBlogBinding
 
-class TipFragment : Fragment() {
+class BlogFragment : Fragment() {
 
     // viewBinding
-    private var vBinding : FragmentTipBinding? = null
+    private var vBinding : FragmentBlogBinding? = null
     private val binding get() = vBinding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,36 +27,36 @@ class TipFragment : Fragment() {
     ): View? {
 
         // viewBinding
-        vBinding = FragmentTipBinding.inflate(inflater, container, false)
+        vBinding = FragmentBlogBinding.inflate(inflater, container, false)
 
-        // tip -> cate1
+        // blog -> cate1
         binding.cate1.setOnClickListener {
             val intent = Intent(context, ContentsListActivity::class.java)
             intent.putExtra("cate", "cate1")
             startActivity(intent)
         }
-        // tip -> cate2
+        // blog -> cate2
         binding.cate2.setOnClickListener {
             val intent = Intent(context, ContentsListActivity::class.java)
             intent.putExtra("cate", "cate2")
             startActivity(intent)
         }
 
-        // tip -> home
+        // blog -> home
         binding.homeT.setOnClickListener {
-            it.findNavController().navigate(R.id.action_tipFragment_to_homeFragment)
+            it.findNavController().navigate(R.id.action_blogFragment_to_homeFragment)
         }
-        // tip -> talk
+        // blog -> talk
         binding.talkT.setOnClickListener {
-            it.findNavController().navigate(R.id.action_tipFragment_to_talkFragment)
+            it.findNavController().navigate(R.id.action_blogFragment_to_talkFragment)
         }
-        // tip -> bookmark
+        // blog -> bookmark
         binding.bookmarkT.setOnClickListener {
-            it.findNavController().navigate(R.id.action_tipFragment_to_bookmarkFragment)
+            it.findNavController().navigate(R.id.action_blogFragment_to_bookmarkFragment)
         }
-        // tip -> store
-        binding.storeT.setOnClickListener {
-            it.findNavController().navigate(R.id.action_tipFragment_to_storeFragment)
+        // blog -> github
+        binding.githubT.setOnClickListener {
+            it.findNavController().navigate(R.id.action_blogFragment_to_githubFragment)
         }
         return binding.root
 

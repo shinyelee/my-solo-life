@@ -60,17 +60,17 @@ class BookmarkFragment : Fragment() {
         binding.homeT.setOnClickListener {
             it.findNavController().navigate(R.id.action_bookmarkFragment_to_homeFragment)
         }
-        // bookmark -> tip
-        binding.tipT.setOnClickListener {
-            it.findNavController().navigate(R.id.action_bookmarkFragment_to_tipFragment)
+        // bookmark -> blog
+        binding.blogT.setOnClickListener {
+            it.findNavController().navigate(R.id.action_bookmarkFragment_to_blogFragment)
         }
         // bookmark -> talk
         binding.talkT.setOnClickListener {
             it.findNavController().navigate(R.id.action_bookmarkFragment_to_talkFragment)
         }
-        // bookmark -> store
-        binding.storeT.setOnClickListener {
-            it.findNavController().navigate(R.id.action_bookmarkFragment_to_storeFragment)
+        // bookmark -> github
+        binding.githubT.setOnClickListener {
+            it.findNavController().navigate(R.id.action_bookmarkFragment_to_githubFragment)
         }
 
         return binding.root
