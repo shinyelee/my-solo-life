@@ -40,10 +40,14 @@ class MainActivity : AppCompatActivity() {
             // 인트로 액티비티로 이동
             val intent = Intent(this, IntroActivity::class.java)
 
+            // 백스택 제거, 기존 태스크를 최상단으로 올리거나 새 태스크 생성
+//            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+
             // 기존 스택을 비움 -> 뒤로가기 했을 때 이전 화면으로 되돌아가는 것 방지
-//            finishAffinity()
-            // 백스택 제거하고 새 액티비티 시작
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+            finishAffinity()
+
+            // 새 액티비티 시작
+            startActivity(intent)
 
         }
 
