@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp">
+    android:layout_marginRight="10dp"
+    android:orientation="vertical">
 
+    <!-- 반복되는 아이템(카드뷰) -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="10dp">
 
+        <!-- 썸네일 -->
         <ImageView
             android:id="@+id/imageArea"
             android:layout_width="match_parent"
@@ -26,16 +29,18 @@
 
     </androidx.cardview.widget.CardView>
 
+    <!-- 제목 -->
     <TextView
         android:id="@+id/textArea"
         android:text="텍스트 영역"
-        android:textSize="15sp"
+        android:textSize="18sp"
         android:textColor="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:gravity="center"/>
 
+    <!-- 북마커 -->
     <ImageView
         android:id="@+id/bookmarkArea"
         android:layout_width="20dp"
@@ -43,6 +48,5 @@
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:src="@drawable/bookmark_white"/>
-
 
 </LinearLayout>

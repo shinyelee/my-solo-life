@@ -21,11 +21,13 @@ import com.shinyelee.my_solo_life.utils.FBRef
 
 class BookmarkFragment : Fragment() {
 
-    // viewBinding
-    private var vBinding : FragmentBookmarkBinding? = null
-    private val binding get() = vBinding!!
-
     private val TAG = BookmarkFragment::class.java.simpleName
+
+    // (전역변수) 바인딩 객체 선언
+    private var vBinding : FragmentBookmarkBinding? = null
+
+    // 매번 null 확인 귀찮음 -> 바인딩 변수 재선언
+    private val binding get() = vBinding!!
 
     val bookmarkIdList = mutableListOf<String>()
     val items = ArrayList<ContentsModel>()
@@ -41,7 +43,7 @@ class BookmarkFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        // viewBinding
+        // 뷰바인딩
         vBinding = FragmentBookmarkBinding.inflate(inflater, container, false)
 
         // 1. 전체 카테고리의 컨텐츠 데이터를 다 가져옴
@@ -56,21 +58,36 @@ class BookmarkFragment : Fragment() {
         rv.adapter = rvAdapter
         rv.layoutManager = GridLayoutManager(requireContext(), 2)
 
-        // bookmark - home
+        // 홈 탭 클릭하면
         binding.homeT.setOnClickListener {
+
+            // 홈 프래그먼트로 이동
             it.findNavController().navigate(R.id.action_bookmarkFragment_to_homeFragment)
+
         }
-        // bookmark -> blog
+
+        // 블로그 탭 클릭하면
         binding.blogT.setOnClickListener {
+
+            // 블로그 프래그먼트로 이동
             it.findNavController().navigate(R.id.action_bookmarkFragment_to_blogFragment)
+
         }
-        // bookmark -> talk
+
+        // 토크 탭 클릭하면
         binding.talkT.setOnClickListener {
+
+            // 토크 프래그먼트로 이동
             it.findNavController().navigate(R.id.action_bookmarkFragment_to_talkFragment)
+
         }
-        // bookmark -> github
+
+        // 깃허브 탭 클릭하면
         binding.githubT.setOnClickListener {
+
+            // 깃허브 프래그먼트로 이동
             it.findNavController().navigate(R.id.action_bookmarkFragment_to_githubFragment)
+
         }
 
         return binding.root

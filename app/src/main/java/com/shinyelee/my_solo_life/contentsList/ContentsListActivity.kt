@@ -36,13 +36,16 @@ class ContentsListActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
 
-        // viewBinding
+        // 뷰바인딩
         vBinding = ActivityContentsListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // 데이터(콘텐츠 모델) 넘겨줌
         val items = ArrayList<ContentsModel>()
+
         val itemKeyList = ArrayList<String>()
 
+        // 받아온 데이터를 어댑터에 연결
         rvAdapter = ContentsRVAdapter(baseContext, items, itemKeyList, bookmarkIdList)
 
         val database = Firebase.database
@@ -80,6 +83,7 @@ class ContentsListActivity : AppCompatActivity() {
 
         binding.rv.adapter = rvAdapter
 
+        // 레이아웃매니저 -> 아이템을 그리드 형태로 배치(2열로)
         binding.rv.layoutManager = GridLayoutManager(this, 2)
 
         getBookmarkData()

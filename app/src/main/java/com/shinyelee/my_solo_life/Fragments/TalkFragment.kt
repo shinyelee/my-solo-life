@@ -21,13 +21,16 @@ import com.shinyelee.my_solo_life.utils.FBRef
 
 class TalkFragment : Fragment() {
 
-    // viewBinding
+    private val TAG = TalkFragment::class.java.simpleName
+
+    // (전역변수) 바인딩 객체 선언
     private var vBinding : FragmentTalkBinding? = null
+
+    // 매번 null 확인 귀찮음 -> 바인딩 변수 재선언
     private val binding get() = vBinding!!
 
     private val boardDataList = mutableListOf<BoardModel>()
     private val boardKeyList = mutableListOf<String>()
-    private val TAG = TalkFragment::class.java.simpleName
 
     private lateinit var boardRVAdapter: BoardListLVAdapter
 
@@ -40,7 +43,7 @@ class TalkFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        // viewBinding
+        // 뷰바인딩
         vBinding = FragmentTalkBinding.inflate(inflater, container, false)
 
         boardRVAdapter = BoardListLVAdapter(boardDataList)
@@ -67,27 +70,45 @@ class TalkFragment : Fragment() {
 
         }
 
-        // talk -> write
+        // 작성 버튼 클릭하면
         binding.writeBtn.setOnClickListener {
+
+            // 보드라이트 액티비티로 이동
             val intent = Intent(context, BoardWriteActivity::class.java)
             startActivity(intent)
+
         }
 
-        // talk -> home
+        // 홈 탭 클릭하면
         binding.homeT.setOnClickListener {
+
+            // 홈 프래그먼트로 이동
             it.findNavController().navigate(R.id.action_talkFragment_to_homeFragment)
+
         }
-        // talk -> blog
+
+        // 블로그 탭 클릭하면
         binding.blogT.setOnClickListener {
+
+            // 블로그 프래그먼트로 이동
             it.findNavController().navigate(R.id.action_talkFragment_to_blogFragment)
+
         }
-        // talk -> bookmark
+
+        // 북마크 탭 클릭하면
         binding.bookmarkT.setOnClickListener {
+
+            // 북마크 프래그먼트로 이동
             it.findNavController().navigate(R.id.action_talkFragment_to_bookmarkFragment)
+
         }
-        // talk -> github
+
+        // 깃허브 탭 클릭하면
         binding.githubT.setOnClickListener {
+
+            // 깃허브 프래그먼트로 이동
             it.findNavController().navigate(R.id.action_talkFragment_to_githubFragment)
+
         }
 
         getFBBoardData()
@@ -125,6 +146,7 @@ class TalkFragment : Fragment() {
             }
 
         }
+
         FBRef.boardRef.addValueEventListener(postListener)
 
     }
