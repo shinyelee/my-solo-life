@@ -20,11 +20,13 @@ import com.shinyelee.my_solo_life.utils.FBRef
 
 class HomeFragment : Fragment() {
 
-    // viewBinding
-    private var vBinding : FragmentHomeBinding? = null
-    private val binding get() = vBinding!!
-
     private val TAG = HomeFragment::class.java.simpleName
+
+    // (전역변수) 바인딩 객체 선언
+    private var vBinding : FragmentHomeBinding? = null
+
+    // 매번 null 확인 귀찮음 -> 바인딩 변수 재선언
+    private val binding get() = vBinding!!
 
     val bookmarkIdList = mutableListOf<String>()
     val items = ArrayList<ContentsModel>()
@@ -40,26 +42,40 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
 
-        // viewBinding
+        // 뷰바인딩
         vBinding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        // home -> blog
+        // 블로그 탭 클릭하면
         binding.blogT.setOnClickListener {
+
+            // 블로그 프래그먼트로 이동
             it.findNavController().navigate(R.id.action_homeFragment_to_blogFragment)
+
         }
-        // home -> talk
+
+        // 토크 탭 클릭하면
         binding.talkT.setOnClickListener {
+
+            // 토크 프래그먼트로 이동
             it.findNavController().navigate(R.id.action_homeFragment_to_talkFragment)
+
         }
-        // home -> bookmark
+
+        // 북마크 탭 클릭하면
         binding.bookmarkT.setOnClickListener {
+
+            // 북마크 프래그먼트로 이동
             it.findNavController().navigate(R.id.action_homeFragment_to_bookmarkFragment)
+
         }
-        // home -> github
+
+        // 깃허브 탭 클릭하면
         binding.githubT.setOnClickListener {
+
+            // 깃허브 프래그먼트로 이동
             it.findNavController().navigate(R.id.action_homeFragment_to_githubFragment)
+
         }
 
         rvAdapter = BookmarkRVAdapter(requireContext(), items, itemKeyList, bookmarkIdList)
@@ -71,6 +87,7 @@ class HomeFragment : Fragment() {
         getCateData()
 
         return binding.root
+
     }
 
     private fun getCateData() {
