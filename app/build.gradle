@@ -1,12 +1,16 @@
 plugins {
+
     id 'com.android.application'
     id 'kotlin-android'
+
 }
 
 android {
+
     compileSdk 32
 
     defaultConfig {
+
         applicationId "com.shinyelee.my_solo_life"
         minSdk 21
         targetSdk 32
@@ -14,27 +18,38 @@ android {
         versionName "1.0"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
     }
 
     buildTypes {
+
         release {
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
         }
+
     }
 
     compileOptions {
+
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+
     }
 
     kotlinOptions {
+
         jvmTarget = '1.8'
+
     }
 
     // 뷰바인딩
     viewBinding {
+
         enabled = true
+
     }
 }
 
@@ -67,4 +82,5 @@ dependencies {
     // 글라이드
     implementation 'com.github.bumptech.glide:glide:4.13.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
+
 }

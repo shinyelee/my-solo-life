@@ -65,7 +65,6 @@ class ContentsRVAdapter(val context : Context,
             // 게시글 제목
             val contentsTitle = itemView.findViewById<TextView>(R.id.textArea)
 
-            // glide
             val imageViewArea = itemView.findViewById<ImageView>(R.id.imageArea)
             val bookmarkArea = itemView.findViewById<ImageView>(R.id.bookmarkArea)
 
@@ -97,7 +96,7 @@ class ContentsRVAdapter(val context : Context,
 
             contentsTitle.text = item.title
 
-            // glide
+            // 글라이드
             Glide.with(context)
                 .load(item.imageUrl)
                 .into(imageViewArea)

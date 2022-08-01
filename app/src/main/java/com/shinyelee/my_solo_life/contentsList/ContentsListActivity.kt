@@ -48,6 +48,10 @@ class ContentsListActivity : AppCompatActivity() {
 
         // 데이터(콘텐츠 모델) 넘겨줌
         val items = ArrayList<ContentsModel>()
+        items.add(ContentsModel("dataBinding -> viewBinding error (2)", "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcjbcPT%2FbtrHN4eVbuv%2FsOtXJrQU89FbDsbxG67DNK%2Fimg.png"))
+        items.add(ContentsModel("dataBinding -> viewBinding error (1)", "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbSdctw%2FbtrHI2PS3ZL%2FdPipHXtospsMS6FASG8FG1%2Fimg.png"))
+        items.add(ContentsModel("push message error (2)", "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcrqopJ%2FbtrFpbueRw7%2F4DFoMUj5QjYOhO8ReixI6K%2Fimg.png"))
+        items.add(ContentsModel("push message error (1)", "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FVEkQJ%2FbtrFaNGvPZG%2FHfnKE2LwuKpklaV1kZOcDk%2Fimg.png"))
 
         val itemKeyList = ArrayList<String>()
 
