@@ -47,20 +47,24 @@ class ContentsRVAdapter(val context : Context,
     // 아이템에 데이터 넣어줌
     inner class Viewholder(itemView : View) : RecyclerView.ViewHolder(itemView) {
 
-        // 넘어온 데이터를 하나씩 넣어줌
+        // 데이터 매핑
         fun bindItems(item : ContentsModel, key : String) {
 
+            // 아이템 클릭하면
             itemView.setOnClickListener {
 
 //                Toast.makeText(context, item.title, Toast.LENGTH_LONG).show()
 
+                // 컨텐츠쇼 액티비티 실행
                 val intent = Intent(context, ContentsShowActivity::class.java)
                 intent.putExtra("url", item.webUrl)
                 itemView.context.startActivity(intent)
 
             }
 
+            // 게시글 제목
             val contentsTitle = itemView.findViewById<TextView>(R.id.textArea)
+
             // glide
             val imageViewArea = itemView.findViewById<ImageView>(R.id.imageArea)
             val bookmarkArea = itemView.findViewById<ImageView>(R.id.bookmarkArea)

@@ -12,22 +12,28 @@ import com.shinyelee.my_solo_life.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    // firebase
+    // 파이어베이스 인스턴스 선언
     private lateinit var auth: FirebaseAuth
 
-    // viewBinding
+    // (전역변수) 바인딩 객체 선언
     private var vBinding : ActivityMainBinding? = null
+
+    // 매번 null 확인 귀찮음 -> 바인딩 변수 재선언
     private val binding get() = vBinding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
-        // firebase
+        // 파이어베이스 인스턴스 초기화
         auth = Firebase.auth
 
         super.onCreate(savedInstanceState)
 
-        // viewBinding
+        // 자동 생성된 뷰바인딩 클래스에서의 inflate 메서드 활용
+        // -> 액티비티에서 사용할 바인딩 클래스의 인스턴스 생성
         vBinding = ActivityMainBinding.inflate(layoutInflater)
+
+        // getRoot 메서드로 레이아웃 내부 최상위에 있는 뷰의 인스턴스 활용
+        // -> 생성된 뷰를 액티비티에 표시
         setContentView(binding.root)
 
         // 로그아웃 버튼 클릭하면
@@ -35,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
             // 로그아웃 실행
             Firebase.auth.signOut()
-            Toast.makeText(this, "로그아웃 되었습니다", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "로그아웃 되었습니다", Toast.LENGTH_SHORT).show()
 
             // 인트로 액티비티로 이동
             val intent = Intent(this, IntroActivity::class.java)
