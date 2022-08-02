@@ -1,6 +1,14 @@
 <resources>
     <string name="app_name">my-solo-life</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="title">자취준생</string>
+    <string name="logo">로고</string>
+    <string name="intro">-계속하시려면 로그인 또는 회원가입이 필요합니다-</string>
+
+    <string name="login">이메일 로그인</string>
+    <string name="join">회원 가입하기</string>
+    <string name="guest">비회원 로그인</string>
+
+
+
 </resources>
