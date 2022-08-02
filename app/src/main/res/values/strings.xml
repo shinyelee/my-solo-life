@@ -9,4 +9,8 @@
     <string name="join">회원 가입하기</string>
     <string name="guest">비회원 로그인</string>
 
+    <string name="email">이메일</string>
+    <string name="pw">비밀번호</string>
+    <string name="pw2">비밀번호 확인</string>
+
 </resources>
