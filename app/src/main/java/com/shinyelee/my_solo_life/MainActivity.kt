@@ -36,8 +36,8 @@ class MainActivity : AppCompatActivity() {
         // -> 생성된 뷰를 액티비티에 표시
         setContentView(binding.root)
 
-        // 로그아웃 버튼 클릭하면
-        binding.logoutBtn.setOnClickListener {
+        // 설정 버튼 클릭하면
+        binding.settingBtn.setOnClickListener {
 
             // 로그아웃 실행
             Firebase.auth.signOut()
