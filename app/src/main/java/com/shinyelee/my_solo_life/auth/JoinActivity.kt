@@ -129,7 +129,7 @@ class JoinActivity : AppCompatActivity() {
 
                     }
 
-                // 조건을 만족하지 못하면
+            // 조건을 만족하지 못하면
             } else {
 
                 // 가입 불가
