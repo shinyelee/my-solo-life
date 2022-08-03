@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     tools:context=".auth.JoinActivity">
 
+    <!-- 앱바 -->
     <TextView
         android:id="@+id/appBar"
         android:layout_width="match_parent"
