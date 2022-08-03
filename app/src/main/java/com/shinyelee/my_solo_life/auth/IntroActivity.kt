@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.shinyelee.my_solo_life.MainActivity
 import com.shinyelee.my_solo_life.databinding.ActivityIntroBinding
 
@@ -23,6 +25,9 @@ class IntroActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
+
+        // 파이어베이스 인스턴스 초기화
+        auth = Firebase.auth
 
         // 자동 생성된 뷰바인딩 클래스에서의 inflate 메서드 활용
         // -> 액티비티에서 사용할 바인딩 클래스의 인스턴스 생성
