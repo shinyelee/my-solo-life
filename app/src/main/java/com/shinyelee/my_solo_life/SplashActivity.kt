@@ -21,9 +21,8 @@ class SplashActivity : AppCompatActivity() {
             // 인트로 액티비티 시작
             val intent = Intent(this, IntroActivity::class.java)
 
-            // FLAG_ACTIVITY_NO_ANIMATION -> 화면 전환 효과(좌우 슬라이드) 무시
-            // FLAG_ACTIVITY_NO_HISTORY -> 다른 액티비티로 이동시 스택에 쌓이지 않고 사라짐
-            // 스플래시 화면에 많이 씀
+            // FLAG_ACTIVITY_NO_ANIMATION -> 액티비티 실행시 화면 전환 효과(좌우 슬라이드) 무시(스플래시 화면에 많이 씀)
+            // FLAG_ACTIVITY_NO_HISTORY -> 액티비티를 스택에 쌓지 않음 -> 다른 액티비티로 이동시 사라짐(스플래시 화면에 많이 씀)
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION and Intent.FLAG_ACTIVITY_NO_HISTORY)
             startActivity(intent)
             finish()

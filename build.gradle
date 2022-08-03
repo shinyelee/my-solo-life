@@ -9,11 +9,14 @@ buildscript {
 
     dependencies {
 
-        classpath "com.android.tools.build:gradle:7.0.0"
+        classpath "com.android.tools.build:gradle:7.0.4"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.20"
 
         // dependencies 여기 추가하는 것 아님
         // build.gradle (:app)에 추가해야 함
+
+        // 파이어베이스
+        classpath 'com.google.gms:google-services:4.3.13'
 
     }
 
