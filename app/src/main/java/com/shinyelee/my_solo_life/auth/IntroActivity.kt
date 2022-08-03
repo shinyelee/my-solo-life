@@ -3,9 +3,15 @@ package com.shinyelee.my_solo_life.auth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
+import com.shinyelee.my_solo_life.MainActivity
 import com.shinyelee.my_solo_life.databinding.ActivityIntroBinding
 
 class IntroActivity : AppCompatActivity() {
+
+    // 파이어베이스 인스턴스 선언
+    private lateinit var auth: FirebaseAuth
 
     // (전역변수) 바인딩 객체 선언
     private var vBinding : ActivityIntroBinding? = null
@@ -47,6 +53,38 @@ class IntroActivity : AppCompatActivity() {
 
             // 조인 액티비티 시작
             startActivity(intent)
+
+        }
+
+        // 비회원 버튼 클릭하면
+        binding.guestBtn.setOnClickListener {
+
+            // 익명으로 로그인
+            auth.signInAnonymously()
+                .addOnCompleteListener(this) { task ->
+
+                    // 성공하면
+                    if (task.isSuccessful) {
+
+                        // 명시적 인텐트
+                        // -> 다른 액티비티 호출
+                        val intent = Intent(this, MainActivity::class.java)
+
+                        // 메인 액티비티 시작
+                        startActivity(intent)
+
+                        // 인트로 액티비티 종료
+                        finish()
+
+                    // 실패하면
+                    } else {
+
+                        // 토스트 메시지 띄움
+                        Toast.makeText(this, "비회원 로그인에 실패했습니다", Toast.LENGTH_LONG).show()
+
+                    }
+
+                }
 
         }
 

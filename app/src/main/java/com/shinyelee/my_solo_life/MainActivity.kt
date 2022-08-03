@@ -41,7 +41,6 @@ class MainActivity : AppCompatActivity() {
 
             // 로그아웃 실행
             Firebase.auth.signOut()
-//            Toast.makeText(this, "로그아웃 되었습니다", Toast.LENGTH_SHORT).show()
 
             // 인트로 액티비티로 이동
             val intent = Intent(this, IntroActivity::class.java)
