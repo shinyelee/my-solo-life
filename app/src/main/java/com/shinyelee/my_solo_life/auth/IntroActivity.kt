@@ -3,7 +3,6 @@ package com.shinyelee.my_solo_life.auth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.shinyelee.my_solo_life.R
 import com.shinyelee.my_solo_life.databinding.ActivityIntroBinding
 
 class IntroActivity : AppCompatActivity() {
@@ -11,7 +10,8 @@ class IntroActivity : AppCompatActivity() {
     // (전역변수) 바인딩 객체 선언
     private var vBinding : ActivityIntroBinding? = null
 
-    // 매번 null 확인 귀찮음 -> 바인딩 변수 재선언
+    // 매번 null 확인 귀찮음
+    // -> 바인딩 변수 재선언
     private val binding get() = vBinding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,8 +29,11 @@ class IntroActivity : AppCompatActivity() {
         // 로그인 버튼 클릭하면
         binding.loginBtn.setOnClickListener {
 
-            // 로그인 액티비티로 이동
+            // 명시적 인텐트
+            // -> 다른 액티비티 호출
             val intent = Intent(this, LoginActivity::class.java)
+
+            // 로그인 액티비티 시작
             startActivity(intent)
 
         }
@@ -38,8 +41,11 @@ class IntroActivity : AppCompatActivity() {
         // 회원가입 버튼 클릭하면
         binding.joinBtn.setOnClickListener {
 
-            // 조인 액티비티로 이동
+            // 명시적 인텐트
+            // -> 다른 액티비티 호출
             val intent = Intent(this, JoinActivity::class.java)
+
+            // 조인 액티비티 시작
             startActivity(intent)
 
         }
