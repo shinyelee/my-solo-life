@@ -7,29 +7,104 @@
     android:id="@+id/main_nav"
     app:startDestination="@id/homeFragment">
 
+    <!-- 홈 프래그먼트에서 다른 프래그먼트로 -->
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.shinyelee.my_solo_life.fragments.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_blogFragment"
+            app:destination="@id/blogFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_boardFragment"
+            app:destination="@id/boardFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_bookmarkFragment"
+            app:destination="@id/bookmarkFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_webFragment"
+            app:destination="@id/webFragment" />
+    </fragment>
+
+    <!-- 블로그 프래그먼트에서 다른 프래그먼트로 -->
     <fragment
         android:id="@+id/blogFragment"
         android:name="com.shinyelee.my_solo_life.fragments.BlogFragment"
         android:label="fragment_blog"
-        tools:layout="@layout/fragment_blog" />
+        tools:layout="@layout/fragment_blog" >
+        <action
+            android:id="@+id/action_blogFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_blogFragment_to_boardFragment"
+            app:destination="@id/boardFragment" />
+        <action
+            android:id="@+id/action_blogFragment_to_bookmarkFragment"
+            app:destination="@id/bookmarkFragment" />
+        <action
+            android:id="@+id/action_blogFragment_to_webFragment"
+            app:destination="@id/webFragment" />
+    </fragment>
+
+    <!-- 게시판 프래그먼트에서 다른 프래그먼트로 -->
     <fragment
         android:id="@+id/boardFragment"
         android:name="com.shinyelee.my_solo_life.fragments.BoardFragment"
         android:label="fragment_board"
-        tools:layout="@layout/fragment_board" />
+        tools:layout="@layout/fragment_board" >
+        <action
+            android:id="@+id/action_boardFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_boardFragment_to_blogFragment"
+            app:destination="@id/blogFragment" />
+        <action
+            android:id="@+id/action_boardFragment_to_bookmarkFragment"
+            app:destination="@id/bookmarkFragment" />
+        <action
+            android:id="@+id/action_boardFragment_to_webFragment"
+            app:destination="@id/webFragment" />
+    </fragment>
+
+    <!-- 북마크 프래그먼트에서 다른 프래그먼트로 -->
     <fragment
         android:id="@+id/bookmarkFragment"
         android:name="com.shinyelee.my_solo_life.fragments.BookmarkFragment"
         android:label="fragment_bookmark"
-        tools:layout="@layout/fragment_bookmark" />
+        tools:layout="@layout/fragment_bookmark" >
+        <action
+            android:id="@+id/action_bookmarkFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_bookmarkFragment_to_blogFragment"
+            app:destination="@id/blogFragment" />
+        <action
+            android:id="@+id/action_bookmarkFragment_to_boardFragment"
+            app:destination="@id/boardFragment" />
+        <action
+            android:id="@+id/action_bookmarkFragment_to_webFragment"
+            app:destination="@id/webFragment" />
+    </fragment>
+
+    <!-- 웹 프래그먼트에서 다른 프래그먼트로 -->
     <fragment
         android:id="@+id/webFragment"
         android:name="com.shinyelee.my_solo_life.fragments.WebFragment"
         android:label="fragment_web"
-        tools:layout="@layout/fragment_web" />
+        tools:layout="@layout/fragment_web" >
+        <action
+            android:id="@+id/action_webFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_webFragment_to_blogFragment"
+            app:destination="@id/blogFragment" />
+        <action
+            android:id="@+id/action_webFragment_to_boardFragment"
+            app:destination="@id/boardFragment" />
+        <action
+            android:id="@+id/action_webFragment_to_bookmarkFragment"
+            app:destination="@id/bookmarkFragment" />
+    </fragment>
+
 </navigation>

@@ -5,56 +5,65 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import com.shinyelee.my_solo_life.R
+import com.shinyelee.my_solo_life.databinding.FragmentWebBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [WebFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class WebFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    // (전역변수) 바인딩 객체 선언
+    private var vBinding : FragmentWebBinding? = null
+
+    // 매번 null 확인 귀찮음 -> 바인딩 변수 재선언
+    private val binding get() = vBinding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_web, container, false)
+    ): View {
+
+        // 뷰바인딩
+        vBinding = FragmentWebBinding.inflate(inflater, container, false)
+
+        // 홈 아이콘 클릭하면
+        binding.homeBtn.setOnClickListener {
+
+            // 홈 프래그먼트로 이동
+            it.findNavController().navigate(R.id.action_webFragment_to_homeFragment)
+
+        }
+
+        // 블로그 아이콘 클릭하면
+        binding.blogBtn.setOnClickListener {
+
+            // 블로그 프래그먼트로 이동
+            it.findNavController().navigate(R.id.action_webFragment_to_blogFragment)
+
+        }
+
+        // 게시판 아이콘 클릭하면
+        binding.boardBtn.setOnClickListener {
+
+            // 게시판 프래그먼트로 이동
+            it.findNavController().navigate(R.id.action_webFragment_to_boardFragment)
+
+        }
+
+        // 북마크 아이콘 클릭하면
+        binding.bookmarkBtn.setOnClickListener {
+
+            // 북마크 프래그먼트로 이동
+            it.findNavController().navigate(R.id.action_webFragment_to_bookmarkFragment)
+
+        }
+
+        // 뷰바인딩
+        return binding.root
+
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment WebFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            WebFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }
