@@ -8,14 +8,208 @@
     android:layout_height="match_parent"
     tools:context=".fragments.BlogFragment">
 
-    <TextView
+    <!-- 안드로이드 카테고리 -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/blog"
-        android:textSize="60sp"
-        app:layout_constraintBottom_toTopOf="@+id/navBar"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- 행 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:weightSum="2"
+            android:orientation="horizontal">
+
+            <!-- 열 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <!-- 아이콘 -->
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/portfolio"
+                    android:src="@drawable/app112" />
+
+                <!-- 카테고리명 -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="@string/portfolio"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <!-- 열 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <!-- 아이콘 -->
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/study"
+                    android:src="@drawable/paper112" />
+
+                <!-- 카테고리명 -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="@string/study"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- 행 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:weightSum="2"
+            android:orientation="horizontal">
+
+            <!-- 열 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <!-- 아이콘 -->
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/error"
+                    android:src="@drawable/error112" />
+
+                <!-- 카테고리명 -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="@string/error"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <!-- 열 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <!-- 아이콘 -->
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/vcs"
+                    android:src="@drawable/cloud112" />
+
+                <!-- 카테고리명 -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="@string/vcs"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- 행 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:weightSum="2"
+            android:orientation="horizontal">
+
+            <!-- 열 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <!-- 아이콘 -->
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/web"
+                    android:src="@drawable/web112" />
+
+                <!-- 카테고리명 -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="@string/web"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <!-- 열 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <!-- 아이콘 -->
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginHorizontal="15dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/etc"
+                    android:src="@drawable/etc112" />
+
+                <!-- 카테고리명 -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center"
+                    android:text="@string/etc"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <!-- 내비게이션 바 -->
     <LinearLayout

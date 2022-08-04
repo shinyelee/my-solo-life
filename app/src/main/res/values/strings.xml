@@ -24,4 +24,10 @@
     <string name="bookmark">북마크</string>
     <string name="web">웹</string>
 
+    <string name="portfolio">포폴</string>
+    <string name="study">공부</string>
+    <string name="error">오류</string>
+    <string name="vcs">VCS</string>
+    <string name="etc">기타</string>
+
 </resources>
