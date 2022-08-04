@@ -4,7 +4,7 @@
 
     <string name="title">자취준생</string>
     <string name="logo">로고</string>
-    <string name="intro">계속하시려면 로그인 또는 회원가입이 필요합니다</string>
+    <string name="intro">계속하기</string>
     <string name="setting">설정</string>
 
     <string name="logout">로그아웃</string>
@@ -15,5 +15,7 @@
     <string name="email">이메일</string>
     <string name="pw">비밀번호</string>
     <string name="pw2">비밀번호 확인</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
