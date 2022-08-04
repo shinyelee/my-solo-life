@@ -131,7 +131,7 @@
                     android:layout_marginHorizontal="15dp"
                     android:layout_gravity="center"
                     android:contentDescription="@string/vcs"
-                    android:src="@drawable/cloud112" />
+                    android:src="@drawable/db112" />
 
                 <!-- 카테고리명 -->
                 <TextView
