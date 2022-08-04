@@ -1,14 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.BoardFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!-- 내비게이션 바 -->
+    <LinearLayout
+        android:id="@+id/navBar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="60dp"
+        android:background="@drawable/appbar"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-</FrameLayout>
+        <!-- 홈 탭 -->
+        <LinearLayout
+            android:id="@+id/homeBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="6dp"
+                android:contentDescription="@string/home"
+                android:src="@drawable/home56w" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:gravity="center"
+                android:text="@string/home" />
+
+        </LinearLayout>
+
+        <!-- 블로그 탭 -->
+        <LinearLayout
+            android:id="@+id/blogBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="6dp"
+                android:contentDescription="@string/blog"
+                android:src="@drawable/blog56w" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:gravity="center"
+                android:text="@string/blog" />
+
+        </LinearLayout>
+
+        <!-- 게시판 탭 -->
+        <LinearLayout
+            android:id="@+id/boardBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="6dp"
+                android:contentDescription="@string/board"
+                android:src="@drawable/board56" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:gravity="center"
+                android:text="@string/board" />
+
+        </LinearLayout>
+
+        <!-- 북마크 탭 -->
+        <LinearLayout
+            android:id="@+id/bookmarkBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="6dp"
+                android:contentDescription="@string/bookmark"
+                android:src="@drawable/bookmark56w" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:gravity="center"
+                android:text="@string/bookmark" />
+
+        </LinearLayout>
+
+        <!-- 웹 뷰 탭 -->
+        <LinearLayout
+            android:id="@+id/webBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="6dp"
+                android:contentDescription="@string/web"
+                android:src="@drawable/web56w" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:gravity="center"
+                android:text="@string/web" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
