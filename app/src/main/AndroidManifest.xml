@@ -13,6 +13,10 @@
         android:theme="@style/Theme.Mysololife">
 
         <activity
+            android:name=".contentsList.ContentsListActivity"
+            android:exported="true" />
+
+        <activity
             android:name=".auth.JoinActivity"
             android:exported="true" />
 

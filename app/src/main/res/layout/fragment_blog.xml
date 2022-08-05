@@ -23,7 +23,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:weightSum="2"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:baselineAligned="false">
 
             <!-- 열 -->
             <LinearLayout
@@ -48,7 +49,7 @@
                     android:layout_height="40dp"
                     android:gravity="center"
                     android:text="@string/portfolio"
-                    android:textSize="20sp" />
+                    android:textSize="30sp" />
 
             </LinearLayout>
 
@@ -75,7 +76,7 @@
                     android:layout_height="40dp"
                     android:gravity="center"
                     android:text="@string/study"
-                    android:textSize="20sp" />
+                    android:textSize="30sp" />
 
             </LinearLayout>
 
@@ -87,7 +88,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:weightSum="2"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:baselineAligned="false">
 
             <!-- 열 -->
             <LinearLayout
@@ -112,7 +114,7 @@
                     android:layout_height="40dp"
                     android:gravity="center"
                     android:text="@string/error"
-                    android:textSize="20sp" />
+                    android:textSize="30sp" />
 
             </LinearLayout>
 
@@ -139,7 +141,7 @@
                     android:layout_height="40dp"
                     android:gravity="center"
                     android:text="@string/vcs"
-                    android:textSize="20sp" />
+                    android:textSize="30sp" />
 
             </LinearLayout>
 
@@ -151,7 +153,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:weightSum="2"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:baselineAligned="false">
 
             <!-- 열 -->
             <LinearLayout
@@ -176,7 +179,7 @@
                     android:layout_height="40dp"
                     android:gravity="center"
                     android:text="@string/web"
-                    android:textSize="20sp" />
+                    android:textSize="30sp" />
 
             </LinearLayout>
 
@@ -203,7 +206,7 @@
                     android:layout_height="40dp"
                     android:gravity="center"
                     android:text="@string/etc"
-                    android:textSize="20sp" />
+                    android:textSize="30sp" />
 
             </LinearLayout>
 
@@ -218,6 +221,7 @@
         android:layout_height="60dp"
         android:background="@drawable/appbar"
         android:orientation="horizontal"
+        android:baselineAligned="false"
         android:weightSum="5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

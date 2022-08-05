@@ -4,13 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/drawable-v24/background_frame_yellow.xml" value="0.2" />
-        <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/drawable/appbar.xml" value="0.11296296296296296" />
+        <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/drawable/appbar.xml" value="0.2" />
         <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/drawable/background_blue.xml" value="0.36203703703703705" />
         <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/drawable/background_frame_yellow.xml" value="0.36203703703703705" />
         <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/drawable/background_radius.xml" value="0.1925925925925926" />
         <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/drawable/background_radius_yellow.xml" value="0.1925925925925926" />
         <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/drawable/bg_blue.xml" value="0.1" />
+        <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/drawable/box_main.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/drawable/btn_blue.xml" value="0.1" />
+        <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/drawable/button_main.xml" value="0.2755208333333333" />
         <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/layout/activity_board_edit.xml" value="0.2" />
         <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/layout/activity_board_inside.xml" value="0.33" />
         <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/layout/activity_board_write.xml" value="0.2" />
