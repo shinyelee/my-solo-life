@@ -1,5 +1,6 @@
 package com.shinyelee.my_solo_life.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.shinyelee.my_solo_life.R
+import com.shinyelee.my_solo_life.contentsList.ContentsListActivity
 import com.shinyelee.my_solo_life.databinding.FragmentBlogBinding
 
 class BlogFragment : Fragment() {
@@ -28,6 +30,15 @@ class BlogFragment : Fragment() {
 
         // 뷰바인딩
         vBinding = FragmentBlogBinding.inflate(inflater, container, false)
+
+        // 포트폴리오 아이콘 클릭하면
+        binding.portfolioIcon.setOnClickListener {
+
+            // 콘텐츠리스트 액티비티 시작
+            val intent = Intent(context, ContentsListActivity::class.java)
+            startActivity(intent)
+
+        }
 
         // 홈 아이콘 클릭하면
         binding.homeBtn.setOnClickListener {
