@@ -3,12 +3,13 @@ package com.shinyelee.my_solo_life.contentsList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.shinyelee.my_solo_life.R
 
 // 리사이클러 뷰의 어댑터
 // -> RecyclerView.Adapter를 상속해서 구현
-class ContentsRVAdapter(val items : ArrayList<String>) : RecyclerView.Adapter<ContentsRVAdapter.Viewholder>() {
+class ContentsRVAdapter(val items : ArrayList<ContentsModel>) : RecyclerView.Adapter<ContentsRVAdapter.Viewholder>() {
 
     // 뷰홀더 객체 생성 및 초기화
     // 아직 데이터는 들어가있지 않은 상태
@@ -35,7 +36,11 @@ class ContentsRVAdapter(val items : ArrayList<String>) : RecyclerView.Adapter<Co
     inner class Viewholder(itemView : View) : RecyclerView.ViewHolder(itemView) {
 
         // 데이터 매핑
-        fun bindItems(item : String) {
+        fun bindItems(item : ContentsModel) {
+
+            // 게시글 제목 넣어줌
+            val contentsTitle = itemView.findViewById<TextView>(R.id.blogtextArea)
+            contentsTitle.text = item.title
 
         }
 

@@ -7,13 +7,14 @@
     android:layout_margin="10dp"
     android:orientation="vertical">
 
-    <!-- 이미지 -->
+    <!-- 썸네일 -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="120dp">
 
-        <!-- 썸네일 -->
+        <!-- 이미지 영역 -->
         <ImageView
+            android:id="@+id/imageArea"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:background="@drawable/box_main"
@@ -22,10 +23,11 @@
 
         <!-- 북마크 아이콘 -->
         <ImageView
+            android:id="@+id/bookmarkArea"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_margin="5dp"
-            android:layout_gravity="right|bottom"
+            android:layout_gravity="end|bottom"
             android:contentDescription="@string/bookmark"
             android:src="@drawable/bookmark56w" />
 
@@ -33,6 +35,7 @@
 
     <!-- 게시글 제목 -->
     <TextView
+        android:id="@+id/blogtextArea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"

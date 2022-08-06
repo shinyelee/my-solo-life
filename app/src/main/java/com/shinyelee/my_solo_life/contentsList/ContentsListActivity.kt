@@ -32,11 +32,11 @@ class ContentsListActivity : AppCompatActivity() {
         val rv : RecyclerView = binding.rv
 
         // 리사이클러 뷰에 테스트 데이터 넣음
-        val items = ArrayList<String>()
-        items.add("a")
-        items.add("b")
-        items.add("c")
-        items.add("d")
+        val items = ArrayList<ContentsModel>()
+        items.add(ContentsModel("imageUrl1", "title1"))
+        items.add(ContentsModel("imageUrl2", "title2"))
+        items.add(ContentsModel("imageUrl3", "title3"))
+        items.add(ContentsModel("imageUrl4", "title4"))
 
         // 리사이클러 뷰 어댑터 연결
         val rvAdapter = ContentsRVAdapter(items)
