@@ -8,6 +8,7 @@
     <string name="logo">로고</string>
     <string name="setting">설정</string>
     <string name="logout">로그아웃</string>
+    <string name="back">뒤로가기</string>
 
     <!-- 인트로 -->
     <string name="intro">계속하기</string>
