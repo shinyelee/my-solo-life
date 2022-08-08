@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     tools:context=".contentsList.ContentsListActivity">
 
-    <!-- 앱 바 -->
+    <!-- 앱바 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/appBar"
         android:layout_width="match_parent"
@@ -46,7 +46,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- 게시글 목록 출력(리사이클러 뷰) -->
+    <!-- 게시글 목록 출력(리사이클러뷰) -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"

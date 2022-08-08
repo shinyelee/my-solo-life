@@ -1,5 +1,6 @@
 package com.shinyelee.my_solo_life.contentsList
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -36,10 +37,10 @@ class ContentsListActivity : AppCompatActivity() {
 
         }
 
-        // 리사이클러 뷰 어댑터 연결
+        // 리사이클러뷰 어댑터 연결
         val rv : RecyclerView = binding.rv
 
-        // 리사이클러 뷰에 테스트 데이터 넣음
+        // 리사이클러뷰에 테스트 데이터 넣음
         val items = ArrayList<ContentsModel>()
 
         // 제목, 이미지, 본문 순으로 들어감
@@ -84,7 +85,7 @@ class ContentsListActivity : AppCompatActivity() {
             "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcOnksa%2Fbtrs660xdJT%2FJ3xIZIhrr5G4LQQzq36I11%2Fimg.png",
             "https://shinye0213.tistory.com/399?category=1047695"))
 
-        // 리사이클러 뷰 어댑터 연결
+        // 리사이클러뷰 어댑터 연결
         val rvAdapter = ContentsRVAdapter(baseContext, items)
         rv.adapter = rvAdapter
 
@@ -98,7 +99,17 @@ class ContentsListActivity : AppCompatActivity() {
             override fun onClick(view: View, position: Int) {
 
                 // 해당하는 게시글의 제목을 토스트 메시지로 띄움
-                Toast.makeText(baseContext, items[position].title, Toast.LENGTH_SHORT).show()
+//                Toast.makeText(baseContext, items[position].title, Toast.LENGTH_SHORT).show()
+
+                // 명시적 인텐트
+                // -> 다른 액티비티 호출
+                val intent = Intent(this@ContentsListActivity, ContentsShowActivity::class.java)
+
+                // 웹뷰로 URL 데이터 넘김
+                intent.putExtra("url", items[position].webUrl)
+
+                // 컨텐츠쇼 액티비티 시작
+                startActivity(intent)
 
             }
 

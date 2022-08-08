@@ -10,11 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.shinyelee.my_solo_life.R
 
-// 리사이클러 뷰의 어댑터
+// 리사이클러뷰의 어댑터
 // -> RecyclerView.Adapter를 상속해서 구현
 class ContentsRVAdapter(val context: Context, val items: ArrayList<ContentsModel>): RecyclerView.Adapter<ContentsRVAdapter.Viewholder>() {
 
-    // 리사이클러 뷰는 setOnItemClickListener 없음
+    // 리사이클러뷰는 setOnItemClickListener 없음
     // -> 개발자가 직접 구현해야 함
 
     // 클릭 인터페이스 정의

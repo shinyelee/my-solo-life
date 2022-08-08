@@ -16,6 +16,10 @@
         android:theme="@style/Theme.Mysololife">
 
         <activity
+            android:name=".contentsList.ContentsShowActivity"
+            android:exported="true" />
+
+        <activity
             android:name=".contentsList.ContentsListActivity"
             android:exported="true" />
 

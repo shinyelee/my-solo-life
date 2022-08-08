@@ -3,8 +3,6 @@ package com.shinyelee.my_solo_life
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -44,13 +42,14 @@ class MainActivity : AppCompatActivity() {
             // 로그아웃 실행
             Firebase.auth.signOut()
 
-            // 인트로 액티비티로 이동
+            // 명시적 인텐트
+            // -> 다른 액티비티 호출
             val intent = Intent(this, IntroActivity::class.java)
 
-            // 새 액티비티 시작
+            // 인트로 액티비티 시작
             startActivity(intent)
 
-            // 로그인 액티비티 종료
+            // 메인 액티비티 종료
             finish()
 
         }
