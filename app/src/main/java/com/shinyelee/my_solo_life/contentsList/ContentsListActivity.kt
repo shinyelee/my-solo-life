@@ -53,7 +53,7 @@ class ContentsListActivity : AppCompatActivity() {
         items.add(ContentsModel("java.lang.RuntimeException: Unable to start activity ComponentInfo{패키지명/패키지명.MainActivity}:", "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcOnksa%2Fbtrs660xdJT%2FJ3xIZIhrr5G4LQQzq36I11%2Fimg.png"))
 
         // 리사이클러 뷰 어댑터 연결
-        val rvAdapter = ContentsRVAdapter(items)
+        val rvAdapter = ContentsRVAdapter(baseContext, items)
         rv.adapter = rvAdapter
 
         // 그리드 레이아웃 매니저 -> 아이템을 격자 형태로 배치(2열)
