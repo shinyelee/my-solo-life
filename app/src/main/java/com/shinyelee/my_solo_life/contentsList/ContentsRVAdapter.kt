@@ -14,6 +14,17 @@ import com.shinyelee.my_solo_life.R
 // -> RecyclerView.Adapter를 상속해서 구현
 class ContentsRVAdapter(val context: Context, val items: ArrayList<ContentsModel>): RecyclerView.Adapter<ContentsRVAdapter.Viewholder>() {
 
+    // 리사이클러 뷰는 setOnItemClickListener 없음
+    // -> 개발자가 직접 구현해야 함
+
+    // 클릭 인터페이스 정의
+    interface ItemClickListener {
+        fun onClick(view: View, position: Int)
+    }
+
+    // 클릭 리스너 선언
+    var itemClick: ItemClickListener? = null
+
     // 뷰홀더 객체 생성 및 초기화
     // 아직 데이터는 들어가있지 않은 상태
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContentsRVAdapter.Viewholder {
@@ -27,7 +38,25 @@ class ContentsRVAdapter(val context: Context, val items: ArrayList<ContentsModel
 
     // 뷰홀더 객체와 데이터를 연결함
     // 리스트에 출력할 데이터를 불러와 뷰홀더의 레이아웃에 데이터를 넣어줌
-    override fun onBindViewHolder(holder: ContentsRVAdapter.Viewholder, position: Int) = holder.bindItems(items[position])
+    override fun onBindViewHolder(holder: ContentsRVAdapter.Viewholder, position: Int) {
+
+        // onBindViewHolder 내에
+        if(itemClick != null) {
+
+            // 클릭 리스너 달아주고
+            holder.itemView.setOnClickListener { v ->
+
+                // 직접 구현한 itemClickListener 연결
+                itemClick?.onClick(v, position)
+
+            }
+
+        }
+
+        // 데이터 매핑
+        holder.bindItems(items[position])
+
+    }
 
     // 아이템(개별 데이터) 총 개수 반환
     override fun getItemCount(): Int = items.size

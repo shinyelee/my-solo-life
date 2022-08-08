@@ -7,6 +7,9 @@ class ContentsModel (
     var title : String = "",
 
     // 블로그 게시글 이미지 URL
-    var imageUrl : String = ""
+    var imageUrl : String = "",
+
+    // 블로그 게시글 본문 URL
+    var webUrl : String = ""
 
 )
