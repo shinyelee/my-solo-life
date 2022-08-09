@@ -41,16 +41,36 @@ class ContentsListActivity : AppCompatActivity() {
         // contents 하위에 데이터 넣음
         val myRef = database.getReference("contents")
 
+        // 컨텐츠모델 형식의 데이터 리스트
+        val items = ArrayList<ContentsModel>()
+
+        // 리사이클러뷰 어댑터 연결
+        val rvAdapter = ContentsRVAdapter(baseContext, items)
+
         // 데이터베이스에서 게시물의 세부정보를 검색
         val postListener = object : ValueEventListener {
 
             // 데이터 스냅샷
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-                // 데이터 모델 -> for문 출력
+                // for문으로 출력
                 for(dataModel in dataSnapshot.children) {
+
                     Log.d("ContentsListActivity", dataModel.toString())
+
+                    // 데이터모델 형태로 받아옴
+                    val item = dataModel.getValue(ContentsModel::class.java)
+
+                    // 데이터 리스트에 아이템 넣어줌
+                    items.add(item!!)
+
                 }
+
+                // 아이템의 변경사항을 어댑터에 알려줌
+                rvAdapter.notifyDataSetChanged()
+
+                // items에 들어간 데이터 확인
+                Log.d("ContentsListActivity", items.toString())
 
             }
 
@@ -70,11 +90,6 @@ class ContentsListActivity : AppCompatActivity() {
         // 리사이클러뷰 어댑터 연결
         val rv : RecyclerView = binding.rv
 
-        // 리사이클러뷰에 테스트 데이터 직접 넣음
-        val items = ArrayList<ContentsModel>()
-
-        // 리사이클러뷰 어댑터 연결
-        val rvAdapter = ContentsRVAdapter(baseContext, items)
         rv.adapter = rvAdapter
 
         // 그리드 레이아웃 매니저 -> 아이템을 격자 형태로 배치(2열)
