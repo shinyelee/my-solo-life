@@ -2,9 +2,6 @@ package com.shinyelee.my_solo_life.contentsList
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.webkit.WebView
-import android.widget.Toast
-import com.shinyelee.my_solo_life.R
 import com.shinyelee.my_solo_life.databinding.ActivityContentsShowBinding
 
 class ContentsShowActivity : AppCompatActivity() {
@@ -29,10 +26,8 @@ class ContentsShowActivity : AppCompatActivity() {
 
         // 해당 게시글의 URL 얻어와서
         val getUrl = intent.getStringExtra("url")
-//        Toast.makeText(this, getUrl, Toast.LENGTH_SHORT).show()
 
         // 웹뷰에 넣어줌
-//        val webView: WebView = findViewById(R.id.webView)
         binding.webView.loadUrl(getUrl.toString())
 
     }
