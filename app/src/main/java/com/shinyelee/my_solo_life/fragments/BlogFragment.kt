@@ -32,11 +32,41 @@ class BlogFragment : Fragment() {
         vBinding = FragmentBlogBinding.inflate(inflater, container, false)
 
         // 포트폴리오 아이콘 클릭하면
-        binding.portfolioIcon.setOnClickListener {
+//        binding.portfolioIcon.setOnClickListener {
+//
+//            // 명시적 인텐트
+//            // -> 다른 액티비티 호출
+//            val intent = Intent(context, ContentsListActivity::class.java)
+//
+//            // 컨텐츠리스트 액티비티 시작
+//            startActivity(intent)
+//
+//        }
+
+        // 스터디 아이콘 클릭하면
+        binding.studyIcon.setOnClickListener {
 
             // 명시적 인텐트
             // -> 다른 액티비티 호출
             val intent = Intent(context, ContentsListActivity::class.java)
+
+            // kotlin_syntax 카테고리로 데이터 넘겨줌
+            intent.putExtra("category", "kotlin_syntax")
+
+            // 컨텐츠리스트 액티비티 시작
+            startActivity(intent)
+
+        }
+
+        // 에러 아이콘 클릭하면
+        binding.errorIcon.setOnClickListener {
+
+            // 명시적 인텐트
+            // -> 다른 액티비티 호출
+            val intent = Intent(context, ContentsListActivity::class.java)
+
+            // error_warning 카테고리로 데이터 넘겨줌
+            intent.putExtra("category", "error_warning")
 
             // 컨텐츠리스트 액티비티 시작
             startActivity(intent)
