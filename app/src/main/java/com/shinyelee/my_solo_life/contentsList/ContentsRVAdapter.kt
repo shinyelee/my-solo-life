@@ -1,6 +1,7 @@
 package com.shinyelee.my_solo_life.contentsList
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,17 +14,6 @@ import com.shinyelee.my_solo_life.R
 // 리사이클러뷰의 어댑터
 // -> RecyclerView.Adapter를 상속해서 구현
 class ContentsRVAdapter(val context: Context, val items: ArrayList<ContentsModel>): RecyclerView.Adapter<ContentsRVAdapter.Viewholder>() {
-
-    // 리사이클러뷰는 setOnItemClickListener 없음
-    // -> 개발자가 직접 구현해야 함
-
-    // 클릭 인터페이스 정의
-    interface ItemClickListener {
-        fun onClick(view: View, position: Int)
-    }
-
-    // 클릭 리스너 선언
-    var itemClick: ItemClickListener? = null
 
     // 뷰홀더 객체 생성 및 초기화
     // 아직 데이터는 들어가있지 않은 상태
@@ -40,19 +30,6 @@ class ContentsRVAdapter(val context: Context, val items: ArrayList<ContentsModel
     // 리스트에 출력할 데이터를 불러와 뷰홀더의 레이아웃에 데이터를 넣어줌
     override fun onBindViewHolder(holder: ContentsRVAdapter.Viewholder, position: Int) {
 
-        // onBindViewHolder 내에
-        if(itemClick != null) {
-
-            // 클릭 리스너 달아주고
-            holder.itemView.setOnClickListener { v ->
-
-                // 직접 구현한 itemClickListener 연결
-                itemClick?.onClick(v, position)
-
-            }
-
-        }
-
         // 데이터 매핑
         holder.bindItems(items[position])
 
@@ -66,6 +43,25 @@ class ContentsRVAdapter(val context: Context, val items: ArrayList<ContentsModel
 
         // 데이터 매핑
         fun bindItems(item : ContentsModel) {
+
+
+            // 리사이클러뷰는 setOnItemClickListener 없음
+            // -> 개발자가 직접 구현해야 함
+
+            // 클릭 리스너
+            itemView.setOnClickListener {
+
+                // 명시적 인텐트
+                // -> 다른 액티비티 호출
+                val intent = Intent(context, ContentsShowActivity::class.java)
+
+                // 게시글에 해당하는 URL 넘겨줌
+                intent.putExtra("url", item.webUrl)
+
+                // 컨텐츠쇼 액티비티 시작
+                itemView.context.startActivity(intent)
+
+            }
 
             // 게시글 제목을 titleArea에 넣어줌
             val contentsTitle = itemView.findViewById<TextView>(R.id.titleArea)

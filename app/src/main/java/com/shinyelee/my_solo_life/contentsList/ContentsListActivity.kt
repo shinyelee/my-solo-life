@@ -134,26 +134,6 @@ class ContentsListActivity : AppCompatActivity() {
         // 그리드 레이아웃 매니저 -> 아이템을 격자 형태로 배치(2열)
         rv.layoutManager = GridLayoutManager(this, 2)
 
-        // itemClickListener 작동
-        rvAdapter.itemClick = object: ContentsRVAdapter.ItemClickListener {
-
-            // 클릭하면
-            override fun onClick(view: View, position: Int) {
-
-                // 명시적 인텐트
-                // -> 다른 액티비티 호출
-                val intent = Intent(this@ContentsListActivity, ContentsShowActivity::class.java)
-
-                // 웹뷰로 URL 데이터 넘김
-                intent.putExtra("url", items[position].webUrl)
-
-                // 컨텐츠쇼 액티비티 시작
-                startActivity(intent)
-
-            }
-
-        }
-
         // 뒤로가기 버튼 클릭하면
         binding.backBtn.setOnClickListener {
 
