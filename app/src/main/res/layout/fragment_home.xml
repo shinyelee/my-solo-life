@@ -38,23 +38,23 @@
 
             <!-- 카테고리 -->
             <TextView
-                android:id="@+id/portfolioIcon"
+                android:id="@+id/androidIcon"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/portfolio"
+                android:text="@string/android"
                 android:textSize="20sp"
                 app:drawableTopCompat="@drawable/app112" />
 
             <!-- 카테고리 -->
             <TextView
-                android:id="@+id/studyIcon"
+                android:id="@+id/kotlinIcon"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/study"
+                android:text="@string/kotlin"
                 android:textSize="20sp"
                 app:drawableTopCompat="@drawable/paper112" />
 

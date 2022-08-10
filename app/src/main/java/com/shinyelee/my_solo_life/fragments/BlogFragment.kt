@@ -31,20 +31,23 @@ class BlogFragment : Fragment() {
         // 뷰바인딩
         vBinding = FragmentBlogBinding.inflate(inflater, container, false)
 
-        // 포트폴리오 아이콘 클릭하면
-//        binding.portfolioIcon.setOnClickListener {
-//
-//            // 명시적 인텐트
-//            // -> 다른 액티비티 호출
-//            val intent = Intent(context, ContentsListActivity::class.java)
-//
-//            // 컨텐츠리스트 액티비티 시작
-//            startActivity(intent)
-//
-//        }
+        // 안드로이드 아이콘 클릭하면
+        binding.androidIcon.setOnClickListener {
 
-        // 스터디 아이콘 클릭하면
-        binding.studyIcon.setOnClickListener {
+            // 명시적 인텐트
+            // -> 다른 액티비티 호출
+            val intent = Intent(context, ContentsListActivity::class.java)
+
+            // android_studio 카테고리로 데이터 넘겨줌
+            intent.putExtra("category", "android_studio")
+
+            // 컨텐츠리스트 액티비티 시작
+            startActivity(intent)
+
+        }
+
+        // 코틀린 아이콘 클릭하면
+        binding.kotlinIcon.setOnClickListener {
 
             // 명시적 인텐트
             // -> 다른 액티비티 호출
@@ -72,6 +75,51 @@ class BlogFragment : Fragment() {
             startActivity(intent)
 
         }
+
+        // 버전컨트롤시스템 아이콘 클릭하면
+        binding.vcsIcon.setOnClickListener {
+
+            // 명시적 인텐트
+            // -> 다른 액티비티 호출
+            val intent = Intent(context, ContentsListActivity::class.java)
+
+            // vcs_github 카테고리로 데이터 넘겨줌
+            intent.putExtra("category", "vcs_github")
+
+            // 컨텐츠리스트 액티비티 시작
+            startActivity(intent)
+
+        }
+
+        // 웹 아이콘 클릭하면
+        binding.webIcon.setOnClickListener {
+
+            // 명시적 인텐트
+            // -> 다른 액티비티 호출
+            val intent = Intent(context, ContentsListActivity::class.java)
+
+            // web_internet 카테고리로 데이터 넘겨줌
+            intent.putExtra("category", "web_internet")
+
+            // 컨텐츠리스트 액티비티 시작
+            startActivity(intent)
+
+        }
+
+        // 기타 아이콘 클릭하면
+//        binding.etcIcon.setOnClickListener {
+//
+//            // 명시적 인텐트
+//            // -> 다른 액티비티 호출
+//            val intent = Intent(context, ContentsListActivity::class.java)
+//
+//            // etc 카테고리로 데이터 넘겨줌
+//            intent.putExtra("category", "etc")
+//
+//            // 컨텐츠리스트 액티비티 시작
+//            startActivity(intent)
+//
+//        }
 
         // 홈 아이콘 클릭하면
         binding.homeBtn.setOnClickListener {

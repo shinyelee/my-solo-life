@@ -29,24 +29,24 @@
 
             <!-- 카테고리 -->
             <TextView
-                android:id="@+id/portfolioIcon"
+                android:id="@+id/androidIcon"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/portfolio"
-                android:textSize="24sp"
+                android:text="@string/android"
+                android:textSize="20sp"
                 app:drawableTopCompat="@drawable/app112" />
 
             <!-- 카테고리 -->
             <TextView
-                android:id="@+id/studyIcon"
+                android:id="@+id/kotlinIcon"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/study"
-                android:textSize="24sp"
+                android:text="@string/kotlin"
+                android:textSize="20sp"
                 app:drawableTopCompat="@drawable/paper112" />
 
         </LinearLayout>
@@ -68,7 +68,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/error"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 app:drawableTopCompat="@drawable/error112" />
 
             <!-- 카테고리 -->
@@ -79,7 +79,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/vcs"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 app:drawableTopCompat="@drawable/db112" />
 
         </LinearLayout>
@@ -101,7 +101,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/web"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 app:drawableTopCompat="@drawable/web112" />
 
             <!-- 카테고리 -->
@@ -112,7 +112,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/etc"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 app:drawableTopCompat="@drawable/etc112" />
 
         </LinearLayout>

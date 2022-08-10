@@ -52,25 +52,42 @@ class ContentsListActivity : AppCompatActivity() {
         // 카테고리
         val category = intent.getStringExtra("category")
 
-        // 카테고리가 kotlin_syntax면
-        if(category == "kotlin_syntax") {
+        // 카테고리가 android_studio
+        if(category == "android_studio") {
 
-            // 파이어베이스의 kotlin_syntax 하위 데이터 가져옴
+            // -> 파이어베이스의 android_studio 하위 데이터 가져옴
+            myRef = database.getReference("android_studio")
+
+        // 카테고리가 kotlin_syntax
+        } else if(category == "kotlin_syntax") {
+
+            // -> 파이어베이스의 kotlin_syntax 하위 데이터 가져옴
             myRef = database.getReference("kotlin_syntax")
 
-        // 카테고리가 kotlin_syntax면
+        // 카테고리가 error_warning
         } else if(category == "error_warning") {
 
-            // 파이어베이스의 kotlin_syntax 하위 데이터 가져옴
+            // -> 파이어베이스의 error_warning 하위 데이터 가져옴
             myRef = database.getReference("error_warning")
 
-        // 카테고리가 kotlin_syntax면
-        } else {
+        // 카테고리가 vcs_github
+        } else if(category == "vcs_github") {
 
-            // 파이어베이스의 kotlin_syntax 하위 데이터 가져옴
-            myRef = database.getReference("contents")
+            // -> 파이어베이스의 vcs_github 하위 데이터 가져옴
+            myRef = database.getReference("vcs_github")
 
-        }
+        // 카테고리가 web_internet
+        } else if(category == "web_internet") {
+
+            // -> 파이어베이스의 web_internet 하위 데이터 가져옴
+            myRef = database.getReference("web_internet")
+
+        // 카테고리가 etc
+        } // else if(category == "etc") {
+
+            // -> 아직 게시글 없으므로 대체 텍스트 띄우기
+
+        // }
 
         // 데이터베이스에서 게시물의 세부정보를 검색
         val postListener = object : ValueEventListener {
@@ -117,7 +134,7 @@ class ContentsListActivity : AppCompatActivity() {
         // 그리드 레이아웃 매니저 -> 아이템을 격자 형태로 배치(2열)
         rv.layoutManager = GridLayoutManager(this, 2)
 
-        // itemClickListener 작동 테스트
+        // itemClickListener 작동
         rvAdapter.itemClick = object: ContentsRVAdapter.ItemClickListener {
 
             // 클릭하면
@@ -145,14 +162,15 @@ class ContentsListActivity : AppCompatActivity() {
 
         }
 
-//        val myRef4 = database.getReference("VCS")
+        // 파이어베이스에 웹뷰 데이터 넣기
+//        val myRef1 = database.getReference("파이어베이스 카테고리 이름")
 
         // 제목, 이미지, 본문 순으로 들어감(파이어베이스)
-//        myRef4.push().setValue(
+//        myRef1.push().setValue(
 //            ContentsModel(
-//                "",
-//                "",
-//                "")
+//                "게시글 제목",
+//                "이미지 URL",
+//                "게시글 URL")
 //        )
 
     }

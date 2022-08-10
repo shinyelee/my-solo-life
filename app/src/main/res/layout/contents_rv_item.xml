@@ -17,6 +17,7 @@
             android:id="@+id/imageArea"
             android:layout_width="match_parent"
             android:layout_height="120dp"
+            android:padding="10dp"
             android:background="@drawable/box_main"
             android:contentDescription="@string/post"
             android:src="@drawable/blog56" />
