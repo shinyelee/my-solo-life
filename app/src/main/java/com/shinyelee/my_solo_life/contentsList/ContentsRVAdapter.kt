@@ -7,13 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.shinyelee.my_solo_life.R
 
 // 리사이클러뷰의 어댑터
 // -> RecyclerView.Adapter를 상속해서 구현
-class ContentsRVAdapter(val context: Context, val items: ArrayList<ContentsModel>): RecyclerView.Adapter<ContentsRVAdapter.Viewholder>() {
+class ContentsRVAdapter(
+    val context: Context,
+    val items: ArrayList<ContentsModel>,
+    val keyList: ArrayList<String>
+): RecyclerView.Adapter<ContentsRVAdapter.Viewholder>() {
 
     // 뷰홀더 객체 생성 및 초기화
     // 아직 데이터는 들어가있지 않은 상태
@@ -31,7 +36,7 @@ class ContentsRVAdapter(val context: Context, val items: ArrayList<ContentsModel
     override fun onBindViewHolder(holder: ContentsRVAdapter.Viewholder, position: Int) {
 
         // 데이터 매핑
-        holder.bindItems(items[position])
+        holder.bindItems(items[position], keyList[position])
 
     }
 
@@ -41,8 +46,8 @@ class ContentsRVAdapter(val context: Context, val items: ArrayList<ContentsModel
     // 아이템에 데이터 넣어줌
     inner class Viewholder(itemView : View) : RecyclerView.ViewHolder(itemView) {
 
-        // 데이터 매핑
-        fun bindItems(item : ContentsModel) {
+        // 데이터 매핑(게시글 정보, 키 값)
+        fun bindItems(item: ContentsModel, key: String) {
 
 
             // 리사이클러뷰는 setOnItemClickListener 없음
@@ -74,6 +79,17 @@ class ContentsRVAdapter(val context: Context, val items: ArrayList<ContentsModel
             Glide.with(context)
                 .load(item.imageUrl)
                 .into(imageViewArea)
+
+            // 북마크(하트) 아이콘을
+            val bookmarkArea = itemView.findViewById<ImageView>(R.id.bookmarkArea)
+
+            // 클릭하면
+            bookmarkArea.setOnClickListener {
+
+                // 해당 게시글의 아이템 키를 토스트 메시지로 띄움
+                Toast.makeText(context, key, Toast.LENGTH_SHORT).show()
+
+            }
 
         }
 

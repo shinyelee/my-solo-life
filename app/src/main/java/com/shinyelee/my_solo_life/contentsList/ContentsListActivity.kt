@@ -43,8 +43,12 @@ class ContentsListActivity : AppCompatActivity() {
         // 컨텐츠모델 형식의 데이터 리스트
         val items = ArrayList<ContentsModel>()
 
+        // 컨텐츠(블로그 게시글)의 ID값
+        // -> 북마크에 필요
+        val itemKeyList = ArrayList<String>()
+
         // 리사이클러뷰 어댑터 연결
-        val rvAdapter = ContentsRVAdapter(baseContext, items)
+        val rvAdapter = ContentsRVAdapter(baseContext, items, itemKeyList)
 
         // 파이어베이스
         val database = Firebase.database
@@ -103,6 +107,10 @@ class ContentsListActivity : AppCompatActivity() {
 
                     // 데이터 리스트에 아이템 넣어줌
                     items.add(item!!)
+
+                    // 아이템 키 값도 넣어줌
+                    // -> 북마크에 필요
+                    itemKeyList.add(dataModel.key.toString())
 
                 }
 
