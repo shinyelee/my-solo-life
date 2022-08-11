@@ -47,17 +47,13 @@ class SplashActivity : AppCompatActivity() {
             // -> 생성자로 Looper.getMainLooper() 넣어주면 됨
             Handler(Looper.getMainLooper()).postDelayed({
 
-                // 명시적 인텐트
-                // -> 다른 액티비티 호출
-                val intent = Intent(this, IntroActivity::class.java)
-
                 // 둘 다 로딩 화면에 많이 씀
                 // FLAG_ACTIVITY_NO_ANIMATION -> 액티비티 실행시 화면 전환 효과(좌우 슬라이드) 무시
                 // FLAG_ACTIVITY_NO_HISTORY -> 액티비티를 스택에 쌓지 않음 -> 다른 액티비티로 이동시 사라짐
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION and Intent.FLAG_ACTIVITY_NO_HISTORY)
 
                 // 인트로 액티비티 시작
-                startActivity(intent)
+                startActivity(Intent(this, IntroActivity::class.java))
 
                 // 스플래시 액티비티 종료
                 finish()
@@ -72,17 +68,13 @@ class SplashActivity : AppCompatActivity() {
             // -> 생성자로 Looper.getMainLooper() 넣어주면 됨
             Handler(Looper.getMainLooper()).postDelayed({
 
-                // 명시적 인텐트
-                // -> 다른 액티비티 호출
-                val intent = Intent(this, MainActivity::class.java)
-
                 // 둘 다 로딩 화면에 많이 씀
                 // FLAG_ACTIVITY_NO_ANIMATION -> 액티비티 실행시 화면 전환 효과(좌우 슬라이드) 무시
                 // FLAG_ACTIVITY_NO_HISTORY -> 액티비티를 스택에 쌓지 않음 -> 다른 액티비티로 이동시 사라짐
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION and Intent.FLAG_ACTIVITY_NO_HISTORY)
 
                 // 메인 액티비티 시작
-                startActivity(intent)
+                startActivity(Intent(this, MainActivity::class.java))
 
                 // 스플래시 액티비티 종료
                 finish()

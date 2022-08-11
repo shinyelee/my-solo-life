@@ -2,6 +2,7 @@ package com.shinyelee.my_solo_life.contentsList
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -70,23 +71,20 @@ class ContentsRVAdapter(
 
             }
 
-            // 게시글 제목을 titleArea에 넣어줌
+            // 게시글 제목
             val contentsTitle = itemView.findViewById<TextView>(R.id.titleArea)
-            contentsTitle.text = item.title
 
-            // 게시글 썸네일은
+            // 게시글 썸네일
             val imageViewArea = itemView.findViewById<ImageView>(R.id.imageArea)
 
-            // 글라이드를 이용해 imageUrl에 있는 이미지를 imageViewArea에 집어넣음
-            Glide.with(context)
-                .load(item.imageUrl)
-                .into(imageViewArea)
-
-            // 북마크(하트) 아이콘을
+            // 북마크(하트)
             val bookmarkArea = itemView.findViewById<ImageView>(R.id.bookmarkArea)
 
-            // 클릭하면
+            // 하트를 클릭하면
             bookmarkArea.setOnClickListener {
+
+                // 현재 사용자 UID 값 로그 찍어봄
+                Log.d("ContentsRVAdapter", FBAuth.getUid())
 
                 // 해당 게시글의 아이템 키를 토스트 메시지로 띄움
                 Toast.makeText(context, key, Toast.LENGTH_SHORT).show()
@@ -96,6 +94,15 @@ class ContentsRVAdapter(
                 FBRef.bookmarkRef.child(FBAuth.getUid()).child(key).setValue("bookmark test")
 
             }
+
+            // 제목
+            contentsTitle.text = item.title
+
+            // 썸네일
+            // -> 글라이드를 이용해 imageUrl에 있는 이미지를 imageViewArea에 집어넣음
+            Glide.with(context)
+                .load(item.imageUrl)
+                .into(imageViewArea)
 
         }
 
