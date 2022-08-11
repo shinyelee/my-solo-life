@@ -165,6 +165,10 @@ class ContentsListActivity : AppCompatActivity() {
             // 데이터 스냅샷
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
+                // 북마크 ID 리스트 비워줌
+                // -> 북마크 저장/삭제 마다 데이터 누적되는 것 방지
+                bookmarkIdList.clear()
+
                 // for문으로 출력
                 for(dataModel in dataSnapshot.children) {
 

@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.shinyelee.my_solo_life.R
@@ -101,18 +100,27 @@ class ContentsRVAdapter(
             // 하트를 클릭하면
             bookmarkArea.setOnClickListener {
 
-                // 현재 사용자 UID 값 로그 찍어봄
-                Log.d("ContentsRVAdapter", FBAuth.getUid())
+                // bookmark_list 하위에 사용자 UID별로 나눠 게시글의 키 값을 저장해야 함
 
-                // 해당 게시글의 아이템 키를 토스트 메시지로 띄움
-                Toast.makeText(context, key, Toast.LENGTH_SHORT).show()
+                // 이미 북마크 된 상태
+                if(bookmarkIdList.contains(key)) {
 
-                // 북마크 저장
-                // -> bookmark_list 하위에 사용자 UID별로 나눠 게시글의 키 값을 저장해야 함
-                FBRef.bookmarkRef
-                    .child(FBAuth.getUid())
-                    .child(key)
-                    .setValue(BookmarkModel(true))
+                    // -> 북마크 삭제
+                    FBRef.bookmarkRef
+                        .child(FBAuth.getUid())
+                        .child(key)
+                        .removeValue()
+
+                // 아직 북마크 안 된 상태
+                } else {
+
+                    // -> 북마크 저장
+                    FBRef.bookmarkRef
+                        .child(FBAuth.getUid())
+                        .child(key)
+                        .setValue(BookmarkModel(true))
+
+                }
 
             }
 
