@@ -9,7 +9,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.shinyelee.my_solo_life.MainActivity
-import com.shinyelee.my_solo_life.R
 import com.shinyelee.my_solo_life.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -20,8 +19,7 @@ class LoginActivity : AppCompatActivity() {
     // (전역변수) 바인딩 객체 선언
     private var vBinding : ActivityLoginBinding? = null
 
-    // 매번 null 확인 귀찮음
-    // -> 바인딩 변수 재선언
+    // 매번 null 확인 귀찮음 -> 바인딩 변수 재선언
     private val binding get() = vBinding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -90,8 +88,7 @@ class LoginActivity : AppCompatActivity() {
                         // 성공하면
                         if (task.isSuccessful) {
 
-                            // 명시적 인텐트
-                            // -> 다른 액티비티 호출
+                            // 명시적 인텐트 -> 다른 액티비티 호출
                             val intent = Intent(this, MainActivity::class.java)
 
                             // 메인 액티비티 시작
@@ -125,8 +122,7 @@ class LoginActivity : AppCompatActivity() {
     // 액티비티 파괴시
     override fun onDestroy() {
 
-        // 바인딩 클래스 인스턴스 참조를 정리
-        // -> 메모리 효율이 좋아짐
+        // 바인딩 클래스 인스턴스 참조를 정리 -> 메모리 효율이 좋아짐
         vBinding = null
         super.onDestroy()
 

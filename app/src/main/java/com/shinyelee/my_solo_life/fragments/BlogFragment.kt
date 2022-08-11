@@ -34,8 +34,7 @@ class BlogFragment : Fragment() {
         // 안드로이드 아이콘 클릭하면
         binding.androidIcon.setOnClickListener {
 
-            // 명시적 인텐트
-            // -> 다른 액티비티 호출
+            // 명시적 인텐트 -> 다른 액티비티 호출
             val intent = Intent(context, ContentsListActivity::class.java)
 
             // android_studio 카테고리로 데이터 넘겨줌
@@ -46,70 +45,38 @@ class BlogFragment : Fragment() {
 
         }
 
-        // 코틀린 아이콘 클릭하면
+        // 코틀린 아이콘 -> kotlin_syntax
         binding.kotlinIcon.setOnClickListener {
-
-            // 명시적 인텐트
-            // -> 다른 액티비티 호출
             val intent = Intent(context, ContentsListActivity::class.java)
-
-            // kotlin_syntax 카테고리로 데이터 넘겨줌
             intent.putExtra("category", "kotlin_syntax")
-
-            // 컨텐츠리스트 액티비티 시작
             startActivity(intent)
-
         }
 
-        // 에러 아이콘 클릭하면
+        // 에러 아이콘 -> error_warning
         binding.errorIcon.setOnClickListener {
-
-            // 명시적 인텐트
-            // -> 다른 액티비티 호출
             val intent = Intent(context, ContentsListActivity::class.java)
-
-            // error_warning 카테고리로 데이터 넘겨줌
             intent.putExtra("category", "error_warning")
-
-            // 컨텐츠리스트 액티비티 시작
             startActivity(intent)
-
         }
 
-        // 버전컨트롤시스템 아이콘 클릭하면
+        // 버전컨트롤시스템 아이콘 -> vcs_github
         binding.vcsIcon.setOnClickListener {
-
-            // 명시적 인텐트
-            // -> 다른 액티비티 호출
             val intent = Intent(context, ContentsListActivity::class.java)
-
-            // vcs_github 카테고리로 데이터 넘겨줌
             intent.putExtra("category", "vcs_github")
-
-            // 컨텐츠리스트 액티비티 시작
             startActivity(intent)
-
         }
 
-        // 웹 아이콘 클릭하면
+        // 웹 아이콘 -> category
         binding.webIcon.setOnClickListener {
-
-            // 명시적 인텐트
-            // -> 다른 액티비티 호출
             val intent = Intent(context, ContentsListActivity::class.java)
-
-            // web_internet 카테고리로 데이터 넘겨줌
             intent.putExtra("category", "web_internet")
-
-            // 컨텐츠리스트 액티비티 시작
             startActivity(intent)
-
         }
 
-        // 기타 아이콘 클릭하면
+        // 기타 아이콘 -> etc (추후 수정)
 //        binding.etcIcon.setOnClickListener {}
 
-        // 홈 아이콘 클릭하면
+        // 홈 버튼 클릭하면
         binding.homeBtn.setOnClickListener {
 
             // 홈 프래그먼트로 이동
@@ -117,28 +84,19 @@ class BlogFragment : Fragment() {
 
         }
 
-        // 게시판 아이콘 클릭하면
+        // 게시판 버튼 -> 게시판 프래그먼트
         binding.boardBtn.setOnClickListener {
-
-            // 게시판 프래그먼트로 이동
-            it.findNavController().navigate(R.id.action_blogFragment_to_boardFragment)
-
+            it.findNavController().navigate(R.id.action_homeFragment_to_boardFragment)
         }
 
-        // 북마크 아이콘 클릭하면
+        // 북마크 버튼 -> 북마크 프래그먼트
         binding.bookmarkBtn.setOnClickListener {
-
-            // 북마크 프래그먼트로 이동
-            it.findNavController().navigate(R.id.action_blogFragment_to_bookmarkFragment)
-
+            it.findNavController().navigate(R.id.action_homeFragment_to_bookmarkFragment)
         }
 
-        // 웹 아이콘 클릭하면
+        // 웹 버튼 -> 웹 프래그먼트
         binding.webBtn.setOnClickListener {
-
-            // 웹 프래그먼트로 이동
-            it.findNavController().navigate(R.id.action_blogFragment_to_webFragment)
-
+            it.findNavController().navigate(R.id.action_homeFragment_to_webFragment)
         }
 
         // 뷰바인딩

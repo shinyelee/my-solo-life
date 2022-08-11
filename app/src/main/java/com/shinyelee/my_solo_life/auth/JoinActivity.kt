@@ -19,8 +19,7 @@ class JoinActivity : AppCompatActivity() {
     // (전역변수) 바인딩 객체 선언
     private var vBinding : ActivityJoinBinding? = null
 
-    // 매번 null 확인 귀찮음
-    // -> 바인딩 변수 재선언
+    // 매번 null 확인 귀찮음 -> 바인딩 변수 재선언
     private val binding get() = vBinding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,6 +80,7 @@ class JoinActivity : AppCompatActivity() {
                 binding.pwArea.error = null
             }
 
+            // 공란 검사
             if(emailTxt.isEmpty() || pwTxt.isEmpty() || pw2Txt.isEmpty()) {
                 emailCheck = false
                 pwCheck = false
@@ -109,8 +109,7 @@ class JoinActivity : AppCompatActivity() {
                         // 성공하면
                         if (task.isSuccessful) {
 
-                            // 명시적 인텐트
-                            // -> 다른 액티비티 호출
+                            // 명시적 인텐트 -> 다른 액티비티 호출
                             val intent = Intent(this, MainActivity::class.java)
 
                             // 메인 액티비티 시작
@@ -144,8 +143,7 @@ class JoinActivity : AppCompatActivity() {
     // 액티비티 파괴시
     override fun onDestroy() {
 
-        // 바인딩 클래스 인스턴스 참조를 정리
-        // -> 메모리 효율이 좋아짐
+        // 바인딩 클래스 인스턴스 참조를 정리 -> 메모리 효율이 좋아짐
         vBinding = null
         super.onDestroy()
 

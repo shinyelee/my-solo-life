@@ -29,7 +29,7 @@ class WebFragment : Fragment() {
         // 뷰바인딩
         vBinding = FragmentWebBinding.inflate(inflater, container, false)
 
-        // 홈 아이콘 클릭하면
+        // 홈 버튼 클릭하면
         binding.homeBtn.setOnClickListener {
 
             // 홈 프래그먼트로 이동
@@ -37,28 +37,19 @@ class WebFragment : Fragment() {
 
         }
 
-        // 블로그 아이콘 클릭하면
+        // 블로그 버튼 -> 블로그 프래그먼트
         binding.blogBtn.setOnClickListener {
-
-            // 블로그 프래그먼트로 이동
             it.findNavController().navigate(R.id.action_webFragment_to_blogFragment)
-
         }
 
-        // 게시판 아이콘 클릭하면
+        // 게시판 버튼 -> 게시판 프래그먼트
         binding.boardBtn.setOnClickListener {
-
-            // 게시판 프래그먼트로 이동
-            it.findNavController().navigate(R.id.action_webFragment_to_boardFragment)
-
+            it.findNavController().navigate(R.id.action_homeFragment_to_boardFragment)
         }
 
-        // 북마크 아이콘 클릭하면
+        // 북마크 버튼 -> 북마크 프래그먼트
         binding.bookmarkBtn.setOnClickListener {
-
-            // 북마크 프래그먼트로 이동
-            it.findNavController().navigate(R.id.action_webFragment_to_bookmarkFragment)
-
+            it.findNavController().navigate(R.id.action_homeFragment_to_bookmarkFragment)
         }
 
         // 뷰바인딩

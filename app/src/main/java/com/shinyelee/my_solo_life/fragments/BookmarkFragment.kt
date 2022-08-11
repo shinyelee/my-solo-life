@@ -29,36 +29,27 @@ class BookmarkFragment : Fragment() {
         // 뷰바인딩
         vBinding = FragmentBookmarkBinding.inflate(inflater, container, false)
 
-        // 홈 아이콘 클릭하면
+        // 홈 버튼 클릭하면
         binding.homeBtn.setOnClickListener {
 
             // 홈 프래그먼트로 이동
-            it.findNavController().navigate(R.id.action_bookmarkFragment_to_homeFragment)
+            it.findNavController().navigate(R.id.action_webFragment_to_homeFragment)
 
         }
 
-        // 블로그 아이콘 클릭하면
+        // 블로그 버튼 -> 블로그 프래그먼트
         binding.blogBtn.setOnClickListener {
-
-            // 블로그 프래그먼트로 이동
-            it.findNavController().navigate(R.id.action_bookmarkFragment_to_blogFragment)
-
+            it.findNavController().navigate(R.id.action_webFragment_to_blogFragment)
         }
 
-        // 게시판 아이콘 클릭하면
+        // 게시판 버튼 -> 게시판 프래그먼트
         binding.boardBtn.setOnClickListener {
-
-            // 게시판 프래그먼트로 이동
-            it.findNavController().navigate(R.id.action_bookmarkFragment_to_boardFragment)
-
+            it.findNavController().navigate(R.id.action_homeFragment_to_boardFragment)
         }
 
-        // 웹 아이콘 클릭하면
+        // 웹 버튼 -> 웹 프래그먼트
         binding.webBtn.setOnClickListener {
-
-            // 웹 프래그먼트로 이동
-            it.findNavController().navigate(R.id.action_bookmarkFragment_to_webFragment)
-
+            it.findNavController().navigate(R.id.action_homeFragment_to_webFragment)
         }
 
         // 뷰바인딩

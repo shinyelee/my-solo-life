@@ -64,22 +64,13 @@ class SplashActivity : AppCompatActivity() {
         // 로그인 한 상태면
         } else {
 
-            // Handler() is deprecated
-            // -> 생성자로 Looper.getMainLooper() 넣어주면 됨
             Handler(Looper.getMainLooper()).postDelayed({
 
-                // 둘 다 로딩 화면에 많이 씀
-                // FLAG_ACTIVITY_NO_ANIMATION -> 액티비티 실행시 화면 전환 효과(좌우 슬라이드) 무시
-                // FLAG_ACTIVITY_NO_HISTORY -> 액티비티를 스택에 쌓지 않음 -> 다른 액티비티로 이동시 사라짐
+                // 플래그 세우고 메인 액티비티 시작
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION and Intent.FLAG_ACTIVITY_NO_HISTORY)
-
-                // 메인 액티비티 시작
                 startActivity(Intent(this, MainActivity::class.java))
-
-                // 스플래시 액티비티 종료
                 finish()
 
-            // 2초 후 실행
             }, 2000)
 
         }
