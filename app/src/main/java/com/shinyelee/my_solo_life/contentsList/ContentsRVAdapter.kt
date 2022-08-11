@@ -91,7 +91,10 @@ class ContentsRVAdapter(
 
                 // 북마크 저장
                 // -> bookmark_list 하위에 사용자 UID별로 나눠 게시글의 키 값을 저장해야 함
-                FBRef.bookmarkRef.child(FBAuth.getUid()).child(key).setValue("bookmark test")
+                FBRef.bookmarkRef
+                    .child(FBAuth.getUid())
+                    .child(key)
+                    .setValue(BookmarkModel(true))
 
             }
 

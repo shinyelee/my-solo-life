@@ -13,6 +13,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.shinyelee.my_solo_life.databinding.ActivityContentsListBinding
+import com.shinyelee.my_solo_life.utils.FBAuth
 import com.shinyelee.my_solo_life.utils.FBRef
 
 class ContentsListActivity : AppCompatActivity() {
@@ -26,6 +27,9 @@ class ContentsListActivity : AppCompatActivity() {
     // lateinit var
     // -> 우선 데이터 타입(파이어베이스 DB)만 정해놓고 값은 나중에 넣음
     lateinit var myRef : DatabaseReference
+
+    // 북마크 ID(컨텐츠 키) 리스트
+    val bookmarkIdList = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -161,11 +165,13 @@ class ContentsListActivity : AppCompatActivity() {
                 // for문으로 출력
                 for(dataModel in dataSnapshot.children) {
 
-                    // 북마크 데이터(게시글 키 값, 현재 사용자 UID 값) 로그 찍어봄
-                    Log.d("getBookmarkData", dataModel.key.toString())
-                    Log.d("getBookmarkData", dataModel.toString())
+                    // 북마크 ID 리스트에 게시글 키 값 넣어줌
+                    bookmarkIdList.add(dataModel.key.toString())
 
                 }
+
+                // 북마크 ID 리스트 로그 찍어봄
+                Log.d("ContentsListActivity", bookmarkIdList.toString())
 
             }
 
@@ -180,7 +186,7 @@ class ContentsListActivity : AppCompatActivity() {
         }
 
         // 파이어베이스 내 데이터 변화(추가)를 알려줌
-        FBRef.bookmarkRef.addValueEventListener(postListener)
+        FBRef.bookmarkRef.child(FBAuth.getUid()).addValueEventListener(postListener)
 
     }
 
