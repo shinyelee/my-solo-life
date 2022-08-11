@@ -31,6 +31,9 @@ class ContentsListActivity : AppCompatActivity() {
     // 북마크 ID(컨텐츠 키) 리스트
     val bookmarkIdList = mutableListOf<String>()
 
+    // 리사이클러뷰 어댑터 선언
+    lateinit var rvAdapter: ContentsRVAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -51,7 +54,7 @@ class ContentsListActivity : AppCompatActivity() {
         val itemKeyList = ArrayList<String>()
 
         // 리사이클러뷰 어댑터 연결
-        val rvAdapter = ContentsRVAdapter(baseContext, items, itemKeyList)
+        rvAdapter = ContentsRVAdapter(baseContext, items, itemKeyList, bookmarkIdList)
 
         // 파이어베이스
         val database = Firebase.database
@@ -172,6 +175,9 @@ class ContentsListActivity : AppCompatActivity() {
 
                 // 북마크 ID 리스트 로그 찍어봄
                 Log.d("ContentsListActivity", bookmarkIdList.toString())
+
+                // 동기화(새로고침)
+                rvAdapter.notifyDataSetChanged()
 
             }
 

@@ -20,7 +20,8 @@ import com.shinyelee.my_solo_life.utils.FBRef
 class ContentsRVAdapter(
     val context: Context,
     val items: ArrayList<ContentsModel>,
-    val keyList: ArrayList<String>
+    val keyList: ArrayList<String>,
+    val bookmarkIdList: MutableList<String>
 ): RecyclerView.Adapter<ContentsRVAdapter.Viewholder>() {
 
     // 뷰홀더 객체 생성 및 초기화
@@ -30,6 +31,12 @@ class ContentsRVAdapter(
         // 레이아웃 인플레이터
         // -> 리사이클러뷰에서 뷰홀더 만들 때 반복적으로 사용
         val v = LayoutInflater.from(parent.context).inflate(R.layout.contents_rv_item, parent, false)
+
+        // 게시글의 키 리스트, 북마크 ID 리스트 로그로 출력
+        Log.d("ContentsRVAdapter", keyList.toString())
+        Log.d("ContentsRVAdapter", bookmarkIdList.toString())
+
+        // 뷰홀더 리턴
         return Viewholder(v)
 
     }
@@ -71,14 +78,25 @@ class ContentsRVAdapter(
 
             }
 
-            // 게시글 제목
+            // 게시글 제목, 썸네일, 북마크(하트)
             val contentsTitle = itemView.findViewById<TextView>(R.id.titleArea)
-
-            // 게시글 썸네일
             val imageViewArea = itemView.findViewById<ImageView>(R.id.imageArea)
-
-            // 북마크(하트)
             val bookmarkArea = itemView.findViewById<ImageView>(R.id.bookmarkArea)
+
+            // 북마크 여부 표시
+            // -> 북마크 ID 리스트가 게시글 키 정보를 포함하면
+            if(bookmarkIdList.contains(key)) {
+
+                // 주황색 하트
+                bookmarkArea.setImageResource(R.drawable.bookmark56)
+
+            // 포함하지 않으면
+            } else {
+
+                // 하얀색 하트
+                bookmarkArea.setImageResource(R.drawable.bookmark56w)
+
+            }
 
             // 하트를 클릭하면
             bookmarkArea.setOnClickListener {
