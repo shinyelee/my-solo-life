@@ -1,11 +1,9 @@
 package com.shinyelee.my_solo_life.contentsList
 
 import android.content.ContentValues.TAG
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
@@ -56,42 +54,24 @@ class ContentsListActivity : AppCompatActivity() {
         // 카테고리
         val category = intent.getStringExtra("category")
 
-        // 카테고리가 android_studio
-        if(category == "android_studio") {
-
-            // -> 파이어베이스의 android_studio 하위 데이터 가져옴
-            myRef = database.getReference("android_studio")
-
-        // 카테고리가 kotlin_syntax
-        } else if(category == "kotlin_syntax") {
-
-            // -> 파이어베이스의 kotlin_syntax 하위 데이터 가져옴
-            myRef = database.getReference("kotlin_syntax")
-
-        // 카테고리가 error_warning
-        } else if(category == "error_warning") {
-
-            // -> 파이어베이스의 error_warning 하위 데이터 가져옴
-            myRef = database.getReference("error_warning")
-
-        // 카테고리가 vcs_github
-        } else if(category == "vcs_github") {
-
-            // -> 파이어베이스의 vcs_github 하위 데이터 가져옴
-            myRef = database.getReference("vcs_github")
-
-        // 카테고리가 web_internet
-        } else if(category == "web_internet") {
-
-            // -> 파이어베이스의 web_internet 하위 데이터 가져옴
-            myRef = database.getReference("web_internet")
-
-        // 카테고리가 etc
-        } // else if(category == "etc") {
-
-            // -> 아직 게시글 없으므로 대체 텍스트 띄우기
-
-        // }
+        // 카테고리에 해당하는 데이터를 파이어베이스에서 가져옴
+        when (category) {
+            "android_studio" -> {
+                myRef = database.getReference("android_studio")
+            }
+            "kotlin_syntax" -> {
+                myRef = database.getReference("kotlin_syntax")
+            }
+            "error_warning" -> {
+                myRef = database.getReference("error_warning")
+            }
+            "vcs_github" -> {
+                myRef = database.getReference("vcs_github")
+            }
+            "web_internet" -> {
+                myRef = database.getReference("web_internet")
+            }
+        }
 
         // 데이터베이스에서 게시물의 세부정보를 검색
         val postListener = object : ValueEventListener {

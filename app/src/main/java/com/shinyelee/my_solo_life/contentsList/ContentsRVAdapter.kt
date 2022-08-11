@@ -11,6 +11,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.shinyelee.my_solo_life.R
+import com.shinyelee.my_solo_life.utils.FBAuth
+import com.shinyelee.my_solo_life.utils.FBRef
 
 // 리사이클러뷰의 어댑터
 // -> RecyclerView.Adapter를 상속해서 구현
@@ -88,6 +90,10 @@ class ContentsRVAdapter(
 
                 // 해당 게시글의 아이템 키를 토스트 메시지로 띄움
                 Toast.makeText(context, key, Toast.LENGTH_SHORT).show()
+
+                // 북마크 저장
+                // -> bookmark_list 하위에 사용자 UID별로 나눠 게시글의 키 값을 저장해야 함
+                FBRef.bookmarkRef.child(FBAuth.getUid()).child(key).setValue("bookmark test")
 
             }
 

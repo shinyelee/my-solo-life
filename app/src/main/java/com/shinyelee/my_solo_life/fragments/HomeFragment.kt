@@ -107,19 +107,7 @@ class HomeFragment : Fragment() {
         }
 
         // 기타 아이콘 클릭하면
-//        binding.etcIcon.setOnClickListener {
-//
-//            // 명시적 인텐트
-//            // -> 다른 액티비티 호출
-//            val intent = Intent(context, ContentsListActivity::class.java)
-//
-//            // etc 카테고리로 데이터 넘겨줌
-//            intent.putExtra("category", "etc")
-//
-//            // 컨텐츠리스트 액티비티 시작
-//            startActivity(intent)
-//
-//        }
+//        binding.etcIcon.setOnClickListener {}
 
         // 블로그 아이콘 클릭하면
         binding.blogBtn.setOnClickListener {
