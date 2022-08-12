@@ -24,11 +24,10 @@ class ContentsListActivity : AppCompatActivity() {
     // 매번 null 확인 귀찮음 -> 바인딩 변수 재선언
     private val binding get() = vBinding!!
 
-    // lateinit var
-    // -> 우선 데이터 타입(파이어베이스 DB)만 정해놓고 값은 나중에 넣음
+    // 데이터베이스에서 데이터를 읽고 쓰려면 DatabaseReference 인스턴스가 필요
     lateinit var myRef : DatabaseReference
 
-    // 북마크 ID(컨텐츠 키) 리스트
+    // 북마크의 아이디(=키) 목록
     val bookmarkIdList = mutableListOf<String>()
 
     // 리사이클러뷰 어댑터 선언
@@ -46,14 +45,13 @@ class ContentsListActivity : AppCompatActivity() {
         // -> 생성된 뷰를 액티비티에 표시
         setContentView(binding.root)
 
-        // 컨텐츠모델 형식의 데이터 리스트
+        // 컨텐츠모델 형식의 아이템(=컨텐츠=제목+썸네일+본문) 목록
         val items = ArrayList<ContentsModel>()
 
-        // 컨텐츠(블로그 게시글)의 ID값
-        // -> 북마크에 필요
+        // 각 아이템의 키(=아이디) 목록 -> 북마크에 필요
         val itemKeyList = ArrayList<String>()
 
-        // 리사이클러뷰 어댑터 연결
+        // 리사이클러뷰 어댑터 연결(컨텍스트, 아이템 목록, 아이템 키 목록, 북마크 아이디 목록)
         rvAdapter = ContentsRVAdapter(baseContext, items, itemKeyList, bookmarkIdList)
 
         // 파이어베이스
@@ -62,6 +60,7 @@ class ContentsListActivity : AppCompatActivity() {
         // 카테고리
         val category = intent.getStringExtra("category")
 
+        // .getReference() -> 데이터베이스의 루트 폴더 주소 값을 반환
         // 카테고리에 해당하는 데이터를 파이어베이스에서 가져옴
         when (category) {
             "android_studio" -> {
@@ -87,29 +86,22 @@ class ContentsListActivity : AppCompatActivity() {
             // 데이터 스냅샷
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-                // for문으로 출력
+                // 데이터베이스에서 게시물의 세부정보를 검색
                 for(dataModel in dataSnapshot.children) {
 
-                    Log.d("ContentsListActivity", dataModel.key.toString())
-                    Log.d("ContentsListActivity", dataModel.toString())
-
-                    // 데이터모델 형태로 받아옴
+                    // 컨텐츠모델 클래스에서 데이터모델 형태로 된 아이템을 받아
                     val item = dataModel.getValue(ContentsModel::class.java)
 
-                    // 데이터 리스트에 아이템 넣어줌
+                    // 아이템 목록에 넣음
                     items.add(item!!)
 
-                    // 아이템 키 값도 넣어줌
-                    // -> 북마크에 필요
+                    // 키 값은 아이템 키 목록에 넣음
                     itemKeyList.add(dataModel.key.toString())
 
                 }
 
                 // 아이템의 변경사항을 어댑터에 알려줌
                 rvAdapter.notifyDataSetChanged()
-
-                // items에 들어간 데이터 확인
-                Log.d("ContentsListActivity", items.toString())
 
             }
 
@@ -123,7 +115,7 @@ class ContentsListActivity : AppCompatActivity() {
 
         }
 
-        // 파이어베이스 내 데이터 변화(추가)를 알려줌
+        // 파이어베이스 내 데이터의 변화(추가)를 알려줌
         myRef.addValueEventListener(postListener)
 
         // 리사이클러뷰 어댑터 연결
@@ -133,25 +125,23 @@ class ContentsListActivity : AppCompatActivity() {
         // 그리드 레이아웃 매니저 -> 아이템을 격자 형태로 배치(2열)
         rv.layoutManager = GridLayoutManager(this, 2)
 
+        // 북마크 정보를 가져옴
         getBookmarkData()
 
-        // 파이어베이스에 웹뷰 데이터 넣기
+        // 파이어베이스에 (웹뷰에서 보여줄) 아이템 데이터 넣기
 //        val myRef1 = database.getReference("파이어베이스 카테고리 이름")
 
-        // 제목, 이미지, 본문 순으로 들어감(파이어베이스)
+        // 제목, 썸네일, 본문 순으로 들어감(파이어베이스)
 //        myRef1.push().setValue(
 //            ContentsModel(
 //                "게시글 제목",
-//                "이미지 URL",
+//                "썸네일 URL",
 //                "게시글 URL")
 //        )
 
-        // 뒤로가기 버튼 클릭하면
+        // 뒤로가기 버튼 -> 컨텐츠리스트 액티비티 종료
         binding.backBtn.setOnClickListener {
-
-            // 콘텐츠리스트 액티비티 종료
             finish()
-
         }
 
     }
@@ -165,20 +155,16 @@ class ContentsListActivity : AppCompatActivity() {
             // 데이터 스냅샷
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-                // 북마크 ID 리스트 비워줌
-                // -> 북마크 저장/삭제 마다 데이터 누적되는 것 방지
+                // .clear() -> 북마크 아이디 목록 비움(저장/삭제 마다 데이터 누적되는 것 방지)
                 bookmarkIdList.clear()
 
-                // for문으로 출력
+                // 데이터 스냅샷 내 데이터모델 형식으로 저장된
                 for(dataModel in dataSnapshot.children) {
 
-                    // 북마크 ID 리스트에 게시글 키 값 넣어줌
+                    // 북마크 아이디 목록에 아이템의 키 값을 넣음
                     bookmarkIdList.add(dataModel.key.toString())
 
                 }
-
-                // 북마크 ID 리스트 로그 찍어봄
-                Log.d("ContentsListActivity", bookmarkIdList.toString())
 
                 // 동기화(새로고침)
                 rvAdapter.notifyDataSetChanged()

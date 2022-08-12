@@ -24,10 +24,10 @@ class ContentsShowActivity : AppCompatActivity() {
         // -> 생성된 뷰를 액티비티에 표시
         setContentView(binding.root)
 
-        // 해당 게시글의 URL 얻어와서
+        // 해당 아이템(컨텐츠) 본문의 url을 얻어와서
         val getUrl = intent.getStringExtra("url")
 
-        // 웹뷰에 넣어줌
+        // 웹뷰에 넣음
         binding.webView.loadUrl(getUrl.toString())
 
     }

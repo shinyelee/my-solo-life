@@ -37,6 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="5dp"
+            android:background="@color/white"
             android:hint="@string/email"
             app:errorEnabled="true">
 
@@ -54,6 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="5dp"
+            android:background="@color/white"
             android:hint="@string/pw"
             app:errorEnabled="true"
             app:passwordToggleEnabled="true">
