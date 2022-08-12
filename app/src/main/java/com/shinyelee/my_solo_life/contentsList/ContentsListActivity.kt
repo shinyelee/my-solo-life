@@ -1,5 +1,6 @@
 package com.shinyelee.my_solo_life.contentsList
 
+import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -80,16 +81,17 @@ class ContentsListActivity : AppCompatActivity() {
             }
         }
 
-        // 데이터베이스에서 게시물의 세부정보를 검색
+        // 데이터베이스에서 컨텐츠의 세부정보를 검색
         val postListener = object : ValueEventListener {
 
             // 데이터 스냅샷
+            @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-                // 데이터베이스에서 게시물의 세부정보를 검색
+                // 데이터 스냅샷 내 데이터모델 형식으로 저장된
                 for(dataModel in dataSnapshot.children) {
 
-                    // 컨텐츠모델 클래스에서 데이터모델 형태로 된 아이템을 받아
+                    // 아이템을 받아
                     val item = dataModel.getValue(ContentsModel::class.java)
 
                     // 아이템 목록에 넣음
@@ -100,7 +102,7 @@ class ContentsListActivity : AppCompatActivity() {
 
                 }
 
-                // 아이템의 변경사항을 어댑터에 알려줌
+                // 동기화(새로고침) -> 리스트 크기 및 아이템 변화를 어댑터에 알림
                 rvAdapter.notifyDataSetChanged()
 
             }
@@ -134,9 +136,9 @@ class ContentsListActivity : AppCompatActivity() {
         // 제목, 썸네일, 본문 순으로 들어감(파이어베이스)
 //        myRef1.push().setValue(
 //            ContentsModel(
-//                "게시글 제목",
+//                "컨텐츠 제목",
 //                "썸네일 URL",
-//                "게시글 URL")
+//                "본문 URL")
 //        )
 
         // 뒤로가기 버튼 -> 컨텐츠리스트 액티비티 종료
@@ -149,10 +151,11 @@ class ContentsListActivity : AppCompatActivity() {
     // 북마크 정보를 가져옴
     private fun getBookmarkData() {
 
-        // 데이터베이스에서 게시물의 세부정보를 검색
+        // 데이터베이스에서 컨텐츠의 세부정보를 검색
         val postListener = object : ValueEventListener {
 
             // 데이터 스냅샷
+            @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
                 // .clear() -> 북마크 아이디 목록 비움(저장/삭제 마다 데이터 누적되는 것 방지)
@@ -166,7 +169,7 @@ class ContentsListActivity : AppCompatActivity() {
 
                 }
 
-                // 동기화(새로고침)
+                // 동기화(새로고침) -> 리스트 크기 및 아이템 변화를 어댑터에 알림
                 rvAdapter.notifyDataSetChanged()
 
             }
