@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -66,6 +67,9 @@ class BookmarkFragment : Fragment() {
         rvAdapter = BookmarkRVAdapter(requireContext(), items, keyList, bookmarkIdList)
         val rv : RecyclerView = binding.bookmarkRV
         rv.adapter = rvAdapter
+
+        // 그리드 레이아웃 매니저 -> 아이템을 격자 형태로 배치(2열)
+        rv.layoutManager = GridLayoutManager(requireContext(), 2)
 
         // 홈 버튼 클릭하면
         binding.homeBtn.setOnClickListener {
