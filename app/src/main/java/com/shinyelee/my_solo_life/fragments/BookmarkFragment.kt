@@ -9,10 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.shinyelee.my_solo_life.R
+import com.shinyelee.my_solo_life.contentsList.BookmarkRVAdapter
 import com.shinyelee.my_solo_life.contentsList.ContentsModel
 import com.shinyelee.my_solo_life.databinding.FragmentBookmarkBinding
 import com.shinyelee.my_solo_life.utils.FBAuth
@@ -29,6 +31,17 @@ class BookmarkFragment : Fragment() {
     // 태그 -> 로그 찍을 때 편함
     private val TAG = BookmarkFragment::class.java.simpleName
 
+    // 아이템(=컨텐츠=제목+썸네일+본문) 목록
+    val items = ArrayList<ContentsModel>()
+
+    // 아이템 키(=아이디) 목록
+    val keyList = ArrayList<String>()
+
+    // 북마크 아이디(=키) 목록
+    val bookmarkIdList = mutableListOf<String>()
+
+    lateinit var rvAdapter: BookmarkRVAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -41,11 +54,18 @@ class BookmarkFragment : Fragment() {
         // 뷰바인딩
         vBinding = FragmentBookmarkBinding.inflate(inflater, container, false)
 
-        // 모든 컨텐츠 가져옴
+        // 1. 모든 컨텐츠 가져옴
         getBlogData()
 
-        // 현재 사용자의 북마크(키) 출력
+        // 2. 현재 사용자의 북마크(키) 출력
         getBookmarkData()
+
+        // 3. 1과 2의 교집합만 출력
+
+        // 리사이클러뷰 어댑터 연결
+        rvAdapter = BookmarkRVAdapter(requireContext(), items, keyList, bookmarkIdList)
+        val rv : RecyclerView = binding.bookmarkRV
+        rv.adapter = rvAdapter
 
         // 홈 버튼 클릭하면
         binding.homeBtn.setOnClickListener {
@@ -83,6 +103,7 @@ class BookmarkFragment : Fragment() {
         val postListener = object : ValueEventListener {
 
             // 데이터 스냅샷
+            @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
                 // 데이터 스냅샷 내 데이터모델 형식으로 저장된
@@ -91,7 +112,19 @@ class BookmarkFragment : Fragment() {
                     // 모든 컨텐츠(키, 본문 url, 썸네일 url, 제목) 출력
                     Log.d(TAG, dataModel.toString())
 
+                    // 아이템을 받아
+                    val item = dataModel.getValue(ContentsModel::class.java)
+
+                    // 아이템 목록에 넣음
+                    items.add(item!!)
+
+                    // 키 값은 아이템 키 목록에 넣음
+                    keyList.add(dataModel.key.toString())
+
                 }
+
+                // 동기화(새로고침) -> 리스트 크기 및 아이템 변화를 어댑터에 알림
+                rvAdapter.notifyDataSetChanged()
 
             }
 
@@ -129,6 +162,9 @@ class BookmarkFragment : Fragment() {
 
                     // 현재 사용자의 북마크(키) 출력
                     Log.e(TAG, dataModel.toString())
+
+                    // 북마크 아이디 목록에 아이템의 키 값을 넣음
+                    bookmarkIdList.add(dataModel.key.toString())
 
                 }
 

@@ -50,10 +50,10 @@ class ContentsListActivity : AppCompatActivity() {
         val items = ArrayList<ContentsModel>()
 
         // 각 아이템의 키(=아이디) 목록 -> 북마크에 필요
-        val itemKeyList = ArrayList<String>()
+        val keyList = ArrayList<String>()
 
-        // 리사이클러뷰 어댑터 연결(컨텍스트, 아이템 목록, 아이템 키 목록, 북마크 아이디 목록)
-        rvAdapter = ContentsRVAdapter(baseContext, items, itemKeyList, bookmarkIdList)
+        // 리사이클러뷰 어댑터 연결(컨텍스트, 아이템 목록, 키 목록, 북마크 아이디 목록)
+        rvAdapter = ContentsRVAdapter(baseContext, items, keyList, bookmarkIdList)
 
         // 파이어베이스
         val database = Firebase.database
@@ -98,7 +98,7 @@ class ContentsListActivity : AppCompatActivity() {
                     items.add(item!!)
 
                     // 키 값은 아이템 키 목록에 넣음
-                    itemKeyList.add(dataModel.key.toString())
+                    keyList.add(dataModel.key.toString())
 
                 }
 

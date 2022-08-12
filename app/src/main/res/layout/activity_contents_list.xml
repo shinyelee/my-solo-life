@@ -46,7 +46,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- 게시글 목록 출력(리사이클러뷰) -->
+    <!-- 컨텐츠 목록 출력(리사이클러뷰) -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
