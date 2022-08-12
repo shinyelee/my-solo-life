@@ -97,7 +97,6 @@ class BookmarkFragment : Fragment() {
     }
 
     // 블로그 탭의 모든 컨텐츠 가져옴
-    @SuppressLint("NotifyDataSetChanged")
     private fun getBlogData() {
 
         // 데이터베이스에서 게시물의 세부정보를 검색
@@ -106,6 +105,8 @@ class BookmarkFragment : Fragment() {
             // 데이터 스냅샷
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+
 
                 // 데이터 스냅샷 내 데이터모델 형식으로 저장된
                 for(dataModel in dataSnapshot.children) {
@@ -163,6 +164,11 @@ class BookmarkFragment : Fragment() {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
+                // 아이템 목록 및 북마크 아이디 목록 비움
+                // -> 저장/삭제 마다 데이터 누적돼 북마크 중복으로 저장되는 것 방지
+                items.clear()
+                bookmarkIdList.clear()
+
                 // 데이터 스냅샷 내 데이터모델 형식으로 저장된
                 for(dataModel in dataSnapshot.children) {
 
@@ -174,6 +180,7 @@ class BookmarkFragment : Fragment() {
 
                 }
 
+                // 모든 컨텐츠 가져옴
                 getBlogData()
 
             }

@@ -11,6 +11,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.shinyelee.my_solo_life.R
+import com.shinyelee.my_solo_life.utils.FBAuth
+import com.shinyelee.my_solo_life.utils.FBRef
 
 class BookmarkRVAdapter(
     val context: Context, // 컨텍스트
@@ -27,8 +29,8 @@ class BookmarkRVAdapter(
         val v = LayoutInflater.from(parent.context).inflate(R.layout.contents_rv_item, parent, false)
 
         // 로그 찍어봄
-        Log.d("BookmarkRVAdapter", keyList.toString())
-        Log.d("BookmarkRVAdapter", bookmarkIdList.toString())
+//        Log.d("BookmarkRVAdapter", keyList.toString())
+//        Log.d("BookmarkRVAdapter", bookmarkIdList.toString())
 
         // 아직 데이터는 들어가있지 않은 껍데기
         return Viewholder(v)
@@ -84,6 +86,17 @@ class BookmarkRVAdapter(
 
                 // 하트 -> 하얀색
                 bookmarkArea.setImageResource(R.drawable.bookmark56w)
+
+            }
+
+            // 하트 클릭하면
+            bookmarkArea.setOnClickListener {
+
+                // -> 북마크 삭제
+                FBRef.bookmarkRef
+                    .child(FBAuth.getUid())
+                    .child(key)
+                    .removeValue()
 
             }
 
