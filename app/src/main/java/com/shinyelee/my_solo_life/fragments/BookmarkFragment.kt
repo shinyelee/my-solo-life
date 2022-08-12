@@ -56,7 +56,7 @@ class BookmarkFragment : Fragment() {
         vBinding = FragmentBookmarkBinding.inflate(inflater, container, false)
 
         // 1. 모든 컨텐츠 가져옴
-        getBlogData()
+//        getBlogData()
 
         // 2. 현재 사용자의 북마크(키) 출력
         getBookmarkData()
@@ -71,27 +71,24 @@ class BookmarkFragment : Fragment() {
         // 그리드 레이아웃 매니저 -> 아이템을 격자 형태로 배치(2열)
         rv.layoutManager = GridLayoutManager(requireContext(), 2)
 
-        // 홈 버튼 클릭하면
+        // 홈 버튼 클릭 -> 홈 프래그먼트로 이동
         binding.homeBtn.setOnClickListener {
-
-            // 홈 프래그먼트로 이동
-            it.findNavController().navigate(R.id.action_webFragment_to_homeFragment)
-
+            it.findNavController().navigate(R.id.action_bookmarkFragment_to_homeFragment)
         }
 
-        // 블로그 버튼 -> 블로그 프래그먼트
+        // 블로그 버튼
         binding.blogBtn.setOnClickListener {
-            it.findNavController().navigate(R.id.action_webFragment_to_blogFragment)
+            it.findNavController().navigate(R.id.action_bookmarkFragment_to_blogFragment)
         }
 
-        // 게시판 버튼 -> 게시판 프래그먼트
+        // 게시판 버튼
         binding.boardBtn.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_boardFragment)
+            it.findNavController().navigate(R.id.action_bookmarkFragment_to_boardFragment)
         }
 
-        // 웹 버튼 -> 웹 프래그먼트
+        // 웹 버튼
         binding.webBtn.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_webFragment)
+            it.findNavController().navigate(R.id.action_bookmarkFragment_to_webFragment)
         }
 
         // 뷰바인딩
@@ -119,11 +116,16 @@ class BookmarkFragment : Fragment() {
                     // 아이템을 받아
                     val item = dataModel.getValue(ContentsModel::class.java)
 
-                    // 아이템 목록에 넣음
-                    items.add(item!!)
+                    // 북마크 아이디 목록에 키가 포함(북마크 저장)된 경우만
+                    if(bookmarkIdList.contains(dataModel.key.toString())) {
 
-                    // 키 값은 아이템 키 목록에 넣음
-                    keyList.add(dataModel.key.toString())
+                        // 아이템을 아이템 목록에 넣음
+                        items.add(item!!)
+
+                        // 키 값은 아이템 키 목록에 넣음
+                        keyList.add(dataModel.key.toString())
+
+                    }
 
                 }
 
@@ -171,6 +173,8 @@ class BookmarkFragment : Fragment() {
                     bookmarkIdList.add(dataModel.key.toString())
 
                 }
+
+                getBlogData()
 
             }
 

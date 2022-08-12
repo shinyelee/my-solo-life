@@ -1,6 +1,5 @@
 package com.shinyelee.my_solo_life.contentsList
 
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -12,8 +11,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.shinyelee.my_solo_life.R
-import com.shinyelee.my_solo_life.utils.FBAuth
-import com.shinyelee.my_solo_life.utils.FBRef
 
 class BookmarkRVAdapter(
     val context: Context, // 컨텍스트
@@ -82,38 +79,11 @@ class BookmarkRVAdapter(
                 // 해당 아이템의 하트 -> 주황색
                 bookmarkArea.setImageResource(R.drawable.bookmark56)
 
-                // 포함되지 않으면
+            // 포함되지 않으면
             } else {
 
                 // 하트 -> 하얀색
                 bookmarkArea.setImageResource(R.drawable.bookmark56w)
-
-            }
-
-            // 하트 클릭하면
-            bookmarkArea.setOnClickListener {
-
-                // bookmark_list 하위에 사용자 uid별로 나눠 게시글의 키 값을 저장
-
-                // 이미 북마크 된 상태
-                if(bookmarkIdList.contains(key)) {
-
-                    // -> 북마크 삭제
-                    FBRef.bookmarkRef
-                        .child(FBAuth.getUid())
-                        .child(key)
-                        .removeValue()
-
-                    // 아직 북마크 안 된 상태
-                } else {
-
-                    // -> 북마크 저장
-                    FBRef.bookmarkRef
-                        .child(FBAuth.getUid())
-                        .child(key)
-                        .setValue(BookmarkModel(true))
-
-                }
 
             }
 
