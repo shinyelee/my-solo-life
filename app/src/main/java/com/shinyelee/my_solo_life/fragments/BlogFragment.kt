@@ -76,27 +76,24 @@ class BlogFragment : Fragment() {
         // 기타 아이콘 -> etc (추후 수정)
 //        binding.etcIcon.setOnClickListener {}
 
-        // 홈 버튼 클릭하면
+        // 홈 버튼 클릭 -> 홈 프래그먼트로 이동
         binding.homeBtn.setOnClickListener {
-
-            // 홈 프래그먼트로 이동
             it.findNavController().navigate(R.id.action_blogFragment_to_homeFragment)
-
         }
 
-        // 게시판 버튼 -> 게시판 프래그먼트
+        // 게시판 버튼
         binding.boardBtn.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_boardFragment)
+            it.findNavController().navigate(R.id.action_blogFragment_to_boardFragment)
         }
 
-        // 북마크 버튼 -> 북마크 프래그먼트
+        // 북마크 버튼
         binding.bookmarkBtn.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_bookmarkFragment)
+            it.findNavController().navigate(R.id.action_blogFragment_to_bookmarkFragment)
         }
 
-        // 웹 버튼 -> 웹 프래그먼트
+        // 웹 버튼
         binding.webBtn.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_webFragment)
+            it.findNavController().navigate(R.id.action_blogFragment_to_webFragment)
         }
 
         // 뷰바인딩

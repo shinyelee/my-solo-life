@@ -29,27 +29,24 @@ class BoardFragment : Fragment() {
         // 뷰바인딩
         vBinding = FragmentBoardBinding.inflate(inflater, container, false)
 
-        // 홈 버튼 클릭하면
+        // 홈 버튼 클릭 -> 홈 프래그먼트로 이동
         binding.homeBtn.setOnClickListener {
-
-            // 홈 프래그먼트로 이동
-            it.findNavController().navigate(R.id.action_webFragment_to_homeFragment)
-
+            it.findNavController().navigate(R.id.action_boardFragment_to_homeFragment)
         }
 
-        // 블로그 버튼 -> 블로그 프래그먼트
+        // 블로그 버튼
         binding.blogBtn.setOnClickListener {
-            it.findNavController().navigate(R.id.action_webFragment_to_blogFragment)
+            it.findNavController().navigate(R.id.action_boardFragment_to_blogFragment)
         }
 
-        // 북마크 버튼 -> 북마크 프래그먼트
+        // 북마크 버튼
         binding.bookmarkBtn.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_bookmarkFragment)
+            it.findNavController().navigate(R.id.action_boardFragment_to_bookmarkFragment)
         }
 
-        // 웹 버튼 -> 웹 프래그먼트
+        // 웹 버튼
         binding.webBtn.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_webFragment)
+            it.findNavController().navigate(R.id.action_boardFragment_to_webFragment)
         }
 
         // 뷰바인딩

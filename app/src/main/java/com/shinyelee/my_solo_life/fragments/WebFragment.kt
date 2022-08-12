@@ -29,27 +29,24 @@ class WebFragment : Fragment() {
         // 뷰바인딩
         vBinding = FragmentWebBinding.inflate(inflater, container, false)
 
-        // 홈 버튼 클릭하면
+        // 홈 버튼 클릭 -> 홈 프래그먼트로 이동
         binding.homeBtn.setOnClickListener {
-
-            // 홈 프래그먼트로 이동
             it.findNavController().navigate(R.id.action_webFragment_to_homeFragment)
-
         }
 
-        // 블로그 버튼 -> 블로그 프래그먼트
+        // 블로그 버튼
         binding.blogBtn.setOnClickListener {
             it.findNavController().navigate(R.id.action_webFragment_to_blogFragment)
         }
 
-        // 게시판 버튼 -> 게시판 프래그먼트
+        // 게시판 버튼
         binding.boardBtn.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_boardFragment)
+            it.findNavController().navigate(R.id.action_webFragment_to_boardFragment)
         }
 
-        // 북마크 버튼 -> 북마크 프래그먼트
+        // 북마크 버튼
         binding.bookmarkBtn.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_bookmarkFragment)
+            it.findNavController().navigate(R.id.action_webFragment_to_bookmarkFragment)
         }
 
         // 뷰바인딩
