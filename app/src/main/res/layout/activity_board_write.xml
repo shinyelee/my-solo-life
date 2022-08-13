@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".board.BoardWriteActivity">
+
+    <!-- 앱바 -->
+    <TextView
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/appbar"
+        android:gravity="center"
+        android:text="@string/write"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBar">
+
+            <!-- 제목 -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:padding="10dp"
+                android:background="@color/white"
+                android:inputType="text"
+                android:hint="@string/boardTitle"
+                android:importantForAutofill="no" />
+
+            <!-- 내용 -->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginVertical="5dp"
+                android:padding="10dp"
+                android:background="@color/white"
+                android:inputType="text"
+                android:hint="@string/boardMain"
+                android:importantForAutofill="no" />
+
+            <!-- 사진 -->
+            <TextView
+                android:id="@+id/pictureBtn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="10dp"
+                android:paddingTop="20dp"
+                android:layout_marginVertical="5dp"
+                android:gravity="center"
+                android:background="@color/white"
+                android:text="@string/picture"
+                android:textSize="20sp"
+                app:drawableBottomCompat="@drawable/camera112" />
+
+            <!-- 글쓰기 버튼 -->
+            <Button
+                android:id="@+id/writeBtn"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/button_main"
+                android:text="@string/write"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

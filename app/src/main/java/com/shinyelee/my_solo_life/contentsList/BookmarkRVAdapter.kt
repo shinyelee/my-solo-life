@@ -2,7 +2,6 @@ package com.shinyelee.my_solo_life.contentsList
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,10 +26,6 @@ class BookmarkRVAdapter(
 
         // 레이아웃 인플레이터 -> 리사이클러뷰에서 뷰홀더 만들 때 반복적으로 사용
         val v = LayoutInflater.from(parent.context).inflate(R.layout.contents_rv_item, parent, false)
-
-        // 로그 찍어봄
-//        Log.d("BookmarkRVAdapter", keyList.toString())
-//        Log.d("BookmarkRVAdapter", bookmarkIdList.toString())
 
         // 아직 데이터는 들어가있지 않은 껍데기
         return Viewholder(v)

@@ -37,4 +37,10 @@
     <string name="etc">기타</string>
     <string name="post">게시글</string>
 
+    <!-- 게시판 -->
+    <string name="write">글쓰기</string>
+    <string name="boardTitle">제목</string>
+    <string name="boardMain">내용</string>
+    <string name="picture">사진 첨부</string>
+
 </resources>

@@ -8,14 +8,15 @@
     android:layout_height="match_parent"
     tools:context=".fragments.BoardFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/board"
-        android:textSize="60sp"
+    <!-- 작성 버튼 -->
+    <ImageView
+        android:id="@+id/writeBtn"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="20dp"
+        android:src="@drawable/plus112"
         app:layout_constraintBottom_toTopOf="@+id/navBar"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <!-- 내비게이션 바 -->
     <LinearLayout
