@@ -12,16 +12,20 @@ class FBRef {
         // 파이어베이스
         private val database = Firebase.database
 
-        // 카테고리별 블로그 컨텐츠 불러오는 용도
+        // .getReference() -> 데이터베이스의 루트 폴더 주소 값을 반환
+
+        // 블로그 카테고리
         val androidStudio = database.getReference("android_studio")
         val kotlinSyntax = database.getReference("kotlin_syntax")
         val errorWarning = database.getReference("error_warning")
         val vcsGithub = database.getReference("vcs_github")
         val webInternet = database.getReference("web_internet")
 
-        // .getReference() -> 데이터베이스의 루트 폴더 주소 값을 반환
-        // bookmarkRef는 파이어베이스 내 bookmark_list 노드
+        // 북마크 목록
         val bookmarkRef = database.getReference("bookmark_list")
+
+        // 게시글
+        val boardRef = database.getReference("board")
 
     }
 

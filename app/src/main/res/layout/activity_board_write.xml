@@ -38,6 +38,7 @@
 
             <!-- 제목 -->
             <EditText
+                android:id="@+id/titleArea"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -49,6 +50,7 @@
 
             <!-- 내용 -->
             <EditText
+                android:id="@+id/mainArea"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_marginVertical="5dp"
@@ -60,7 +62,7 @@
 
             <!-- 사진 -->
             <TextView
-                android:id="@+id/pictureBtn"
+                android:id="@+id/pictureArea"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingStart="10dp"
@@ -69,7 +71,7 @@
                 android:gravity="center"
                 android:background="@color/white"
                 android:text="@string/picture"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 app:drawableBottomCompat="@drawable/camera112" />
 
             <!-- 글쓰기 버튼 -->

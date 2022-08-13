@@ -32,4 +32,13 @@ class ContentsShowActivity : AppCompatActivity() {
 
     }
 
+    // 액티비티 파괴시
+    override fun onDestroy() {
+
+        // 바인딩 클래스 인스턴스 참조를 정리 -> 메모리 효율이 좋아짐
+        vBinding = null
+        super.onDestroy()
+
+    }
+
 }

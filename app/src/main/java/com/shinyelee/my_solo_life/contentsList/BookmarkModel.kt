@@ -4,6 +4,6 @@ package com.shinyelee.my_solo_life.contentsList
 data class BookmarkModel (
 
     // boolean 값이 true -> 북마크 된 컨텐츠
-   val bookmarkOn : Boolean? = null
+    val bookmarkOn : Boolean? = null
 
 )

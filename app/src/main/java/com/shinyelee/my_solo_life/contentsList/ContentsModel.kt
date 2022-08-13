@@ -1,7 +1,7 @@
 package com.shinyelee.my_solo_life.contentsList
 
 // 블로그 컨텐츠에 대한 정보를 데이터 모델 형태로 묶음
-class ContentsModel (
+data class ContentsModel (
 
     // 블로그 컨텐츠의 제목
     var title : String = "",
