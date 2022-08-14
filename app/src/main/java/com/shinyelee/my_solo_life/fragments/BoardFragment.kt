@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ListView
 import androidx.navigation.findNavController
 import com.shinyelee.my_solo_life.R
+import com.shinyelee.my_solo_life.board.BoardLVAdapter
+import com.shinyelee.my_solo_life.board.BoardModel
 import com.shinyelee.my_solo_life.board.BoardWriteActivity
 import com.shinyelee.my_solo_life.databinding.FragmentBoardBinding
 
@@ -41,6 +44,19 @@ class BoardFragment : Fragment() {
             startActivity(intent)
 
         }
+
+        // 게시글(=제목+본문+uid+시간) 목록
+        val boardList = mutableListOf<BoardModel>()
+
+        // 게시글 목록에 테스트 데이터 넣기
+        boardList.add(BoardModel("test title", "test main", "test user", "00-00-00 00:00"))
+
+        // 리스트뷰 어댑터 연결(게시글 목록)
+        val lvAdapter = BoardLVAdapter(boardList)
+
+        // 리스트뷰 어댑터 연결
+        val lv : ListView = binding.lv
+        lv.adapter = lvAdapter
 
         // 홈 버튼 클릭 -> 홈 프래그먼트로 이동
         binding.homeBtn.setOnClickListener {
