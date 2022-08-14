@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.TextView
 import com.shinyelee.my_solo_life.R
 
 // boardList -> 아이템(=게시글=제목+본문+uid+시간) 목록
@@ -30,7 +31,19 @@ class BoardLVAdapter(val boardList : MutableList<BoardModel>) : BaseAdapter() {
 
         }
 
+        // 각 아이템뷰의 제목/본문/시간 영역에
+        val title = view?.findViewById<TextView>(R.id.titleArea)
+        val main = view?.findViewById<TextView>(R.id.mainArea)
+        val time = view?.findViewById<TextView>(R.id.timeArea)
+
+        // 제목, 본문, 시간 넣음
+        title!!.text = boardList[position].title
+        main!!.text = boardList[position].main
+        time!!.text = boardList[position].time
+
+        // 뷰 반환
         return view!!
+
     }
 
 }

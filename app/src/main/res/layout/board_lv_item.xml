@@ -11,11 +11,22 @@
 
     <!-- 제목 -->
     <TextView
+        android:id="@+id/titleArea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/boardTitle"
         android:textSize="20sp"
         android:textColor="@color/black" />
+
+    <!-- 본문 -->
+    <TextView
+        android:id="@+id/mainArea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/boardTitle"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:visibility="gone" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -24,7 +35,7 @@
 
         <!-- 시간 -->
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/timeArea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/boardTime"
