@@ -87,11 +87,27 @@ class BookmarkRVAdapter(
             // 하트 클릭하면
             bookmarkArea.setOnClickListener {
 
-                // -> 북마크 삭제
-                FBRef.bookmarkRef
-                    .child(FBAuth.getUid())
-                    .child(key)
-                    .removeValue()
+                // bookmark_list 하위에 사용자 uid별로 나눠 게시글의 키 값을 저장
+
+                // 이미 북마크 된 상태
+                if(bookmarkIdList.contains(key)) {
+
+                    // -> 북마크 삭제
+                    FBRef.bookmarkRef
+                        .child(FBAuth.getUid())
+                        .child(key)
+                        .removeValue()
+
+                // 아직 북마크 안 된 상태
+                } else {
+
+                    // -> 북마크 저장
+                    FBRef.bookmarkRef
+                        .child(FBAuth.getUid())
+                        .child(key)
+                        .setValue(BookmarkModel(true))
+
+                }
 
             }
 
