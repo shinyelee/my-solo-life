@@ -16,6 +16,7 @@ import com.google.firebase.database.ValueEventListener
 import com.shinyelee.my_solo_life.R
 import com.shinyelee.my_solo_life.board.BoardLVAdapter
 import com.shinyelee.my_solo_life.board.BoardModel
+import com.shinyelee.my_solo_life.board.BoardReadActivity
 import com.shinyelee.my_solo_life.board.BoardWriteActivity
 import com.shinyelee.my_solo_life.databinding.FragmentBoardBinding
 import com.shinyelee.my_solo_life.utils.FBRef
@@ -49,18 +50,28 @@ class BoardFragment : Fragment() {
         // 뷰바인딩
         vBinding = FragmentBoardBinding.inflate(inflater, container, false)
 
-        // 게시글(=제목+본문+uid+시간) 목록
-//        val boardList = mutableListOf<BoardModel>()
-
-        // 게시글 목록에 테스트 데이터 넣기
-//        boardList.add(BoardModel("title2", "main2", "uid2", "00-00-00 02:00"))
-
         // 리스트뷰 어댑터 연결(게시글 목록)
         lvAdapter = BoardLVAdapter(boardList)
 
         // 리스트뷰 어댑터 연결
         val lv : ListView = binding.lv
         lv.adapter = lvAdapter
+
+        // 파이어베이스의 게시글 아이디를 기반으로 게시글 데이터(=제목+본문+uid+시간) 받아옴
+        binding.lv.setOnItemClickListener { parent, view, position, id ->
+
+            // 명시적 인텐트 -> 다른 액티비티 호출
+            val intent = Intent(context, BoardReadActivity::class.java)
+
+            // 글읽기 액티비티로 게시글 데이터(제목, 본문, 시간) 전달
+            intent.putExtra("title", boardList[position].title)
+            intent.putExtra("main", boardList[position].main)
+            intent.putExtra("time", boardList[position].time)
+
+            // 글읽기 액티비티 시작
+            startActivity(intent)
+
+        }
 
         // 글쓰기 버튼 클릭 -> 작성 액티비티로 이동
         binding.writeBtn.setOnClickListener {
@@ -111,6 +122,8 @@ class BoardFragment : Fragment() {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
+                // 게시글 목록 비움
+                // -> 저장/삭제 마다 데이터 누적돼 게시글 중복으로 저장되는 것 방지
                 boardList.clear()
 
                 // 데이터 스냅샷 내 데이터모델 형식으로 저장된

@@ -16,6 +16,10 @@
         android:theme="@style/Theme.Mysololife">
 
         <activity
+            android:name=".board.BoardReadActivity"
+            android:exported="true" />
+
+        <activity
             android:name=".board.BoardWriteActivity"
             android:exported="true" />
 
