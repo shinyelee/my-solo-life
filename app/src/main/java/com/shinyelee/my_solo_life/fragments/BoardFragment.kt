@@ -65,8 +65,8 @@ class BoardFragment : Fragment() {
 
             // 글읽기 액티비티로 게시글 데이터(제목, 본문, 시간) 전달
             intent.putExtra("title", boardList[position].title)
-            intent.putExtra("main", boardList[position].main)
             intent.putExtra("time", boardList[position].time)
+            intent.putExtra("main", boardList[position].main)
 
             // 글읽기 액티비티 시작
             startActivity(intent)

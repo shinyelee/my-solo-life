@@ -39,6 +39,7 @@
 
     <!-- 게시판 -->
     <string name="write">글쓰기</string>
+    <string name="read">보기</string>
     <string name="boardTitle">제목</string>
     <string name="boardMain">내용</string>
     <string name="boardCount">조회수</string>
