@@ -9,67 +9,61 @@
     android:orientation="vertical"
     tools:context=".board.BoardReadActivity">
 
-    <!-- 제목 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:background="@color/main"
-        android:orientation="horizontal">
+        android:background="@drawable/underline"
+        android:orientation="vertical">
 
+        <!-- 제목 -->
         <TextView
             android:id="@+id/titleArea"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@color/main"
             android:text="@string/boardTitle"
             android:textSize="20sp"
             android:textColor="@color/white" />
 
-    </LinearLayout>
-
-    <!--시간 -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:background="@drawable/box2">
-
+        <!-- 시간 -->
         <TextView
             android:id="@+id/timeArea"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:gravity="end"
             android:text="@string/boardTime"
             android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/boardCount"-->
-<!--            android:textSize="16sp"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent" />-->
+    </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!-- 내용 -->
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/box2">
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@drawable/box1"
+        android:orientation="vertical">
 
+        <!-- 본문 -->
         <TextView
             android:id="@+id/mainArea"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp"
             android:text="@string/boardMain"
             android:textSize="20sp"
             android:textColor="@color/black" />
 
-    </ScrollView>
+        <!-- 이미지 -->
+        <ImageView
+            android:id="@+id/imageArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/picture" />
+
+    </LinearLayout>
 
 </LinearLayout>

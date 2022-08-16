@@ -66,7 +66,7 @@ class BoardWriteActivity : AppCompatActivity() {
 
         }
 
-        // 카메라 아이콘
+        // 카메라 아이콘 -> 갤러리 실행
         binding.imageArea.setOnClickListener {
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(gallery, 100)

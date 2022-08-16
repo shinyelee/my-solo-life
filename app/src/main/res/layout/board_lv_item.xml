@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="10dp"
-    android:background="@drawable/box2"
+    android:background="@drawable/underline"
     android:orientation="vertical">
 
     <!-- 제목 -->

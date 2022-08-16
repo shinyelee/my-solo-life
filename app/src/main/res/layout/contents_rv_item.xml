@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:padding="10dp"
-            android:background="@drawable/box"
+            android:background="@drawable/box2"
             android:contentDescription="@string/post"
             android:src="@drawable/blog56" />
 
