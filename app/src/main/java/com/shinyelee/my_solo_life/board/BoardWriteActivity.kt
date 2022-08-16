@@ -40,18 +40,23 @@ class BoardWriteActivity : AppCompatActivity() {
         // 글쓰기 버튼을 클릭하면 작성한 글이 등록됨
         binding.writeBtn.setOnClickListener {
 
-            // 제목, 본문, uid, 시간
+            // 게시글의 데이터(제목, 본문, uid, 시간)
             val title = binding.titleArea.text.toString()
             val main = binding.mainArea.text.toString()
             val uid = FBAuth.getUid()
             val time = FBAuth.getTime()
 
-            // 게시글 정보(제목, 본문, uid, 시간) 넣음
+            // 키 값 기반으로 데이터를 받아오기 위해 키 값 선생성 후
+            val key = FBRef.boardRef.push().key.toString()
+
+            // 키 값 하위에 데이터 넣음
             FBRef.boardRef
-                .push()
+                .child(key)
                 .setValue(BoardModel(title, main, uid, time))
 
-            imageUpload()
+            // 이미지 파일명을 아무렇게나 설정하면 해당 게시글과 매칭하기 어려움
+            // -> 키 값과 똑같이 설정하면 해결
+            imageUpload("$key.png")
 
             // 등록 확인 메시지 띄움
             Toast.makeText(this, "게시글이 등록되었습니다", Toast.LENGTH_SHORT).show()
@@ -70,14 +75,17 @@ class BoardWriteActivity : AppCompatActivity() {
     }
 
     // 게시글에 이미지 첨부
-    private fun imageUpload() {
+    private fun imageUpload(key: String) {
 
         // Cloud Storage에 파일을 업로드하려면
         val storage = Firebase.storage
 
         // -> 우선 파일 이름을 포함하여 파일의 전체 경로를 가리키는 참조를 만듦
         val storageRef = storage.reference
-        val testRef = storageRef.child("test.jpg")
+
+        // 임의의 게시글 하나와 그 게시글 내 이미지 하나를 쉽게 매칭하려면
+        // -> DB 내 게시글 키 값과 첨부한 이미지 이름이 똑같으면 됨
+        val testRef = storageRef.child(key)
 
         // 적절한 참조를 만들었으면
         binding.imageArea.isDrawingCacheEnabled = true
