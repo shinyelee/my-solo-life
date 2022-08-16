@@ -1,13 +1,19 @@
 package com.shinyelee.my_solo_life.board
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.Toast
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.shinyelee.my_solo_life.databinding.ActivityBoardWriteBinding
 import com.shinyelee.my_solo_life.utils.FBAuth
 import com.shinyelee.my_solo_life.utils.FBRef
+import java.io.ByteArrayOutputStream
 
 class BoardWriteActivity : AppCompatActivity() {
 
@@ -16,6 +22,8 @@ class BoardWriteActivity : AppCompatActivity() {
 
     // 매번 null 확인 귀찮음 -> 바인딩 변수 재선언
     private val binding get() = vBinding!!
+
+    private val TAG = BoardWriteActivity::class.java.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -43,6 +51,8 @@ class BoardWriteActivity : AppCompatActivity() {
                 .push()
                 .setValue(BoardModel(title, main, uid, time))
 
+            imageUpload()
+
             // 등록 확인 메시지 띄움
             Toast.makeText(this, "게시글이 등록되었습니다", Toast.LENGTH_SHORT).show()
 
@@ -59,6 +69,35 @@ class BoardWriteActivity : AppCompatActivity() {
 
     }
 
+    // 게시글에 이미지 첨부
+    private fun imageUpload() {
+
+        // Cloud Storage에 파일을 업로드하려면
+        val storage = Firebase.storage
+
+        // -> 우선 파일 이름을 포함하여 파일의 전체 경로를 가리키는 참조를 만듦
+        val storageRef = storage.reference
+        val testRef = storageRef.child("test.jpg")
+
+        // 적절한 참조를 만들었으면
+        binding.imageArea.isDrawingCacheEnabled = true
+        binding.imageArea.buildDrawingCache()
+        val bitmap = (binding.imageArea.drawable as BitmapDrawable).bitmap
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val data = baos.toByteArray()
+
+        // -> put어쩌고() 메서드를 호출하여 Cloud Storage에 파일을 업로드
+        var uploadTask = testRef.putBytes(data)
+        uploadTask.addOnFailureListener {
+            Log.d(TAG, "imageUpload() failed")
+        }.addOnSuccessListener { taskSnapshot ->
+            // 성공
+        }
+
+    }
+
+    // startActivityForResult와 세트트
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == RESULT_OK && requestCode == 100) {
