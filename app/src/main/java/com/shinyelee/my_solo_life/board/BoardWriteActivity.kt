@@ -1,7 +1,9 @@
 package com.shinyelee.my_solo_life.board
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.widget.Toast
 import com.shinyelee.my_solo_life.databinding.ActivityBoardWriteBinding
 import com.shinyelee.my_solo_life.utils.FBAuth
@@ -27,7 +29,7 @@ class BoardWriteActivity : AppCompatActivity() {
         // -> 생성된 뷰를 액티비티에 표시
         setContentView(binding.root)
 
-        // 글쓰기 버튼 클릭하면 작성한 글 등록
+        // 글쓰기 버튼을 클릭하면 작성한 글이 등록됨
         binding.writeBtn.setOnClickListener {
 
             // 제목, 본문, uid, 시간
@@ -49,6 +51,19 @@ class BoardWriteActivity : AppCompatActivity() {
 
         }
 
+        // 카메라 아이콘
+        binding.imageArea.setOnClickListener {
+            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(gallery, 100)
+        }
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == RESULT_OK && requestCode == 100) {
+            binding.imageArea.setImageURI(data?.data)
+        }
     }
 
     // 액티비티 파괴시

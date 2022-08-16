@@ -62,19 +62,23 @@
                 android:textSize="20sp"
                 android:importantForAutofill="no" />
 
-            <!-- 사진 -->
-            <TextView
-                android:id="@+id/pictureArea"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingStart="10dp"
-                android:paddingTop="20dp"
+                android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
-                android:gravity="center"
-                android:background="@color/white"
-                android:text="@string/picture"
-                android:textSize="18sp"
-                app:drawableBottomCompat="@drawable/camera112" />
+                android:background="@color/white">
+
+                <!-- 사진 -->
+                <ImageView
+                    android:id="@+id/imageArea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:paddingTop="20dp"
+                    android:contentDescription="@string/picture"
+                    android:src="@drawable/camera112" />
+
+            </LinearLayout>
 
             <!-- 글쓰기 버튼 -->
             <Button
