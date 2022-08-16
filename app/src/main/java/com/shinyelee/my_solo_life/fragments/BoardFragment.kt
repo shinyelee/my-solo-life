@@ -32,6 +32,9 @@ class BoardFragment : Fragment() {
     // 게시글(=제목+본문+uid+시간) 목록
     private val boardList = mutableListOf<BoardModel>()
 
+    // 게시글의 키 목록
+    private val boardKeyList = mutableListOf<String>()
+
     // 리스트뷰 어댑터 선언
     private lateinit var lvAdapter : BoardLVAdapter
 
@@ -63,10 +66,8 @@ class BoardFragment : Fragment() {
             // 명시적 인텐트 -> 다른 액티비티 호출
             val intent = Intent(context, BoardReadActivity::class.java)
 
-            // 글읽기 액티비티로 게시글 데이터(제목, 본문, 시간) 전달
-            intent.putExtra("title", boardList[position].title)
-            intent.putExtra("time", boardList[position].time)
-            intent.putExtra("main", boardList[position].main)
+            // 글읽기 액티비티로 게시글의 키 값 전달
+            intent.putExtra("key", boardKeyList[position])
 
             // 글읽기 액티비티 시작
             startActivity(intent)
@@ -112,7 +113,7 @@ class BoardFragment : Fragment() {
 
     }
 
-    // 모든게시글 정보를 가져옴
+    // 모든 게시글 정보를 가져옴
     private fun getBoardData() {
 
         // 데이터베이스에서 컨텐츠의 세부정보를 검색
@@ -138,7 +139,17 @@ class BoardFragment : Fragment() {
                     // 게시글 목록에 아이템 넣음
                     boardList.add(item!!)
 
+                    // 게시글 키 목록에 문자열 형식으로 변환한 키 넣음
+                    boardKeyList.add(dataModel.key.toString())
+
                 }
+                // getPostData()와 달리 반복문임 -> 아이템'들'
+
+                // 게시글 키 목록을 역순으로 출력
+                boardKeyList.reverse()
+
+                // 게시글 목록도 역순 출력
+                boardList.reverse()
 
                 // 동기화(새로고침) -> 리스트 크기 및 아이템 변화를 어댑터에 알림
                 lvAdapter.notifyDataSetChanged()
