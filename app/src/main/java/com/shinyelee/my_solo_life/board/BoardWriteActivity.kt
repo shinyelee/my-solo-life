@@ -18,10 +18,13 @@ import java.io.ByteArrayOutputStream
 class BoardWriteActivity : AppCompatActivity() {
 
     // (전역변수) 바인딩 객체 선언
-    private var vBinding : ActivityBoardWriteBinding? = null
+    private var vBinding: ActivityBoardWriteBinding? = null
 
     // 매번 null 확인 귀찮음 -> 바인딩 변수 재선언
     private val binding get() = vBinding!!
+
+    // 이미지 업로드 여부
+    private var isImageUpload = false
 
     private val TAG = BoardWriteActivity::class.java.simpleName
 
@@ -54,9 +57,15 @@ class BoardWriteActivity : AppCompatActivity() {
                 .child(key)
                 .setValue(BoardModel(title, main, uid, time))
 
-            // 이미지 파일명을 아무렇게나 설정하면 해당 게시글과 매칭하기 어려움
-            // -> 키 값과 똑같이 설정하면 해결
-            imageUpload("$key.png")
+            // 카메라 아이콘을 클릭했다면 이미지 업로드
+            if (isImageUpload == true) {
+
+                // 이미지 파일명을 아무렇게나 설정하면 해당 게시글과 매칭하기 어려움
+                // -> 키 값과 똑같이 설정하면 해결
+                imageUpload("$key.png")
+
+            }
+            // 카메라 아이콘을 클릭하지 않음 -> 이미지를 업로드하지 않음
 
             // 등록 확인 메시지 띄움
             Toast.makeText(this, "게시글이 등록되었습니다", Toast.LENGTH_SHORT).show()
@@ -66,10 +75,16 @@ class BoardWriteActivity : AppCompatActivity() {
 
         }
 
-        // 카메라 아이콘 -> 갤러리 실행
+        // 카메라 아이콘
         binding.imageArea.setOnClickListener {
+
+            // -> 갤러리 실행
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(gallery, 100)
+
+            // 이미지 업로드 여부
+            isImageUpload = true
+
         }
 
     }
@@ -105,7 +120,7 @@ class BoardWriteActivity : AppCompatActivity() {
 
     }
 
-    // startActivityForResult와 세트트
+    // startActivityForResult와 세트
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == RESULT_OK && requestCode == 100) {

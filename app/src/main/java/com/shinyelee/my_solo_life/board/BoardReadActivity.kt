@@ -4,9 +4,12 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.bumptech.glide.Glide
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import com.shinyelee.my_solo_life.databinding.ActivityBoardReadBinding
 import com.shinyelee.my_solo_life.utils.FBRef
 
@@ -37,6 +40,27 @@ class BoardReadActivity : AppCompatActivity() {
 
         // 키 값을 바탕으로 게시글 하나의 정보를 가져옴
         getPostData(key.toString())
+        getImageData(key.toString())
+
+    }
+
+    // 게시글에 첨부된 이미지 정보를 가져옴
+    private fun getImageData(key: String) {
+
+        // 이미지 파일 경로
+        val storageReference = Firebase.storage.reference.child("$key.png")
+
+        // 이미지 넣을 곳
+        val imgDown = binding.imageArea
+
+        // 글라이드로 이미지 다운로드
+        storageReference.downloadUrl.addOnCompleteListener( { task ->
+            if(task.isSuccessful) {
+                Glide.with(this)
+                    .load(task.result)
+                    .into(imgDown)
+            }
+        })
 
     }
 
