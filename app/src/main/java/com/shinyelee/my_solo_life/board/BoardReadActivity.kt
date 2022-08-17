@@ -35,6 +35,10 @@ class BoardReadActivity : AppCompatActivity() {
         // -> 생성된 뷰를 액티비티에 표시
         setContentView(binding.root)
 
+        binding.boardSettingBtn.setOnClickListener {
+
+        }
+
         // 글읽기 프래그먼트에서 게시글의 키 값을 받아옴
         val key = intent.getStringExtra("key")
 

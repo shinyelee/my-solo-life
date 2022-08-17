@@ -9,43 +9,89 @@
     android:orientation="vertical"
     tools:context=".board.BoardReadActivity">
 
-    <LinearLayout
+    <!-- 앱바 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/appbar"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- 제목 -->
+        <TextView
+            android:id="@+id/appBarTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/board"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 글 설정 버튼 -->
+        <ImageView
+            android:id="@+id/boardSettingBtn"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:contentDescription="@string/setting"
+            android:src="@drawable/eraser56"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 제목 및 시간 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/titleNTimeArea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical">
+        android:background="@color/main"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <!-- 제목 -->
         <TextView
             android:id="@+id/titleArea"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:background="@color/main"
             android:text="@string/boardTitle"
+            android:textColor="@color/white"
             android:textSize="20sp"
-            android:textColor="@color/white" />
-
-        <!-- 시간 -->
-        <TextView
-            android:id="@+id/timeArea"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:gravity="end"
-            android:text="@string/boardTime"
-            android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+        <!-- 시간 -->
+        <TextView
+            android:id="@+id/timeArea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:gravity="end"
+            android:text="@string/boardTime"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 본문 및 이미지 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:background="@drawable/box1"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <!-- 본문 -->
