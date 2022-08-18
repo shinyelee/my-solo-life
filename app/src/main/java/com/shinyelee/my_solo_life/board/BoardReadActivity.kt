@@ -26,6 +26,10 @@ class BoardReadActivity : AppCompatActivity() {
     // 매번 null 확인 귀찮음 -> 바인딩 변수 재선언
     private val binding get() = vBinding!!
 
+    // 게시글 키
+    private lateinit var key: String
+
+    // 태그
     private val TAG = BoardReadActivity::class.java.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,27 +47,31 @@ class BoardReadActivity : AppCompatActivity() {
         // 게시글 설정 버튼을 클릭하면
         binding.boardSettingBtn.setOnClickListener {
 
-            // 다이얼로그 띄움
+            // 대화상자 띄움
             showDialog()
 
         }
 
         // 글읽기 프래그먼트에서 게시글의 키 값을 받아옴
-        val key = intent.getStringExtra("key")
+        key = intent.getStringExtra("key").toString()
 
         // 키 값을 바탕으로 게시글 하나의 정보를 가져옴
-        getPostData(key.toString())
-        getImageData(key.toString())
+        getPostData(key)
+        getImageData(key)
 
     }
 
-    // 내가 쓴 글 수정/삭제 다이얼로그
+    // 내가 쓴 글 수정/삭제 대화상자
     private fun showDialog() {
 
+        // custom_dialog를 뷰 객체로 반환
         val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog, null)
+
+        // 대화상자 생성
         val mBuilder = AlertDialog.Builder(this)
             .setView(mDialogView)
 
+        // 대화상자 띄움
         val alertDialog = mBuilder.show()
 
         // 수정 버튼
@@ -73,7 +81,16 @@ class BoardReadActivity : AppCompatActivity() {
 
         // 삭제 버튼
         alertDialog.findViewById<ConstraintLayout>(R.id.delete)?.setOnClickListener {
-            Toast.makeText(this, "삭제", Toast.LENGTH_SHORT).show()
+
+            // -> 게시글 삭제
+            FBRef.boardRef.child(key).removeValue()
+
+            // 글읽기 액티비티 종료
+            finish()
+
+            // 삭제 확인 메시지
+            Toast.makeText(this, "게시글이 삭제되었습니다", Toast.LENGTH_SHORT).show()
+
         }
 
     }
@@ -108,13 +125,24 @@ class BoardReadActivity : AppCompatActivity() {
             @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-                // 데이터 스냅샷 내 데이터모델 형식으로 저장된 아이템(=게시글)
-                val item = dataSnapshot.getValue(BoardModel::class.java)
+                // 예외 처리
+                try {
 
-                // 제목, 시간, 본문 해당 영역에 넣음
-                binding.titleArea.text = item!!.title
-                binding.timeArea.text = item.time
-                binding.mainArea.text = item.main
+                    // 데이터 스냅샷 내 데이터모델 형식으로 저장된 아이템(=게시글)
+                    val item = dataSnapshot.getValue(BoardModel::class.java)
+
+                    // 제목, 시간, 본문 해당 영역에 넣음
+                    binding.titleArea.text = item!!.title
+                    binding.timeArea.text = item.time
+                    binding.mainArea.text = item.main
+
+                // 오류 나면
+                } catch (e: Exception) {
+
+                    // 로그
+                    Log.d(TAG, "삭제 완료")
+
+                }
 
             }
             // getBoardData()와 달리 반복문이 아님 -> '단일' 아이템

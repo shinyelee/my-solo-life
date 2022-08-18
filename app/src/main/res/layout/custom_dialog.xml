@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <!-- 내가 쓴 글 -->
@@ -25,7 +26,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:background="@drawable/underline"
         android:orientation="horizontal">
 
         <!-- 아이콘 -->
@@ -34,6 +34,7 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:src="@drawable/pencil56"
+            android:contentDescription="@string/modify"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -59,7 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:background="@drawable/underline"
+        android:background="@drawable/box1"
         android:orientation="horizontal">
 
         <!-- 아이콘 -->
@@ -68,6 +69,7 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:src="@drawable/eraser56"
+            android:contentDescription="@string/delete"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
