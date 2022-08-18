@@ -4,12 +4,17 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.bumptech.glide.Glide
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import com.shinyelee.my_solo_life.R
 import com.shinyelee.my_solo_life.databinding.ActivityBoardReadBinding
 import com.shinyelee.my_solo_life.utils.FBRef
 
@@ -35,7 +40,11 @@ class BoardReadActivity : AppCompatActivity() {
         // -> 생성된 뷰를 액티비티에 표시
         setContentView(binding.root)
 
+        // 게시글 설정 버튼을 클릭하면
         binding.boardSettingBtn.setOnClickListener {
+
+            // 다이얼로그 띄움
+            showDialog()
 
         }
 
@@ -45,6 +54,27 @@ class BoardReadActivity : AppCompatActivity() {
         // 키 값을 바탕으로 게시글 하나의 정보를 가져옴
         getPostData(key.toString())
         getImageData(key.toString())
+
+    }
+
+    // 내가 쓴 글 수정/삭제 다이얼로그
+    private fun showDialog() {
+
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog, null)
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(mDialogView)
+
+        val alertDialog = mBuilder.show()
+
+        // 수정 버튼
+        alertDialog.findViewById<ConstraintLayout>(R.id.modify)?.setOnClickListener {
+            Toast.makeText(this, "수정", Toast.LENGTH_SHORT).show()
+        }
+
+        // 삭제 버튼
+        alertDialog.findViewById<ConstraintLayout>(R.id.delete)?.setOnClickListener {
+            Toast.makeText(this, "삭제", Toast.LENGTH_SHORT).show()
+        }
 
     }
 

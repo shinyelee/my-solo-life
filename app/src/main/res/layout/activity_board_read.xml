@@ -39,7 +39,7 @@
             android:layout_height="40dp"
             android:layout_margin="10dp"
             android:contentDescription="@string/setting"
-            android:src="@drawable/eraser56"
+            android:src="@drawable/ellipsis56"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

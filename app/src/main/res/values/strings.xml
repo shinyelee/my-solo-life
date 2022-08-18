@@ -42,8 +42,11 @@
     <string name="read">보기</string>
     <string name="boardTitle">제목</string>
     <string name="boardMain">내용</string>
-    <string name="boardCount">조회수</string>
     <string name="boardTime">시간</string>
     <string name="picture">사진 첨부</string>
+    <!-- 게시판 수정/삭제 -->
+    <string name="myPost">내가 쓴 글</string>
+    <string name="modify">수정하기</string>
+    <string name="delete">삭제하기</string>
 
 </resources>
