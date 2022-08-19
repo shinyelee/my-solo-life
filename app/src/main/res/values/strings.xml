@@ -46,7 +46,7 @@
     <string name="picture">사진 첨부</string>
     <!-- 게시판 수정/삭제 -->
     <string name="myPost">내가 쓴 글</string>
-    <string name="modify">수정하기</string>
+    <string name="edit">수정하기</string>
     <string name="delete">삭제하기</string>
 
 </resources>

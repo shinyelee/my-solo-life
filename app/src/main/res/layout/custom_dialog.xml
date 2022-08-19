@@ -22,7 +22,7 @@
 
     <!-- 수정 -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/modify"
+        android:id="@+id/edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
@@ -30,26 +30,26 @@
 
         <!-- 아이콘 -->
         <ImageView
-            android:id="@+id/modifyIcon"
+            android:id="@+id/editIcon"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:src="@drawable/pencil56"
-            android:contentDescription="@string/modify"
+            android:contentDescription="@string/edit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- 텍스트 -->
         <TextView
-            android:id="@+id/modifyText"
+            android:id="@+id/editText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="@string/modify"
+            android:text="@string/edit"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/modifyIcon"
+            app:layout_constraintStart_toEndOf="@+id/editIcon"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
