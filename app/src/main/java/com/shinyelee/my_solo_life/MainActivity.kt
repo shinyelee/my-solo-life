@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.firebase.auth.FirebaseAuth
@@ -63,15 +64,18 @@ class MainActivity : AppCompatActivity() {
         val alertDialog = builder.show()
 
         // 내가 쓴 글 버튼
-        alertDialog.findViewById<ConstraintLayout>(R.id.myPost)?.setOnClickListener {
+//        alertDialog.findViewById<ConstraintLayout>(R.id.myPost)?.setOnClickListener {
             // 내가 쓴 글 모아보는 페이지 만들 예정
-        }
+//        }
 
         // 로그아웃 버튼
         alertDialog.findViewById<ConstraintLayout>(R.id.logout)?.setOnClickListener {
 
             // 로그아웃 실행
             Firebase.auth.signOut()
+
+            // 로그아웃 확인 메시지지
+            Toast.makeText(this, "로그아웃 되었습니다", Toast.LENGTH_SHORT).show()
 
             // 명시적 인텐트 -> 다른 액티비티 호출
             val intent = Intent(this, IntroActivity::class.java)

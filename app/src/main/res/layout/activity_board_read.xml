@@ -9,45 +9,6 @@
     android:orientation="vertical"
     tools:context=".board.BoardReadActivity">
 
-    <!-- 앱바 -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/appBar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@drawable/appbar"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <!-- 제목 -->
-        <TextView
-            android:id="@+id/appBarTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/board"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!-- 글 설정 버튼 -->
-        <!-- 내가 쓴 글인 경우만 버튼 보이게 처리 -->
-        <ImageView
-            android:id="@+id/boardSettingBtn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="10dp"
-            android:contentDescription="@string/setting"
-            android:src="@drawable/ellipsis56"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -58,9 +19,9 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- 제목 및 시간 -->
+            <!-- 제목 및 버튼 -->
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/titleNTimeArea"
+                android:id="@+id/topArea"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/main"
@@ -82,28 +43,39 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <!-- 시간 -->
-                <TextView
-                    android:id="@+id/timeArea"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:gravity="end"
-                    android:text="@string/boardTime"
-                    android:textColor="@color/white"
-                    android:textSize="15sp"
+                <!-- 글 설정 버튼 -->
+                <!-- 내가 쓴 글인 경우만 버튼 보이게 처리 -->
+                <ImageView
+                    android:id="@+id/boardSettingBtn"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="10dp"
+                    android:contentDescription="@string/setting"
+                    android:src="@drawable/setting56"
+                    android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <!-- 시간 -->
+            <TextView
+                android:id="@id/timeArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:background="@color/white"
+                android:gravity="end"
+                android:text="@string/boardTime"
+                android:textSize="15sp" />
+
             <!-- 본문 및 이미지 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:background="@color/white"
+                android:background="@drawable/box1"
                 android:orientation="vertical">
 
                 <!-- 본문 -->

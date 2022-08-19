@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.bumptech.glide.Glide
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -70,9 +69,9 @@ class BoardEditActivity : AppCompatActivity() {
             // 제목 및 본문은 직접 수정한 내용으로,
             binding.titleArea.text.toString(),
             binding.mainArea.text.toString(),
-//            FBAuth.getUid(),
 
-            // 시간은 수정 시점으로 자동 설정됨
+            // uid와 시간은 자동 설정됨
+            FBAuth.getUid(),
             FBAuth.getTime())
 
         )
