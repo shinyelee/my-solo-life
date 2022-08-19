@@ -19,10 +19,10 @@
 
         <!-- 제목 -->
         <TextView
-            android:id="@+id/myPost"
+            android:id="@+id/setting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/myPost"
+            android:text="@string/setting"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -37,16 +37,16 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:contentDescription="@string/edit"
-            android:src="@drawable/plus112"
+            android:src="@drawable/close56"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- 수정 -->
+    <!-- 내가 쓴 글 -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/edit"
+        android:id="@+id/myPost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
@@ -55,61 +55,60 @@
 
         <!-- 아이콘 -->
         <ImageView
-            android:id="@+id/editIcon"
+            android:id="@+id/myPostIcon"
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:src="@drawable/pencil56"
-            android:contentDescription="@string/edit"
+            android:contentDescription="@string/myPost"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- 텍스트 -->
         <TextView
-            android:id="@+id/editText"
+            android:id="@+id/myPostText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="@string/edit"
+            android:text="@string/myPost"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/editIcon"
+            app:layout_constraintStart_toEndOf="@+id/myPostIcon"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- 삭제 -->
+    <!-- 로그아웃 -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/delete"
+        android:id="@+id/logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:background="@drawable/box1"
         android:orientation="horizontal">
 
         <!-- 아이콘 -->
         <ImageView
-            android:id="@+id/deleteIcon"
+            android:id="@+id/logoutIcon"
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:src="@drawable/eraser56"
-            android:contentDescription="@string/delete"
+            android:src="@drawable/unlock56"
+            android:contentDescription="@string/logout"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- 텍스트 -->
         <TextView
-            android:id="@+id/deleteText"
+            android:id="@+id/logoutText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="@string/delete"
+            android:text="@string/logout"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/deleteIcon"
+            app:layout_constraintStart_toEndOf="@+id/logoutIcon"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

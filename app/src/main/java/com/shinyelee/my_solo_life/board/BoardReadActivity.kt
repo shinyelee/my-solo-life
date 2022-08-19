@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -47,9 +48,12 @@ class BoardReadActivity : AppCompatActivity() {
         // -> 생성된 뷰를 액티비티에 표시
         setContentView(binding.root)
 
-        // 게시글 설정 버튼 -> 대화상자 뜸
+        // 게시글 설정 버튼
         binding.boardSettingBtn.setOnClickListener {
-            showDialog()
+
+            // -> 대화상자 뜸
+            postDialog()
+
         }
 
         // 글읽기 프래그먼트에서 게시글의 키 값을 받아옴
@@ -62,10 +66,10 @@ class BoardReadActivity : AppCompatActivity() {
     }
 
     // 내가 쓴 글 수정/삭제 대화상자
-    private fun showDialog() {
+    private fun postDialog() {
 
         // custom_dialog를 뷰 객체로 반환
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog, null)
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.board_dialog, null)
 
         // 대화상자 생성
         val builder = AlertDialog.Builder(this)
@@ -103,7 +107,7 @@ class BoardReadActivity : AppCompatActivity() {
         }
 
         // 대화상자 종료 버튼
-        alertDialog.findViewById<ConstraintLayout>(R.id.close)?.setOnClickListener {
+        alertDialog.findViewById<ImageView>(R.id.close)?.setOnClickListener {
             alertDialog.dismiss()
         }
 
