@@ -8,17 +8,41 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <!-- 내가 쓴 글 -->
-    <TextView
-        android:id="@+id/myPost"
+    <!-- 앱바 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dialogTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
         android:background="@color/main"
-        android:gravity="center"
-        android:text="@string/myPost"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:padding="10dp"
+        android:orientation="horizontal">
+
+        <!-- 제목 -->
+        <TextView
+            android:id="@+id/myPost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/myPost"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <!-- 종료 아이콘 -->
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:contentDescription="@string/edit"
+            android:src="@drawable/plus112"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- 수정 -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,6 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
+        android:background="@drawable/box1"
         android:orientation="horizontal">
 
         <!-- 아이콘 -->

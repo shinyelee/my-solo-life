@@ -65,16 +65,16 @@ class BoardReadActivity : AppCompatActivity() {
     private fun showDialog() {
 
         // custom_dialog를 뷰 객체로 반환
-        val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog, null)
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog, null)
 
         // 대화상자 생성
-        val mBuilder = AlertDialog.Builder(this)
-            .setView(mDialogView)
+        val builder = AlertDialog.Builder(this)
+            .setView(dialogView)
 
         // 대화상자 띄움
-        val alertDialog = mBuilder.show()
+        val alertDialog = builder.show()
 
-        // 수정 버튼
+        // 게시글 수정 버튼
         alertDialog.findViewById<ConstraintLayout>(R.id.edit)?.setOnClickListener {
 
             // 명시적 인텐트 -> 다른 액티비티 호출
@@ -88,7 +88,7 @@ class BoardReadActivity : AppCompatActivity() {
 
         }
 
-        // 삭제 버튼
+        // 게시글 삭제 버튼
         alertDialog.findViewById<ConstraintLayout>(R.id.delete)?.setOnClickListener {
 
             // -> 게시글 삭제
@@ -100,6 +100,11 @@ class BoardReadActivity : AppCompatActivity() {
             // 삭제 확인 메시지
             Toast.makeText(this, "게시글이 삭제되었습니다", Toast.LENGTH_SHORT).show()
 
+        }
+
+        // 대화상자 종료 버튼
+        alertDialog.findViewById<ConstraintLayout>(R.id.close)?.setOnClickListener {
+            alertDialog.dismiss()
         }
 
     }

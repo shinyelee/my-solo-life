@@ -72,7 +72,7 @@ class BoardEditActivity : AppCompatActivity() {
             binding.mainArea.text.toString(),
 //            FBAuth.getUid(),
 
-            // 시간은 자동으로 입력됨
+            // 시간은 수정 시점으로 자동 설정됨
             FBAuth.getTime())
 
         )
