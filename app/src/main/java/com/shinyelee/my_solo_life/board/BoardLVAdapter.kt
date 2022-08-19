@@ -26,12 +26,8 @@ class BoardLVAdapter(val boardList : MutableList<BoardModel>) : BaseAdapter() {
 
         var view = convertView
 
-        if(view == null) {
-
-            // 레이아웃 인플레이터 -> 리사이클러뷰에서 뷰홀더 만들 때 반복적으로 사용
-            view = LayoutInflater.from(parent?.context).inflate(R.layout.board_lv_item, parent, false)
-
-        }
+        // 레이아웃 인플레이터 -> 리사이클러뷰에서 뷰홀더 만들 때 반복적으로 사용
+        view = LayoutInflater.from(parent?.context).inflate(R.layout.board_lv_item, parent, false)
 
         // 각 아이템뷰의 제목/본문/시간 영역에
         val title = view?.findViewById<TextView>(R.id.titleArea)

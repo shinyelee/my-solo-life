@@ -124,13 +124,17 @@ class BoardReadActivity : AppCompatActivity() {
 
         // 글라이드로 이미지 다운로드
         storageReference.downloadUrl.addOnCompleteListener( { task ->
+
+            // 이미지 첨부
             if(task.isSuccessful) {
                 Glide.with(this)
                     .load(task.result)
                     .into(imgDown)
+            // 첨부 이미지 없으면 imageArea 안 보이게 처리
             } else {
-                Log.d(TAG, "Glide 확인")
+                binding.imageArea.isVisible = false
             }
+
         })
 
     }
