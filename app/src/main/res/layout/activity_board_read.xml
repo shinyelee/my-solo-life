@@ -33,6 +33,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <!-- 글 설정 버튼 -->
+        <!-- 내가 쓴 글인 경우만 버튼 보이게 처리 -->
         <ImageView
             android:id="@+id/boardSettingBtn"
             android:layout_width="40dp"
@@ -40,6 +41,7 @@
             android:layout_margin="10dp"
             android:contentDescription="@string/setting"
             android:src="@drawable/ellipsis56"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

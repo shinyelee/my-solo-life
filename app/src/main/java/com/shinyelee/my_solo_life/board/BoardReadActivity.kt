@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -17,6 +18,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.shinyelee.my_solo_life.R
 import com.shinyelee.my_solo_life.databinding.ActivityBoardReadBinding
+import com.shinyelee.my_solo_life.utils.FBAuth
 import com.shinyelee.my_solo_life.utils.FBRef
 
 class BoardReadActivity : AppCompatActivity() {
@@ -144,6 +146,13 @@ class BoardReadActivity : AppCompatActivity() {
                     binding.titleArea.text = item!!.title
                     binding.timeArea.text = item.time
                     binding.mainArea.text = item.main
+
+                    // 게시글 작성자와 현재 사용자의 uid를 비교해
+                    val writerUid = item.uid
+                    val myUid = FBAuth.getUid()
+
+                    // 작성자가 사용자면 수정 버튼 보임
+                    binding.boardSettingBtn.isVisible = writerUid.equals(myUid)
 
                 // 오류 나면
                 } catch (e: Exception) {
