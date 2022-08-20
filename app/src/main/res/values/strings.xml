@@ -48,5 +48,6 @@
     <string name="myPost">내가 쓴 글</string>
     <string name="edit">수정하기</string>
     <string name="delete">삭제하기</string>
+    <string name="comment">댓글</string>
 
 </resources>
