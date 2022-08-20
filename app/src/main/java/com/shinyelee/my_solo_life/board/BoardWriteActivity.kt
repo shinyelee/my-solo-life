@@ -40,7 +40,15 @@ class BoardWriteActivity : AppCompatActivity() {
         // -> 생성된 뷰를 액티비티에 표시
         setContentView(binding.root)
 
-        // 글쓰기 버튼을 클릭하면 작성한 글이 등록됨
+        // 뒤로가기 버튼을 클릭하면
+        binding.backBtn.setOnClickListener {
+
+            // 글쓰기 액티비티 종료
+            finish()
+
+        }
+
+        // 글쓰기 버튼 -> 작성한 글이 등록됨
         binding.writeBtn.setOnClickListener {
 
             // 게시글의 데이터(제목, 본문, uid, 시간)

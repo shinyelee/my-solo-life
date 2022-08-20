@@ -42,6 +42,14 @@ class BoardEditActivity : AppCompatActivity() {
         // -> 생성된 뷰를 액티비티에 표시
         setContentView(binding.root)
 
+        // 뒤로가기 버튼을 클릭하면
+        binding.backBtn.setOnClickListener {
+
+            // 글수정 액티비티 종료
+            finish()
+
+        }
+
         // 글읽기 프래그먼트에서 게시글의 키 값을 받아옴
         key = intent.getStringExtra("key").toString()
 

@@ -48,12 +48,17 @@ class BoardReadActivity : AppCompatActivity() {
         // -> 생성된 뷰를 액티비티에 표시
         setContentView(binding.root)
 
-        // 게시글 설정 버튼
+        // 뒤로가기 버튼을 클릭하면
+        binding.backBtn.setOnClickListener {
+
+            // 글읽기 액티비티 종료
+            finish()
+
+        }
+
+        // 게시글 설정 버튼 -> 대화상자 뜸
         binding.boardSettingBtn.setOnClickListener {
-
-            // -> 대화상자 뜸
             postDialog()
-
         }
 
         // 글읽기 프래그먼트에서 게시글의 키 값을 받아옴
