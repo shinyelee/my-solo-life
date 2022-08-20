@@ -10,12 +10,11 @@
 
     <!-- 앱바 -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/dialogTitle"
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/main"
-        android:padding="10dp"
-        android:orientation="horizontal">
+        android:padding="10dp">
 
         <!-- 제목 -->
         <TextView
@@ -30,13 +29,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <!-- 종료 아이콘 -->
         <ImageView
             android:id="@+id/close"
             android:layout_width="28dp"
             android:layout_height="28dp"
-            android:contentDescription="@string/edit"
+            android:contentDescription="@string/close"
             android:src="@drawable/close56"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,8 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:background="@drawable/box1"
-        android:orientation="horizontal">
+        android:background="@drawable/box1">
 
         <!-- 아이콘 -->
         <ImageView
@@ -84,8 +81,7 @@
         android:id="@+id/logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:orientation="horizontal">
+        android:padding="10dp">
 
         <!-- 아이콘 -->
         <ImageView

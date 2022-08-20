@@ -11,7 +11,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <!-- 게시글 영역 -->
         <LinearLayout
@@ -19,37 +19,43 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- 제목 및 버튼 -->
+            <!-- 앱바 -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/topArea"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/main"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:padding="10dp">
+
+                <!-- 뒤로가기 버튼 -->
+                <ImageView
+                    android:id="@+id/backBtn"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:contentDescription="@string/back"
+                    android:src="@drawable/back56"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <!-- 제목 -->
                 <TextView
                     android:id="@+id/titleArea"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
                     android:text="@string/boardTitle"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/backBtn"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <!-- 글 설정 버튼 -->
                 <!-- 내가 쓴 글인 경우만 버튼 보이게 처리 -->
                 <ImageView
                     android:id="@+id/boardSettingBtn"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="10dp"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
                     android:contentDescription="@string/setting"
                     android:src="@drawable/setting56"
                     android:visibility="invisible"
@@ -64,7 +70,8 @@
                 android:id="@id/timeArea"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="5dp"
                 android:background="@color/white"
                 android:gravity="end"
                 android:text="@string/boardTime"
@@ -93,6 +100,66 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/picture" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@color/sub">
+
+                <TextView
+                    android:id="@+id/commentCountText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/comment"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/commentCountNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/zero"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/commentMainArea"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="10dp"
+                    android:background="@drawable/box1"
+                    android:inputType="text"
+                    android:autofillHints="no"
+                    android:hint="@string/comment"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/commentBtn"
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:padding="10dp"
+                    android:background="@color/main"
+                    android:contentDescription="@string/comment"
+                    android:src="@drawable/check56" />
 
             </LinearLayout>
 

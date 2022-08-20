@@ -44,10 +44,11 @@
     <string name="boardMain">내용</string>
     <string name="boardTime">시간</string>
     <string name="picture">사진 첨부</string>
-    <!-- 게시판 수정/삭제 -->
     <string name="myPost">내가 쓴 글</string>
     <string name="edit">수정하기</string>
     <string name="delete">삭제하기</string>
     <string name="comment">댓글</string>
+    <string name="zero">0</string>
+    <string name="close">종료</string>
 
 </resources>
