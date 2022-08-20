@@ -27,6 +27,9 @@ class FBRef {
         // 게시글
         val boardRef = database.getReference("board")
 
+        // 댓글
+        val commentRef = database.getReference("comment")
+
     }
 
 }

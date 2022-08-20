@@ -18,6 +18,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.shinyelee.my_solo_life.R
+import com.shinyelee.my_solo_life.comment.CommentModel
 import com.shinyelee.my_solo_life.databinding.ActivityBoardReadBinding
 import com.shinyelee.my_solo_life.utils.FBAuth
 import com.shinyelee.my_solo_life.utils.FBRef
@@ -56,9 +57,12 @@ class BoardReadActivity : AppCompatActivity() {
 
         }
 
-        // 게시글 설정 버튼 -> 대화상자 뜸
+        // 게시글 설정 버튼
         binding.boardSettingBtn.setOnClickListener {
+
+            // -> 대화상자 뜸
             postDialog()
+
         }
 
         // 글읽기 프래그먼트에서 게시글의 키 값을 받아옴
@@ -67,6 +71,32 @@ class BoardReadActivity : AppCompatActivity() {
         // 키 값을 바탕으로 게시글 하나의 정보를 가져옴
         getPostData(key)
         getImageData(key)
+
+        // 댓글쓰기 버튼
+        binding.commentBtn.setOnClickListener {
+
+            // -> 작성한 댓글을 등록
+            setComment(key)
+
+        }
+
+    }
+
+    // 작성한 댓글을 등록
+    fun setComment(key: String) {
+
+        val main = binding.commentMainArea.text.toString()
+        val uid = FBAuth.getUid()
+        val time = FBAuth.getTime()
+
+        // 키 값 하위에 데이터 넣음
+        FBRef.commentRef
+            .child(key)
+            .push()
+            .setValue(CommentModel(main, uid, time))
+
+        // 등록 확인 메시지 띄움
+        Toast.makeText(this, "댓글이 등록되었습니다", Toast.LENGTH_SHORT).show()
 
     }
 

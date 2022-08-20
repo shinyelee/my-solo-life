@@ -23,9 +23,13 @@ class BoardWriteActivity : AppCompatActivity() {
     // 매번 null 확인 귀찮음 -> 바인딩 변수 재선언
     private val binding get() = vBinding!!
 
+    // 게시글 키
+    private lateinit var key: String
+
     // 이미지 업로드 여부
     private var isImageUpload = false
 
+    // 태그
     private val TAG = BoardWriteActivity::class.java.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +44,9 @@ class BoardWriteActivity : AppCompatActivity() {
         // -> 생성된 뷰를 액티비티에 표시
         setContentView(binding.root)
 
+        // 키 값 기반으로 데이터를 받아오기 위해 키 값 선생성
+        key = FBRef.boardRef.push().key.toString()
+
         // 뒤로가기 버튼을 클릭하면
         binding.backBtn.setOnClickListener {
 
@@ -48,38 +55,11 @@ class BoardWriteActivity : AppCompatActivity() {
 
         }
 
-        // 글쓰기 버튼 -> 작성한 글이 등록됨
+        // 글쓰기 버튼
         binding.writeBtn.setOnClickListener {
 
-            // 게시글의 데이터(제목, 본문, uid, 시간)
-            val title = binding.titleArea.text.toString()
-            val main = binding.mainArea.text.toString()
-            val uid = FBAuth.getUid()
-            val time = FBAuth.getTime()
-
-            // 키 값 기반으로 데이터를 받아오기 위해 키 값 선생성 후
-            val key = FBRef.boardRef.push().key.toString()
-
-            // 키 값 하위에 데이터 넣음
-            FBRef.boardRef
-                .child(key)
-                .setValue(BoardModel(title, main, uid, time))
-
-            // 카메라 아이콘을 클릭했다면 이미지 업로드
-            if (isImageUpload == true) {
-
-                // 이미지 파일명을 아무렇게나 설정하면 해당 게시글과 매칭하기 어려움
-                // -> 키 값과 똑같이 설정하면 해결
-                imageUpload("$key.png")
-
-            }
-            // 카메라 아이콘을 클릭하지 않음 -> 이미지를 업로드하지 않음
-
-            // 등록 확인 메시지 띄움
-            Toast.makeText(this, "게시글이 등록되었습니다", Toast.LENGTH_SHORT).show()
-
-            // 글쓰기 액티비티 종료
-            finish()
+            // -> 작성한 글을 등록
+            setPost(key)
 
         }
 
@@ -94,6 +74,38 @@ class BoardWriteActivity : AppCompatActivity() {
             isImageUpload = true
 
         }
+
+    }
+
+    // 작성한 글을 등록
+    fun setPost(key: String) {
+
+        // 게시글의 데이터(제목, 본문, uid, 시간)
+        val title = binding.titleArea.text.toString()
+        val main = binding.mainArea.text.toString()
+        val uid = FBAuth.getUid()
+        val time = FBAuth.getTime()
+
+        // 키 값 하위에 데이터 넣음
+        FBRef.boardRef
+            .child(key)
+            .setValue(BoardModel(title, main, uid, time))
+
+        // 카메라 아이콘을 클릭했다면 이미지 업로드
+        if (isImageUpload == true) {
+
+            // 이미지 파일명을 아무렇게나 설정하면 해당 게시글과 매칭하기 어려움
+            // -> 키 값과 똑같이 설정하면 해결
+            imageUpload("$key.png")
+
+        }
+        // 카메라 아이콘을 클릭하지 않음 -> 이미지를 업로드하지 않음
+
+        // 등록 확인 메시지 띄움
+        Toast.makeText(this, "게시글이 등록되었습니다", Toast.LENGTH_SHORT).show()
+
+        // 글쓰기 액티비티 종료
+        finish()
 
     }
 
