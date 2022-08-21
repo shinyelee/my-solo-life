@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.ImageView
+import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -18,6 +19,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.shinyelee.my_solo_life.R
+import com.shinyelee.my_solo_life.comment.CommentLVAdapter
 import com.shinyelee.my_solo_life.comment.CommentModel
 import com.shinyelee.my_solo_life.databinding.ActivityBoardReadBinding
 import com.shinyelee.my_solo_life.utils.FBAuth
@@ -34,6 +36,15 @@ class BoardReadActivity : AppCompatActivity() {
     // 게시글 키
     private lateinit var key: String
 
+    // 리스트뷰 어댑터 선언
+    private lateinit var commentLVAdapter : CommentLVAdapter
+
+    // 댓글(=본문+uid+시간) 목록
+    private val commentList = mutableListOf<CommentModel>()
+
+    // 댓글의 키 목록
+    private val commentKeyList = mutableListOf<String>()
+
     // 태그
     private val TAG = BoardReadActivity::class.java.simpleName
 
@@ -48,6 +59,21 @@ class BoardReadActivity : AppCompatActivity() {
         // getRoot 메서드로 레이아웃 내부 최상위에 있는 뷰의 인스턴스 활용
         // -> 생성된 뷰를 액티비티에 표시
         setContentView(binding.root)
+
+        // 리스트뷰 어댑터 연결(댓글 목록)
+        commentLVAdapter = CommentLVAdapter(commentList)
+
+        // 리스트뷰 어댑터 연결
+        val cLV : ListView = binding.commentLV
+        cLV.adapter = commentLVAdapter
+
+        // 글읽기 프래그먼트에서 게시글의 키 값을 받아옴
+        key = intent.getStringExtra("key").toString()
+
+        // 키 값을 바탕으로 게시글 하나의 정보를 가져옴
+        getPostData(key)
+        getImageData(key)
+        getCommentData(key)
 
         // 뒤로가기 버튼을 클릭하면
         binding.backBtn.setOnClickListener {
@@ -65,13 +91,6 @@ class BoardReadActivity : AppCompatActivity() {
 
         }
 
-        // 글읽기 프래그먼트에서 게시글의 키 값을 받아옴
-        key = intent.getStringExtra("key").toString()
-
-        // 키 값을 바탕으로 게시글 하나의 정보를 가져옴
-        getPostData(key)
-        getImageData(key)
-
         // 댓글쓰기 버튼
         binding.commentBtn.setOnClickListener {
 
@@ -79,6 +98,64 @@ class BoardReadActivity : AppCompatActivity() {
             setComment(key)
 
         }
+
+    }
+
+    // 댓글 정보 가져옴
+    fun getCommentData(key: String) {
+
+        // 데이터베이스에서 컨텐츠의 세부정보를 검색
+        val postListener = object : ValueEventListener {
+
+            // 데이터 스냅샷
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                // 댓글 목록 비움
+                // -> 저장/삭제 마다 데이터 누적돼 게시글 중복으로 저장되는 것 방지
+                commentList.clear()
+
+                // 데이터 스냅샷 내 데이터모델 형식으로 저장된
+                for(dataModel in dataSnapshot.children) {
+
+                    // 로그
+                    Log.d(TAG, dataModel.toString())
+
+                    // 아이템(=댓글)
+                    val item = dataModel.getValue(CommentModel::class.java)
+
+                    // 댓글 목록에 아이템 넣음
+                    commentList.add(item!!)
+
+                    // 댓글 키 목록에 문자열 형식으로 변환한 키 넣음
+                    commentKeyList.add(dataModel.key.toString())
+
+                }
+                // 반복문임 -> 아이템'들'
+
+                // 게시글 키 목록을 출력
+                commentKeyList
+
+                // 게시글 목록도 출력
+                commentList
+
+                // 동기화(새로고침) -> 리스트 크기 및 아이템 변화를 어댑터에 알림
+                commentLVAdapter.notifyDataSetChanged()
+
+            }
+
+            // 오류 나면
+            override fun onCancelled(databaseError: DatabaseError) {
+
+                // 로그
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+
+            }
+
+        }
+
+        // 파이어베이스 내 데이터의 변화(추가)를 알려줌
+        FBRef.commentRef.child(key).addValueEventListener(postListener)
 
     }
 

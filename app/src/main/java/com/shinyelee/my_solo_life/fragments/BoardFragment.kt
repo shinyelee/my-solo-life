@@ -36,7 +36,7 @@ class BoardFragment : Fragment() {
     private val boardKeyList = mutableListOf<String>()
 
     // 리스트뷰 어댑터 선언
-    private lateinit var lvAdapter : BoardLVAdapter
+    private lateinit var boardLVAdapter : BoardLVAdapter
 
     // 태그
     private val TAG = BoardFragment::class.java.simpleName
@@ -54,14 +54,14 @@ class BoardFragment : Fragment() {
         vBinding = FragmentBoardBinding.inflate(inflater, container, false)
 
         // 리스트뷰 어댑터 연결(게시글 목록)
-        lvAdapter = BoardLVAdapter(boardList)
+        boardLVAdapter = BoardLVAdapter(boardList)
 
         // 리스트뷰 어댑터 연결
-        val lv : ListView = binding.lv
-        lv.adapter = lvAdapter
+        val lv : ListView = binding.boardLV
+        lv.adapter = boardLVAdapter
 
         // 파이어베이스의 게시글 아이디를 기반으로 게시글 데이터(=제목+본문+uid+시간) 받아옴
-        binding.lv.setOnItemClickListener { parent, view, position, id ->
+        binding.boardLV.setOnItemClickListener { parent, view, position, id ->
 
             // 명시적 인텐트 -> 다른 액티비티 호출
             val intent = Intent(context, BoardReadActivity::class.java)
@@ -152,7 +152,7 @@ class BoardFragment : Fragment() {
                 boardList.reverse()
 
                 // 동기화(새로고침) -> 리스트 크기 및 아이템 변화를 어댑터에 알림
-                lvAdapter.notifyDataSetChanged()
+                boardLVAdapter.notifyDataSetChanged()
 
             }
 

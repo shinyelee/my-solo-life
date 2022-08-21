@@ -10,7 +10,7 @@
 
     <!-- 게시글 목록(리스트뷰) -->
     <ListView
-        android:id="@+id/lv"
+        android:id="@+id/boardLV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="60dp" />
