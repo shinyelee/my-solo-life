@@ -29,6 +29,9 @@ class WebFragment : Fragment() {
         // 뷰바인딩
         vBinding = FragmentWebBinding.inflate(inflater, container, false)
 
+        // 웹뷰에 깃허브 링크 넣음
+        binding.webView.loadUrl("https://github.com/shinyelee")
+
         // 홈 버튼 클릭 -> 홈 프래그먼트로 이동
         binding.homeBtn.setOnClickListener {
             it.findNavController().navigate(R.id.action_webFragment_to_homeFragment)
