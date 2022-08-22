@@ -124,131 +124,65 @@
         android:layout_height="60dp"
         android:background="@drawable/appbar"
         android:orientation="horizontal"
-        android:baselineAligned="false"
         android:weightSum="5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <!-- 홈 탭 -->
-        <LinearLayout
+        <TextView
             android:id="@+id/homeBtn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:padding="5dp"
+            android:gravity="center"
+            android:text="@string/home"
+            android:textSize="16sp"
+            app:drawableTopCompat="@drawable/home28" />
 
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="6dp"
-                android:contentDescription="@string/home"
-                android:src="@drawable/home56" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="16dp"
-                android:gravity="center"
-                android:text="@string/home" />
-
-        </LinearLayout>
-
-        <!-- 블로그 탭 -->
-        <LinearLayout
+        <TextView
             android:id="@+id/blogBtn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:padding="5dp"
+            android:gravity="center"
+            android:text="@string/blog"
+            android:textSize="16sp"
+            app:drawableTopCompat="@drawable/blog28w" />
 
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="6dp"
-                android:contentDescription="@string/blog"
-                android:src="@drawable/blog56w" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="16dp"
-                android:gravity="center"
-                android:text="@string/blog" />
-
-        </LinearLayout>
-
-        <!-- 게시판 탭 -->
-        <LinearLayout
+        <TextView
             android:id="@+id/boardBtn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:padding="5dp"
+            android:gravity="center"
+            android:text="@string/board"
+            android:textSize="16sp"
+            app:drawableTopCompat="@drawable/board28w" />
 
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="6dp"
-                android:contentDescription="@string/board"
-                android:src="@drawable/board56w" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="16dp"
-                android:gravity="center"
-                android:text="@string/board" />
-
-        </LinearLayout>
-
-        <!-- 북마크 탭 -->
-        <LinearLayout
+        <TextView
             android:id="@+id/bookmarkBtn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:padding="5dp"
+            android:gravity="center"
+            android:text="@string/bookmark"
+            android:textSize="16sp"
+            app:drawableTopCompat="@drawable/bookmark28w" />
 
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="6dp"
-                android:contentDescription="@string/bookmark"
-                android:src="@drawable/bookmark56w" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="16dp"
-                android:gravity="center"
-                android:text="@string/bookmark" />
-
-        </LinearLayout>
-
-        <!-- 웹 뷰 탭 -->
-        <LinearLayout
+        <TextView
             android:id="@+id/webBtn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="6dp"
-                android:contentDescription="@string/web"
-                android:src="@drawable/web56w" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="16dp"
-                android:gravity="center"
-                android:text="@string/web" />
-
-        </LinearLayout>
+            android:padding="5dp"
+            android:gravity="center"
+            android:text="@string/web"
+            android:textSize="16sp"
+            app:drawableTopCompat="@drawable/web28w" />
 
     </LinearLayout>
 

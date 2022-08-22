@@ -21,13 +21,13 @@
             android:padding="10dp"
             android:background="@drawable/box2"
             android:contentDescription="@string/post"
-            android:src="@drawable/blog56" />
+            android:src="@drawable/blog28" />
 
         <!-- 북마크 아이콘 -->
         <ImageView
             android:id="@+id/bookmarkArea"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
             android:layout_margin="5dp"
             android:layout_gravity="start|bottom"
             android:contentDescription="@string/bookmark"

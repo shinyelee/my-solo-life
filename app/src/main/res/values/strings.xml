@@ -26,7 +26,7 @@
     <string name="blog">블로그</string>
     <string name="board">게시판</string>
     <string name="bookmark">북마크</string>
-    <string name="web">웹</string>
+    <string name="web">깃허브</string>
 
     <!-- 블로그 -->
     <string name="category">카테고리</string>
