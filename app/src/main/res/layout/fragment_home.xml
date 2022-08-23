@@ -8,217 +8,232 @@
     android:layout_height="match_parent"
     tools:context=".fragments.HomeFragment">
 
-    <!-- 블로그 -->
-    <TextView
-        android:id="@+id/blogText"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="@string/blog"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp">
 
-    <!-- 블로그 1행 -->
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:baselineAligned="false"
-        android:orientation="horizontal"
-        android:weightSum="3"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/blogText">
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/box2"
-            android:orientation="horizontal">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <!-- 카테고리 -->
+            <!-- 블로그 -->
             <TextView
-                android:id="@+id/androidIcon"
+                android:id="@+id/blogText"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="2.5dp"
-                android:padding="1dp"
-                android:gravity="center"
-                android:text="@string/android"
-                android:textSize="12sp"
-                app:drawableTopCompat="@drawable/app112" />
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/blog"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
+            <!-- 블로그 1행 -->
+            <LinearLayout
+                android:id="@+id/blogLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                app:layout_constraintEnd_toEndOf="@+id/blogLayout2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/blogText">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/box2"
-            android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/box2"
+                    android:orientation="horizontal">
 
-            <!-- 카테고리 -->
+                    <!-- 카테고리 -->
+                    <TextView
+                        android:id="@+id/androidIcon"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="2.5dp"
+                        android:gravity="center"
+                        android:padding="1dp"
+                        android:text="@string/android"
+                        android:textSize="12sp"
+                        app:drawableTopCompat="@drawable/app112" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/box2"
+                    android:orientation="horizontal">
+
+                    <!-- 카테고리 -->
+                    <TextView
+                        android:id="@+id/kotlinIcon"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="2.5dp"
+                        android:gravity="center"
+                        android:text="@string/kotlin"
+                        android:textSize="14sp"
+                        app:drawableTopCompat="@drawable/paper112" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/box2"
+                    android:orientation="horizontal">
+
+                    <!-- 카테고리 -->
+                    <TextView
+                        android:id="@+id/errorIcon"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="2.5dp"
+                        android:gravity="center"
+                        android:text="@string/error"
+                        android:textSize="14sp"
+                        app:drawableTopCompat="@drawable/error112" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- 블로그 2행 -->
+            <LinearLayout
+                android:id="@+id/blogLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/blogLayout1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/box2"
+                    android:orientation="horizontal">
+
+                    <!-- 카테고리 -->
+                    <TextView
+                        android:id="@+id/vcsIcon"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="2.5dp"
+                        android:gravity="center"
+                        android:text="@string/vcs"
+                        android:textSize="14sp"
+                        app:drawableTopCompat="@drawable/db112" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/box2"
+                    android:orientation="horizontal">
+
+                    <!-- 카테고리 -->
+                    <TextView
+                        android:id="@+id/webIcon"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="2.5dp"
+                        android:gravity="center"
+                        android:text="@string/web"
+                        android:textSize="14sp"
+                        app:drawableTopCompat="@drawable/web112" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/box2"
+                    android:orientation="horizontal">
+
+                    <!-- 카테고리 -->
+                    <TextView
+                        android:id="@+id/etcIcon"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="2.5dp"
+                        android:gravity="center"
+                        android:text="@string/etc"
+                        android:textSize="14sp"
+                        app:drawableTopCompat="@drawable/etc112" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- 게시판 -->
             <TextView
-                android:id="@+id/kotlinIcon"
+                android:id="@+id/boardText"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="2.5dp"
-                android:gravity="center"
-                android:text="@string/kotlin"
-                android:textSize="14sp"
-                app:drawableTopCompat="@drawable/paper112" />
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/board"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/blogLayout2" />
 
-        </LinearLayout>
+            <!-- 게시판 영역 -->
+            <ListView
+                android:id="@+id/mainBoardLV"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/boardText" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/box2"
-            android:orientation="horizontal">
-
-            <!-- 카테고리 -->
+            <!-- 북마크 -->
             <TextView
-                android:id="@+id/errorIcon"
+                android:id="@+id/bookmarkText"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="2.5dp"
-                android:gravity="center"
-                android:text="@string/error"
-                android:textSize="14sp"
-                app:drawableTopCompat="@drawable/error112" />
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/bookmark"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/mainBoardLV" />
 
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <!-- 블로그 2행 -->
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:baselineAligned="false"
-        android:orientation="horizontal"
-        android:weightSum="3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/box2"
-            android:orientation="horizontal">
-
-            <!-- 카테고리 -->
-            <TextView
-                android:id="@+id/vcsIcon"
+            <!-- 북마크 영역 -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mainBookmarkRV"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="2.5dp"
-                android:gravity="center"
-                android:text="@string/vcs"
-                android:textSize="14sp"
-                app:drawableTopCompat="@drawable/db112" />
+                android:layout_height="200dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bookmarkText" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/box2"
-            android:orientation="horizontal">
-
-            <!-- 카테고리 -->
-            <TextView
-                android:id="@+id/webIcon"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="2.5dp"
-                android:gravity="center"
-                android:text="@string/web"
-                android:textSize="14sp"
-                app:drawableTopCompat="@drawable/web112" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/box2"
-            android:orientation="horizontal">
-
-            <!-- 카테고리 -->
-            <TextView
-                android:id="@+id/etcIcon"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="2.5dp"
-                android:gravity="center"
-                android:text="@string/etc"
-                android:textSize="14sp"
-                app:drawableTopCompat="@drawable/etc112" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <!-- 게시판 -->
-    <TextView
-        android:id="@+id/boardText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="@string/board"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
-    <!-- 게시판 영역 -->
-    <ListView
-        android:id="@+id/mainLV"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/boardText" />
-
-    <!-- 북마크 -->
-    <TextView
-        android:id="@+id/board2Text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="@string/bookmark"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainLV" />
-
-    <!-- 북마크 영역 -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/mainRV"
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/board2Text" />
+    </ScrollView>
 
     <!-- 내비게이션 바 -->
     <LinearLayout

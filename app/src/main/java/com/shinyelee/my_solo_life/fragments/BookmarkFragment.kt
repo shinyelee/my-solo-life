@@ -41,6 +41,7 @@ class BookmarkFragment : Fragment() {
     // 북마크 아이디(=키) 목록
     val bookmarkIdList = mutableListOf<String>()
 
+    // 리사이클러뷰 어댑터 선언
     lateinit var rvAdapter: BookmarkRVAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
