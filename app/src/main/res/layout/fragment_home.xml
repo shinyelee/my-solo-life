@@ -8,109 +8,169 @@
     android:layout_height="match_parent"
     tools:context=".fragments.HomeFragment">
 
-    <!-- 카테고리 -->
-    <LinearLayout
+    <!-- 블로그 -->
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:padding="20dp"
-        android:orientation="vertical"
-        android:background="@drawable/box2"
+        android:layout_margin="10dp"
+        android:text="@string/blog"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- 블로그 -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:text="@string/blog"
-            android:textSize="16sp" />
+    <!-- 블로그 1행 -->
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
 
-        <!-- 1행 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:weightSum="3"
-            android:orientation="horizontal"
-            android:baselineAligned="false">
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/box2"
+            android:orientation="horizontal">
 
             <!-- 카테고리 -->
             <TextView
                 android:id="@+id/androidIcon"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_margin="2.5dp"
                 android:gravity="center"
                 android:text="@string/android"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 app:drawableTopCompat="@drawable/app112" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/box2"
+            android:orientation="horizontal">
 
             <!-- 카테고리 -->
             <TextView
                 android:id="@+id/kotlinIcon"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_margin="2.5dp"
                 android:gravity="center"
                 android:text="@string/kotlin"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 app:drawableTopCompat="@drawable/paper112" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/box2"
+            android:orientation="horizontal">
 
             <!-- 카테고리 -->
             <TextView
                 android:id="@+id/errorIcon"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_margin="2.5dp"
                 android:gravity="center"
                 android:text="@string/error"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 app:drawableTopCompat="@drawable/error112" />
 
         </LinearLayout>
 
-        <!-- 2행 -->
+    </LinearLayout>
+
+    <!-- 블로그 2행 -->
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:weightSum="3"
-            android:orientation="horizontal"
-            android:baselineAligned="false">
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/box2"
+            android:orientation="horizontal">
 
             <!-- 카테고리 -->
             <TextView
                 android:id="@+id/vcsIcon"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_margin="2.5dp"
                 android:gravity="center"
                 android:text="@string/vcs"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 app:drawableTopCompat="@drawable/db112" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/box2"
+            android:orientation="horizontal">
 
             <!-- 카테고리 -->
             <TextView
                 android:id="@+id/webIcon"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_margin="2.5dp"
                 android:gravity="center"
                 android:text="@string/web"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 app:drawableTopCompat="@drawable/web112" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/box2"
+            android:orientation="horizontal">
 
             <!-- 카테고리 -->
             <TextView
                 android:id="@+id/etcIcon"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_margin="2.5dp"
                 android:gravity="center"
                 android:text="@string/etc"
-                android:textSize="20sp"
+                android:textSize="14sp"
                 app:drawableTopCompat="@drawable/etc112" />
 
         </LinearLayout>
@@ -180,7 +240,7 @@
             android:layout_weight="1"
             android:padding="5dp"
             android:gravity="center"
-            android:text="@string/web"
+            android:text="@string/vcs"
             android:textSize="16sp"
             app:drawableTopCompat="@drawable/web28w" />
 

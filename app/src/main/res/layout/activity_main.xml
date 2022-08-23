@@ -49,7 +49,7 @@
             android:layout_height="40dp"
             android:layout_margin="10dp"
             android:contentDescription="@string/setting"
-            android:src="@drawable/cog56"
+            android:src="@drawable/setting56"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -66,8 +66,10 @@
         app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBar"
+        app:layout_constraintVertical_bias="0.966"
         app:navGraph="@navigation/main_nav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

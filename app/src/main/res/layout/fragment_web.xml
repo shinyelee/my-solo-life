@@ -77,7 +77,7 @@
             android:layout_weight="1"
             android:padding="5dp"
             android:gravity="center"
-            android:text="@string/web"
+            android:text="@string/vcs"
             android:textSize="16sp"
             app:drawableTopCompat="@drawable/web28" />
 
