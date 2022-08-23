@@ -10,7 +10,7 @@
 
     <!-- 블로그 -->
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/blogText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -31,7 +31,7 @@
         android:weightSum="3"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+        app:layout_constraintTop_toBottomOf="@+id/blogText">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,9 +47,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="2.5dp"
+                android:padding="1dp"
                 android:gravity="center"
                 android:text="@string/android"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 app:drawableTopCompat="@drawable/app112" />
 
         </LinearLayout>
@@ -176,6 +177,48 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <!-- 게시판 -->
+    <TextView
+        android:id="@+id/boardText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/board"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    <!-- 게시판 영역 -->
+    <ListView
+        android:id="@+id/mainLV"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boardText" />
+
+    <!-- 북마크 -->
+    <TextView
+        android:id="@+id/board2Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/bookmark"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainLV" />
+
+    <!-- 북마크 영역 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mainRV"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/board2Text" />
 
     <!-- 내비게이션 바 -->
     <LinearLayout
