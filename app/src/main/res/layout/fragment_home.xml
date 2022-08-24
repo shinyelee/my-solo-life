@@ -189,27 +189,6 @@
 
             </LinearLayout>
 
-            <!-- 게시판 -->
-            <TextView
-                android:id="@+id/boardText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="@string/board"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/blogLayout2" />
-
-            <!-- 게시판 영역 -->
-            <ListView
-                android:id="@+id/mainBoardLV"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/boardText" />
-
             <!-- 북마크 -->
             <TextView
                 android:id="@+id/bookmarkText"
@@ -220,13 +199,13 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mainBoardLV" />
+                app:layout_constraintTop_toBottomOf="@+id/blogLayout2" />
 
             <!-- 북마크 영역 -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/mainBookmarkRV"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="150dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/bookmarkText" />
