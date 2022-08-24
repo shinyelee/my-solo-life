@@ -68,7 +68,7 @@
             android:id="@id/timeArea"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="@drawable/box1"
             android:gravity="end"
             android:paddingHorizontal="10dp"
             android:paddingVertical="5dp"
@@ -84,7 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:background="@drawable/box1"
+            android:background="@color/white"
             android:text="@string/boardMain"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -95,8 +95,9 @@
         <!-- 이미지 -->
         <ImageView
             android:id="@+id/imageArea"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:contentDescription="@string/picture"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
