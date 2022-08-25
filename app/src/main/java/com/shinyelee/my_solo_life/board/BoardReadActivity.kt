@@ -19,6 +19,7 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.shinyelee.my_solo_life.R
+import com.shinyelee.my_solo_life.comment.CommentEditActivity
 import com.shinyelee.my_solo_life.comment.CommentLVAdapter
 import com.shinyelee.my_solo_life.comment.CommentModel
 import com.shinyelee.my_solo_life.databinding.ActivityBoardReadBinding
@@ -73,7 +74,7 @@ class BoardReadActivity : AppCompatActivity() {
         // 키 값을 바탕으로 게시글 하나의 정보를 가져옴
         getPostData(key)
         getImageData(key)
-        getCommentData(key)
+        getCommentListData(key)
 
         // 뒤로가기 버튼을 클릭하면
         binding.backBtn.setOnClickListener {
@@ -99,10 +100,64 @@ class BoardReadActivity : AppCompatActivity() {
 
         }
 
+        // 댓글 설정 버튼
+//        val commentSettingBtn = findViewById<ImageView>(R.id.commentSettingBtn)
+//        commentSettingBtn.setOnClickListener {
+//
+//            // -> 대화상자 뜸
+//            commentDialog()
+//
+//        }
+
     }
 
-    // 댓글 정보 가져옴
-    fun getCommentData(key: String) {
+    // 내가 쓴 댓글 수정/삭제 대화상자
+    private fun commentDialog() {
+
+        // custom_dialog를 뷰 객체로 반환
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.comment_dialog, null)
+
+        // 대화상자 생성
+        val builder = AlertDialog.Builder(this)
+            .setView(dialogView)
+
+        // 대화상자 띄움
+        val alertDialog = builder.show()
+
+        // 댓글 수정 버튼
+        alertDialog.findViewById<ConstraintLayout>(R.id.commentEdit)?.setOnClickListener {
+
+            // 명시적 인텐트 -> 다른 액티비티 호출
+            val intent = Intent(this, CommentEditActivity::class.java)
+
+            // 키 값을 바탕으로 댓글 받아옴
+//            intent.putExtra("commentKey", commentKey)
+
+            // 댓글수정 액티비티 시작
+            startActivity(intent)
+
+        }
+
+//        // 댓글 삭제 버튼
+//        alertDialog.findViewById<ConstraintLayout>(R.id.commentDelete)?.setOnClickListener {
+//
+//            // -> 댓글 삭제
+//            FBRef.boardRef.child(key).removeValue()
+//
+//            // 삭제 확인 메시지
+//            Toast.makeText(this, "댓글이 삭제되었습니다", Toast.LENGTH_SHORT).show()
+//
+//        }
+
+        // 대화상자 종료 버튼
+        alertDialog.findViewById<ImageView>(R.id.close)?.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
+    }
+
+    // 댓글 목록 정보 가져옴
+    fun getCommentListData(key: String) {
 
         // 데이터베이스에서 컨텐츠의 세부정보를 검색
         val postListener = object : ValueEventListener {
@@ -133,10 +188,10 @@ class BoardReadActivity : AppCompatActivity() {
                 }
                 // 반복문임 -> 아이템'들'
 
-                // 게시글 키 목록을 출력
+                // 댓글 키 목록을 출력
                 commentKeyList
 
-                // 게시글 목록도 출력
+                // 댓글 목록도 출력
                 commentList
 
                 // 동기화(새로고침) -> 리스트 크기 및 아이템 변화를 어댑터에 알림

@@ -35,18 +35,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- 내가 쓴 글 -->
-        <!-- 아이콘 -->
+        <!-- 댓글 설정 버튼 -->
+        <!-- 내가 쓴 글인 경우만 버튼 보이게 처리 -->
         <ImageView
-            android:id="@+id/commentDelete"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
+            android:id="@+id/commentSettingBtn"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
             android:layout_marginEnd="10dp"
             android:contentDescription="@string/delete"
-            android:src="@drawable/trashcan56"
+            android:src="@drawable/cog56"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

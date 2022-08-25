@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.shinyelee.my_solo_life">
-
     <!-- 이미지 업로드에 필요 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -15,39 +12,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mysololife">
-
+        <activity
+            android:name=".comment.CommentEditActivity"
+            android:exported="true" />
         <activity
             android:name=".board.BoardEditActivity"
             android:exported="true" />
-
         <activity
             android:name=".board.BoardReadActivity"
             android:exported="true" />
-
         <activity
             android:name=".board.BoardWriteActivity"
             android:exported="true" />
-
         <activity
             android:name=".contentsList.ContentsShowActivity"
             android:exported="true" />
-
         <activity
             android:name=".contentsList.ContentsListActivity"
             android:exported="true" />
-
         <activity
             android:name=".auth.JoinActivity"
             android:exported="true" />
-
         <activity
             android:name=".auth.LoginActivity"
             android:exported="true" />
-
         <activity
             android:name=".auth.IntroActivity"
             android:exported="true" />
-
         <activity
             android:name=".SplashActivity"
             android:exported="true">
@@ -58,16 +49,13 @@
 
                 <!-- action.MAIN과 category.LAUNCHER가 쌍으로 있어야 함 -->
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
-
         </activity>
-
         <activity
             android:name=".MainActivity"
             android:exported="true" />
-
     </application>
 
 </manifest>

@@ -22,6 +22,7 @@
         <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/layout/activity_board_read.xml" value="0.1564625850340136" />
         <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/layout/activity_board_show.xml" value="0.2296195652173913" />
         <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/layout/activity_board_write.xml" value="0.2" />
+        <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/layout/activity_comment_edit.xml" value="0.2028985507246377" />
         <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/layout/activity_contents_list.xml" value="0.2" />
         <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/layout/activity_contents_show.xml" value="0.2" />
         <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/layout/activity_intro.xml" value="0.2" />
@@ -34,6 +35,7 @@
         <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/layout/board_dialog.xml" value="0.2" />
         <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/layout/board_list_item.xml" value="0.21" />
         <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/layout/board_lv_item.xml" value="0.22" />
+        <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/layout/comment_dialog.xml" value="0.2028985507246377" />
         <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/layout/comment_list_item.xml" value="0.2" />
         <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/layout/comment_lv_item.xml" value="0.23278985507246377" />
         <entry key="..\:/Users/shinyelee/AndroidStudioProjects/mysololife/app/src/main/res/layout/contents_rv_item.xml" value="0.2" />
