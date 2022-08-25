@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
 import com.shinyelee.my_solo_life.R
@@ -41,11 +42,11 @@ class CommentLVAdapter(val commentList : MutableList<CommentModel>) : BaseAdapte
         main!!.text = commentList[position].main
         time!!.text = commentList[position].time
 
-        // 현재 사용자가 작성한 글만 따로 표시하기 위해
-        val myCommentBadge = view?.findViewById<TextView>(R.id.myCommentBadge)
+        // 현재 사용자가 작성한 댓글만 따로 표시하기 위해
+        val commentDelete = view?.findViewById<ImageView>(R.id.commentDelete)
 
-        // 댓글 작성자의 uid와 현재 사용자의 uid가 일치하면 배지가 보이도록 처리
-        myCommentBadge?.isVisible = commentList[position].uid.equals(FBAuth.getUid())
+        // 댓글 작성자의 uid와 현재 사용자의 uid가 일치하면 삭제 버튼이 보이도록 처리
+        commentDelete?.isVisible = commentList[position].uid.equals(FBAuth.getUid())
 
         // 뷰 반환
         return view!!
