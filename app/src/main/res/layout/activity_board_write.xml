@@ -36,7 +36,7 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:contentDescription="@string/back"
-            android:src="@drawable/back56"
+            android:src="@drawable/back56sub"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
