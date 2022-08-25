@@ -44,7 +44,7 @@
             android:layout_marginHorizontal="10dp"
             android:paddingHorizontal="5dp"
             android:background="@drawable/button_main"
-            android:text="@string/myPost"
+            android:text="@string/my"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:visibility="invisible"

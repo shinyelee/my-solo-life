@@ -48,12 +48,39 @@
                 app:layout_constraintStart_toEndOf="@+id/backBtn"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- 본문 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/timeNsettingArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/box1"
+            app:layout_constraintTop_toBottomOf="@+id/appBar"
+            tools:layout_editor_absoluteX="0dp">
+
+            <!-- 시간 -->
+            <TextView
+                android:id="@id/timeArea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="5dp"
+                android:text="@string/boardTime"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <!-- 글 설정 버튼 -->
             <!-- 내가 쓴 글인 경우만 버튼 보이게 처리 -->
             <ImageView
                 android:id="@+id/boardSettingBtn"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="10dp"
                 android:contentDescription="@string/setting"
                 android:src="@drawable/setting56"
                 android:visibility="invisible"
@@ -63,22 +90,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- 시간 -->
-        <TextView
-            android:id="@id/timeArea"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/box1"
-            android:gravity="end"
-            android:paddingHorizontal="10dp"
-            android:paddingVertical="5dp"
-            android:text="@string/boardTime"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBar" />
-
-        <!-- 본문 -->
         <TextView
             android:id="@+id/mainArea"
             android:layout_width="match_parent"
@@ -90,7 +101,7 @@
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/timeArea" />
+            app:layout_constraintTop_toBottomOf="@+id/timeNsettingArea" />
 
         <!-- 이미지 -->
         <ImageView
