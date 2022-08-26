@@ -3,6 +3,8 @@ package com.shinyelee.my_solo_life.fragments
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -110,6 +112,27 @@ class BoardFragment : Fragment() {
 
         // 뷰바인딩
         return binding.root
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val swiping = binding.swipeRefreshLayout
+
+        // 리스너
+        swiping.setOnRefreshListener {
+
+            // Handler() is deprecated
+            // -> 생성자로 Looper.getMainLooper() 넣어주면 됨
+            Handler(Looper.getMainLooper()).postDelayed({
+
+                // 밀어서 새로고침
+                if(swiping.isRefreshing) swiping.isRefreshing = false
+
+            }, 1500)
+
+        }
 
     }
 

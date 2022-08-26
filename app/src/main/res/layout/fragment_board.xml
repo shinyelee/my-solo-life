@@ -8,12 +8,18 @@
     android:layout_height="match_parent"
     tools:context=".fragments.BoardFragment">
 
-    <!-- 게시글 목록(리스트뷰) -->
-    <ListView
-        android:id="@+id/boardLV"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="60dp" />
+        android:layout_height="match_parent">
+
+        <!-- 게시글 목록(리스트뷰) -->
+        <ListView
+            android:id="@+id/boardLV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <!-- 작성 버튼 -->
     <ImageView
