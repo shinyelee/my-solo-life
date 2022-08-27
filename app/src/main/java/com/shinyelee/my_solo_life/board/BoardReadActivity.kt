@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
+import android.view.View
 import android.widget.ImageView
 import android.widget.ListView
 import android.widget.Toast
@@ -67,6 +69,21 @@ class BoardReadActivity : AppCompatActivity() {
         // 리스트뷰 어댑터 연결
         val cLV : ListView = binding.commentLV
         cLV.adapter = commentLVAdapter
+
+        // 터치 리스너
+        cLV.setOnTouchListener(object : View.OnTouchListener {
+
+            // 터치했을 때
+            @SuppressLint("ClickableViewAccessibility")
+            override fun onTouch(p0: View?, p1: MotionEvent?): Boolean {
+
+                // 스크롤뷰(화면 전체)의 터치 이벤트를 막으면 -> 리스트뷰(댓글 영역)의 스크롤뷰가 작동함
+                binding.boardReadSV.requestDisallowInterceptTouchEvent(true)
+                return false
+
+            }
+
+        })
 
         // 글읽기 프래그먼트에서 게시글의 키 값을 받아옴
         key = intent.getStringExtra("key").toString()

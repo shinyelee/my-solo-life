@@ -10,9 +10,11 @@
     tools:context=".board.BoardReadActivity">
 
     <ScrollView
+        android:id="@+id/boardReadSV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
+        <!-- fillViewport 옵션으로 스크롤뷰 하위 콘텐츠가 화면 사이즈에 꽉 차게 만듦 -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,17 +62,18 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="@color/white">
 
                     <!-- 시간 -->
                     <TextView
                         android:id="@id/timeArea"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/white"
                         android:gravity="end"
                         android:paddingHorizontal="10dp"
                         android:paddingVertical="5dp"
+                        android:background="@color/white"
                         android:text="@string/boardTime"
                         android:textSize="15sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -162,7 +165,8 @@
                 <ListView
                     android:id="@+id/commentLV"
                     android:layout_width="match_parent"
-                    android:layout_height="850dp" />
+                    android:layout_height="500dp"
+                    android:layout_marginBottom="70dp" />
 
             </LinearLayout>
 
