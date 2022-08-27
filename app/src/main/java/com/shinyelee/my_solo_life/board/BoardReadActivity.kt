@@ -70,10 +70,10 @@ class BoardReadActivity : AppCompatActivity() {
         val cLV : ListView = binding.commentLV
         cLV.adapter = commentLVAdapter
 
-        // 터치 리스너
+        // 댓글 목록(리스트뷰)
         cLV.setOnTouchListener(object : View.OnTouchListener {
 
-            // 터치했을 때
+            // 리스트뷰를 터치했을 때
             @SuppressLint("ClickableViewAccessibility")
             override fun onTouch(p0: View?, p1: MotionEvent?): Boolean {
 
