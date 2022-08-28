@@ -48,9 +48,10 @@ class CommentEditActivity : AppCompatActivity() {
 
         }
 
-//        // 글읽기 프래그먼트에서 댓의 키 값을 받아옴
-//        key = intent.getStringExtra("key").toString()
-//
+        // 글읽기 프래그먼트에서 댓글의 키 값을 받아옴
+        val commentKey = intent.getStringExtra("commentKey").toString()
+        Toast.makeText(this, commentKey, Toast.LENGTH_SHORT).show()
+
 //        // 키 값을 바탕으로 댓글 하나의 정보를 가져옴
 //        getCommentData(key)
 //

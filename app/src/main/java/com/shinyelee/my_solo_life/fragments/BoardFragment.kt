@@ -60,7 +60,7 @@ class BoardFragment : Fragment() {
         val lv : ListView = binding.boardLV
         lv.adapter = boardLVAdapter
 
-        // 파이어베이스의 게시글 아이디를 기반으로 게시글 데이터(=제목+본문+uid+시간) 받아옴
+        // 파이어베이스의 게시글 키를 기반으로 게시글 데이터(=제목+본문+uid+시간) 받아옴
         binding.boardLV.setOnItemClickListener { parent, view, position, id ->
 
             // 명시적 인텐트 -> 다른 액티비티 호출
