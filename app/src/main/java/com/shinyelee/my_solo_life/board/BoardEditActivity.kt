@@ -81,9 +81,9 @@ class BoardEditActivity : AppCompatActivity() {
 
             // uid와 시간은 자동 설정됨
             FBAuth.getUid(),
-            FBAuth.getTime())
+            FBAuth.getTime()
 
-        )
+        ))
 
         // 수정 확인 메시지
         Toast.makeText(this, "게시글이 수정되었습니다", Toast.LENGTH_SHORT).show()
@@ -150,7 +150,7 @@ class BoardEditActivity : AppCompatActivity() {
                 }
 
             }
-            // getBoardData()와 달리 반복문이 아님 -> '단일' 아이템
+            // getBoardListData()와 달리 반복문이 아님 -> '단일' 아이템
 
             // 오류 나면
             override fun onCancelled(databaseError: DatabaseError) {

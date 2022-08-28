@@ -48,6 +48,9 @@ class BoardReadActivity : AppCompatActivity() {
     // 댓글의 키 목록
     private val commentKeyList = mutableListOf<String>()
 
+    // 댓글 키
+    private lateinit var commentKey: String
+
     // 태그
     private val TAG = BoardReadActivity::class.java.simpleName
 
@@ -85,24 +88,10 @@ class BoardReadActivity : AppCompatActivity() {
 
         })
 
-        // 파이어베이스의 댓글 키를 기반으로 댓글 데이터(=본문+uid+시간) 받아옴
-        cLV.setOnItemClickListener { parent, view, position, id ->
-
-            // 명시적 인텐트 -> 다른 액티비티 호출
-            val intent = Intent(baseContext, CommentEditActivity::class.java)
-
-            // 댓글수정 액티비티로 댓글의 키 값 전달
-            intent.putExtra("commentKey", commentKeyList[position])
-
-            // 댓글수정 액티비티 시작
-            startActivity(intent)
-
-        }
-
         // 글읽기 프래그먼트에서 게시글의 키 값을 받아옴
         key = intent.getStringExtra("key").toString()
 
-        // 키 값을 바탕으로 게시글 하나의 정보를 가져옴
+        // 게시글 키 값을 바탕으로 게시글 하나의 정보를 가져옴
         getBoardData(key)
         getImageData(key)
         getCommentListData(key)
@@ -123,6 +112,24 @@ class BoardReadActivity : AppCompatActivity() {
 
         }
 
+        // 댓글 클릭하면 -> 대화상자 뜸
+        // 파이어베이스의 댓글 키를 기반으로 댓글 데이터(=본문+uid+시간) 받아옴
+        cLV.setOnItemClickListener { parent, view, position, id ->
+
+            // -> 대화상자 뜸
+//            commentDialog()
+
+            // 명시적 인텐트 -> 다른 액티비티 호출
+            val intent = Intent(baseContext, CommentEditActivity::class.java)
+
+            // 댓글수정 액티비티로 댓글의 키 값 전달
+            intent.putExtra("commentKey", commentKeyList[position])
+
+            // 댓글수정 액티비티 시작
+            startActivity(intent)
+
+        }
+
         // 댓글쓰기 버튼
         binding.commentBtn.setOnClickListener {
 
@@ -131,58 +138,40 @@ class BoardReadActivity : AppCompatActivity() {
 
         }
 
-        // 댓글 설정 버튼
-//        val commentSettingBtn = findViewById<ImageView>(R.id.commentSettingBtn)
-//        commentSettingBtn.setOnClickListener {
-//
-//            // -> 대화상자 뜸
-//            commentDialog()
-//
-//        }
-
     }
 
     // 내가 쓴 댓글 수정/삭제 대화상자
     private fun commentDialog() {
 
         // custom_dialog를 뷰 객체로 반환
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.comment_dialog, null)
+        val commentDialogView = LayoutInflater.from(this).inflate(R.layout.comment_dialog, null)
 
         // 대화상자 생성
         val builder = AlertDialog.Builder(this)
-            .setView(dialogView)
+            .setView(commentDialogView)
 
         // 대화상자 띄움
-        val alertDialog = builder.show()
+        val commentAlertDialog = builder.show()
 
         // 댓글 수정 버튼
-        alertDialog.findViewById<ConstraintLayout>(R.id.commentEdit)?.setOnClickListener {
+        commentAlertDialog.findViewById<ConstraintLayout>(R.id.commentEdit)?.setOnClickListener {
 
-            // 명시적 인텐트 -> 다른 액티비티 호출
-            val intent = Intent(this, CommentEditActivity::class.java)
-
-            // 키 값을 바탕으로 댓글 받아옴
-            intent.putExtra("key", key)
-
-            // 댓글수정 액티비티 시작
-            startActivity(intent)
+            // 수정 확인 메시지
+            Toast.makeText(this, "게시글이 수정되었습니다", Toast.LENGTH_SHORT).show()
 
         }
 
         // 댓글 삭제 버튼
-        alertDialog.findViewById<ConstraintLayout>(R.id.commentDelete)?.setOnClickListener {
-
-            // -> 댓글 삭제
-            FBRef.commentRef.child(key).removeValue()
+        commentAlertDialog.findViewById<ConstraintLayout>(R.id.commentDelete)?.setOnClickListener {
 
             // 삭제 확인 메시지
-            Toast.makeText(this, "댓글이 삭제되었습니다", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "게시글이 삭제되었습니다", Toast.LENGTH_SHORT).show()
 
         }
 
         // 대화상자 종료 버튼
-        alertDialog.findViewById<ImageView>(R.id.close)?.setOnClickListener {
-            alertDialog.dismiss()
+        commentAlertDialog.findViewById<ImageView>(R.id.close)?.setOnClickListener {
+            commentAlertDialog.dismiss()
         }
 
     }
@@ -221,7 +210,7 @@ class BoardReadActivity : AppCompatActivity() {
 
                 // 댓글 키 목록을 출력
                 commentKeyList
-                Log.d("commentKeyList: ", commentKeyList.toString())
+                Log.d("commentKeyList", commentKeyList.toString())
 
                 // 댓글 목록도 출력
                 commentList
@@ -375,7 +364,7 @@ class BoardReadActivity : AppCompatActivity() {
                 }
 
             }
-            // getBoardData()와 달리 반복문이 아님 -> '단일' 아이템
+            // getBoardListData()와 달리 반복문이 아님 -> '단일' 아이템
 
             // 오류 나면
             override fun onCancelled(databaseError: DatabaseError) {

@@ -1,5 +1,6 @@
 package com.shinyelee.my_solo_life.comment
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,22 +24,19 @@ class CommentLVAdapter(val commentList : MutableList<CommentModel>) : BaseAdapte
     override fun getItemId(position: Int): Long = position.toLong()
 
     // 아이템을 표시할 뷰 반환
+    @SuppressLint("ViewHolder")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
         var view = convertView
 
-//        if(view == null) {
-
             // 레이아웃 인플레이터 -> 리사이클러뷰에서 뷰홀더 만들 때 반복적으로 사용
             view = LayoutInflater.from(parent?.context).inflate(R.layout.comment_lv_item, parent, false)
-
-//        }
 
         // 각 아이템뷰의 본문/시간 영역에
         val commentMain = view?.findViewById<TextView>(R.id.commentMainArea)
         val commentTime = view?.findViewById<TextView>(R.id.commentTimeArea)
 
-        // 본문/시간 넣음
+        // 본문, 시간 넣음
         commentMain!!.text = commentList[position].main
         commentTime!!.text = commentList[position].time
 

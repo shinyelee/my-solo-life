@@ -1,5 +1,6 @@
 package com.shinyelee.my_solo_life.board
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +23,7 @@ class BoardLVAdapter(val boardList : MutableList<BoardModel>) : BaseAdapter() {
     override fun getItemId(position: Int): Long = position.toLong()
 
     // 아이템을 표시할 뷰 반환
+    @SuppressLint("ViewHolder")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
         var view = convertView
@@ -33,7 +35,7 @@ class BoardLVAdapter(val boardList : MutableList<BoardModel>) : BaseAdapter() {
         val title = view?.findViewById<TextView>(R.id.titleArea)
         val time = view?.findViewById<TextView>(R.id.timeArea)
 
-        // 제목, 본문, 시간 넣음
+        // 제목, 시간 넣음
         title!!.text = boardList[position].title
         time!!.text = boardList[position].time
 
