@@ -46,9 +46,27 @@ class CommentLVAdapter(val commentList : MutableList<CommentModel>) : BaseAdapte
         // 댓글 작성자의 uid와 현재 사용자의 uid가 일치하면 댓글 세팅 버튼이 보이도록 처리
         commentSettingBtn?.isVisible = commentList[position].uid.equals(FBAuth.getUid())
 
+        // 클릭 리스너 직접 구현해서 달아줘야 함
+        commentSettingBtn?.setOnClickListener {
+            itemClickListener.onClick(it, position)
+        }
+
         // 뷰 반환
         return view!!
 
     }
+
+    // 클릭 리스너 만듦
+    interface OnItemClickListener {
+        fun onClick(v: View, position: Int)
+    }
+
+    // 외부에서 클릭 시 이벤트 설정
+    fun setItemClickListener(onItemClickListener: OnItemClickListener) {
+        this.itemClickListener = onItemClickListener
+    }
+
+    // setItemClickListener로 설정한 함수 실행
+    private lateinit var itemClickListener : OnItemClickListener
 
 }

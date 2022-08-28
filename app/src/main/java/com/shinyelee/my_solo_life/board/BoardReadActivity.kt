@@ -112,12 +112,23 @@ class BoardReadActivity : AppCompatActivity() {
 
         }
 
+        // 댓글 설정 버튼 클릭하면
+        commentLVAdapter.setItemClickListener(object: CommentLVAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int) {
+
+            // -> 대화상자 뜸
+            commentDialog()
+
+            // 클릭 확인 메시지
+//            Toast.makeText(this@BoardReadActivity, "(test)댓글설정 버튼이 클릭되었습니다", Toast.LENGTH_SHORT).show()
+
+            }
+
+        })
+
         // 댓글 클릭하면 -> 대화상자 뜸
         // 파이어베이스의 댓글 키를 기반으로 댓글 데이터(=본문+uid+시간) 받아옴
         cLV.setOnItemClickListener { parent, view, position, id ->
-
-            // -> 대화상자 뜸
-//            commentDialog()
 
             // 명시적 인텐트 -> 다른 액티비티 호출
             val intent = Intent(baseContext, CommentEditActivity::class.java)
@@ -156,16 +167,27 @@ class BoardReadActivity : AppCompatActivity() {
         // 댓글 수정 버튼
         commentAlertDialog.findViewById<ConstraintLayout>(R.id.commentEdit)?.setOnClickListener {
 
+            // 명시적 인텐트 -> 다른 액티비티 호출
+            val intent = Intent(baseContext, CommentEditActivity::class.java)
+
+            // 댓글수정 액티비티로 댓글의 키 값 전달
+            intent.putExtra("commentKey", commentKey)
+
+            // 댓글수정 액티비티 시작
+            startActivity(intent)
+
             // 수정 확인 메시지
-            Toast.makeText(this, "게시글이 수정되었습니다", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "(test)댓글이 수정되었습니다", Toast.LENGTH_SHORT).show()
 
         }
 
         // 댓글 삭제 버튼
         commentAlertDialog.findViewById<ConstraintLayout>(R.id.commentDelete)?.setOnClickListener {
 
+//            FBRef.commentRef.push().child(commentKey).removeValue()
+
             // 삭제 확인 메시지
-            Toast.makeText(this, "게시글이 삭제되었습니다", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(this, "(test)댓글이 삭제되었습니다", Toast.LENGTH_SHORT).show()
 
         }
 

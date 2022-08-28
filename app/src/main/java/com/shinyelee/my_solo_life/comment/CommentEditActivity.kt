@@ -5,13 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.core.view.isVisible
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
-import com.shinyelee.my_solo_life.board.BoardModel
 import com.shinyelee.my_solo_life.databinding.ActivityCommentEditBinding
 import com.shinyelee.my_solo_life.utils.FBAuth
 import com.shinyelee.my_solo_life.utils.FBRef
@@ -73,7 +69,7 @@ class CommentEditActivity : AppCompatActivity() {
 
     }
 
-    // 게시글을 수정
+    // 댓글을 수정
     private fun editCommentData(commentKey: String) {
 
         // 수정한 값으로 업데이트
