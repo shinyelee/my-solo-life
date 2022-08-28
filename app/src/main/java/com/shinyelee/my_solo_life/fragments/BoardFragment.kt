@@ -106,7 +106,7 @@ class BoardFragment : Fragment() {
         }
 
         // 모든 게시글 정보를 가져옴
-        getBoardData()
+        getBoardListData()
 
         // 뷰바인딩
         return binding.root
@@ -114,7 +114,7 @@ class BoardFragment : Fragment() {
     }
 
     // 모든 게시글 정보를 가져옴
-    private fun getBoardData() {
+    private fun getBoardListData() {
 
         // 데이터베이스에서 컨텐츠의 세부정보를 검색
         val postListener = object : ValueEventListener {

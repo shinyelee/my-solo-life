@@ -89,7 +89,7 @@ class BoardReadActivity : AppCompatActivity() {
         key = intent.getStringExtra("key").toString()
 
         // 키 값을 바탕으로 게시글 하나의 정보를 가져옴
-        getPostData(key)
+        getBoardData(key)
         getImageData(key)
         getCommentListData(key)
 
@@ -105,7 +105,7 @@ class BoardReadActivity : AppCompatActivity() {
         binding.boardSettingBtn.setOnClickListener {
 
             // -> 대화상자 뜸
-            postDialog()
+            boardDialog()
 
         }
 
@@ -128,50 +128,50 @@ class BoardReadActivity : AppCompatActivity() {
 
     }
 
-    // 내가 쓴 댓글 수정/삭제 대화상자
-    private fun commentDialog() {
-
-        // custom_dialog를 뷰 객체로 반환
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.comment_dialog, null)
-
-        // 대화상자 생성
-        val builder = AlertDialog.Builder(this)
-            .setView(dialogView)
-
-        // 대화상자 띄움
-        val alertDialog = builder.show()
-
-        // 댓글 수정 버튼
-        alertDialog.findViewById<ConstraintLayout>(R.id.commentEdit)?.setOnClickListener {
-
-            // 명시적 인텐트 -> 다른 액티비티 호출
-            val intent = Intent(this, CommentEditActivity::class.java)
-
-            // 키 값을 바탕으로 댓글 받아옴
-//            intent.putExtra("commentKey", commentKey)
-
-            // 댓글수정 액티비티 시작
-            startActivity(intent)
-
-        }
-
-//        // 댓글 삭제 버튼
+//    // 내가 쓴 댓글 수정/삭제 대화상자
+//    private fun commentDialog() {
+//
+//        // custom_dialog를 뷰 객체로 반환
+//        val dialogView = LayoutInflater.from(this).inflate(R.layout.comment_dialog, null)
+//
+//        // 대화상자 생성
+//        val builder = AlertDialog.Builder(this)
+//            .setView(dialogView)
+//
+//        // 대화상자 띄움
+//        val alertDialog = builder.show()
+//
+//        // 댓글 수정 버튼
+//        alertDialog.findViewById<ConstraintLayout>(R.id.commentEdit)?.setOnClickListener {
+//
+//            // 명시적 인텐트 -> 다른 액티비티 호출
+//            val intent = Intent(this, CommentEditActivity::class.java)
+//
+//            // 키 값을 바탕으로 댓글 받아옴
+//            intent.putExtra("key", key)
+//
+//            // 댓글수정 액티비티 시작
+//            startActivity(intent)
+//
+//        }
+//
+        // 댓글 삭제 버튼
 //        alertDialog.findViewById<ConstraintLayout>(R.id.commentDelete)?.setOnClickListener {
 //
 //            // -> 댓글 삭제
-//            FBRef.boardRef.child(key).removeValue()
+//            FBRef.commentRef.child(key).removeValue()
 //
 //            // 삭제 확인 메시지
 //            Toast.makeText(this, "댓글이 삭제되었습니다", Toast.LENGTH_SHORT).show()
 //
 //        }
-
-        // 대화상자 종료 버튼
-        alertDialog.findViewById<ImageView>(R.id.close)?.setOnClickListener {
-            alertDialog.dismiss()
-        }
-
-    }
+//
+//        // 대화상자 종료 버튼
+//        alertDialog.findViewById<ImageView>(R.id.close)?.setOnClickListener {
+//            alertDialog.dismiss()
+//        }
+//
+//    }
 
     // 댓글 목록 정보 가져옴
     fun getCommentListData(key: String) {
@@ -207,6 +207,7 @@ class BoardReadActivity : AppCompatActivity() {
 
                 // 댓글 키 목록을 출력
                 commentKeyList
+                Log.d("commentKeyList: ", commentKeyList.toString())
 
                 // 댓글 목록도 출력
                 commentList
@@ -250,7 +251,7 @@ class BoardReadActivity : AppCompatActivity() {
     }
 
     // 내가 쓴 글 수정/삭제 대화상자
-    private fun postDialog() {
+    private fun boardDialog() {
 
         // custom_dialog를 뷰 객체로 반환
         val dialogView = LayoutInflater.from(this).inflate(R.layout.board_dialog, null)
@@ -324,7 +325,7 @@ class BoardReadActivity : AppCompatActivity() {
     }
 
     // 게시글 하나의 정보를 가져옴
-    private fun getPostData(key: String) {
+    private fun getBoardData(key: String) {
 
         // 데이터베이스에서 컨텐츠의 세부정보를 검색
         val postListener = object : ValueEventListener {
@@ -355,7 +356,7 @@ class BoardReadActivity : AppCompatActivity() {
                 } catch (e: Exception) {
 
                     // 로그
-                    Log.d(TAG, "getPostData 확인")
+                    Log.d(TAG, "getBoardData 확인")
 
                 }
 

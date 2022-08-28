@@ -59,7 +59,7 @@ class BoardWriteActivity : AppCompatActivity() {
         binding.writeBtn.setOnClickListener {
 
             // -> 작성한 글을 등록
-            setPost(key)
+            setBoard(key)
 
         }
 
@@ -78,7 +78,7 @@ class BoardWriteActivity : AppCompatActivity() {
     }
 
     // 작성한 글을 등록
-    fun setPost(key: String) {
+    fun setBoard(key: String) {
 
         // 게시글의 데이터(제목, 본문, uid, 시간)
         val title = binding.titleArea.text.toString()

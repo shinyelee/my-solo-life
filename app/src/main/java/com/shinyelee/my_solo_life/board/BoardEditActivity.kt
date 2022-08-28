@@ -54,7 +54,7 @@ class BoardEditActivity : AppCompatActivity() {
         key = intent.getStringExtra("key").toString()
 
         // 키 값을 바탕으로 게시글 하나의 정보를 가져옴
-        getPostData(key)
+        getBoardData(key)
 
         // 키 값을 바탕으로 게시글에 첨부된 이미지 정보를 가져옴
         getImageData(key)
@@ -63,14 +63,14 @@ class BoardEditActivity : AppCompatActivity() {
         binding.editBtn.setOnClickListener {
 
             // 키 값을 바탕으로 불러온 게시글을 수정
-            editPostData(key)
+            editBoardData(key)
 
         }
 
     }
 
     // 게시글을 수정
-    private fun editPostData(key: String) {
+    private fun editBoardData(key: String) {
 
         // 수정한 값으로 업데이트
         FBRef.boardRef.child(key).setValue(BoardModel(
@@ -120,7 +120,7 @@ class BoardEditActivity : AppCompatActivity() {
     }
 
     // 게시글 하나의 정보를 가져옴
-    private fun getPostData(key: String) {
+    private fun getBoardData(key: String) {
 
         // 데이터베이스에서 컨텐츠의 세부정보를 검색
         val postListener = object : ValueEventListener {
@@ -145,7 +145,7 @@ class BoardEditActivity : AppCompatActivity() {
                 } catch (e: Exception) {
 
                     // 로그
-                    Log.e(TAG, "getPostData 확인")
+                    Log.e(TAG, "getBoardData 확인")
 
                 }
 

@@ -38,10 +38,10 @@ class BoardLVAdapter(val boardList : MutableList<BoardModel>) : BaseAdapter() {
         time!!.text = boardList[position].time
 
         // 현재 사용자가 작성한 글만 따로 표시하기 위해
-        val myPostBadge = view?.findViewById<TextView>(R.id.myPostBadge)
+        val myBoardBadge = view?.findViewById<TextView>(R.id.myBoardBadge)
 
         // 게시글 작성자의 uid와 현재 사용자의 uid가 일치하면 배지가 보이도록 처리
-        myPostBadge?.isVisible = boardList[position].uid.equals(FBAuth.getUid())
+        myBoardBadge?.isVisible = boardList[position].uid.equals(FBAuth.getUid())
 
         // 뷰 반환
         return view!!
