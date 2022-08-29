@@ -237,6 +237,9 @@ class BoardReadActivity : AppCompatActivity() {
                 // 댓글 목록도 출력
                 commentList
 
+                // 댓글 헤더에 댓글 개수 출력
+                binding.commentCountText.text = commentKeyList.count().toString()
+
                 // 동기화(새로고침) -> 리스트 크기 및 아이템 변화를 어댑터에 알림
                 commentLVAdapter.notifyDataSetChanged()
 
