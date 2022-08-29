@@ -38,6 +38,7 @@
                 android:layout_margin="5dp"
                 android:gravity="center"
                 android:text="@string/android"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 app:drawableTopCompat="@drawable/app112" />
 
@@ -59,6 +60,7 @@
                 android:layout_margin="5dp"
                 android:gravity="center"
                 android:text="@string/kotlin"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 app:drawableTopCompat="@drawable/paper112" />
 
@@ -95,6 +97,7 @@
                 android:layout_margin="5dp"
                 android:gravity="center"
                 android:text="@string/error"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 app:drawableTopCompat="@drawable/error112" />
 
@@ -116,6 +119,7 @@
                 android:layout_margin="5dp"
                 android:gravity="center"
                 android:text="@string/vcs"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 app:drawableTopCompat="@drawable/db112" />
 
@@ -151,6 +155,7 @@
                 android:layout_margin="5dp"
                 android:gravity="center"
                 android:text="@string/web"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 app:drawableTopCompat="@drawable/web112" />
 
@@ -172,6 +177,7 @@
                 android:layout_margin="5dp"
                 android:gravity="center"
                 android:text="@string/etc"
+                android:textColor="@color/black"
                 android:textSize="18sp"
                 app:drawableTopCompat="@drawable/etc112" />
 

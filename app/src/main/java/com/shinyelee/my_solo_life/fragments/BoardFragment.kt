@@ -77,17 +77,6 @@ class BoardFragment : Fragment() {
 
         }
 
-        // 글쓰기 버튼 클릭 -> 작성 액티비티로 이동
-        binding.writeBtn.setOnClickListener {
-
-            // 명시적 인텐트 -> 다른 액티비티 호출
-            val intent = Intent(context, BoardWriteActivity::class.java)
-
-            // 글쓰기 액티비티 시작
-            startActivity(intent)
-
-        }
-
         // 홈 버튼 클릭 -> 홈 프래그먼트로 이동
         binding.homeBtn.setOnClickListener {
             it.findNavController().navigate(R.id.action_boardFragment_to_homeFragment)

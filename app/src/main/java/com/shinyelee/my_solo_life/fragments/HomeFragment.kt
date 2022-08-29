@@ -66,6 +66,21 @@ class HomeFragment : Fragment() {
         // 뷰바인딩
         vBinding = FragmentHomeBinding.inflate(inflater, container, false)
 
+        // 블로그 더보기 클릭 -> 블로그 프래그먼트로 이동
+        binding.blogMoreText.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_blogFragment)
+        }
+
+        // 게시판 더보기 클릭 -> 게시판 프래그먼트로 이동
+        binding.boardMoreText.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_boardFragment)
+        }
+
+        // 북마크 더보기 클릭 -> 북마크 프래그먼트로 이동
+        binding.bookmarkMoreText.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_bookmarkFragment)
+        }
+
         // 안드로이드 아이콘 클릭하면
         binding.androidIcon.setOnClickListener {
             // 명시적 인텐트 -> 다른 액티비티 호출
@@ -133,7 +148,7 @@ class HomeFragment : Fragment() {
         // 현재 사용자의 북마크(키) 출력
         getBookmarkData()
 
-        // 블로그 버튼 클릭 -> 블로그 프래그먼트로 이동
+        // 블로그 버튼
         binding.blogBtn.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_blogFragment)
         }

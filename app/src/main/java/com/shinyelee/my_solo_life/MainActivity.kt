@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.shinyelee.my_solo_life.auth.IntroActivity
+import com.shinyelee.my_solo_life.board.BoardWriteActivity
 import com.shinyelee.my_solo_life.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -63,10 +64,16 @@ class MainActivity : AppCompatActivity() {
         // 대화상자 띄움
         val alertDialog = builder.show()
 
-        // 내가 쓴 글 버튼
-//        alertDialog.findViewById<ConstraintLayout>(R.id.myPost)?.setOnClickListener {
-            // 내가 쓴 글 모아보는 페이지 만들 예정
-//        }
+        // 글쓰기 버튼 클릭 -> 작성 액티비티로 이동
+        alertDialog.findViewById<ConstraintLayout>(R.id.write)?.setOnClickListener {
+
+            // 명시적 인텐트 -> 다른 액티비티 호출
+            val intent = Intent(this, BoardWriteActivity::class.java)
+
+            // 글쓰기 액티비티 시작
+            startActivity(intent)
+
+        }
 
         // 로그아웃 버튼
         alertDialog.findViewById<ConstraintLayout>(R.id.logout)?.setOnClickListener {

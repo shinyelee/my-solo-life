@@ -95,6 +95,7 @@
                         android:gravity="center"
                         android:padding="1dp"
                         android:text="@string/android"
+                        android:textColor="@color/black"
                         android:textSize="12sp"
                         app:drawableTopCompat="@drawable/app112" />
 
@@ -116,6 +117,7 @@
                         android:layout_margin="2.5dp"
                         android:gravity="center"
                         android:text="@string/kotlin"
+                        android:textColor="@color/black"
                         android:textSize="14sp"
                         app:drawableTopCompat="@drawable/paper112" />
 
@@ -137,6 +139,7 @@
                         android:layout_margin="2.5dp"
                         android:gravity="center"
                         android:text="@string/error"
+                        android:textColor="@color/black"
                         android:textSize="14sp"
                         app:drawableTopCompat="@drawable/error112" />
 
@@ -173,6 +176,7 @@
                         android:layout_margin="2.5dp"
                         android:gravity="center"
                         android:text="@string/vcs"
+                        android:textColor="@color/black"
                         android:textSize="14sp"
                         app:drawableTopCompat="@drawable/db112" />
 
@@ -194,6 +198,7 @@
                         android:layout_margin="2.5dp"
                         android:gravity="center"
                         android:text="@string/web"
+                        android:textColor="@color/black"
                         android:textSize="14sp"
                         app:drawableTopCompat="@drawable/web112" />
 
@@ -215,6 +220,7 @@
                         android:layout_margin="2.5dp"
                         android:gravity="center"
                         android:text="@string/etc"
+                        android:textColor="@color/black"
                         android:textSize="14sp"
                         app:drawableTopCompat="@drawable/etc112" />
 
