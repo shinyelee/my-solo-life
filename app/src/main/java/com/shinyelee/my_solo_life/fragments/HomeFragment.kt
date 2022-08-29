@@ -37,22 +37,17 @@ class HomeFragment : Fragment() {
 
     // 게시글(=제목+본문+uid+시간) 목록
     private val boardList = mutableListOf<BoardModel>()
-
     // 게시글의 키 목록
     private val boardKeyList = mutableListOf<String>()
-
     // 리스트뷰 어댑터 선언
     private lateinit var boardLVAdapter : BoardLVAdapter
 
     // 아이템(=컨텐츠=제목+썸네일+본문) 목록
     val items = ArrayList<ContentsModel>()
-
     // 아이템 키(=아이디) 목록
     val keyList = ArrayList<String>()
-
     // 북마크 아이디(=키) 목록
     val bookmarkIdList = mutableListOf<String>()
-
     // 리사이클러뷰 어댑터 선언
     lateinit var rvAdapter: BookmarkRVAdapter
 
@@ -73,16 +68,12 @@ class HomeFragment : Fragment() {
 
         // 안드로이드 아이콘 클릭하면
         binding.androidIcon.setOnClickListener {
-
             // 명시적 인텐트 -> 다른 액티비티 호출
             val intent = Intent(context, ContentsListActivity::class.java)
-
             // android_studio 카테고리로 데이터 넘겨줌
             intent.putExtra("category", "android_studio")
-
             // 컨텐츠리스트 액티비티 시작
             startActivity(intent)
-
         }
 
         // 코틀린 아이콘 -> kotlin_syntax
@@ -116,6 +107,32 @@ class HomeFragment : Fragment() {
         // 기타 아이콘 -> etc (추후 수정)
 //        binding.etcIcon.setOnClickListener {}
 
+        // 리스트뷰 어댑터 연결(게시판)
+        boardLVAdapter = BoardLVAdapter(boardList)
+        val lv : ListView = binding.mainBoardLV
+        lv.adapter = boardLVAdapter
+
+        // 게시판 출력
+        getBoardListData()
+
+        // 파이어베이스의 게시글 키를 기반으로 게시글 데이터(=제목+본문+uid+시간) 받아옴
+        binding.mainBoardLV.setOnItemClickListener { parent, view, position, id ->
+            val intent = Intent(context, BoardReadActivity::class.java)
+            intent.putExtra("key", boardKeyList[position])
+            startActivity(intent)
+        }
+
+        // 리사이클러뷰 어댑터 연결(북마크)
+        rvAdapter = BookmarkRVAdapter(requireContext(), items, keyList, bookmarkIdList)
+        val rv : RecyclerView = binding.mainBookmarkRV
+        rv.adapter = rvAdapter
+
+        // 그리드 레이아웃 매니저 -> 아이템을 격자 형태로 배치(2열)
+        rv.layoutManager = GridLayoutManager(requireContext(), 2)
+
+        // 현재 사용자의 북마크(키) 출력
+        getBookmarkData()
+
         // 블로그 버튼 클릭 -> 블로그 프래그먼트로 이동
         binding.blogBtn.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_blogFragment)
@@ -135,30 +152,6 @@ class HomeFragment : Fragment() {
         binding.webBtn.setOnClickListener {
             it.findNavController().navigate(R.id.action_homeFragment_to_webFragment)
         }
-
-        // 리스트뷰 어댑터 연결(게시글)
-        boardLVAdapter = BoardLVAdapter(boardList)
-        val lv : ListView = binding.mainBoardLV
-        lv.adapter = boardLVAdapter
-
-        // 게시판 출력
-        getBoardListData()
-
-        // 리사이클러뷰 어댑터 연결(북마크)
-        rvAdapter = BookmarkRVAdapter(requireContext(), items, keyList, bookmarkIdList)
-        val rv : RecyclerView = binding.mainBookmarkRV
-        rv.adapter = rvAdapter
-
-        // 그리드 레이아웃 매니저 -> 아이템을 격자 형태로 배치(2열)
-        rv.layoutManager = GridLayoutManager(requireContext(), 2)
-
-        // 북마크 영역 클릭 -> 북마크 프래그먼트로 이동
-        binding.mainBookmarkRV.setOnClickListener {
-            it.findNavController().navigate(R.id.action_homeFragment_to_bookmarkFragment)
-        }
-
-        // 현재 사용자의 북마크(키) 출력
-        getBookmarkData()
 
         // 뷰바인딩
         return binding.root

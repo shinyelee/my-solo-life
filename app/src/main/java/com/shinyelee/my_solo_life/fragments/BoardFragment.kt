@@ -60,6 +60,9 @@ class BoardFragment : Fragment() {
         val lv : ListView = binding.boardLV
         lv.adapter = boardLVAdapter
 
+        // 모든 게시글 정보를 가져옴
+        getBoardListData()
+
         // 파이어베이스의 게시글 키를 기반으로 게시글 데이터(=제목+본문+uid+시간) 받아옴
         binding.boardLV.setOnItemClickListener { parent, view, position, id ->
 
@@ -104,9 +107,6 @@ class BoardFragment : Fragment() {
         binding.webBtn.setOnClickListener {
             it.findNavController().navigate(R.id.action_boardFragment_to_webFragment)
         }
-
-        // 모든 게시글 정보를 가져옴
-        getBoardListData()
 
         // 뷰바인딩
         return binding.root

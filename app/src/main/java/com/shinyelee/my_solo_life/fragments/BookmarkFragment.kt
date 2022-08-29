@@ -56,13 +56,7 @@ class BookmarkFragment : Fragment() {
         // 뷰바인딩
         vBinding = FragmentBookmarkBinding.inflate(inflater, container, false)
 
-        // 1. 모든 컨텐츠 가져옴
-//        getBlogData()
-
-        // 2. 현재 사용자의 북마크(키) 출력
         getBookmarkData()
-
-        // 3. 1과 2의 교집합만 출력
 
         // 리사이클러뷰 어댑터 연결
         rvAdapter = BookmarkRVAdapter(requireContext(), items, keyList, bookmarkIdList)
