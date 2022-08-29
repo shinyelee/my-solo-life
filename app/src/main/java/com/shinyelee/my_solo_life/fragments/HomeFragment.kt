@@ -19,6 +19,7 @@ import com.google.firebase.database.ValueEventListener
 import com.shinyelee.my_solo_life.R
 import com.shinyelee.my_solo_life.board.BoardLVAdapter
 import com.shinyelee.my_solo_life.board.BoardModel
+import com.shinyelee.my_solo_life.board.BoardReadActivity
 import com.shinyelee.my_solo_life.contentsList.BookmarkRVAdapter
 import com.shinyelee.my_solo_life.contentsList.ContentsListActivity
 import com.shinyelee.my_solo_life.contentsList.ContentsModel
@@ -33,6 +34,15 @@ class HomeFragment : Fragment() {
 
     // 매번 null 확인 귀찮음 -> 바인딩 변수 재선언
     private val binding get() = vBinding!!
+
+    // 게시글(=제목+본문+uid+시간) 목록
+    private val boardList = mutableListOf<BoardModel>()
+
+    // 게시글의 키 목록
+    private val boardKeyList = mutableListOf<String>()
+
+    // 리스트뷰 어댑터 선언
+    private lateinit var boardLVAdapter : BoardLVAdapter
 
     // 아이템(=컨텐츠=제목+썸네일+본문) 목록
     val items = ArrayList<ContentsModel>()
@@ -126,7 +136,15 @@ class HomeFragment : Fragment() {
             it.findNavController().navigate(R.id.action_homeFragment_to_webFragment)
         }
 
-        // 리사이클러뷰 어댑터 연결
+        // 리스트뷰 어댑터 연결(게시글)
+        boardLVAdapter = BoardLVAdapter(boardList)
+        val lv : ListView = binding.mainBoardLV
+        lv.adapter = boardLVAdapter
+
+        // 게시판 출력
+        getBoardListData()
+
+        // 리사이클러뷰 어댑터 연결(북마크)
         rvAdapter = BookmarkRVAdapter(requireContext(), items, keyList, bookmarkIdList)
         val rv : RecyclerView = binding.mainBookmarkRV
         rv.adapter = rvAdapter
@@ -134,11 +152,74 @@ class HomeFragment : Fragment() {
         // 그리드 레이아웃 매니저 -> 아이템을 격자 형태로 배치(2열)
         rv.layoutManager = GridLayoutManager(requireContext(), 2)
 
+        // 북마크 영역 클릭 -> 북마크 프래그먼트로 이동
+        binding.mainBookmarkRV.setOnClickListener {
+            it.findNavController().navigate(R.id.action_homeFragment_to_bookmarkFragment)
+        }
+
         // 현재 사용자의 북마크(키) 출력
         getBookmarkData()
 
         // 뷰바인딩
         return binding.root
+
+    }
+
+    // 모든 게시글 정보를 가져옴
+    private fun getBoardListData() {
+
+        // 데이터베이스에서 컨텐츠의 세부정보를 검색
+        val postListener = object : ValueEventListener {
+
+            // 데이터 스냅샷
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                // 게시글 목록 비움
+                // -> 저장/삭제 마다 데이터 누적돼 게시글 중복으로 저장되는 것 방지
+                boardList.clear()
+
+                // 데이터 스냅샷 내 데이터모델 형식으로 저장된
+                for(dataModel in dataSnapshot.children) {
+
+                    // 로그
+                    Log.d(TAG, dataModel.toString())
+
+                    // 아이템(=게시글)
+                    val item = dataModel.getValue(BoardModel::class.java)
+
+                    // 게시글 목록에 아이템 넣음
+                    boardList.add(item!!)
+
+                    // 게시글 키 목록에 문자열 형식으로 변환한 키 넣음
+                    boardKeyList.add(dataModel.key.toString())
+
+                }
+                // getPostData()와 달리 반복문임 -> 아이템'들'
+
+                // 게시글 키 목록을 역순으로 출력
+                boardKeyList.reverse()
+
+                // 게시글 목록도 역순 출력
+                boardList.reverse()
+
+                // 동기화(새로고침) -> 리스트 크기 및 아이템 변화를 어댑터에 알림
+                boardLVAdapter.notifyDataSetChanged()
+
+            }
+
+            // 오류 나면
+            override fun onCancelled(databaseError: DatabaseError) {
+
+                // 로그
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+
+            }
+
+        }
+
+        // 파이어베이스 내 데이터의 변화(추가)를 알려줌
+        FBRef.boardRef.addValueEventListener(postListener)
 
     }
 

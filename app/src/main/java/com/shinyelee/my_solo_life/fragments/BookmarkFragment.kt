@@ -29,9 +29,6 @@ class BookmarkFragment : Fragment() {
     // 매번 null 확인 귀찮음 -> 바인딩 변수 재선언
     private val binding get() = vBinding!!
 
-    // 태그 -> 로그 찍을 때 편함
-    private val TAG = BookmarkFragment::class.java.simpleName
-
     // 아이템(=컨텐츠=제목+썸네일+본문) 목록
     val items = ArrayList<ContentsModel>()
 
@@ -43,6 +40,9 @@ class BookmarkFragment : Fragment() {
 
     // 리사이클러뷰 어댑터 선언
     lateinit var rvAdapter: BookmarkRVAdapter
+
+    // 태그 -> 로그 찍을 때 편함
+    private val TAG = BookmarkFragment::class.java.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

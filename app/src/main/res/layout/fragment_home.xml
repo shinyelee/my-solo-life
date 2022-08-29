@@ -190,6 +190,30 @@
 
             </LinearLayout>
 
+            <!-- 게시판 -->
+            <TextView
+                android:id="@+id/boardText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="10dp"
+                android:paddingTop="20dp"
+                android:text="@string/board"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/blogLayout2" />
+
+            <!-- 게시판 목록(리스트뷰) -->
+            <ListView
+                android:id="@+id/mainBoardLV"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/box2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/boardText"/>
+
             <!-- 북마크 -->
             <TextView
                 android:id="@+id/bookmarkText"
@@ -201,7 +225,7 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/blogLayout2" />
+                app:layout_constraintTop_toBottomOf="@+id/mainBoardLV" />
 
             <!-- 북마크 영역 -->
             <androidx.recyclerview.widget.RecyclerView
@@ -210,7 +234,7 @@
                 android:layout_height="180dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bookmarkText" />
+                app:layout_constraintTop_toBottomOf="@+id/bookmarkText"  />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
