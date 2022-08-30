@@ -63,7 +63,7 @@ class BoardFragment : Fragment() {
         getBoardListData()
 
         // 파이어베이스의 게시글 키를 기반으로 게시글 데이터(=제목+본문+uid+시간) 받아옴
-        binding.boardLV.setOnItemClickListener { parent, view, position, id ->
+        lv.setOnItemClickListener { parent, view, position, id ->
 
             // 명시적 인텐트 -> 다른 액티비티 호출
             val intent = Intent(context, BoardReadActivity::class.java)

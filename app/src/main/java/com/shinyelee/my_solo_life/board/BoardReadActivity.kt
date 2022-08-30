@@ -45,9 +45,6 @@ class BoardReadActivity : AppCompatActivity() {
     // 댓글의 키 목록
     private val commentKeyList = mutableListOf<String>()
 
-    // 댓글 키
-    private lateinit var commentKey: String
-
     // 리스트뷰 어댑터 선언
     private lateinit var commentLVAdapter : CommentLVAdapter
 

@@ -29,8 +29,8 @@ class CommentLVAdapter(val commentList : MutableList<CommentModel>) : BaseAdapte
 
         var view = convertView
 
-            // 레이아웃 인플레이터 -> 리사이클러뷰에서 뷰홀더 만들 때 반복적으로 사용
-            view = LayoutInflater.from(parent?.context).inflate(R.layout.comment_lv_item, parent, false)
+        // 레이아웃 인플레이터 -> 리사이클러뷰에서 뷰홀더 만들 때 반복적으로 사용
+        view = LayoutInflater.from(parent?.context).inflate(R.layout.comment_lv_item, parent, false)
 
         // 각 아이템뷰의 본문/시간 영역에
         val commentMain = view?.findViewById<TextView>(R.id.commentMainArea)
@@ -43,7 +43,7 @@ class CommentLVAdapter(val commentList : MutableList<CommentModel>) : BaseAdapte
         // 현재 사용자가 작성한 댓글만 따로 표시하기 위해
         val myCommentBadge = view?.findViewById<TextView>(R.id.myCommentBadge)
 
-        // 댓글 작성자의 uid와 현재 사용자의 uid가 일치하면 댓글 세팅 버튼이 보이도록 처리
+        // 댓글 작성자의 uid와 현재 사용자의 uid가 일치하면 배지가 보이도록 처리
         myCommentBadge?.isVisible = commentList[position].uid.equals(FBAuth.getUid())
 
         // 뷰 반환

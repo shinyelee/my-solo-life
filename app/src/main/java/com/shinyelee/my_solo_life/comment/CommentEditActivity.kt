@@ -51,12 +51,11 @@ class CommentEditActivity : AppCompatActivity() {
 
         // 게시판 프래그먼트에서 게시글의 키 값을 받아옴
         key = intent.getStringExtra("key").toString()
-        Log.d(TAG, "boardKey - $key")
+//        Log.d(TAG, "boardKey $key")
 
         // 글읽기 액티비티에서 댓글의 키 값을 받아옴
         commentKey = intent.getStringExtra("commentKey").toString()
-        Log.d(TAG, "commentKey - $commentKey")
-//        Toast.makeText(this, commentKey, Toast.LENGTH_SHORT).show()
+//        Log.d(TAG, "commentKey $commentKey")
 
         // 댓글 키 값을 바탕으로 댓글 하나의 정보를 가져옴
         getCommentData(key, commentKey)
