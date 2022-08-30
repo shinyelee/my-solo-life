@@ -68,6 +68,20 @@ class CommentEditActivity : AppCompatActivity() {
 
         }
 
+        // 삭제하기 버튼을 클릭하면
+        binding.commentDeleteBtn.setOnClickListener {
+
+            // -> 댓글 삭제
+            FBRef.commentRef.child(key).child(commentKey).removeValue()
+
+            // 삭제 확인 메시지
+            Toast.makeText(this, "댓글이 삭제되었습니다", Toast.LENGTH_SHORT).show()
+
+            // 댓글수정 액티비티 종료
+            finish()
+
+        }
+
     }
 
     // 댓글을 수정

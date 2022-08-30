@@ -82,6 +82,17 @@
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
+            <!-- 삭제 버튼 -->
+            <Button
+                android:id="@+id/commentDeleteBtn"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/button_main"
+                android:text="@string/delete"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
         </LinearLayout>
 
     </ScrollView>

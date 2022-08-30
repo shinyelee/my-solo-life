@@ -109,6 +109,15 @@ class BoardReadActivity : AppCompatActivity() {
 
         }
 
+        // 댓글 설정 버튼(임시 삭제 버튼)
+//        val commentSettingBtn = findViewById<ImageView>(R.id.commentSettingBtn)
+//        commentSettingBtn.setOnClickListener {
+//
+//            // -> 대화상자 뜸
+//            commentDialog()
+//
+//        }
+
         // 파이어베이스의 댓글 키를 기반으로 댓글 데이터(=본문+uid+시간) 받아옴
         cLV.setOnItemClickListener { parent, view, position, id ->
 
@@ -135,6 +144,54 @@ class BoardReadActivity : AppCompatActivity() {
         }
 
     }
+
+//    // 내가 쓴 댓글 수정/삭제 대화상자
+//    private fun commentDialog() {
+//
+//        // custom_dialog를 뷰 객체로 반환
+//        val dialogView = LayoutInflater.from(this).inflate(R.layout.comment_dialog, null)
+//
+//        // 대화상자 생성
+//        val builder = AlertDialog.Builder(this)
+//            .setView(dialogView)
+//
+//        // 대화상자 띄움
+//        val dialog = builder.show()
+//
+//        // 댓글 수정 버튼
+//        dialog.findViewById<ConstraintLayout>(R.id.commentEdit)?.setOnClickListener {
+//
+//            // 명시적 인텐트 -> 다른 액티비티 호출
+//            val intent = Intent(baseContext, CommentEditActivity::class.java)
+//
+//            // 댓글수정 액티비티로 게시글의 키 값 전달
+//            intent.putExtra("key", key)
+//
+//            // 댓글수정 액티비티로 댓글의 키 값 전달
+//            intent.putExtra("commentKey", commentKeyList[position])
+//
+//            // 댓글수정 액티비티 시작
+//            startActivity(intent)
+//
+//        }
+//
+//        // 댓글 삭제 버튼
+//        dialog.findViewById<ConstraintLayout>(R.id.commentDelete)?.setOnClickListener {
+//
+//            // -> 댓글 삭제
+//            FBRef.commentRef.child(key).child(commentKey).removeValue()
+//
+//            // 삭제 확인 메시지
+//            Toast.makeText(this, "(test)댓글이 삭제되었습니다", Toast.LENGTH_SHORT).show()
+//
+//        }
+//
+//        // 대화상자 종료 버튼
+//        dialog.findViewById<ImageView>(R.id.close)?.setOnClickListener {
+//            dialog.dismiss()
+//        }
+//
+//    }
 
     // 댓글 목록 정보 가져옴
     fun getCommentListData(key: String) {
@@ -200,6 +257,7 @@ class BoardReadActivity : AppCompatActivity() {
     // 작성한 댓글을 등록
     fun setComment(key: String) {
 
+        // 댓글의 데이터(본문, uid, 시간)
         val main = binding.commentMainArea.text.toString()
         val uid = FBAuth.getUid()
         val time = FBAuth.getTime()
