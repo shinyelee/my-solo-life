@@ -41,32 +41,14 @@ class CommentLVAdapter(val commentList : MutableList<CommentModel>) : BaseAdapte
         commentTime!!.text = commentList[position].time
 
         // 현재 사용자가 작성한 댓글만 따로 표시하기 위해
-        val commentSettingBtn = view?.findViewById<ImageView>(R.id.commentSettingBtn)
+        val myCommentBadge = view?.findViewById<TextView>(R.id.myCommentBadge)
 
         // 댓글 작성자의 uid와 현재 사용자의 uid가 일치하면 댓글 세팅 버튼이 보이도록 처리
-        commentSettingBtn?.isVisible = commentList[position].uid.equals(FBAuth.getUid())
-
-        // 클릭 리스너 직접 구현해서 달아줘야 함
-        commentSettingBtn?.setOnClickListener {
-            itemClickListener.onClick(it, position)
-        }
+        myCommentBadge?.isVisible = commentList[position].uid.equals(FBAuth.getUid())
 
         // 뷰 반환
         return view!!
 
     }
-
-    // 클릭 리스너 만듦
-    interface OnItemClickListener {
-        fun onClick(v: View, position: Int)
-    }
-
-    // 외부에서 클릭 시 이벤트 설정
-    fun setItemClickListener(onItemClickListener: OnItemClickListener) {
-        this.itemClickListener = onItemClickListener
-    }
-
-    // setItemClickListener로 설정한 함수 실행
-    private lateinit var itemClickListener : OnItemClickListener
 
 }

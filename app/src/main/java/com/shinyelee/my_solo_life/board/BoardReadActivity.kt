@@ -39,9 +39,6 @@ class BoardReadActivity : AppCompatActivity() {
     // 게시글 키
     private lateinit var key: String
 
-    // 리스트뷰 어댑터 선언
-    private lateinit var commentLVAdapter : CommentLVAdapter
-
     // 댓글(=본문+uid+시간) 목록
     private val commentList = mutableListOf<CommentModel>()
 
@@ -50,6 +47,9 @@ class BoardReadActivity : AppCompatActivity() {
 
     // 댓글 키
     private lateinit var commentKey: String
+
+    // 리스트뷰 어댑터 선언
+    private lateinit var commentLVAdapter : CommentLVAdapter
 
     // 태그
     private val TAG = BoardReadActivity::class.java.simpleName
@@ -88,7 +88,7 @@ class BoardReadActivity : AppCompatActivity() {
 
         })
 
-        // 글읽기 프래그먼트에서 게시글의 키 값을 받아옴
+        // 게시판 프래그먼트에서 게시글의 키 값을 받아옴
         key = intent.getStringExtra("key").toString()
 
         // 게시글 키 값을 바탕으로 게시글 하나의 정보를 가져옴
@@ -112,26 +112,14 @@ class BoardReadActivity : AppCompatActivity() {
 
         }
 
-        // 댓글 설정 버튼 클릭하면
-        commentLVAdapter.setItemClickListener(object: CommentLVAdapter.OnItemClickListener{
-            override fun onClick(v: View, position: Int) {
-
-            // -> 대화상자 뜸
-            commentDialog()
-
-            // 클릭 확인 메시지
-//            Toast.makeText(this@BoardReadActivity, "(test)댓글설정 버튼이 클릭되었습니다", Toast.LENGTH_SHORT).show()
-
-            }
-
-        })
-
-        // 댓글 클릭하면 -> 대화상자 뜸
         // 파이어베이스의 댓글 키를 기반으로 댓글 데이터(=본문+uid+시간) 받아옴
         cLV.setOnItemClickListener { parent, view, position, id ->
 
             // 명시적 인텐트 -> 다른 액티비티 호출
             val intent = Intent(baseContext, CommentEditActivity::class.java)
+
+            // 댓글수정 액티비티로 댓글의 키 값 전달
+            intent.putExtra("key", key)
 
             // 댓글수정 액티비티로 댓글의 키 값 전달
             intent.putExtra("commentKey", commentKeyList[position])
@@ -147,53 +135,6 @@ class BoardReadActivity : AppCompatActivity() {
             // -> 작성한 댓글을 등록
             setComment(key)
 
-        }
-
-    }
-
-    // 내가 쓴 댓글 수정/삭제 대화상자
-    private fun commentDialog() {
-
-        // custom_dialog를 뷰 객체로 반환
-        val commentDialogView = LayoutInflater.from(this).inflate(R.layout.comment_dialog, null)
-
-        // 대화상자 생성
-        val builder = AlertDialog.Builder(this)
-            .setView(commentDialogView)
-
-        // 대화상자 띄움
-        val commentAlertDialog = builder.show()
-
-        // 댓글 수정 버튼
-        commentAlertDialog.findViewById<ConstraintLayout>(R.id.commentEdit)?.setOnClickListener {
-
-            // 명시적 인텐트 -> 다른 액티비티 호출
-            val intent = Intent(baseContext, CommentEditActivity::class.java)
-
-            // 댓글수정 액티비티로 댓글의 키 값 전달
-            intent.putExtra("commentKey", commentKey)
-
-            // 댓글수정 액티비티 시작
-            startActivity(intent)
-
-            // 수정 확인 메시지
-//            Toast.makeText(this, "(test)댓글이 수정되었습니다", Toast.LENGTH_SHORT).show()
-
-        }
-
-        // 댓글 삭제 버튼
-        commentAlertDialog.findViewById<ConstraintLayout>(R.id.commentDelete)?.setOnClickListener {
-
-//            FBRef.commentRef.push().child(commentKey).removeValue()
-
-            // 삭제 확인 메시지
-//            Toast.makeText(this, "(test)댓글이 삭제되었습니다", Toast.LENGTH_SHORT).show()
-
-        }
-
-        // 대화상자 종료 버튼
-        commentAlertDialog.findViewById<ImageView>(R.id.close)?.setOnClickListener {
-            commentAlertDialog.dismiss()
         }
 
     }
@@ -288,10 +229,10 @@ class BoardReadActivity : AppCompatActivity() {
             .setView(dialogView)
 
         // 대화상자 띄움
-        val alertDialog = builder.show()
+        val dialog = builder.show()
 
         // 게시글 수정 버튼
-        alertDialog.findViewById<ConstraintLayout>(R.id.edit)?.setOnClickListener {
+        dialog.findViewById<ConstraintLayout>(R.id.edit)?.setOnClickListener {
 
             // 명시적 인텐트 -> 다른 액티비티 호출
             val intent = Intent(this, BoardEditActivity::class.java)
@@ -305,7 +246,7 @@ class BoardReadActivity : AppCompatActivity() {
         }
 
         // 게시글 삭제 버튼
-        alertDialog.findViewById<ConstraintLayout>(R.id.delete)?.setOnClickListener {
+        dialog.findViewById<ConstraintLayout>(R.id.delete)?.setOnClickListener {
 
             // -> 게시글 삭제
             FBRef.boardRef.child(key).removeValue()
@@ -319,8 +260,8 @@ class BoardReadActivity : AppCompatActivity() {
         }
 
         // 대화상자 종료 버튼
-        alertDialog.findViewById<ImageView>(R.id.close)?.setOnClickListener {
-            alertDialog.dismiss()
+        dialog.findViewById<ImageView>(R.id.close)?.setOnClickListener {
+            dialog.dismiss()
         }
 
     }

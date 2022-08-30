@@ -20,6 +20,9 @@ class CommentEditActivity : AppCompatActivity() {
     // 매번 null 확인 귀찮음 -> 바인딩 변수 재선언
     private val binding get() = vBinding!!
 
+    // 게시글 키
+    private lateinit var key: String
+
     // 댓글 키
     private lateinit var commentKey: String
 
@@ -40,6 +43,7 @@ class CommentEditActivity : AppCompatActivity() {
 
         // 글읽기 액티비티에서 댓글의 키 값을 받아옴
         commentKey = intent.getStringExtra("commentKey").toString()
+        Toast.makeText(this, commentKey, Toast.LENGTH_SHORT).show()
 
         // 댓글 키 값을 바탕으로 댓글 하나의 정보를 가져옴
         getCommentData(commentKey)
@@ -51,13 +55,6 @@ class CommentEditActivity : AppCompatActivity() {
             finish()
 
         }
-
-        // 글읽기 액티비티에서 댓글의 키 값을 받아옴
-        commentKey = intent.getStringExtra("commentKey").toString()
-        Toast.makeText(this, commentKey, Toast.LENGTH_SHORT).show()
-
-        // 댓글 키 값을 바탕으로 댓글 하나의 정보를 가져옴
-        getCommentData(commentKey)
 
         // 수정하기 버튼을 클릭하면
         binding.commentEditBtn.setOnClickListener {

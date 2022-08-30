@@ -44,8 +44,7 @@
     <string name="boardTime">시간</string>
     <string name="picture">사진 첨부</string>
 
-    <string name="myPost">내가 쓴 글</string>
-    <string name="my">내 글</string>
+    <string name="myPost">내 글</string>
     <string name="edit">수정하기</string>
     <string name="delete">삭제하기</string>
 

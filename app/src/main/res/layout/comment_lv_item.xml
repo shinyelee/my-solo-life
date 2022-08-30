@@ -8,16 +8,43 @@
     android:background="@drawable/underline"
     android:orientation="vertical">
 
-    <!-- 댓글 -->
-    <TextView
-        android:id="@+id/commentMainArea"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="10dp"
-        android:paddingTop="10dp"
-        android:text="@string/boardMain"
-        android:textSize="20sp"
-        android:textColor="@color/black" />
+        android:layout_height="wrap_content">
+
+        <!-- 댓글 -->
+        <TextView
+            android:id="@+id/commentMainArea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/boardMain"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 대댓글 배지 -->
+        <TextView
+            android:id="@+id/reCommentCountBadge"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:paddingHorizontal="5dp"
+            android:gravity="center"
+            android:background="@drawable/box2"
+            android:text="@string/zero"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -28,22 +55,24 @@
             android:id="@+id/commentTimeArea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
             android:text="@string/boardTime"
-            android:textSize="15sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- 댓글 설정 버튼 -->
-        <!-- 내가 쓴 글인 경우만 버튼 보이게 처리 -->
-        <ImageView
-            android:id="@+id/commentSettingBtn"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+        <!-- 내가 쓴 댓글 -->
+        <TextView
+            android:id="@+id/myCommentBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
-            android:contentDescription="@string/delete"
-            android:src="@drawable/cog56"
+            android:layout_marginBottom="10dp"
+            android:text="@string/myComment"
+            android:textColor="@color/main"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

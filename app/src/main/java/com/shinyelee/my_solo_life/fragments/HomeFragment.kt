@@ -190,9 +190,6 @@ class HomeFragment : Fragment() {
                 // 데이터 스냅샷 내 데이터모델 형식으로 저장된
                 for(dataModel in dataSnapshot.children) {
 
-                    // 로그
-                    Log.d(TAG, dataModel.toString())
-
                     // 아이템(=게시글)
                     val item = dataModel.getValue(BoardModel::class.java)
 
@@ -243,9 +240,6 @@ class HomeFragment : Fragment() {
 
                 // 데이터 스냅샷 내 데이터모델 형식으로 저장된
                 for(dataModel in dataSnapshot.children) {
-
-                    // 모든 컨텐츠(키, 본문 url, 썸네일 url, 제목) 출력
-                    Log.d(TAG, dataModel.toString())
 
                     // 아이템을 받아
                     val item = dataModel.getValue(ContentsModel::class.java)
@@ -305,9 +299,6 @@ class HomeFragment : Fragment() {
 
                 // 데이터 스냅샷 내 데이터모델 형식으로 저장된
                 for(dataModel in dataSnapshot.children) {
-
-                    // 현재 사용자의 북마크(키) 출력
-                    Log.e(TAG, dataModel.toString())
 
                     // 북마크 아이디 목록에 아이템의 키 값을 넣음
                     bookmarkIdList.add(dataModel.key.toString())
