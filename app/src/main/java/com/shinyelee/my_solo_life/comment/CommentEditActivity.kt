@@ -41,13 +41,6 @@ class CommentEditActivity : AppCompatActivity() {
         // -> 생성된 뷰를 액티비티에 표시
         setContentView(binding.root)
 
-        // 글읽기 액티비티에서 댓글의 키 값을 받아옴
-        commentKey = intent.getStringExtra("commentKey").toString()
-        Toast.makeText(this, commentKey, Toast.LENGTH_SHORT).show()
-
-        // 댓글 키 값을 바탕으로 댓글 하나의 정보를 가져옴
-        getCommentData(commentKey)
-
         // 뒤로가기 버튼을 클릭하면
         binding.backBtn.setOnClickListener {
 
@@ -56,21 +49,33 @@ class CommentEditActivity : AppCompatActivity() {
 
         }
 
+        // 게시판 프래그먼트에서 게시글의 키 값을 받아옴
+        key = intent.getStringExtra("key").toString()
+        Log.d(TAG, "boardKey - $key")
+
+        // 글읽기 액티비티에서 댓글의 키 값을 받아옴
+        commentKey = intent.getStringExtra("commentKey").toString()
+        Log.d(TAG, "commentKey - $commentKey")
+//        Toast.makeText(this, commentKey, Toast.LENGTH_SHORT).show()
+
+        // 댓글 키 값을 바탕으로 댓글 하나의 정보를 가져옴
+        getCommentData(key, commentKey)
+
         // 수정하기 버튼을 클릭하면
         binding.commentEditBtn.setOnClickListener {
 
             // 키 값을 바탕으로 불러온 게시글을 수정
-            editCommentData(commentKey)
+            editCommentData(key, commentKey)
 
         }
 
     }
 
     // 댓글을 수정
-    private fun editCommentData(commentKey: String) {
+    private fun editCommentData(key: String, commentKey: String) {
 
         // 수정한 값으로 업데이트
-        FBRef.commentRef.push().child(commentKey).setValue(CommentModel(
+        FBRef.commentRef.child(key).child(commentKey).setValue(CommentModel(
 
             // 제목 및 본문은 직접 수정한 내용으로,
             binding.commentMainArea.text.toString(),
@@ -90,7 +95,7 @@ class CommentEditActivity : AppCompatActivity() {
     }
 
     // 댓글 하나의 정보를 가져옴
-    private fun getCommentData(commentKey: String) {
+    private fun getCommentData(key: String, commentKey: String) {
 
         // 데이터베이스에서 컨텐츠의 세부정보를 검색
         val postListener = object : ValueEventListener {
@@ -132,7 +137,7 @@ class CommentEditActivity : AppCompatActivity() {
         }
 
         // 파이어베이스 내 데이터의 변화(추가)를 알려줌
-        FBRef.commentRef.push().child(commentKey).addValueEventListener(postListener)
+        FBRef.commentRef.child(key).child(commentKey).addValueEventListener(postListener)
 
     }
 
