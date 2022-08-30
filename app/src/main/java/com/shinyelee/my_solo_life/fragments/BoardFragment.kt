@@ -17,7 +17,6 @@ import com.shinyelee.my_solo_life.R
 import com.shinyelee.my_solo_life.board.BoardLVAdapter
 import com.shinyelee.my_solo_life.board.BoardModel
 import com.shinyelee.my_solo_life.board.BoardReadActivity
-import com.shinyelee.my_solo_life.board.BoardWriteActivity
 import com.shinyelee.my_solo_life.databinding.FragmentBoardBinding
 import com.shinyelee.my_solo_life.utils.FBRef
 

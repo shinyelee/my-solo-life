@@ -8,16 +8,42 @@
     android:background="@drawable/underline"
     android:orientation="vertical">
 
-    <!-- 제목 -->
-    <TextView
-        android:id="@+id/titleArea"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="10dp"
-        android:paddingTop="10dp"
-        android:text="@string/boardTitle"
-        android:textSize="20sp"
-        android:textColor="@color/black" />
+        android:layout_height="wrap_content">
+
+        <!-- 제목 -->
+        <TextView
+            android:id="@+id/titleArea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:text="@string/boardTitle"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 댓글 배지 -->
+        <TextView
+            android:id="@+id/commentCountBadge"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:paddingHorizontal="5dp"
+            android:gravity="center"
+            android:background="@drawable/box2"
+            android:text="@string/zero"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -28,9 +54,10 @@
             android:id="@+id/timeArea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
             android:text="@string/boardTime"
-            android:textSize="15sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -40,14 +67,12 @@
             android:id="@+id/myBoardBadge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp"
-            android:layout_marginHorizontal="10dp"
-            android:paddingHorizontal="5dp"
-            android:background="@drawable/button_main"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
             android:text="@string/my"
-            android:textColor="@color/white"
-            android:textSize="15sp"
-            android:visibility="invisible"
+            android:textColor="@color/main"
+            android:textSize="14sp"
+
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

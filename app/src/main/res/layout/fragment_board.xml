@@ -8,12 +8,12 @@
     android:layout_height="match_parent"
     tools:context=".fragments.BoardFragment">
 
-        <!-- 게시글 목록(리스트뷰) -->
-        <ListView
-            android:id="@+id/boardLV"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="60dp"/>
+    <!-- 게시글 목록(리스트뷰) -->
+    <ListView
+        android:id="@+id/boardLV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp" />
 
     <!-- 내비게이션 바 -->
     <LinearLayout

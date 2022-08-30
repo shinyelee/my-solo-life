@@ -232,7 +232,6 @@ class BoardReadActivity : AppCompatActivity() {
 
                 // 댓글 키 목록을 출력
                 commentKeyList
-                Log.d("commentKeyList", commentKeyList.toString())
 
                 // 댓글 목록도 출력
                 commentList
