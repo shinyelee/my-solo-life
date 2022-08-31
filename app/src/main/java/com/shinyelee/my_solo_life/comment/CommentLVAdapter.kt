@@ -28,7 +28,7 @@ class CommentLVAdapter(val commentList : MutableList<CommentModel>) : BaseAdapte
     override fun getItemId(position: Int): Long = position.toLong()
 
     // 아이템을 표시할 뷰 반환
-    @SuppressLint("ViewHolder")
+    @SuppressLint("ViewHolder", "ClickableViewAccessibility")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
         var view = convertView
@@ -53,6 +53,12 @@ class CommentLVAdapter(val commentList : MutableList<CommentModel>) : BaseAdapte
         // 댓글 세팅 버튼도 마찬가지
         val commentSettingBtn = view?.findViewById<ImageView>(R.id.commentSettingBtn)
         commentSettingBtn?.isVisible = commentList[position].uid.equals(FBAuth.getUid())
+
+        // 댓글 작성자의 uid와 현재 사용자의 uid가 다르면 터치 막음
+        val commentLVItem = view?.findViewById<LinearLayout>(R.id.commentLVItemLayout)
+        if(commentList[position].uid != FBAuth.getUid()) {
+            commentLVItem?.setOnTouchListener(View.OnTouchListener { v, event -> true })
+        }
 
 //        // 클릭 리스너 직접 구현해서 달아줘야 함
 //        commentSettingBtn?.setOnClickListener {
