@@ -119,7 +119,7 @@ class BoardFragment : Fragment() {
                 for(dataModel in dataSnapshot.children) {
 
                     // 로그
-                    Log.d(TAG, dataModel.toString())
+                    Log.d(TAG, "getBoardListData $dataModel")
 
                     // 아이템(=게시글)
                     val item = dataModel.getValue(BoardModel::class.java)
@@ -135,6 +135,7 @@ class BoardFragment : Fragment() {
 
                 // 게시글 키 목록을 역순으로 출력
                 boardKeyList.reverse()
+                Log.d(TAG, "getBoardListData - boardKeyList $boardKeyList")
 
                 // 게시글 목록도 역순 출력
                 boardList.reverse()

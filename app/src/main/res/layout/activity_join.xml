@@ -16,7 +16,7 @@
         android:background="@drawable/appbar"
         android:gravity="center"
         android:text="@string/join"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -100,7 +100,7 @@
             android:background="@drawable/button_main"
             android:text="@string/join"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 

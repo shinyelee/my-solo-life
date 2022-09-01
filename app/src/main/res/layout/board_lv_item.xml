@@ -17,7 +17,6 @@
             android:id="@+id/titleArea"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
             android:text="@string/boardTitle"
             android:textColor="@color/black"
@@ -28,7 +27,7 @@
 
         <!-- 댓글 배지 -->
         <TextView
-            android:id="@+id/commentCountBadge"
+            android:id="@+id/commentBadge"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginTop="10dp"

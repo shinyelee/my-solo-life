@@ -65,8 +65,6 @@ class BoardReadActivity : AppCompatActivity() {
 
         // 리스트뷰 어댑터 연결(댓글 목록)
         commentLVAdapter = CommentLVAdapter(commentList)
-
-        // 리스트뷰 어댑터 연결
         val cLV : ListView = binding.commentLV
         cLV.adapter = commentLVAdapter
 
@@ -109,7 +107,7 @@ class BoardReadActivity : AppCompatActivity() {
 
         }
 
-        // 댓글 설정 버튼(임시 삭제 버튼)
+//        // 댓글 설정 버튼
 //        val commentSettingBtn = findViewById<ImageView>(R.id.commentSettingBtn)
 //        commentSettingBtn.setOnClickListener {
 //
@@ -222,6 +220,9 @@ class BoardReadActivity : AppCompatActivity() {
                     // 댓글 키 목록에 문자열 형식으로 변환한 키 넣음
                     commentKeyList.add(dataModel.key.toString())
 
+                    // 댓글 헤더에 댓글 개수 출력
+                    binding.commentCountText.text = commentKeyList.count().toString()
+
                 }
                 // 반복문임 -> 아이템'들'
 
@@ -230,9 +231,6 @@ class BoardReadActivity : AppCompatActivity() {
 
                 // 댓글 목록도 출력
                 commentList
-
-                // 댓글 헤더에 댓글 개수 출력
-                binding.commentCountText.text = commentKeyList.count().toString()
 
                 // 동기화(새로고침) -> 리스트 크기 및 아이템 변화를 어댑터에 알림
                 commentLVAdapter.notifyDataSetChanged()
@@ -270,6 +268,9 @@ class BoardReadActivity : AppCompatActivity() {
 
         // 등록 확인 메시지 띄움
         Toast.makeText(this, "댓글이 등록되었습니다", Toast.LENGTH_SHORT).show()
+
+        // 댓글 입력란 비움
+        binding.commentMainArea.text = null
 
     }
 
