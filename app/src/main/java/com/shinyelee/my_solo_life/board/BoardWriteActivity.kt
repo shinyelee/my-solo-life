@@ -107,6 +107,9 @@ class BoardWriteActivity : AppCompatActivity() {
         // 글쓰기 액티비티 종료
         finish()
 
+        // 게시글 쓰면 게시판 프래그먼트로 돌아감
+        // -> 글읽기 액티비티로 이동하도록 수정 필요
+
     }
 
     // 게시글에 이미지 첨부

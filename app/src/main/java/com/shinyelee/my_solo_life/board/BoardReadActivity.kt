@@ -215,12 +215,14 @@ class BoardReadActivity : AppCompatActivity() {
         // 댓글 입력란 비움
         binding.commentMainArea.text = null
 
-        // 댓글 헤더에 +1 반영하기 위해 액티비티 종료 후 재시작
+        // 댓글 헤더에 +1 반영하기 위해 글읽기 액티비티 종료
         finish()
-        startActivity(intent)
 
-        // 전환 애니메이션 제거
-        overridePendingTransition(0, 1)
+        // 각각 액티비티 실행시 화면 전환 효과 무시, 액티비티를 새 태스크에서 시작, 태스크의 맨 위에 있는 다른 모든 액티비티 제거
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION and Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
+        // 댓글 헤더에 +1 반영하기 위해 글읽기 액티비티 재시작
+        startActivity(intent)
 
     }
 

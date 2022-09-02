@@ -1,6 +1,7 @@
 package com.shinyelee.my_solo_life.board
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +13,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import com.shinyelee.my_solo_life.MainActivity
 import com.shinyelee.my_solo_life.databinding.ActivityBoardEditBinding
 import com.shinyelee.my_solo_life.utils.FBAuth
 import com.shinyelee.my_solo_life.utils.FBRef
@@ -80,7 +82,17 @@ class BoardEditActivity : AppCompatActivity() {
         // 게시글수정 액티비티 종료
         finish()
 
-        // 게시판 프래그먼트로 돌아가야 함
+//        // 삭제한 글로 돌아가면 안되니까 임시로 메인 액티비티로 이동
+//        val intent = Intent(this, MainActivity::class.java)
+//
+//        // 각각 액티비티 실행시 화면 전환 효과 무시, 액티비티를 새 태스크에서 시작, 태스크의 맨 위에 있는 다른 모든 액티비티 제거
+//        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION and Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//
+//        // 메인 액티비티 시작
+//        startActivity(intent)
+
+        // 게시글 삭제하면 해당 글읽기 액티비티로 돌아감
+        // -> 게시판 프래그먼트로 이동하도록 수정 필요
 
     }
 

@@ -73,6 +73,10 @@ class CommentEditActivity : AppCompatActivity() {
         // 댓글수정 액티비티 종료
         finish()
 
+        // 기존 댓글은 삭제 오류 없음
+        // 방금 단 댓글 삭제하면 게시판 메인화면으로 튕김
+        // 댓글 개수 계속 누적으로 올라감
+
     }
 
     // 댓글을 수정
@@ -96,8 +100,11 @@ class CommentEditActivity : AppCompatActivity() {
         // 댓글수정 액티비티 종료
         finish()
 
-    }
+        // 기존 댓글은 수정 오류 없음
+        // 방금 단 댓글 수정하면 게시판 메인화면으로 튕김
+        // 댓글 개수 계속 누적으로 올라감
 
+    }
     // 댓글 하나의 정보를 가져옴
     private fun getCommentData(key: String, commentKey: String) {
 
