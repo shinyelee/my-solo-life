@@ -163,9 +163,6 @@ class BoardReadActivity : AppCompatActivity() {
                     // 댓글 키 목록에 문자열 형식으로 변환한 키 넣음
                     commentKeyList.add(dataModel.key.toString())
 
-                    // 댓글 헤더에 댓글 개수 출력
-                    binding.commentCountText.text = commentKeyList.count().toString()
-
                 }
                 // 반복문임 -> 아이템'들'
 
@@ -174,6 +171,9 @@ class BoardReadActivity : AppCompatActivity() {
 
                 // 댓글 목록도 출력
                 commentList
+
+                // 댓글 헤더에 댓글 개수 출력
+                binding.commentCountText.text = commentKeyList.count().toString()
 
                 // 동기화(새로고침) -> 리스트 크기 및 아이템 변화를 어댑터에 알림
                 commentLVAdapter.notifyDataSetChanged()
@@ -214,6 +214,13 @@ class BoardReadActivity : AppCompatActivity() {
 
         // 댓글 입력란 비움
         binding.commentMainArea.text = null
+
+        // 댓글 헤더에 +1 반영하기 위해 액티비티 종료 후 재시작
+        finish()
+        startActivity(intent)
+
+        // 전환 애니메이션 제거
+        overridePendingTransition(0, 1)
 
     }
 
