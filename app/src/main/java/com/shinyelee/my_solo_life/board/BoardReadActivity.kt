@@ -5,14 +5,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
-import android.widget.ImageView
 import android.widget.ListView
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.google.firebase.database.DataSnapshot
@@ -20,7 +16,6 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import com.shinyelee.my_solo_life.R
 import com.shinyelee.my_solo_life.comment.CommentEditActivity
 import com.shinyelee.my_solo_life.comment.CommentLVAdapter
 import com.shinyelee.my_solo_life.comment.CommentModel
@@ -72,7 +67,6 @@ class BoardReadActivity : AppCompatActivity() {
         cLV.setOnTouchListener(object : View.OnTouchListener {
 
             // 리스트뷰를 터치했을 때
-            @SuppressLint("ClickableViewAccessibility")
             override fun onTouch(p0: View?, p1: MotionEvent?): Boolean {
 
                 // 스크롤뷰(화면 전체)의 터치 이벤트를 막으면 -> 리스트뷰(댓글 영역)의 스크롤뷰가 작동함
@@ -102,19 +96,16 @@ class BoardReadActivity : AppCompatActivity() {
         // 게시글 설정 버튼
         binding.boardSettingBtn.setOnClickListener {
 
-            // -> 대화상자 뜸
-            boardDialog()
+            // 명시적 인텐트 -> 다른 액티비티 호출
+            val intent = Intent(this, BoardEditActivity::class.java)
+
+            // 키 값을 바탕으로 게시글 받아옴
+            intent.putExtra("key", key)
+
+            // 글수정 액티비티 시작
+            startActivity(intent)
 
         }
-
-//        // 댓글 설정 버튼
-//        val commentSettingBtn = findViewById<ImageView>(R.id.commentSettingBtn)
-//        commentSettingBtn.setOnClickListener {
-//
-//            // -> 대화상자 뜸
-//            commentDialog()
-//
-//        }
 
         // 파이어베이스의 댓글 키를 기반으로 댓글 데이터(=본문+uid+시간) 받아옴
         cLV.setOnItemClickListener { parent, view, position, id ->
@@ -143,56 +134,8 @@ class BoardReadActivity : AppCompatActivity() {
 
     }
 
-//    // 내가 쓴 댓글 수정/삭제 대화상자
-//    private fun commentDialog() {
-//
-//        // custom_dialog를 뷰 객체로 반환
-//        val dialogView = LayoutInflater.from(this).inflate(R.layout.comment_dialog, null)
-//
-//        // 대화상자 생성
-//        val builder = AlertDialog.Builder(this)
-//            .setView(dialogView)
-//
-//        // 대화상자 띄움
-//        val dialog = builder.show()
-//
-//        // 댓글 수정 버튼
-//        dialog.findViewById<ConstraintLayout>(R.id.commentEdit)?.setOnClickListener {
-//
-//            // 명시적 인텐트 -> 다른 액티비티 호출
-//            val intent = Intent(baseContext, CommentEditActivity::class.java)
-//
-//            // 댓글수정 액티비티로 게시글의 키 값 전달
-//            intent.putExtra("key", key)
-//
-//            // 댓글수정 액티비티로 댓글의 키 값 전달
-//            intent.putExtra("commentKey", commentKeyList[position])
-//
-//            // 댓글수정 액티비티 시작
-//            startActivity(intent)
-//
-//        }
-//
-//        // 댓글 삭제 버튼
-//        dialog.findViewById<ConstraintLayout>(R.id.commentDelete)?.setOnClickListener {
-//
-//            // -> 댓글 삭제
-//            FBRef.commentRef.child(key).child(commentKey).removeValue()
-//
-//            // 삭제 확인 메시지
-//            Toast.makeText(this, "(test)댓글이 삭제되었습니다", Toast.LENGTH_SHORT).show()
-//
-//        }
-//
-//        // 대화상자 종료 버튼
-//        dialog.findViewById<ImageView>(R.id.close)?.setOnClickListener {
-//            dialog.dismiss()
-//        }
-//
-//    }
-
     // 댓글 목록 정보 가져옴
-    fun getCommentListData(key: String) {
+    private fun getCommentListData(key: String) {
 
         // 데이터베이스에서 컨텐츠의 세부정보를 검색
         val postListener = object : ValueEventListener {
@@ -271,54 +214,6 @@ class BoardReadActivity : AppCompatActivity() {
 
         // 댓글 입력란 비움
         binding.commentMainArea.text = null
-
-    }
-
-    // 내가 쓴 글 수정/삭제 대화상자
-    private fun boardDialog() {
-
-        // custom_dialog를 뷰 객체로 반환
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.board_dialog, null)
-
-        // 대화상자 생성
-        val builder = AlertDialog.Builder(this)
-            .setView(dialogView)
-
-        // 대화상자 띄움
-        val dialog = builder.show()
-
-        // 게시글 수정 버튼
-        dialog.findViewById<ConstraintLayout>(R.id.edit)?.setOnClickListener {
-
-            // 명시적 인텐트 -> 다른 액티비티 호출
-            val intent = Intent(this, BoardEditActivity::class.java)
-
-            // 키 값을 바탕으로 게시글 받아옴
-            intent.putExtra("key", key)
-
-            // 글수정 액티비티 시작
-            startActivity(intent)
-
-        }
-
-        // 게시글 삭제 버튼
-        dialog.findViewById<ConstraintLayout>(R.id.delete)?.setOnClickListener {
-
-            // -> 게시글 삭제
-            FBRef.boardRef.child(key).removeValue()
-
-            // 글읽기 액티비티 종료
-            finish()
-
-            // 삭제 확인 메시지
-            Toast.makeText(this, "게시글이 삭제되었습니다", Toast.LENGTH_SHORT).show()
-
-        }
-
-        // 대화상자 종료 버튼
-        dialog.findViewById<ImageView>(R.id.close)?.setOnClickListener {
-            dialog.dismiss()
-        }
 
     }
 

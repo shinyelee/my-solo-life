@@ -59,13 +59,28 @@ class BoardEditActivity : AppCompatActivity() {
         // 키 값을 바탕으로 게시글에 첨부된 이미지 정보를 가져옴
         getImageData(key)
 
-        // 수정하기 버튼을 클릭하면
-        binding.editBtn.setOnClickListener {
+        // 수정하기 버튼 -> 키 값을 바탕으로 불러온 게시글 수정
+        binding.boardEditBtn.setOnClickListener { editBoardData(key) }
 
-            // 키 값을 바탕으로 불러온 게시글을 수정
-            editBoardData(key)
+        // 삭제하기 버튼 -> 키 값을 바탕으로 불러온 댓글 삭제
+        binding.boardDeleteBtn.setOnClickListener { deleteBoardData(key) }
 
-        }
+
+    }
+
+    // 게시글을 삭제
+    private fun deleteBoardData(key: String) {
+
+        // 게시글 삭제
+        FBRef.boardRef.child(key).removeValue()
+
+        // 삭제 확인 메시지
+        Toast.makeText(this, "게시글이 삭제되었습니다", Toast.LENGTH_SHORT).show()
+
+        // 게시글수정 액티비티 종료
+        finish()
+
+        // 게시판 프래그먼트로 돌아가야 함
 
     }
 

@@ -41,46 +41,37 @@ class CommentEditActivity : AppCompatActivity() {
         // -> 생성된 뷰를 액티비티에 표시
         setContentView(binding.root)
 
-        // 뒤로가기 버튼을 클릭하면
-        binding.backBtn.setOnClickListener {
-
-            // 댓글수정 액티비티 종료
-            finish()
-
-        }
+        // 뒤로가기 버튼 -> 댓글수정 액티비티 종료
+        binding.backBtn.setOnClickListener { finish() }
 
         // 게시판 프래그먼트에서 게시글의 키 값을 받아옴
         key = intent.getStringExtra("key").toString()
-//        Log.d(TAG, "boardKey $key")
 
         // 글읽기 액티비티에서 댓글의 키 값을 받아옴
         commentKey = intent.getStringExtra("commentKey").toString()
-//        Log.d(TAG, "commentKey $commentKey")
 
         // 댓글 키 값을 바탕으로 댓글 하나의 정보를 가져옴
         getCommentData(key, commentKey)
 
-        // 수정하기 버튼을 클릭하면
-        binding.commentEditBtn.setOnClickListener {
+        // 수정하기 버튼 -> 키 값을 바탕으로 불러온 댓글 수정
+        binding.commentEditBtn.setOnClickListener { editCommentData(key, commentKey) }
 
-            // 키 값을 바탕으로 불러온 게시글을 수정
-            editCommentData(key, commentKey)
+        // 삭제하기 버튼 -> 키 값을 바탕으로 불러온 댓글 삭제
+        binding.commentDeleteBtn.setOnClickListener { deleteCommentData(key, commentKey) }
 
-        }
+    }
 
-        // 삭제하기 버튼을 클릭하면
-        binding.commentDeleteBtn.setOnClickListener {
+    // 댓글을 삭제
+    private fun deleteCommentData(key: String, commentKey: String) {
 
-            // -> 댓글 삭제
-            FBRef.commentRef.child(key).child(commentKey).removeValue()
+        // 댓글 삭제
+        FBRef.commentRef.child(key).child(commentKey).removeValue()
 
-            // 삭제 확인 메시지
-            Toast.makeText(this, "댓글이 삭제되었습니다", Toast.LENGTH_SHORT).show()
+        // 삭제 확인 메시지
+        Toast.makeText(this, "댓글이 삭제되었습니다", Toast.LENGTH_SHORT).show()
 
-            // 댓글수정 액티비티 종료
-            finish()
-
-        }
+        // 댓글수정 액티비티 종료
+        finish()
 
     }
 
