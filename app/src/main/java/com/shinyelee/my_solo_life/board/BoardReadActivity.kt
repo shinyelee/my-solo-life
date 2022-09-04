@@ -197,7 +197,7 @@ class BoardReadActivity : AppCompatActivity() {
     }
 
     // 작성한 댓글을 등록
-    fun setComment(key: String) {
+    private fun setComment(key: String) {
 
         // 댓글의 데이터(본문, uid, 시간)
         val main = binding.commentMainArea.text.toString()
@@ -219,13 +219,22 @@ class BoardReadActivity : AppCompatActivity() {
         // 댓글 헤더에 +1 반영하기 위해 글읽기 액티비티 종료
         finish()
 
-        // 각각 액티비티 실행시 화면 전환 효과 무시, 액티비티를 새 태스크에서 시작, 태스크의 맨 위에 있는 다른 모든 액티비티 제거
+        // 액티비티 실행시 화면 전환 효과 무시
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+
+        // 액티비티를 새 태스크에서 시작, 태스크의 맨 위에 있는 다른 모든 액티비티 제거
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION and Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+
+        // 액티비티 실행시 화면 전환 효과 무시
+        overridePendingTransition(0, 0)
 
         // 댓글 헤더에 +1 반영하기 위해 글읽기 액티비티 재시작
         startActivity(intent)
 
-        // 화면 전환할 때 검정 화면으로 변하는 현상 고쳐야 함
+        // 화면 전환할 때 검정 화면으로 변하는 현상
+
+        // 내가 원하는 것 //
+        // 아무런 전환 효과 없이 액티비티 새로고침하기
 
     }
 
@@ -307,10 +316,6 @@ class BoardReadActivity : AppCompatActivity() {
         // 파이어베이스 내 데이터의 변화(추가)를 알려줌
         FBRef.boardRef.child(key).addValueEventListener(postListener)
 
-    }
-
-    override fun onResume() {
-        super.onResume()
     }
 
     // 액티비티 파괴시

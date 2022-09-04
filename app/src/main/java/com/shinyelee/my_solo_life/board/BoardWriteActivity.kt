@@ -78,7 +78,7 @@ class BoardWriteActivity : AppCompatActivity() {
     }
 
     // 작성한 글을 등록
-    fun setBoard(key: String) {
+    private fun setBoard(key: String) {
 
         // 게시글의 데이터(제목, 본문, uid, 시간)
         val title = binding.titleArea.text.toString()
@@ -108,7 +108,9 @@ class BoardWriteActivity : AppCompatActivity() {
         finish()
 
         // 게시글 쓰면 게시판 프래그먼트로 돌아감
-        // -> 글읽기 액티비티로 이동하도록 수정 필요
+
+        // 내가 원하는 것 //
+        // 글쓰기 액티비티 종료 -> 방금 쓴 글(글읽기 액티비티)로 이동
 
     }
 
