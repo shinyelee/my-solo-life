@@ -105,6 +105,7 @@ class CommentEditActivity : AppCompatActivity() {
         // 댓글 개수 계속 누적으로 올라감
 
     }
+
     // 댓글 하나의 정보를 가져옴
     private fun getCommentData(key: String, commentKey: String) {
 

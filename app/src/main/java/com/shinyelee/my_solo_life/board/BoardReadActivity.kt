@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
@@ -224,6 +225,8 @@ class BoardReadActivity : AppCompatActivity() {
         // 댓글 헤더에 +1 반영하기 위해 글읽기 액티비티 재시작
         startActivity(intent)
 
+        // 화면 전환할 때 검정 화면으로 변하는 현상 고쳐야 함
+
     }
 
     // 게시글에 첨부된 이미지 정보를 가져옴
@@ -304,6 +307,10 @@ class BoardReadActivity : AppCompatActivity() {
         // 파이어베이스 내 데이터의 변화(추가)를 알려줌
         FBRef.boardRef.child(key).addValueEventListener(postListener)
 
+    }
+
+    override fun onResume() {
+        super.onResume()
     }
 
     // 액티비티 파괴시

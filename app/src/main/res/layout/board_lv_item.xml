@@ -8,72 +8,84 @@
     android:background="@drawable/underline"
     android:orientation="vertical">
 
+    <!-- 리스트뷰 아이템 하나 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- 제목 -->
-        <TextView
-            android:id="@+id/titleArea"
-            android:layout_width="wrap_content"
+        <!-- 제목 및 시간 영역 -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:text="@string/boardTitle"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="vertical"
+            android:weightSum="2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <!-- 댓글 배지 -->
-        <TextView
-            android:id="@+id/commentBadge"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:paddingHorizontal="5dp"
-            android:gravity="center"
-            android:background="@drawable/box2"
-            android:text="@string/zero"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <!-- 제목 -->
+            <TextView
+                android:id="@+id/titleArea"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingHorizontal="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="5dp"
+                android:text="@string/boardTitle"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <!-- 시간 -->
+            <TextView
+                android:id="@+id/timeArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/boardTime"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        </LinearLayout>
 
-        <!-- 시간 -->
-        <TextView
-            android:id="@+id/timeArea"
-            android:layout_width="wrap_content"
+        <!-- 댓글 및 배지 영역 -->
+        <LinearLayout
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="@string/boardTime"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <!-- 내가 쓴 글 -->
-        <TextView
-            android:id="@+id/myBoardBadge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="@string/myPost"
-            android:textColor="@color/main"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- 댓글 배지 -->
+            <TextView
+                android:id="@+id/commentBadge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/box2"
+                android:gravity="center"
+                android:paddingVertical="5dp"
+                android:text="@string/zero"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <!-- 내가 쓴 글 -->
+            <TextView
+                android:id="@+id/myBoardBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/myPost"
+                android:textColor="@color/main"
+                android:textSize="14sp" />
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
