@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
@@ -174,7 +173,7 @@ class BoardReadActivity : AppCompatActivity() {
                 commentList
 
                 // 댓글 헤더에 댓글 개수 출력
-                binding.commentCountText.text = commentKeyList.count().toString()
+                binding.commentCountText.text = commentList.count().toString()
 
                 // 동기화(새로고침) -> 리스트 크기 및 아이템 변화를 어댑터에 알림
                 commentLVAdapter.notifyDataSetChanged()
@@ -215,26 +214,6 @@ class BoardReadActivity : AppCompatActivity() {
 
         // 댓글 입력란 비움
         binding.commentMainArea.text = null
-
-        // 댓글 헤더에 +1 반영하기 위해 글읽기 액티비티 종료
-        finish()
-
-        // 액티비티 실행시 화면 전환 효과 무시
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-
-        // 액티비티를 새 태스크에서 시작, 태스크의 맨 위에 있는 다른 모든 액티비티 제거
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION and Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
-
-        // 액티비티 실행시 화면 전환 효과 무시
-        overridePendingTransition(0, 0)
-
-        // 댓글 헤더에 +1 반영하기 위해 글읽기 액티비티 재시작
-        startActivity(intent)
-
-        // 화면 전환할 때 검정 화면으로 변하는 현상
-
-        // 내가 원하는 것 //
-        // 아무런 전환 효과 없이 액티비티 새로고침하기
 
     }
 
