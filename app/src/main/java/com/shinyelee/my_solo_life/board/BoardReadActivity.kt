@@ -130,6 +130,10 @@ class BoardReadActivity : AppCompatActivity() {
             // -> 작성한 댓글을 등록
             setComment(key)
 
+            // 게시글 키 값을 바탕으로 게시글 하나의 정보를 다시 가져옴
+//            getBoardData(key)
+//            getCommentListData(key)
+
         }
 
     }
@@ -214,6 +218,17 @@ class BoardReadActivity : AppCompatActivity() {
 
         // 댓글 입력란 비움
         binding.commentMainArea.text = null
+
+        // 댓글1, 댓글2, 댓글3 연달아 수정/삭제시 문제 발생
+
+        // 순서 무관하게 1은 정상적으로 수정되나 2나 3을 클릭하면 실제로는 둘 다 1이 수정됨
+        // 123 순서로 삭제시 -> 1은 정상적으로 삭제되나 2부터 댓글 내용을 못 불러옴
+        // 321 순서로 삭제시 -> 3을 클릭했는데 실제로는 1이 삭제되고 3은 남아있음
+
+        // 간헐적으로 게시판 메인화면으로 튕기는 현상
+
+        // 게시글을 나갔다가 다시 들어오면 모든 기능이 정상 작동함
+        // -> setComment 실행 후, commentEditActivity 종료 후 BoardReadActivity를 새로고침하면 해결될 듯
 
     }
 
