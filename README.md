@@ -1296,15 +1296,279 @@ data class CommentModel (
     }
 ```
 
-### 북마크
+### 4. 북마크
 
 ![bookmark](https://user-images.githubusercontent.com/68595933/192333390-f8367e6e-3c21-409d-9e69-03e35992a9ac.PNG)
 
-- 북마크 추가
-- 북마크 삭제
+- 컨텐츠 왼쪽 하단 하트 아이콘을 클릭해 북마크 추가(주황)/삭제(하양)가 가능합니다.
 
 ```kotlin
-// 북마크 추가/삭제
+// ContentsRVAdapter.kt
+
+            // 각 아이템뷰의 제목/썸네일/북마크(하트) 영역
+            val contentsTitle = itemView.findViewById<TextView>(R.id.titleArea)
+            val imageViewArea = itemView.findViewById<ImageView>(R.id.imageArea)
+            val bookmarkArea = itemView.findViewById<ImageView>(R.id.bookmarkArea)
+
+            // -> 북마크아이디리스트(=북마크된 아이템의 키 목록)에 화면에 표시된 아이템의 키 정보가 포함되면
+            if(bookmarkIdList.contains(key)) {
+
+                // 해당 아이템의 하트 -> 주황색
+                bookmarkArea.setImageResource(R.drawable.bookmark56)
+
+            // 포함되지 않으면
+            } else {
+
+                // 하트 -> 하얀색
+                bookmarkArea.setImageResource(R.drawable.bookmark56w)
+
+            }
+
+            // 하트 클릭하면
+            bookmarkArea.setOnClickListener {
+
+                // bookmark_list 하위에 사용자 uid별로 나눠 게시글의 키 값을 저장
+
+                // 이미 북마크 된 상태
+                if(bookmarkIdList.contains(key)) {
+
+                    // -> 북마크 삭제
+                    FBRef.bookmarkRef
+                        .child(FBAuth.getUid())
+                        .child(key)
+                        .removeValue()
+
+                // 아직 북마크 안 된 상태
+                } else {
+
+                    // -> 북마크 저장
+                    FBRef.bookmarkRef
+                        .child(FBAuth.getUid())
+                        .child(key)
+                        .setValue(BookmarkModel(true))
+
+                }
+
+            }
+```
+```kotlin
+// ContentsListActiviti.kt
+
+    // 북마크 정보를 가져옴
+    private fun getBookmarkData() {
+
+        // 데이터베이스에서 컨텐츠의 세부정보를 검색
+        val postListener = object : ValueEventListener {
+
+            // 데이터 스냅샷
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                // .clear() -> 북마크 아이디 목록 비움(저장/삭제 마다 데이터 누적되는 것 방지)
+                bookmarkIdList.clear()
+
+                // 데이터 스냅샷 내 데이터모델 형식으로 저장된
+                for(dataModel in dataSnapshot.children) {
+
+                    // 북마크 아이디 목록에 아이템의 키 값을 넣음
+                    bookmarkIdList.add(dataModel.key.toString())
+
+                }
+
+                // 동기화(새로고침) -> 리스트 크기 및 아이템 변화를 어댑터에 알림
+                rvAdapter.notifyDataSetChanged()
+
+            }
+
+            // 오류 나면
+            override fun onCancelled(databaseError: DatabaseError) {
+
+                // 로그
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+
+            }
+
+        }
+
+        // 파이어베이스 내 데이터 변화(추가)를 알려줌
+        FBRef.bookmarkRef.child(FBAuth.getUid()).addValueEventListener(postListener)
+
+    }
+```
+```kotlin
+// BookmarkModel.kt
+
+// 컨텐츠의 북마크 여부를 데이터 모델 형태로 묶음
+data class BookmarkModel (
+
+    // boolean 값이 true -> 북마크 된 컨텐츠
+    val bookmarkOn : Boolean? = null
+
+)
+```
+```kotlin
+// BookmarkRVAdapter.kt
+
+    // 뷰홀더 객체 생성 및 초기화
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BookmarkRVAdapter.Viewholder {
+
+        // 레이아웃 인플레이터 -> 리사이클러뷰에서 뷰홀더 만들 때 반복적으로 사용
+        val v = LayoutInflater.from(parent.context).inflate(R.layout.contents_rv_item, parent, false)
+
+        // 아직 데이터는 들어가있지 않은 껍데기
+        return Viewholder(v)
+
+    }
+
+    // 뷰홀더 객체와 데이터를 연결
+    override fun onBindViewHolder(holder: BookmarkRVAdapter.Viewholder, position: Int) {
+
+        // 껍데기(뷰홀더의 레이아웃)에 출력할 내용물(아이템 목록, 아이템의 키 목록)을 넣어줌
+        holder.bindItems(items[position], keyList[position])
+
+    }
+
+    // 아이템들의 총 개수 반환
+    override fun getItemCount(): Int = items.size
+
+    // 각 아이템에 데이터 넣어줌
+    inner class Viewholder(itemView : View) : RecyclerView.ViewHolder(itemView) {
+
+        // 데이터 매핑(아이템, 아이템의 키)
+        fun bindItems(item: ContentsModel, key: String) {
+
+            // 리사이클러뷰는 setOnItemClickListener 없음 -> 개발자가 직접 구현해야 함
+
+            // 아이템뷰(아이템 영역)를 클릭하면
+            itemView.setOnClickListener {
+
+                // 명시적 인텐트 -> 다른 액티비티 호출
+                val intent = Intent(context, ContentsShowActivity::class.java)
+
+                // 해당 아이템의 본문 url을 전달
+                intent.putExtra("url", item.webUrl)
+
+                // 컨텐츠쇼 액티비티 시작(웹뷰)
+                itemView.context.startActivity(intent)
+
+            }
+
+            // 각 아이템뷰의 제목/썸네일/북마크(하트) 영역
+            val contentsTitle = itemView.findViewById<TextView>(R.id.titleArea)
+            val imageViewArea = itemView.findViewById<ImageView>(R.id.imageArea)
+            val bookmarkArea = itemView.findViewById<ImageView>(R.id.bookmarkArea)
+
+            // -> 북마크아이디리스트(=북마크된 아이템의 키 목록)에 화면에 표시된 아이템의 키 정보가 포함되면
+            if(bookmarkIdList.contains(key)) {
+
+                // 해당 아이템의 하트 -> 주황색
+                bookmarkArea.setImageResource(R.drawable.bookmark56)
+
+            // 포함되지 않으면
+            } else {
+
+                // 하트 -> 하얀색
+                bookmarkArea.setImageResource(R.drawable.bookmark56w)
+
+            }
+
+            // 하트 클릭하면
+            bookmarkArea.setOnClickListener {
+
+                // bookmark_list 하위에 사용자 uid별로 나눠 게시글의 키 값을 저장
+
+                // 이미 북마크 된 상태
+                if(bookmarkIdList.contains(key)) {
+
+                    // -> 북마크 삭제
+                    FBRef.bookmarkRef
+                        .child(FBAuth.getUid())
+                        .child(key)
+                        .removeValue()
+
+                // 아직 북마크 안 된 상태
+                } else {
+
+                    // -> 북마크 저장
+                    FBRef.bookmarkRef
+                        .child(FBAuth.getUid())
+                        .child(key)
+                        .setValue(BookmarkModel(true))
+
+                }
+
+            }
+
+            // 아이템의 제목 -> titleArea에 넣음
+            contentsTitle.text = item.title
+
+            // 아이템의 썸네일 -> 글라이드로 썸네일 이미지의 url을 imageViewArea에 넣음
+            Glide.with(context)
+                .load(item.imageUrl)
+                .into(imageViewArea)
+
+        }
+
+    }
+```
+```kotlin
+// BookmarkFragment.kt
+
+    // 블로그 탭의 모든 컨텐츠 가져옴
+    private fun getBlogData() {
+
+        // 데이터베이스에서 게시물의 세부정보를 검색
+        val postListener = object : ValueEventListener {
+
+            // 데이터 스냅샷
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                
+                // 데이터 스냅샷 내 데이터모델 형식으로 저장된
+                for(dataModel in dataSnapshot.children) {
+
+                    // 모든 컨텐츠(키, 본문 url, 썸네일 url, 제목) 출력
+                    Log.d(TAG, dataModel.toString())
+
+                    // 아이템을 받아
+                    val item = dataModel.getValue(ContentsModel::class.java)
+
+                    // 북마크 아이디 목록에 키가 포함(북마크 저장)된 경우만
+                    if(bookmarkIdList.contains(dataModel.key.toString())) {
+
+                        // 아이템을 아이템 목록에 넣음
+                        items.add(item!!)
+
+                        // 키 값은 아이템 키 목록에 넣음
+                        keyList.add(dataModel.key.toString())
+
+                    }
+
+                }
+
+                // 동기화(새로고침) -> 리스트 크기 및 아이템 변화를 어댑터에 알림
+                rvAdapter.notifyDataSetChanged()
+
+            }
+
+            // 오류 나면
+            override fun onCancelled(databaseError: DatabaseError) {
+
+                // 로그
+                Log.w(ContentValues.TAG, "loadPost:onCancelled", databaseError.toException())
+
+            }
+
+        }
+
+        // 파이어베이스 내 카테고리별 컨텐츠 데이터의 변화(추가)를 알려줌
+        FBRef.androidStudio.addValueEventListener(postListener)
+        FBRef.kotlinSyntax.addValueEventListener(postListener)
+        FBRef.errorWarning.addValueEventListener(postListener)
+        FBRef.vcsGithub.addValueEventListener(postListener)
+        FBRef.webInternet.addValueEventListener(postListener)
+
+    }
 ```
 
 ---
