@@ -36,9 +36,9 @@
 ![auth](https://user-images.githubusercontent.com/68595933/192332941-1b4bc082-be0e-4f18-babd-97f2d810662d.PNG)
 
 - 1.1 로그인/로그아웃
-  - 로그인
-  - 비회원로그인
-  - 로그아웃
+  - 로그인 버튼을 클릭하면 유효성 검사 후 로그인합니다.
+  - 비회원로그인 버튼을 클릭하면 회원가입 없이 임의로 로그인이 가능하나, 한 번 로그아웃하면 같은 계정으로 재로그인할 수 없습니다.
+  - 로그아웃 버튼을 클릭하면 로그아웃 후 IntroActivity로 이동합니다.
 
 ```kotlin
 // FBAuth.kt
@@ -224,7 +224,7 @@ class FBAuth {
 ```
 
 - 1.2 회원가입
-  - 회원가입
+  - 회원가입 버튼을 클릭하면 유효성 검사 후 회원가입합니다.
 
 ```kotlin
 // JoinActivity.kt
@@ -331,11 +331,17 @@ class FBAuth {
         }
 ```
 
-### 웹뷰
+### 2. 웹뷰(Web View)
 
 ![webview](https://user-images.githubusercontent.com/68595933/192333063-c18a7ff9-32bf-449b-bdfe-225eb456ec2a.PNG)
 
-- 웹뷰
+- 2.1 블로그 탭
+  - 컨텐츠 등록시 Glide로 썸네일을 지정합니다.
+  - 컨텐츠 왼쪽 하단 하트 아이콘을 클릭하면 북마크 추가/삭제를 할 수 있습니다.
+  - 컨텐츠를 카테고리별로 분류해 웹뷰로 보여주며, 뒤로가기 버튼을 두 번 클릭하면 웹뷰 창을 닫습니다.
+
+- 2.2 깃허브 탭
+  - shinyelee 계정의 깃허브 홈페이지를 보여주며, 화면 하단 내비게이션 바를 통해 다른 탭으로 이동합니다.
 
 ```kotlin
 // FBRef.kt
@@ -375,6 +381,9 @@ class FBRef {
 ```kotlin
 // ContentsModel.kt
 
+// 블로그 컨텐츠에 대한 정보를 데이터 모델 형태로 묶음
+data class ContentsModel (
+
     // 블로그 컨텐츠의 제목
     var title : String = "",
 
@@ -383,6 +392,8 @@ class FBRef {
 
     // 블로그 컨텐츠의 본문 url
     var webUrl : String = ""
+
+)
 ```
 ```kotlin
 // ContentsRVAdapter.kt
@@ -585,17 +596,8 @@ class ContentsRVAdapter(
 
         // 북마크 정보를 가져옴
         getBookmarkData()
-
-        // 파이어베이스에 (웹뷰에서 보여줄) 아이템 데이터 넣기
-//        val myRef1 = database.getReference("파이어베이스 카테고리 이름")
-
-        // 제목, 썸네일, 본문 순으로 들어감(파이어베이스)
-//        myRef1.push().setValue(
-//            ContentsModel(
-//                "컨텐츠 제목",
-//                "썸네일 URL",
-//                "본문 URL")
-//        )
+        
+        // 
 
         // 뒤로가기 버튼 -> 컨텐츠리스트 액티비티 종료
         binding.backBtn.setOnClickListener {
@@ -706,13 +708,733 @@ class ContentsRVAdapter(
         binding.webView.loadUrl("https://github.com/shinyelee")
 ```
 
-### 게시판
+### 3. 게시판(CRUD)
 
 ![board_write](https://user-images.githubusercontent.com/68595933/192333230-07034857-d16b-4eb3-9ba7-42b56f2bd293.PNG)
+
+- 3.1 게시글 CRUD
+  - 게시글 작성시 Glide로 이미지를 추가합니다.
+  - 게시글 쓰기/읽기/수정/삭제가 가능합니다.
+  - 내가 쓴 게시글만 수정/삭제 버튼을 나타냅니다.
+
+```kotlin
+// BoardModel.kt
+
+// 게시글에 대한 정보를 데이터 모델 형태로 묶음
+data class BoardModel (
+
+    // 게시글 제목
+    var title : String = "",
+
+    // 게시글 본문
+    var main : String = "",
+
+    // 작성자 uid
+    var uid : String = "",
+
+    // 작성 시간
+    var time : String = ""
+
+)
+```
+```kotlin
+// BoardFragment.kt
+
+// 리스트뷰 어댑터 연결(게시글 목록)
+        boardLVAdapter = BoardLVAdapter(boardList)
+
+        // 리스트뷰 어댑터 연결
+        val lv : ListView = binding.boardLV
+        lv.adapter = boardLVAdapter
+
+        // 모든 게시글 정보를 가져옴
+        getBoardListData()
+
+        // 파이어베이스의 게시글 키를 기반으로 게시글 데이터(=제목+본문+uid+시간) 받아옴
+        lv.setOnItemClickListener { parent, view, position, id ->
+
+            // 명시적 인텐트 -> 다른 액티비티 호출
+            val intent = Intent(context, BoardReadActivity::class.java)
+
+            // 글읽기 액티비티로 게시글의 키 값 전달
+            intent.putExtra("key", boardKeyList[position])
+
+            // 글읽기 액티비티 시작
+            startActivity(intent)
+
+        }
+
+// 중략
+
+    // 모든 게시글 정보를 가져옴
+    private fun getBoardListData() {
+
+        // 데이터베이스에서 컨텐츠의 세부정보를 검색
+        val postListener = object : ValueEventListener {
+
+            // 데이터 스냅샷
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                // 게시글 목록 비움
+                // -> 저장/삭제 마다 데이터 누적돼 게시글 중복으로 저장되는 것 방지
+                boardList.clear()
+
+                // 데이터 스냅샷 내 데이터모델 형식으로 저장된
+                for(dataModel in dataSnapshot.children) {
+
+                    // 로그
+                    Log.d(TAG, "getBoardListData $dataModel")
+
+                    // 아이템(=게시글)
+                    val item = dataModel.getValue(BoardModel::class.java)
+
+                    // 게시글 목록에 아이템 넣음
+                    boardList.add(item!!)
+
+                    // 게시글 키 목록에 문자열 형식으로 변환한 키 넣음
+                    boardKeyList.add(dataModel.key.toString())
+
+                }
+                // getPostData()와 달리 반복문임 -> 아이템'들'
+
+                // 게시글 키 목록을 역순으로 출력
+                boardKeyList.reverse()
+                Log.d(TAG, "getBoardListData - boardKeyList $boardKeyList")
+
+                // 게시글 목록도 역순 출력
+                boardList.reverse()
+
+                // 동기화(새로고침) -> 리스트 크기 및 아이템 변화를 어댑터에 알림
+                boardLVAdapter.notifyDataSetChanged()
+
+            }
+
+            // 오류 나면
+            override fun onCancelled(databaseError: DatabaseError) {
+
+                // 로그
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+
+            }
+
+        }
+
+        // 파이어베이스 내 데이터의 변화(추가)를 알려줌
+        FBRef.boardRef.addValueEventListener(postListener)
+
+    }
+```
+```kotlin
+// BoardLVAdapter.kt
+
+// boardList -> 아이템(=게시글=제목+본문+uid+시간) 목록
+class BoardLVAdapter(val boardList : MutableList<BoardModel>) : BaseAdapter() {
+
+    // 아이템 총 개수 반환
+    override fun getCount(): Int = boardList.size
+
+    // 아이템 반환
+    override fun getItem(position: Int): Any = boardList[position]
+
+    // 아이템의 아이디 반환
+    override fun getItemId(position: Int): Long = position.toLong()
+
+    // 아이템을 표시할 뷰 반환
+    @SuppressLint("ViewHolder")
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+
+        var view = convertView
+
+        // 레이아웃 인플레이터 -> 리사이클러뷰에서 뷰홀더 만들 때 반복적으로 사용
+        view = LayoutInflater.from(parent?.context).inflate(R.layout.board_lv_item, parent, false)
+
+        // 각 아이템뷰의 제목/본문/시간 영역에
+        val title = view?.findViewById<TextView>(R.id.titleArea)
+        val time = view?.findViewById<TextView>(R.id.timeArea)
+
+        // 제목, 시간 넣음
+        title!!.text = boardList[position].title
+        time!!.text = boardList[position].time
+
+        // 현재 사용자가 작성한 글만 따로 표시하기 위해
+        val myBoardBadge = view?.findViewById<TextView>(R.id.myBoardBadge)
+
+        // 게시글 작성자의 uid와 현재 사용자의 uid가 일치하면 배지가 보이도록 처리
+        myBoardBadge?.isVisible = boardList[position].uid.equals(FBAuth.getUid())
+
+        // 뷰 반환
+        return view!!
+
+    }
+
+}
+```
+```kotlin
+// BoardWriteActivity.kt
+
+// 키 값 기반으로 데이터를 받아오기 위해 키 값 선생성
+        key = FBRef.boardRef.push().key.toString()
+
+        // 뒤로가기 버튼을 클릭하면
+        binding.backBtn.setOnClickListener {
+
+            // 글쓰기 액티비티 종료
+            finish()
+
+        }
+
+        // 글쓰기 버튼
+        binding.writeBtn.setOnClickListener {
+
+            // -> 작성한 글을 등록
+            setBoard(key)
+
+        }
+
+        // 카메라 아이콘
+        binding.imageArea.setOnClickListener {
+
+            // -> 갤러리 실행
+            val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(gallery, 100)
+
+            // 이미지 업로드 여부
+            isImageUpload = true
+
+        }
+        
+// 중략
+
+    // 작성한 글을 등록
+    private fun setBoard(key: String) {
+
+        // 게시글의 데이터(제목, 본문, uid, 시간)
+        val title = binding.titleArea.text.toString()
+        val main = binding.mainArea.text.toString()
+        val uid = FBAuth.getUid()
+        val time = FBAuth.getTime()
+
+        // 키 값 하위에 데이터 넣음
+        FBRef.boardRef
+            .child(key)
+            .setValue(BoardModel(title, main, uid, time))
+
+        // 카메라 아이콘을 클릭했다면 이미지 업로드
+        if (isImageUpload == true) {
+
+            // 이미지 파일명을 아무렇게나 설정하면 해당 게시글과 매칭하기 어려움
+            // -> 키 값과 똑같이 설정하면 해결
+            imageUpload("$key.png")
+
+        }
+        // 카메라 아이콘을 클릭하지 않음 -> 이미지를 업로드하지 않음
+
+        // 등록 확인 메시지 띄움
+        Toast.makeText(this, "게시글이 등록되었습니다", Toast.LENGTH_SHORT).show()
+
+        // 글쓰기 액티비티 종료
+        finish()
+
+    }
+
+    // 게시글에 이미지 첨부
+    private fun imageUpload(key: String) {
+
+        // Cloud Storage에 파일을 업로드하려면
+        val storage = Firebase.storage
+
+        // -> 우선 파일 이름을 포함하여 파일의 전체 경로를 가리키는 참조를 만듦
+        val storageRef = storage.reference
+
+        // 임의의 게시글 하나와 그 게시글 내 이미지 하나를 쉽게 매칭하려면
+        // -> DB 내 게시글 키 값과 첨부한 이미지 이름이 똑같으면 됨
+        val testRef = storageRef.child(key)
+
+        // 적절한 참조를 만들었으면
+        binding.imageArea.isDrawingCacheEnabled = true
+        binding.imageArea.buildDrawingCache()
+        val bitmap = (binding.imageArea.drawable as BitmapDrawable).bitmap
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val data = baos.toByteArray()
+
+        // -> put어쩌고() 메서드를 호출하여 Cloud Storage에 파일을 업로드
+        var uploadTask = testRef.putBytes(data)
+        uploadTask.addOnFailureListener {
+            Log.d(TAG, "imageUpload() failed")
+        }.addOnSuccessListener { taskSnapshot ->
+            // 성공
+        }
+
+    }
+
+    // startActivityForResult와 세트
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == RESULT_OK && requestCode == 100) {
+            binding.imageArea.setImageURI(data?.data)
+        }
+    }
+```
+```kotlin
+// BoardReadActivity.kt
+
+class BoardReadActivity : AppCompatActivity() {
+
+// 중략
+
+    // 게시글 키
+    private lateinit var key: String
+
+    // 댓글(=본문+uid+시간) 목록
+    private val commentList = mutableListOf<CommentModel>()
+
+    // 댓글의 키 목록
+    private val commentKeyList = mutableListOf<String>()
+
+    // 리스트뷰 어댑터 선언
+    private lateinit var commentLVAdapter : CommentLVAdapter
+
+    // 태그
+    private val TAG = BoardReadActivity::class.java.simpleName
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+
+        super.onCreate(savedInstanceState)
+
+        // 자동 생성된 뷰바인딩 클래스에서의 inflate 메서드 활용
+        // -> 액티비티에서 사용할 바인딩 클래스의 인스턴스 생성
+        vBinding = ActivityBoardReadBinding.inflate(layoutInflater)
+
+        // getRoot 메서드로 레이아웃 내부 최상위에 있는 뷰의 인스턴스 활용
+        // -> 생성된 뷰를 액티비티에 표시
+        setContentView(binding.root)
+
+        // 리스트뷰 어댑터 연결(댓글 목록)
+        commentLVAdapter = CommentLVAdapter(commentList)
+        val cLV : ListView = binding.commentLV
+        cLV.adapter = commentLVAdapter
+
+        // 댓글 목록(리스트뷰)
+        cLV.setOnTouchListener(object : View.OnTouchListener {
+
+            // 리스트뷰를 터치했을 때
+            @SuppressLint("ClickableViewAccessibility")
+            override fun onTouch(p0: View?, p1: MotionEvent?): Boolean {
+
+                // 스크롤뷰(화면 전체)의 터치 이벤트를 막으면 -> 리스트뷰(댓글 영역)의 스크롤뷰가 작동함
+                binding.boardReadSV.requestDisallowInterceptTouchEvent(true)
+                return false
+
+            }
+
+        })
+
+        // 게시판 프래그먼트에서 게시글의 키 값을 받아옴
+        key = intent.getStringExtra("key").toString()
+
+        // 게시글 키 값을 바탕으로 게시글 하나의 정보를 가져옴
+        getBoardData(key)
+        getImageData(key)
+        getCommentListData(key)
+
+        // 뒤로가기 버튼을 클릭하면
+        binding.backBtn.setOnClickListener {
+
+            // 글읽기 액티비티 종료
+            finish()
+
+        }
+
+        // 게시글 설정 버튼
+        binding.boardSettingBtn.setOnClickListener {
+
+            // 명시적 인텐트 -> 다른 액티비티 호출
+            val intent = Intent(this, BoardEditActivity::class.java)
+
+            // 키 값을 바탕으로 게시글 받아옴
+            intent.putExtra("key", key)
+
+            // 글수정 액티비티 시작
+            startActivity(intent)
+
+        }
+
+        // 파이어베이스의 댓글 키를 기반으로 댓글 데이터(=본문+uid+시간) 받아옴
+        cLV.setOnItemClickListener { parent, view, position, id ->
+
+            // 명시적 인텐트 -> 다른 액티비티 호출
+            val intent = Intent(baseContext, CommentEditActivity::class.java)
+
+            // 댓글수정 액티비티로 댓글의 키 값 전달
+            intent.putExtra("key", key)
+
+            // 댓글수정 액티비티로 댓글의 키 값 전달
+            intent.putExtra("commentKey", commentKeyList[position])
+
+            // 댓글수정 액티비티 시작
+            startActivity(intent)
+
+        }
+
+        // 댓글쓰기 버튼
+        binding.commentBtn.setOnClickListener {
+
+            // -> 작성한 댓글을 등록
+            setComment(key)
+
+        }
+
+    }
+
+    // 댓글 목록 정보 가져옴
+    private fun getCommentListData(key: String) {
+
+        // 데이터베이스에서 컨텐츠의 세부정보를 검색
+        val postListener = object : ValueEventListener {
+
+            // 데이터 스냅샷
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                // 댓글 목록 비움
+                // -> 저장/삭제 마다 데이터 누적돼 게시글 중복으로 저장되는 것 방지
+                commentList.clear()
+
+                // 데이터 스냅샷 내 데이터모델 형식으로 저장된
+                for(dataModel in dataSnapshot.children) {
+
+                    // 로그
+                    Log.d(TAG, dataModel.toString())
+
+                    // 아이템(=댓글)
+                    val item = dataModel.getValue(CommentModel::class.java)
+
+                    // 댓글 목록에 아이템 넣음
+                    commentList.add(item!!)
+
+                    // 댓글 키 목록에 문자열 형식으로 변환한 키 넣음
+                    commentKeyList.add(dataModel.key.toString())
+
+                }
+                // 반복문임 -> 아이템'들'
+
+                // 댓글 키 목록을 출력
+                commentKeyList
+
+                // 댓글 목록도 출력
+                commentList
+
+                // 댓글 헤더에 댓글 개수 출력
+                binding.commentCountText.text = commentList.count().toString()
+
+                // 동기화(새로고침) -> 리스트 크기 및 아이템 변화를 어댑터에 알림
+                commentLVAdapter.notifyDataSetChanged()
+
+            }
+
+            // 오류 나면
+            override fun onCancelled(databaseError: DatabaseError) {
+
+                // 로그
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+
+            }
+
+        }
+
+        // 파이어베이스 내 데이터의 변화(추가)를 알려줌
+        FBRef.commentRef.child(key).addValueEventListener(postListener)
+
+    }
+
+    // 작성한 댓글을 등록
+    private fun setComment(key: String) {
+
+        // 댓글의 데이터(본문, uid, 시간)
+        val main = binding.commentMainArea.text.toString()
+        val uid = FBAuth.getUid()
+        val time = FBAuth.getTime()
+
+        // 키 값 하위에 데이터 넣음
+        FBRef.commentRef
+            .child(key)
+            .push()
+            .setValue(CommentModel(main, uid, time))
+
+        // 등록 확인 메시지 띄움
+        Toast.makeText(this, "댓글이 등록되었습니다", Toast.LENGTH_SHORT).show()
+
+        // 댓글 입력란 비움
+        binding.commentMainArea.text = null
+
+    }
+
+    // 게시글에 첨부된 이미지 정보를 가져옴
+    private fun getImageData(key: String) {
+
+        // 이미지 파일 경로
+        val storageReference = Firebase.storage.reference.child("$key.png")
+
+        // 이미지 넣을 곳
+        val imgDown = binding.imageArea
+
+        // 글라이드로 이미지 다운로드
+        storageReference.downloadUrl.addOnCompleteListener( { task ->
+
+            // 이미지 첨부
+            if(task.isSuccessful) {
+                Glide.with(this)
+                    .load(task.result)
+                    .into(imgDown)
+            // 첨부 이미지 없으면 imageArea 안 보이게 처리
+            } else {
+                binding.imageArea.isVisible = false
+            }
+
+        })
+
+    }
+
+    // 게시글 하나의 정보를 가져옴
+    private fun getBoardData(key: String) {
+
+        // 데이터베이스에서 컨텐츠의 세부정보를 검색
+        val postListener = object : ValueEventListener {
+
+            // 데이터 스냅샷
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                // 예외 처리
+                try {
+
+                    // 데이터 스냅샷 내 데이터모델 형식으로 저장된 아이템(=게시글)
+                    val item = dataSnapshot.getValue(BoardModel::class.java)
+
+                    // 제목, 시간, 본문 해당 영역에 넣음
+                    binding.titleArea.text = item!!.title
+                    binding.timeArea.text = item.time
+                    binding.mainArea.text = item.main
+
+                    // 게시글 작성자와 현재 사용자의 uid를 비교해
+                    val writerUid = item.uid
+                    val myUid = FBAuth.getUid()
+
+                    // 작성자가 사용자면 수정 버튼 보임
+                    binding.boardSettingBtn.isVisible = writerUid.equals(myUid)
+
+                // 오류 나면
+                } catch (e: Exception) {
+
+                    // 로그
+                    Log.d(TAG, "getBoardData 확인")
+
+                }
+
+            }
+            // getBoardListData()와 달리 반복문이 아님 -> '단일' 아이템
+
+            // 오류 나면
+            override fun onCancelled(databaseError: DatabaseError) {
+
+                // 로그
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+
+            }
+
+        }
+
+        // 파이어베이스 내 데이터의 변화(추가)를 알려줌
+        FBRef.boardRef.child(key).addValueEventListener(postListener)
+
+    }
+
+// 중략
+
+}
+```
+```kotlin
+// BoardEditActivity.kt
+
+class BoardEditActivity : AppCompatActivity() {
+
+// 
+
+    // 게시글 키
+    private lateinit var key: String
+
+    // 태그
+    private val TAG = BoardEditActivity::class.java.simpleName
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+
+        super.onCreate(savedInstanceState)
+
+        // 자동 생성된 뷰바인딩 클래스에서의 inflate 메서드 활용
+        // -> 액티비티에서 사용할 바인딩 클래스의 인스턴스 생성
+        vBinding = ActivityBoardEditBinding.inflate(layoutInflater)
+
+        // getRoot 메서드로 레이아웃 내부 최상위에 있는 뷰의 인스턴스 활용
+        // -> 생성된 뷰를 액티비티에 표시
+        setContentView(binding.root)
+
+        // 뒤로가기 버튼을 클릭하면
+        binding.backBtn.setOnClickListener {
+
+            // 글수정 액티비티 종료
+            finish()
+
+        }
+
+        // 글읽기 프래그먼트에서 게시글의 키 값을 받아옴
+        key = intent.getStringExtra("key").toString()
+
+        // 키 값을 바탕으로 게시글 하나의 정보를 가져옴
+        getBoardData(key)
+
+        // 키 값을 바탕으로 게시글에 첨부된 이미지 정보를 가져옴
+        getImageData(key)
+
+        // 수정하기 버튼 -> 키 값을 바탕으로 불러온 게시글 수정
+        binding.boardEditBtn.setOnClickListener { editBoardData(key) }
+
+        // 삭제하기 버튼 -> 키 값을 바탕으로 불러온 댓글 삭제
+        binding.boardDeleteBtn.setOnClickListener { deleteBoardData(key) }
+
+
+    }
+
+    // 게시글을 삭제
+    private fun deleteBoardData(key: String) {
+
+        // 게시글 삭제
+        FBRef.boardRef.child(key).removeValue()
+
+        // 삭제 확인 메시지
+        Toast.makeText(this, "게시글이 삭제되었습니다", Toast.LENGTH_SHORT).show()
+
+        // 게시글수정 액티비티 종료
+        finish()
+
+    }
+
+    // 게시글을 수정
+    private fun editBoardData(key: String) {
+
+        // 수정한 값으로 업데이트
+        FBRef.boardRef.child(key).setValue(BoardModel(
+
+            // 제목 및 본문은 직접 수정한 내용으로,
+            binding.titleArea.text.toString(),
+            binding.mainArea.text.toString(),
+
+            // uid와 시간은 자동 설정됨
+            FBAuth.getUid(),
+            FBAuth.getTime()
+
+        ))
+
+        // 수정 확인 메시지
+        Toast.makeText(this, "게시글이 수정되었습니다", Toast.LENGTH_SHORT).show()
+
+        // 글수정 액티비티 종료
+        finish()
+
+   }
+
+    // 게시글에 첨부된 이미지 정보를 가져옴
+    private fun getImageData(key: String) {
+
+        // 이미지 파일 경로
+        val storageReference = Firebase.storage.reference.child("$key.png")
+
+        // 이미지 넣을 곳
+        val imgDown = binding.imageArea
+
+        // 글라이드로 이미지 다운로드
+        storageReference.downloadUrl.addOnCompleteListener( { task ->
+
+            // 이미지 첨부
+            if(task.isSuccessful) {
+                Glide.with(this)
+                    .load(task.result)
+                    .into(imgDown)
+            // 첨부 이미지 없으면 imageArea 안 보이게 처리
+            } else {
+                binding.imageArea.isVisible = false
+            }
+
+        })
+
+    }
+
+    // 게시글 하나의 정보를 가져옴
+    private fun getBoardData(key: String) {
+
+        // 데이터베이스에서 컨텐츠의 세부정보를 검색
+        val postListener = object : ValueEventListener {
+
+            // 데이터 스냅샷
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                // 예외 처리
+                try {
+
+                    // 데이터 스냅샷 내 데이터모델 형식으로 저장된 아이템(=게시글)
+                    val item = dataSnapshot.getValue(BoardModel::class.java)
+
+                    // 제목, 본문 해당 영역에 넣음(작성자 및 시간은 직접 수정하지 않음)
+                    binding.titleArea.setText(item?.title)
+                    binding.mainArea.setText(item?.main)
+                    // textView -> .text
+                    // editText -> .setText(집어넣을 데이터)
+
+                // 오류 나면
+                } catch (e: Exception) {
+
+                    // 로그
+                    Log.e(TAG, "getBoardData 확인")
+
+                }
+
+            }
+            // getBoardListData()와 달리 반복문이 아님 -> '단일' 아이템
+
+            // 오류 나면
+            override fun onCancelled(databaseError: DatabaseError) {
+
+                // 로그
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+
+            }
+
+        }
+
+        // 파이어베이스 내 데이터의 변화(추가)를 알려줌
+        FBRef.boardRef.child(key).addValueEventListener(postListener)
+
+    }
+
+    // 액티비티 파괴시
+    override fun onDestroy() {
+
+        // 바인딩 클래스 인스턴스 참조를 정리 -> 메모리 효율이 좋아짐
+        vBinding = null
+        super.onDestroy()
+
+    }
+
+}
+```
+
 ![board_comment](https://user-images.githubusercontent.com/68595933/192333287-c0932989-994e-466d-a798-fb3c88cbc156.PNG)
 
-- 글 CRUD
-- 댓글 CRUD
+- 3.2 댓글 CRUD
+  - 댓글 쓰기/읽기/수정/삭제가 가능합니다.
+  - 내가 쓴 댓글만 수정/삭제 버튼 버튼을 나타냅니다.
 
 ```kotlin
 // 글 CRUD
