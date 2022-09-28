@@ -62,7 +62,6 @@ class BoardReadActivity : AppCompatActivity() {
         commentLVAdapter = CommentLVAdapter(commentList)
         val cLV : ListView = binding.commentLV
         cLV.adapter = commentLVAdapter
-        ListHelper.getListViewSize(cLV)
 
         // 댓글 목록(리스트뷰)
         cLV.setOnTouchListener(object : View.OnTouchListener {
@@ -87,13 +86,8 @@ class BoardReadActivity : AppCompatActivity() {
         getImageData(key)
         getCommentListData(key)
 
-        // 뒤로가기 버튼을 클릭하면
-        binding.backBtn.setOnClickListener {
-
-            // 글읽기 액티비티 종료
-            finish()
-
-        }
+        // 뒤로가기 버튼을 클릭하면 글읽기 액티비티 종료
+        binding.backBtn.setOnClickListener { finish() }
 
         // 게시글 설정 버튼
         binding.boardSettingBtn.setOnClickListener {
@@ -112,31 +106,26 @@ class BoardReadActivity : AppCompatActivity() {
         // 파이어베이스의 댓글 키를 기반으로 댓글 데이터(=본문+uid+시간) 받아옴
         cLV.setOnItemClickListener { parent, view, position, id ->
 
-            // 명시적 인텐트 -> 다른 액티비티 호출
-            val intent = Intent(baseContext, CommentEditActivity::class.java)
+            // 댓글 작성자의 uid와 현재 사용자의 uid가 동일하면
+            if(commentList[position].uid == FBAuth.getUid()) {
 
-            // 댓글수정 액티비티로 댓글의 키 값 전달
-            intent.putExtra("key", key)
+                // 명시적 인텐트 -> 다른 액티비티 호출
+                val intent = Intent(baseContext, CommentEditActivity::class.java)
 
-            // 댓글수정 액티비티로 댓글의 키 값 전달
-            intent.putExtra("commentKey", commentKeyList[position])
+                // 댓글수정 액티비티로 키 값 전달
+                intent.putExtra("key", key)
 
-            // 댓글수정 액티비티 시작
-            startActivity(intent)
+                // 댓글수정 액티비티로 댓글의 키 값 전달
+                intent.putExtra("commentKey", commentKeyList[position])
 
-        }
-
-        // 댓글쓰기 버튼
-        binding.commentBtn.setOnClickListener {
-
-            // -> 작성한 댓글을 등록
-            setComment(key)
-
-            // 게시글 키 값을 바탕으로 게시글 하나의 정보를 다시 가져옴
-//            getBoardData(key)
-//            getCommentListData(key)
+                // 댓글수정 액티비티 시작
+                startActivity(intent)
+            }
 
         }
+
+        // 댓글쓰기 버튼 -> 작성한 댓글을 등록
+        binding.commentBtn.setOnClickListener { setComment(key) }
 
     }
 
@@ -313,10 +302,6 @@ class BoardReadActivity : AppCompatActivity() {
         FBRef.boardRef.child(key).addValueEventListener(postListener)
 
     }
-
-//    override fun onResume() {
-//        super.onResume()
-//    }
 
     // 액티비티 파괴시
     override fun onDestroy() {

@@ -52,12 +52,6 @@ class CommentLVAdapter(val commentList : MutableList<CommentModel>) : BaseAdapte
         val commentSettingBtn = view?.findViewById<ImageView>(R.id.commentSettingBtn)
         commentSettingBtn?.isVisible = commentList[position].uid.equals(FBAuth.getUid())
 
-        // 댓글 작성자의 uid와 현재 사용자의 uid가 다르면 터치 막음
-//        val commentLVItem = view?.findViewById<LinearLayout>(R.id.commentLVItemLayout)
-//        if(commentList[position].uid != FBAuth.getUid()) {
-//            commentLVItem?.setOnTouchListener(View.OnTouchListener { v, event -> true })
-//        }
-
         // 뷰 반환
         return view!!
 
