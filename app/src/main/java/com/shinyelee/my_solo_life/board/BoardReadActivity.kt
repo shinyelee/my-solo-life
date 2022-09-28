@@ -62,11 +62,13 @@ class BoardReadActivity : AppCompatActivity() {
         commentLVAdapter = CommentLVAdapter(commentList)
         val cLV : ListView = binding.commentLV
         cLV.adapter = commentLVAdapter
+        ListHelper.getListViewSize(cLV)
 
         // 댓글 목록(리스트뷰)
         cLV.setOnTouchListener(object : View.OnTouchListener {
 
             // 리스트뷰를 터치했을 때
+            @SuppressLint("ClickableViewAccessibility")
             override fun onTouch(p0: View?, p1: MotionEvent?): Boolean {
 
                 // 스크롤뷰(화면 전체)의 터치 이벤트를 막으면 -> 리스트뷰(댓글 영역)의 스크롤뷰가 작동함
@@ -311,6 +313,10 @@ class BoardReadActivity : AppCompatActivity() {
         FBRef.boardRef.child(key).addValueEventListener(postListener)
 
     }
+
+//    override fun onResume() {
+//        super.onResume()
+//    }
 
     // 액티비티 파괴시
     override fun onDestroy() {

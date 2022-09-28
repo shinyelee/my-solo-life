@@ -89,6 +89,7 @@
                         android:layout_marginEnd="10dp"
                         android:contentDescription="@string/setting"
                         android:src="@drawable/cog56"
+                        android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -130,11 +131,13 @@
                 android:orientation="vertical">
 
                 <!-- 헤더 -->
+
+                <!-- 댓글 목록(리스트뷰) -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:background="@color/sub">
+                    android:background="@color/sub"
+                    android:padding="10dp">
 
                     <TextView
                         android:id="@+id/commentHeaderText"
@@ -161,11 +164,10 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <!-- 댓글 목록(리스트뷰) -->
                 <ListView
                     android:id="@+id/commentLV"
                     android:layout_width="match_parent"
-                    android:layout_height="500dp"
+                    android:layout_height="600dp"
                     android:layout_marginBottom="70dp" />
 
             </LinearLayout>
