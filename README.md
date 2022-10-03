@@ -1573,6 +1573,31 @@ data class BookmarkModel (
 
 ---
 
+## DB 설계(Firebase Realtime Database)
+
+![db_all](https://user-images.githubusercontent.com/68595933/193632949-208321a2-406a-44f9-a74f-a080957ddd73.png)
+
+- DB 전체
+
+![contents_table](https://user-images.githubusercontent.com/68595933/193634389-9d3b3996-76f3-4730-b2d1-e5344540e696.png)
+![contents_table2](https://user-images.githubusercontent.com/68595933/193635085-38a90c71-82a7-461d-acc3-47a45682b1eb.png)
+
+- android_studio, bookmark_list, error_warning, kotlin_syntax, vcs_github, web_internet(카테고리별 컨텐츠)
+
+![board_table](https://user-images.githubusercontent.com/68595933/193635304-84a20c93-0b38-4157-9e9c-5639e5c74e64.png)
+
+- board(게시판)
+
+![comment_table](https://user-images.githubusercontent.com/68595933/193635663-3a01d761-8a5e-42fa-a33f-8d0801dcaad4.png)
+
+- comment(댓글)
+
+![bookmark_table](https://user-images.githubusercontent.com/68595933/193635838-efa530eb-768c-4660-82c2-e9806a7389c2.png)
+
+- bookmark_list(북마크)
+
+---
+
 ## 피드백
 
 ### 문제점
